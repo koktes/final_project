@@ -1,0 +1,1001 @@
+transaction_id,bank,reference,amount,currency,payer_name,payer_account,receiver_name,receiver_account,transaction_date,transaction_status,reason,suffix,phone_number,is_fraud,attack_type
+TX-005452,cbe_birr,Z2T77N5IR9,159.44,ETB,Nardos Lemma,251705610433,Assefa Negussie,251734312870,2025-01-06T17:33:45+03:00,Completed,Online purchase,,251903621329,1,amount_tamper
+TX-005568,dashen,394OPBMWGKTST47N,14400.0,ETB,Abebe Legesse,4292732206,Binyam Chala,7842076952,2026-04-28T22:41:06+03:00,Completed,Gift,,,1,temporal_anomaly
+TX-005516,cbe,FT1TUHGR7URA,778.73,ETB,Feven Habte,P***8856,Birtukan Fikre,L***7444,2025-11-22T04:05:18+03:00,Completed,Medical payment,37498941,,1,temporal_anomaly
+TX-005666,telebirr,CE8Y8XX98D,2272.08,ETB,Bethlehem Habte,251972775329,Assefa Desta,251965564414,2025-10-07T09:47:52+03:00,Success,Refund,,,1,temporal_anomaly
+TX-005242,abyssinia,FTBASJXB43SM,11106.19,ETB,Redwan Worku,0022466676936,Mekonen Tesfaye,4594591436241,2026-03-09T12:19:20+03:00,Completed,Mobile top-up,50484,,1,fuzzing
+TX-005215,telebirr,CEVU5P4MXB,500.0,ETB,Kebede Regassa,251952339199,Ruth Kiros,251977028748,2026-01-01T22:11:34+03:00,Successful,School fee,,,1,fuzzing
+TX-005167,cbe,FTNN4IJH60XQ,154.88,ETB,Hiwot Tesfaye,F***1061,Abel Negash,Y***9439,2026-01-26T08:41:40+03:00,Successful,Medical payment,80403253,,1,fuzzing
+TX-005586,dashen,9600TM0BCYKY2ES2,3138.27,ETB,Berhanu Abera,1294435400,Rahel Kebede,1748819096,2025-11-03T03:54:40+03:00,Successful,Insurance premium,,,1,temporal_anomaly
+TX-005356,mpesa,YUYXHO5WLL,1576.33,ETB,Redwan Negash,251752243845,Meron Petros,251956655688,2025-10-06T02:26:19+03:00,Completed,Insurance premium,,,1,amount_tamper
+TX-005619,cbe,FTN733U0YPZ0,15400.0,ETB,Leul Yimer,M***2458,Wubit Omer,A***1204,2024-04-18T22:41:06+03:00,Successful,Medical payment,69091237,,1,temporal_anomaly
+TX-005967,cbe,FTEC7Y1FJ4,35700.0,ETB,Abigail Endale,Z***0002,Tesfaye Haile,H***1074,2025-09-04T11:47:29+03:00,Completed,Donation,03146224,,1,format_violation
+TX-005968,abyssinia,CE98DLSCRYRC,4927.6,ETB,Marta Habte,0304198588623,Redwan Wolde,5763709272176,2025-05-14T09:16:08+03:00,Completed,Tax payment,43125,,1,format_violation
+TX-005480,mpesa,CN3X0Z2RAB,1619.36,ETB,Tirunesh Mekonnen,251722099880,Teshome Lemma,251721915746,2025-06-28T15:59:34+03:00,Successful,Rent payment,,,1,amount_tamper
+TX-005001,cbe,FTBJK8JV7OJM,736.6380708290685,ETB,Worku Abera,M***2128,Assefa Eshetu,L***9967,2026-02-02T14:38:32+03:00,Successful,Rent payment,90533470,,1,replay
+TX-005280,abyssinia,FTD5KRXGPWRC,3100.0,ETB,Eleni Wolde,6983240026810,Meron Yilma,4410121125787,2026-04-03T04:46:22+03:00,Completed,School fee,61289,,1,fuzzing
+TX-005463,dashen,8730OTN0N0OQWJS5,3427.31,ETB,Ermias Omer,7494906849,Sisay Wolde,0159763933,2025-08-13T16:53:23+03:00,Completed,Insurance premium,,,1,amount_tamper
+TX-005622,abyssinia,FT9SAULJ5FYI,9100.0,ETB,Daniel Negash,2260077966667,Konjit Fikre,9750254915772,2022-12-20T22:41:06+03:00,Completed,Savings deposit,01293,,1,temporal_anomaly
+TX-005878,telebirr,FFPt1tBMl7j@wgS!g,1468.87,ETB,Mahlet Desta,251775181483,Tirunesh Lemma,251930182377,2025-07-10T12:23:25+03:00,Successful,Service payment,,,1,format_violation
+TX-005066,telebirr,CEWUY6BIB8,391.28112051195626,ETB,Firehiwot Weldemariam,251907788876,Ruth Bogale,251731736723,2025-07-17T11:22:27+03:00,Completed,Gift,,,1,replay
+TX-005137,dashen,611Q9EIDNTZ3425X,1084.4798619264539,ETB,Teshome Tadesse,6280432812,Tesfaye Fikre,4493303923,2025-08-22T08:26:23+03:00,Successful,Tax payment,,,1,replay
+TX-005327,telebirr,CEGDMS7PPX,4556.49,ETB,Worku Taye,251940999151,Fitsum Hassen,251940508501,2025-12-02T15:40:17+03:00,Successful,School fee,,,1,fuzzing
+TX-005759,dashen,9222G528GQIWIKG0,424.41,ETB,Omar Lemma,8018227109,Omar Lemma,5544914137,2025-09-25T12:08:29+03:00,Processed,Rent payment,,,1,name_mismatch
+TX-005475,cbe_birr,WM26ZYSNGL,41.08,ETB,Eden Negash,251941628857,Natnael Tessema,251977348058,2026-02-24T11:33:12+03:00,Completed,Gift,,251947294103,1,amount_tamper
+TX-005789,mpesa,XRYWC6WTB6,118.31,ETB,Berhanu Regassa,251752160799,Tigist Tadesse,251996993366,2026-03-02T11:57:34+03:00,Successful,Savings deposit,,,1,name_mismatch
+TX-005394,telebirr,CEWVFEAKK7,4282.82,ETB,Worku Endale,251794340501,Mikael Kiros,251994575452,2025-04-15T16:38:29+03:00,Completed,Investment,,,1,amount_tamper
+TX-005078,cbe_birr,GFQSPH7R2L,641.2599522903237,ETB,Betelhem Endale,251751678149,Berhanu Legesse,251960249957,2025-10-20T17:35:29+03:00,Success,Business transaction,,251726105237,1,replay
+TX-005410,cbe_birr,ZEJ1MHTE4F,418.63,ETB,Chaltu Diriba,251902125553,Meseret Diriba,251995216887,2026-02-04T08:37:02+03:00,Completed,Savings deposit,,251979818999,1,amount_tamper
+TX-005415,telebirr,CEGLIU32YX,2840.3,ETB,Helen Habte,251991320585,Daniel Omer,251785804827,2025-07-09T11:42:12+03:00,Success,Investment,,,1,amount_tamper
+TX-005583,telebirr,CEXZZXKR99,1900.0,ETB,Olana Wolde,251715238778,Eden Gebremariam,251909854506,2023-01-03T22:41:06+03:00,Success,Business transaction,,,1,temporal_anomaly
+TX-005772,telebirr,CE6S2BUG35,57.51,ETB,Hailu Mekonnen,251902730238,Saron Worku,251712920722,2025-04-04T07:23:47+03:00,Successful,Utility bill,,,1,name_mismatch
+TX-005282,cbe,FTCS2YORCNJ6,700.0,ETB,Bekele Yimer,M***4000,Genet Gebre,K***6835,2026-03-18T14:53:08+03:00,Successful,Subscription fee,38777654,,1,fuzzing
+TX-005533,telebirr,CEQ3GRTGRH,3169.96,ETB,Biruk Diriba,251741646071,Omar Haile,251966528530,2027-01-25T22:41:06+03:00,Successful,Mobile top-up,,,1,temporal_anomaly
+TX-005575,cbe,FTXOF623RE9L,2017.43,ETB,Ruth Negash,A***1817,Zewditu Weldemariam,Y***6075,2023-06-06T22:41:06+03:00,Successful,Gift,99799052,,1,temporal_anomaly
+TX-005381,dashen,2723OV3L7ADCX985,15422.15,ETB,Dawit Ayele,7456381637,Tirunesh Kiros,3256619884,2026-03-04T17:04:09+03:00,Processed,Transfer,,,1,amount_tamper
+TX-005313,telebirr,CEU5DZNZ6B,300.0,ETB,Sisay Hassen,251794428281,Hanna Negash,251955126691,2025-08-19T15:10:38+03:00,Success,School fee,,,1,fuzzing
+TX-005831,abyssinia,FTMHTR9WW5PP,5556.1,ETB,Meron Taye,4035327639703,Mahlet Legesse,4421303928940,2026-02-16T05:06:56+03:00,Completed,Business transaction,31843,,1,name_mismatch
+TX-005468,mpesa,DOZID4V8EY,66.49,ETB,Bereket Demeke,251716595043,Ermias Haile,251743227736,2025-12-03T10:32:10+03:00,Completed,Savings deposit,,,1,amount_tamper
+TX-005515,cbe,FT4X8Y6OKF0V,8961.93,ETB,Negash Mohammed,Z***0412,Yohannes Bogale,B***9282,2024-03-14T22:41:06+03:00,Successful,Investment,84362418,,1,temporal_anomaly
+TX-005218,telebirr,CE1BGDD2HX,100.0,ETB,Fisseha Worku,251937361798,Bereket Zewde,251958744853,2025-02-27T09:31:55+03:00,Successful,Insurance premium,,,1,fuzzing
+TX-005347,cbe_birr,O7JRFG53V3,240.15,ETB,Iman Tessema,251789699921,Solomon Assefa,251982388663,2025-10-02T12:05:00+03:00,Success,Transfer,,251758442185,1,amount_tamper
+TX-005817,abyssinia,FTW7PDMCC5B9,7426.39,ETB,Getachew Fikre,8018884831867,Solomon Negash,2568374994927,2025-06-16T10:31:42+03:00,Completed,School fee,58900,,1,name_mismatch
+TX-005217,mpesa,2OU7OH6GW2,440.2,ETB,Birtukan Zeleke,251723387990,Selamawit Chala,251956219534,2025-07-05T10:57:59+03:00,Successful,Utility bill,,,1,fuzzing
+TX-005760,cbe,FTVZ90HEDMAM,2160.28,ETB,Feven Habte,S***4761,Feven Habte,B***7976,2025-05-26T12:43:47+03:00,Successful,Online purchase,57289722,,1,name_mismatch
+TX-005531,telebirr,CENKRULVY4,1005.54,ETB,Mesfin Hassen,251774057937,Wondwosen Bekele,251988552980,2025-01-20T08:51:25+03:00,Completed,Gift,,,1,temporal_anomaly
+TX-005888,telebirr,CE:&AWOV)0,433.18,ETB,Petros Yilma,251778198691,Betelhem Wolde,251974459715,2026-02-24T10:59:21+03:00,Successful,Mobile top-up,,,1,format_violation
+TX-005970,mpesa,TF6%1WR*Q2,242.82,ETB,Fisseha Tessema,251935860810,Liya Legesse,251728700135,2025-10-05T09:08:30+03:00,Successful,Business transaction,,,1,format_violation
+TX-005451,cbe,FT62F2JD9I82,626.6,ETB,Genet Omer,D***8594,Birtukan Assefa,T***1025,2026-03-27T13:51:47+03:00,Successful,Tax payment,92408222,,1,amount_tamper
+TX-005519,abyssinia,FTWSQR1P3O3W,9122.33,ETB,Birtukan Berhane,4315995895748,Solomon Ferede,1036210365070,2026-10-04T22:41:06+03:00,Successful,Online purchase,49311,,1,temporal_anomaly
+TX-005856,cbe_birr,AX1OVC,1200.0,ETB,Mulugeta Lemma,251940336821,Amanuel Ibrahim,251995363246,2025-03-19T08:47:03+03:00,Success,Business transaction,,251924335023,1,format_violation
+TX-005373,abyssinia,FTN6U9MR4G6R,1033.85,ETB,Hanna Jembere,0689300738722,Eyob Omer,4028048242001,2025-12-01T13:44:14+03:00,Successful,Service payment,51521,,1,amount_tamper
+TX-005213,dashen,4990TYPDG72SF2Y9,5800.0,ETB,Omar Kiros,1220667155,Wubit Habte,6504676550,2025-06-16T13:44:29+03:00,Successful,Gift,,,1,fuzzing
+TX-005170,cbe_birr,YBEDGNWDOI,264.61,ETB,Selamawit Jembere,251700607844,Assefa Taye,251714877159,2025-06-27T17:02:53+03:00,Completed,Online purchase,,251748679709,1,fuzzing
+TX-005578,telebirr,CE84X7EUGV,270.45,ETB,Selamawit Bogale,251970704373,Meseret Ferede,251714353554,2026-03-12T04:03:22+03:00,Successful,Gift,,,1,temporal_anomaly
+TX-005910,mpesa,7W2YSEFY3ATOP0R,1000.0,ETB,Konjit Petros,251997574120,Liya Tessema,251966674879,2026-04-15T16:11:28+03:00,Completed,Service payment,,,1,format_violation
+TX-005387,dashen,243T2GUOW474G358,4506.37,ETB,Feven Gebremariam,4844483534,Negash Demeke,0713209411,2025-08-26T06:11:03+03:00,Processed,Payment for goods,,,1,amount_tamper
+TX-005822,mpesa,5U53I5HLJG,465.62,ETB,Fitsum Chala,251797718364,Fitsum Chala,251768777624,2025-10-24T17:02:57+03:00,Completed,Transfer,,,1,name_mismatch
+TX-005279,dashen,3467CMB5SPHUQYK2,600.0,ETB,Genet Umer,1006538167,Rediet Habte,2897778945,2025-02-17T12:59:28+03:00,Successful,Service payment,,,1,fuzzing
+TX-005925,cbe,va!AqfHt#SO4w,10600.0,ETB,Kebede Kiros,K***4943,Mahlet Endale,T***3643,2025-05-28T11:56:28+03:00,Completed,Savings deposit,56831296,,1,format_violation
+TX-005396,cbe,FTY0SZKBNSH8,1284.11,ETB,Solomon Bogale,W***1235,Solomon Negash,M***8715,2025-10-26T16:38:04+03:00,Successful,Service payment,97802344,,1,amount_tamper
+TX-005012,cbe_birr,C6JESSNK4Q,188.85564306895859,ETB,Birtukan Zeleke,251768913929,Meron Hassen,251700437103,2025-12-21T09:57:49+03:00,Completed,Payment for goods,,251766131990,1,replay
+TX-005875,dashen,bIRN5!vCxE5EVpWudd,8453.01,ETB,Omar Yilma,6559585277,Robel Haile,3062227113,2026-02-06T17:30:43+03:00,Processed,Investment,,,1,format_violation
+TX-005987,cbe_birr,L8PN{NC1HY,99.66,ETB,Yohannes Yimer,251989320760,Biruk Kebede,251797836858,2025-04-28T05:40:21+03:00,Completed,Refund,,251753215692,1,format_violation
+TX-005139,abyssinia,FT3XIH8R479W,3923.7753401926093,ETB,Robel Legesse,1276121822145,Getachew Hassen,7748541923281,2026-01-11T16:44:14+03:00,Successful,Donation,68881,,1,replay
+TX-005150,telebirr,CE0DI3IF9F,238.2935480882616,ETB,Zewditu Haile,251712219746,Firehiwot Ferede,251712163824,2025-02-03T09:13:21+03:00,Successful,Tax payment,,,1,replay
+TX-005744,cbe_birr,5N0YSAJ9W0,253.18,ETB,Leul Bekele,251987902458,Leul Bekele,251925680585,2025-06-16T11:47:15+03:00,Completed,Rent payment,,251948198877,1,name_mismatch
+TX-005392,telebirr,CEBNLCTOUY,1787.91,ETB,Aster Negussie,251783318390,Mesfin Mekonnen,251773208361,2026-02-11T10:09:32+03:00,Success,Investment,,,1,amount_tamper
+TX-005660,telebirr,CEDHWYR25Z,4322.38,ETB,Tesfaye Assefa,251909953218,Eleni Yilma,251953058654,2025-09-16T21:32:35+03:00,Completed,Online purchase,,,1,temporal_anomaly
+TX-005095,dashen,5046UZH25RL86KP8,28649.862725261693,ETB,Ruth Worku,1686892586,Dagmawit Wolde,6572731149,2025-01-14T15:08:41+03:00,Completed,Online purchase,,,1,replay
+TX-005226,telebirr,CE1ADNCC8Z,176.2,ETB,Yoseph Kebede,251734054755,Hailu Fikre,251798322991,2025-12-01T09:10:32+03:00,Successful,Transfer,,,1,fuzzing
+TX-005958,telebirr,ZayNZ!3ORCriDJ,364.58,ETB,Mikael Bogale,251992839678,Meron Tessema,251940345868,2026-02-26T13:01:27+03:00,Successful,Payment for goods,,,1,format_violation
+TX-005749,dashen,9395SOEH97C4A9EU,22600.0,ETB,Mahlet Seyoum,0850790089,Mahlet Seyoum,1572219693,2026-03-30T21:00:10+03:00,Completed,Insurance premium,,,1,name_mismatch
+TX-005566,cbe,FTNRMTWI5MYI,14672.69,ETB,Zewditu Kiros,R***1039,Mulugeta Tesfaye,H***9705,2025-12-01T13:32:57+03:00,Completed,Mobile top-up,32809448,,1,temporal_anomaly
+TX-005880,cbe,FT70IRWT2XE7BNKWH,6396.35,ETB,Lidya Abera,W***0791,Getachew Mohammed,G***7177,2026-03-30T17:18:15+03:00,Completed,Online purchase,49187063,,1,format_violation
+TX-005014,mpesa,NSDU5Z3UME,170.61441422489398,ETB,Fisseha Ibrahim,251754337254,Dewi Demeke,251944915266,2026-04-19T17:18:33+03:00,Completed,Gift,,,1,replay
+TX-005547,cbe_birr,38YA01UFVE,700.0,ETB,Bethlehem Endale,251982057347,Tesfaye Regassa,251720344634,2024-01-05T22:41:06+03:00,Success,Transfer,,251720996943,1,temporal_anomaly
+TX-005203,cbe,FTQGDSKXJZEZ,3520.38,ETB,Eleni Bogale,M***2438,Yoseph Bekele,S***2771,2026-02-06T11:42:40+03:00,Successful,Subscription fee,50705182,,1,fuzzing
+TX-005143,cbe_birr,0X4J1ABXT2,1545.9477924849032,ETB,Henok Bogale,251701638400,Kidist Bogale,251993463149,2025-09-29T11:05:11+03:00,Completed,Savings deposit,,251989538863,1,replay
+TX-005674,abyssinia,FT029D5ZT1MR,31400.0,ETB,Yeshi Negash,5318751636708,Yeshi Negash,4694499497177,2026-01-01T09:11:03+03:00,Successful,Business transaction,33435,,1,name_mismatch
+TX-005148,cbe,FTLL7V5F1BCP,4854.437689339035,ETB,Wubit Diriba,G***4199,Tirunesh Diriba,S***7840,2025-03-19T10:44:45+03:00,Successful,Medical payment,24451076,,1,replay
+TX-005909,cbe_birr,1743XHYB5KSW,989.51,ETB,Assefa Ferede,251795851749,Marta Fikre,251720853246,2025-11-28T09:24:16+03:00,Success,Service payment,,251747616119,1,format_violation
+TX-005100,mpesa,4KWYPDJ4YR,106.37866248223108,ETB,Kaleb Ferede,251916198342,Bereket Ferede,251913509171,2025-09-30T12:39:04+03:00,Completed,Salary payment,,,1,replay
+TX-005721,telebirr,CENHLKQ4W2,1005.54,ETB,Mesfin Hassen,251774057937,Mesfin Hassen,251988552980,2025-01-20T08:51:25+03:00,Completed,Gift,,,1,name_mismatch
+TX-005419,cbe,FTQIUT6HRCFU,31252.83,ETB,Ruth Gebre,I***3780,Robel Mohammed,A***4079,2025-04-07T16:53:28+03:00,Completed,Online purchase,92032735,,1,amount_tamper
+TX-005010,cbe,FTWT0IPSB53X,5804.115020132726,ETB,Aster Umer,E***3330,Fisseha Seyoum,J***2201,2025-02-13T12:53:41+03:00,Completed,School fee,08316816,,1,replay
+TX-005595,mpesa,XVJ5PSJUGG,222.83,ETB,Nahom Taye,251746390444,Binyam Desta,251983226414,2022-12-07T22:41:06+03:00,Successful,Tax payment,,,1,temporal_anomaly
+TX-005266,telebirr,CEAW20S92Y,400.0,ETB,Tsion Ayele,251976232558,Aster Abera,251991277615,2026-02-10T15:32:55+03:00,Success,Gift,,,1,fuzzing
+TX-005564,cbe,FTXJPV10OW4B,2669.84,ETB,Tesfaye Fikre,G***9669,Negash Seyoum,W***3219,2026-09-07T22:41:06+03:00,Completed,Service payment,24619196,,1,temporal_anomaly
+TX-005506,cbe_birr,U1LY3MNMTX,100.0,ETB,Firehiwot Girmay,251937139372,Zewditu Eshetu,251737731802,2025-12-19T16:02:24+03:00,Success,Mobile top-up,,251700459342,1,temporal_anomaly
+TX-005271,telebirr,CECMR0E9GH,100.0,ETB,Mulugeta Assefa,251704280489,Worku Yimer,251994476337,2025-08-21T11:32:01+03:00,Success,Service payment,,,1,fuzzing
+TX-005108,abyssinia,FTP2F8RR80FA,4907.808710812332,ETB,Fitsum Wolde,4796100901391,Olana Tessema,7458190329740,2025-10-14T17:32:54+03:00,Completed,Service payment,26212,,1,replay
+TX-005877,mpesa,"&782JD,I5P",800.0,ETB,Fisseha Weldemariam,251703665607,Ermias Petros,251953392515,2025-03-31T23:33:46+03:00,Completed,Loan repayment,,,1,format_violation
+TX-005645,cbe,FTZT8R2PHUGB,4828.15,ETB,Ruth Gudeta,H***3557,Kebede Omer,O***3123,2021-07-03T22:41:06+03:00,Successful,Service payment,05218799,,1,temporal_anomaly
+TX-005361,dashen,125CTH3ZWCHFKF5U,292.74,ETB,Yeshi Gebre,4180814784,Tesfaye Girmay,2358828031,2025-03-03T11:33:30+03:00,Completed,Salary payment,,,1,amount_tamper
+TX-005702,cbe,FTYCXNEAM5CS,3955.21,ETB,Tekle Demeke,Q***0316,Tigist Seyoum,P***9512,2025-08-10T09:56:11+03:00,Successful,Utility bill,85354160,,1,name_mismatch
+TX-005303,cbe,FTGC4W713QNV,49500.0,ETB,Henok Yimer,B***0059,Kebede Eshetu,J***5173,2025-06-30T12:02:20+03:00,Completed,Investment,34424627,,1,fuzzing
+TX-005201,telebirr,CE809QC5B8,19.56,ETB,Mulugeta Wolde,251965360549,Tsion Mekonnen,251979310826,2025-03-20T15:20:26+03:00,Successful,Refund,,,1,fuzzing
+TX-005897,telebirr,CEN5R'52N=,925.54,ETB,Leul Tessema,251930100345,Mesfin Hassen,251925153863,2025-02-21T12:46:59+03:00,Successful,Loan repayment,,,1,format_violation
+TX-005454,mpesa,RNLL636077,52.62,ETB,Girma Taye,251716131516,Meron Bogale,251964818840,2026-03-06T16:35:37+03:00,Successful,Transfer,,,1,amount_tamper
+TX-005500,abyssinia,FTDJYGOQADDD,13813.18,ETB,Wubit Tadesse,0584240515256,Yeshi Legesse,5408097976626,2026-03-23T17:50:12+03:00,Completed,Insurance premium,95367,,1,amount_tamper
+TX-005550,telebirr,CE3I4QP2SD,979.37,ETB,Worku Ayele,251712054048,Nahom Demeke,251776825413,2026-10-09T22:41:06+03:00,Successful,Online purchase,,,1,temporal_anomaly
+TX-005297,mpesa,8G8Y42YY4P,269.77,ETB,Fisseha Mekonnen,251913459430,Meron Taye,251958556895,2026-03-07T05:15:04+03:00,Successful,Subscription fee,,,1,fuzzing
+TX-005689,telebirr,CE4A3NDPYN,300.0,ETB,Tesfaye Bekele,251709134178,Bethlehem Regassa,251971957145,2025-02-18T09:17:37+03:00,Successful,Insurance premium,,,1,name_mismatch
+TX-005027,telebirr,CEW3XBWR92,2113.252590256458,ETB,Olana Eshetu,251989876904,Bezawit Chala,251940362756,2026-03-08T13:19:39+03:00,Completed,Refund,,,1,replay
+TX-005296,cbe_birr,REBX8ESX51,200.0,ETB,Getachew Gebremariam,251916684123,Binyam Omer,251907286771,2025-02-07T13:07:32+03:00,Completed,Investment,,251761320251,1,fuzzing
+TX-005703,abyssinia,FTXVSF1BLMR1,12181.82,ETB,Ermias Tadesse,1775054686800,Abigail Yilma,3376330356639,2025-08-14T10:15:51+03:00,Successful,Payment for goods,43432,,1,name_mismatch
+TX-005731,cbe,FTW60JSCTOLQ,5000.0,ETB,Eleni Petros,L***9157,Dereje Gebremariam,X***1555,2025-02-13T13:45:50+03:00,Successful,School fee,96435221,,1,name_mismatch
+TX-005326,cbe_birr,WAX2WZIQMR,86.63,ETB,Kidist Eshetu,251960631524,Tadesse Kebede,251774537554,2025-06-30T13:54:17+03:00,Success,Refund,,251770909825,1,fuzzing
+TX-005400,telebirr,CE1QA1DWME,971.63,ETB,Aster Demeke,251998893903,Betelhem Tessema,251796466802,2026-01-29T16:30:18+03:00,Successful,Donation,,,1,amount_tamper
+TX-005886,dashen,MQXQYT11VL5HGI,2784.03,ETB,Biruk Tadesse,8911839788,Dawit Lemma,3351567025,2025-03-15T08:27:32+03:00,Processed,Donation,,,1,format_violation
+TX-005756,dashen,057FK4TQWO10ERDK,6206.45,ETB,Henok Kebede,3472090028,Aster Ferede,4051649764,2025-03-24T07:30:10+03:00,Completed,Insurance premium,,,1,name_mismatch
+TX-005082,telebirr,CEAXRWSPDW,3046.4205186178638,ETB,Helen Mohammed,251719687193,Helen Bogale,251980315122,2025-07-09T15:33:29+03:00,Success,School fee,,,1,replay
+TX-005349,abyssinia,FT6C8IM2G7XK,1931.73,ETB,Helen Ahmed,7895360256748,Tekle Girmay,5985404960714,2025-02-25T21:53:40+03:00,Completed,Transfer,38745,,1,amount_tamper
+TX-005784,cbe_birr,AUH6DSXMS6,100.0,ETB,Ruth Habte,251785070987,Nahom Haile,251788960358,2026-03-16T15:50:42+03:00,Success,Refund,,251910008440,1,name_mismatch
+TX-005283,cbe_birr,6Q2728SOTZ,111.39,ETB,Mekdes Negussie,251702822967,Yoseph Regassa,251945606958,2025-08-05T12:16:03+03:00,Success,Mobile top-up,,251927397166,1,fuzzing
+TX-005258,mpesa,ZEXWAPKCNU,51.4,ETB,Yoseph Haile,251946084872,Kaleb Taye,251753276945,2025-02-20T08:41:48+03:00,Completed,Tax payment,,,1,fuzzing
+TX-005202,cbe,FTUE08QTOD9T,8900.0,ETB,Seyoum Tessema,B***4096,Dereje Assefa,U***9731,2025-06-12T09:05:51+03:00,Successful,Refund,83074820,,1,fuzzing
+TX-005525,cbe_birr,3SNTNF1519,127.33,ETB,Hagos Tadesse,251749884117,Kebede Girmay,251964301752,2025-07-31T15:44:37+03:00,Success,Service payment,,251795718232,1,temporal_anomaly
+TX-005067,telebirr,CEKP79YIO0,116.79095717072943,ETB,Meseret Haile,251705440652,Tigist Abera,251973143090,2025-03-28T17:53:16+03:00,Success,Refund,,,1,replay
+TX-005774,dashen,5812ESTYZBLI4Z3Y,2420.61,ETB,Hailu Wolde,0734294641,Hailu Wolde,1393863085,2025-08-28T11:36:09+03:00,Processed,Subscription fee,,,1,name_mismatch
+TX-005181,cbe,FT0EJQPXV1V7,1838.23,ETB,Rediet Berhane,Y***7679,Getachew Gebremariam,O***8244,2025-07-10T12:38:19+03:00,Completed,Online purchase,09438682,,1,fuzzing
+TX-005567,telebirr,CE06XB8VSH,2526.47,ETB,Liya Assefa,251963361891,Eyob Eshetu,251796572728,2025-08-25T16:50:57+03:00,Completed,Gift,,,1,temporal_anomaly
+TX-005257,telebirr,CEOH64O1WB,537.44,ETB,Hagos Negash,251907457774,Dereje Bogale,251765183163,2025-04-06T13:14:54+03:00,Completed,Online purchase,,,1,fuzzing
+TX-005607,telebirr,CEU6LCIPLI,737.53,ETB,Eyob Omer,251993250192,Lemma Ahmed,251996703105,2021-07-28T22:41:06+03:00,Successful,Subscription fee,,,1,temporal_anomaly
+TX-005002,telebirr,CEUJJLF2N3,540.9316692186255,ETB,Tesfaye Gebremariam,251920244189,Meseret Girmay,251746700475,2025-02-19T18:41:59+03:00,Successful,Donation,,,1,replay
+TX-005153,dashen,5812ESTYZBLI4Z3Y,1848.8075764751995,ETB,Eleni Assefa,5150080495,Bekele Omer,1393863085,2025-07-03T01:41:59+03:00,Processed,Subscription fee,,,1,replay
+TX-005671,cbe,FT07G8O8G8HZ,2196.3,ETB,Worku Worku,Q***1865,Bekele Worku,U***7846,2026-03-28T08:39:20+03:00,Successful,Loan repayment,30349189,,1,name_mismatch
+TX-005638,abyssinia,FTE0WVUBE78F,2349.87,ETB,Bereket Jembere,1303752529140,Fitsum Endale,4377491694734,2027-01-15T22:41:06+03:00,Completed,Refund,44083,,1,temporal_anomaly
+TX-005263,dashen,3534OVXT83EXHU2T,2400.0,ETB,Konjit Weldemariam,1489024239,Kaleb Lemma,8966999558,2026-03-27T10:17:52+03:00,Completed,Business transaction,,,1,fuzzing
+TX-005535,abyssinia,FTSK9YGJIBH8,25936.22,ETB,Hagos Gebremariam,5050285877484,Tigist Mekonnen,5997340289230,2022-11-13T22:41:06+03:00,Completed,Tax payment,32138,,1,temporal_anomaly
+TX-005269,dashen,341WMEHK2222JTGP,671.0,ETB,Natnael Mekonnen,5072389542,Aster Mohammed,5829304207,2026-04-20T00:15:07+03:00,Successful,Utility bill,,,1,fuzzing
+TX-005405,dashen,133VMUQM990CUGKA,40544.67,ETB,Kebede Ibrahim,3498904190,Berhanu Habte,1190244136,2025-12-03T10:55:27+03:00,Processed,Tax payment,,,1,amount_tamper
+TX-005723,cbe,FTS1IYM90PKR,10200.0,ETB,Saron Legesse,H***4143,Hanna Lemma,G***7189,2025-03-28T18:40:40+03:00,Completed,Business transaction,12604326,,1,name_mismatch
+TX-005814,abyssinia,FTDMM6OC6IWE,463.82,ETB,Eden Haile,1442365990877,Kidist Desta,4356427550751,2025-11-12T13:12:38+03:00,Successful,Donation,27495,,1,name_mismatch
+TX-005794,telebirr,CECDDWJETF,1410.9,ETB,Girma Petros,251701539874,Girma Petros,251719199949,2025-09-12T09:54:07+03:00,Success,Gift,,,1,name_mismatch
+TX-005366,telebirr,CECLXNTXLP,2451.86,ETB,Aster Omer,251747713412,Negash Hassen,251983410657,2026-01-29T17:28:26+03:00,Success,Insurance premium,,,1,amount_tamper
+TX-005997,dashen,AR8X6IL6ZA5OE3A7FQY,300.0,ETB,Redwan Omer,3860097310,Worku Demeke,6808269835,2025-12-15T13:51:07+03:00,Completed,Medical payment,,,1,format_violation
+TX-005332,abyssinia,FT6S94YYMD5K,14266.26,ETB,Henok Worku,4321774296555,Tekle Regassa,7486803450845,2025-10-25T11:24:28+03:00,Successful,Refund,96339,,1,fuzzing
+TX-005241,telebirr,CE3YM56A11,577.62,ETB,Leul Lemma,251988761727,Robel Kiros,251903410588,2025-03-24T08:53:15+03:00,Success,Salary payment,,,1,fuzzing
+TX-005654,dashen,9148EOYJG39SEDNS,861.04,ETB,Abebe Ferede,4963770270,Getachew Ayele,2100580998,2025-11-08T02:15:26+03:00,Successful,Online purchase,,,1,temporal_anomaly
+TX-005185,cbe_birr,DMOR7MVKBK,344.63,ETB,Abigail Yilma,251945633073,Omar Tessema,251702859467,2025-10-21T17:49:31+03:00,Success,Refund,,251776822537,1,fuzzing
+TX-005008,telebirr,CE4GH8P9LV,35.02494175590469,ETB,Liya Gebremariam,251900898881,Omar Haile,251742816458,2025-10-03T10:28:48+03:00,Success,Payment for goods,,,1,replay
+TX-005208,cbe_birr,T7G2D7EKEX,186.54,ETB,Chaltu Ahmed,251951183020,Iman Mohammed,251933448419,2025-06-25T16:35:40+03:00,Completed,Mobile top-up,,251747691854,1,fuzzing
+TX-005461,cbe,FTIZOLNNTXRG,113.69,ETB,Alemu Berhane,V***2201,Nardos Tadesse,E***7621,2025-03-07T14:57:50+03:00,Successful,Refund,27868765,,1,amount_tamper
+TX-005953,mpesa,"L9LTA5%B6,",2726.84,ETB,Dagmawit Kiros,251954579230,Konjit Diriba,251963236785,2025-12-02T14:15:11+03:00,Successful,Online purchase,,,1,format_violation
+TX-005614,cbe_birr,WTN6FPKOKC,226.31,ETB,Tadesse Omer,251774393318,Nahom Habte,251932220952,2025-11-03T08:50:28+03:00,Success,Salary payment,,251714045409,1,temporal_anomaly
+TX-005981,mpesa,c2GJGKNJfS,432.6,ETB,Kaleb Chala,251735850550,Mesfin Negussie,251980856970,2025-02-21T17:08:42+03:00,Successful,Savings deposit,,,1,format_violation
+TX-005189,telebirr,CE5VDUDKTQ,1187.46,ETB,Bethlehem Endale,251719495568,Henok Mekonnen,251969088403,2025-09-17T06:43:23+03:00,Successful,Mobile top-up,,,1,fuzzing
+TX-005867,cbe_birr,OI7(7FLX7J,1300.0,ETB,Wubit Desta,251972400877,Betelhem Fikre,251760145548,2026-01-09T13:14:53+03:00,Completed,Subscription fee,,251987965267,1,format_violation
+TX-005978,abyssinia,7rVoqPMm,5300.0,ETB,Nardos Mekonnen,1201457452207,Worku Ibrahim,1182447337984,2025-04-21T15:32:16+03:00,Successful,Business transaction,92362,,1,format_violation
+TX-005079,mpesa,F4HL95IZTC,120.69069748372895,ETB,Dereje Zewde,251775934419,Eden Kebede,251740392319,2026-02-09T11:01:30+03:00,Completed,Savings deposit,,,1,replay
+TX-005735,telebirr,CEZU2UKHE2,200.0,ETB,Natnael Weldemariam,251935934177,Natnael Mohammed,251943071821,2025-10-25T09:51:24+03:00,Success,Medical payment,,,1,name_mismatch
+TX-005438,cbe,FTXHL5V32BH1,1033.13,ETB,Yoseph Fikre,X***9671,Mekonen Tadesse,W***0666,2025-07-21T08:57:41+03:00,Successful,Gift,11340785,,1,amount_tamper
+TX-005256,cbe_birr,G1UFT4RODZ,70.0,ETB,Assefa Yimer,251920452071,Petros Hassen,251781553958,2026-02-17T14:54:13+03:00,Completed,Subscription fee,,251727980724,1,fuzzing
+TX-005747,telebirr,CEDYLDECO8,900.0,ETB,Birtukan Zewde,251931978958,Feven Tesfaye,251901089810,2025-08-17T10:41:57+03:00,Successful,Tax payment,,,1,name_mismatch
+TX-005336,cbe,FTAMB3LPVOWC,123.53,ETB,Rediet Endale,D***6493,Dagmawit Gebre,Q***9802,2025-08-26T16:55:29+03:00,Completed,Service payment,17833321,,1,amount_tamper
+TX-005887,cbe_birr,HmK4!2Xj3cWuIL#4V,300.0,ETB,Marta Gebre,251773782331,Solomon Mekonnen,251918917789,2025-01-13T13:43:43+03:00,Completed,Medical payment,,251966801150,1,format_violation
+TX-005596,cbe_birr,KC48PX3Z08,235.56,ETB,Robel Lemma,251781742659,Daniel Regassa,251928803869,2023-02-18T22:41:06+03:00,Success,Utility bill,,251732149940,1,temporal_anomaly
+TX-005579,dashen,126Q1AJWWZUQ7UOW,971.64,ETB,Tigist Wolde,8182831031,Eleni Tesfaye,9810357412,2027-02-25T22:41:06+03:00,Completed,Transfer,,,1,temporal_anomaly
+TX-005982,dashen,"01CFWGGFCN@M,D#S",11965.74,ETB,Tesfaye Diriba,8945541909,Yohannes Legesse,6194578567,2026-01-06T17:14:48+03:00,Processed,Savings deposit,,,1,format_violation
+TX-005075,cbe_birr,VZN3L5SIIZ,5.991923372154611,ETB,Solomon Gebremariam,251722302801,Mekdes Bekele,251729600772,2025-04-20T09:14:30+03:00,Success,Donation,,251764947538,1,replay
+TX-005308,dashen,380HZWBQJKJY0261,945.02,ETB,Fitsum Hassen,6140466045,Redwan Abera,4815496103,2025-12-18T13:58:39+03:00,Successful,Tax payment,,,1,fuzzing
+TX-005251,dashen,618EF6YE186FW123,356.01,ETB,Natnael Demeke,2385931484,Mulugeta Ahmed,5903446721,2025-11-17T17:55:41+03:00,Successful,Investment,,,1,fuzzing
+TX-005717,cbe_birr,8EJFF1F8UG,246.71,ETB,Marta Hassen,251747133376,Mikael Ferede,251962554772,2026-03-04T08:58:34+03:00,Success,Online purchase,,251982956809,1,name_mismatch
+TX-005439,cbe_birr,AZRGSERJUO,4789.18,ETB,Petros Bogale,251943322579,Birtukan Omer,251907625295,2026-03-09T11:53:57+03:00,Completed,Online purchase,,251751866613,1,amount_tamper
+TX-005292,telebirr,CERYKN8AZ8,1799.54,ETB,Alemu Hassen,251771575610,Aster Haile,251903022123,2025-10-05T03:11:06+03:00,Success,Refund,,,1,fuzzing
+TX-005168,dashen,841LQ7AWOF5MSLCA,2808.12,ETB,Mesfin Mekonnen,6654878646,Negash Seyoum,1596684927,2025-01-10T23:23:24+03:00,Completed,School fee,,,1,fuzzing
+TX-005590,mpesa,76BHHUR44A,100.0,ETB,Aster Wolde,251991000740,Marta Desta,251728629377,2021-12-30T22:41:06+03:00,Completed,Medical payment,,,1,temporal_anomaly
+TX-005948,telebirr,CE4U47A55CZXU,439.88,ETB,Getachew Lemma,251912981659,Betelhem Tessema,251729232190,2025-03-19T22:30:20+03:00,Success,Savings deposit,,,1,format_violation
+TX-005826,mpesa,HFR2RWB3HY,80.0,ETB,Liya Habte,251799503159,Sisay Demeke,251911867557,2025-03-17T13:10:17+03:00,Completed,Loan repayment,,,1,name_mismatch
+TX-005092,cbe,FTUNGKHVLUCN,397.97829552104014,ETB,Meron Negash,K***6001,Meseret Abera,S***1898,2025-11-26T08:08:30+03:00,Completed,Investment,36561833,,1,replay
+TX-005011,cbe,FTPESRSS0NP9,3938.196167735842,ETB,Teshome Eshetu,H***0372,Bekele Tessema,Z***3860,2025-05-17T12:46:30+03:00,Successful,Investment,90380351,,1,replay
+TX-005045,abyssinia,FTZSHTN0BZDR,4446.849230901565,ETB,Robel Ahmed,1053937589280,Mekdes Petros,6008629759670,2025-08-27T03:32:24+03:00,Successful,Donation,94904,,1,replay
+TX-005644,telebirr,CEV47UGSEI,145.96,ETB,Mekonen Berhane,251774988396,Ruth Negash,251952543093,2026-02-24T01:54:37+03:00,Success,Salary payment,,,1,temporal_anomaly
+TX-005154,cbe,FT248PSRRT7D,1474.4427440618902,ETB,Sisay Endale,P***5558,Amanuel Tessema,X***5731,2025-02-09T10:44:17+03:00,Successful,Salary payment,07191294,,1,replay
+TX-005176,cbe_birr,GB8IKYJSDD,161.98,ETB,Assefa Mohammed,251910867761,Rediet Legesse,251761999631,2025-03-10T08:15:15+03:00,Success,Gift,,251782696380,1,fuzzing
+TX-005904,dashen,o!!rPwk2iPwFrYisJD1w,4900.0,ETB,Abel Seyoum,5072813234,Wondwosen Endale,8687496573,2025-12-02T17:58:40+03:00,Processed,School fee,,,1,format_violation
+TX-005384,cbe,FTHGW10C9IX6,3171.24,ETB,Nardos Habte,G***0073,Abebe Umer,L***0556,2025-12-23T13:55:29+03:00,Completed,Utility bill,19881927,,1,amount_tamper
+TX-005543,cbe,FTZ1Q6LUHNVY,1600.0,ETB,Nahom Ferede,U***8637,Genet Assefa,Z***0265,2025-05-13T13:06:05+03:00,Successful,Rent payment,55940781,,1,temporal_anomaly
+TX-005599,cbe,FTMQ58XH3916,29300.0,ETB,Abebe Lemma,Z***4808,Redwan Girmay,O***8002,2026-01-26T02:56:16+03:00,Completed,Medical payment,62216906,,1,temporal_anomaly
+TX-005529,telebirr,CE0IR6VO62,500.0,ETB,Lemma Weldemariam,251933677052,Dewi Omer,251953841279,2026-02-23T04:44:04+03:00,Completed,Utility bill,,,1,temporal_anomaly
+TX-005824,cbe,FTXZV4U3BBXU,19000.92,ETB,Mekdes Tadesse,P***8447,Mekdes Tadesse,M***4710,2025-03-17T15:13:21+03:00,Completed,Savings deposit,55625881,,1,name_mismatch
+TX-005021,telebirr,CE5PWI6RU4,233.32547519373588,ETB,Assefa Wolde,251717110488,Mekdes Haile,251714714088,2025-07-07T08:15:20+03:00,Success,Mobile top-up,,,1,replay
+TX-005411,cbe_birr,RISXFIRIOF,525.47,ETB,Selamawit Regassa,251992579186,Mekdes Mohammed,251920916630,2025-05-09T17:29:01+03:00,Success,Refund,,251940027955,1,amount_tamper
+TX-005083,telebirr,CE8QOOEGE1,145.03942870991204,ETB,Birtukan Legesse,251914627295,Aster Worku,251786491750,2025-08-29T11:58:24+03:00,Successful,Medical payment,,,1,replay
+TX-005200,telebirr,CE7JEC1IYQ,34.29,ETB,Chaltu Assefa,251970870145,Kebede Kiros,251780469575,2026-04-16T10:24:44+03:00,Success,Online purchase,,,1,fuzzing
+TX-005758,dashen,264UK51STOLHREJD,6604.3,ETB,Dewi Eshetu,6593005233,Jerusalem Zeleke,4389633481,2026-02-22T09:55:25+03:00,Successful,Gift,,,1,name_mismatch
+TX-005448,telebirr,CE9KWUKBFE,25954.6,ETB,Eden Girmay,251928873381,Sara Zewde,251749856275,2025-07-29T21:29:35+03:00,Completed,School fee,,,1,amount_tamper
+TX-005876,abyssinia,FTCY1VS%9KII,8353.71,ETB,Hiwot Gudeta,4758510922882,Bethlehem Legesse,6908894514660,2025-06-21T11:39:18+03:00,Completed,Salary payment,92947,,1,format_violation
+TX-005562,dashen,512D6CXQ4O8BK5CY,109.3,ETB,Yeshi Yimer,0086467528,Mulugeta Negussie,5420142969,2022-10-11T22:41:06+03:00,Processed,Medical payment,,,1,temporal_anomaly
+TX-005324,telebirr,CE177SS9YB,90.39,ETB,Chaltu Abera,251702533441,Assefa Bekele,251920139216,2025-01-13T04:09:58+03:00,Successful,Medical payment,,,1,fuzzing
+TX-005637,cbe,FT62P3DJBWAS,1473.39,ETB,Mulugeta Legesse,P***2872,Birtukan Kiros,M***0416,2026-05-28T22:41:06+03:00,Successful,Investment,22483958,,1,temporal_anomaly
+TX-005571,cbe,FT325TV1PX4F,381.6,ETB,Bereket Haile,A***4991,Mekonen Berhane,O***8872,2026-02-20T01:10:03+03:00,Successful,School fee,74205493,,1,temporal_anomaly
+TX-005949,cbe,FTWSVFHAO8EQBD,12388.01,ETB,Tekle Eshetu,M***0422,Alemu Habte,M***0788,2026-02-19T14:03:07+03:00,Completed,School fee,66760214,,1,format_violation
+TX-005913,mpesa,CEF4NP5CZU,283.31,ETB,Getachew Girmay,251909012144,Dewi Kiros,251741640951,2025-11-20T11:50:32+03:00,Completed,Donation,,,1,format_violation
+TX-005172,cbe,FTPTMQKOYMXN,8961.92,ETB,Natnael Gudeta,T***6163,Dewi Eshetu,F***5747,2025-08-15T15:40:10+03:00,Completed,Utility bill,38487756,,1,fuzzing
+TX-005646,telebirr,CELKP7EQJB,626.19,ETB,Solomon Worku,251733635921,Lidya Ahmed,251934051558,2026-04-06T20:27:26+03:00,Completed,Loan repayment,,,1,temporal_anomaly
+TX-005906,cbe_birr,JOR57,3338.32,ETB,Leul Legesse,251750040650,Samuel Omer,251713921756,2025-01-13T13:49:16+03:00,Success,Donation,,251773108384,1,format_violation
+TX-005921,telebirr,FTCWFHVHAP,400.0,ETB,Amanuel Eshetu,251787982237,Hanna Demeke,251716071726,2025-06-30T12:03:11+03:00,Successful,Donation,,,1,format_violation
+TX-005034,abyssinia,FTO5YJUAJQI3,7937.901882302887,ETB,Bekele Legesse,4359679190316,Assefa Hassen,4487890290176,2025-05-20T10:47:53+03:00,Completed,Service payment,04113,,1,replay
+TX-005917,cbe,FjZBm8@JkF,3026.7,ETB,Amanuel Chala,F***8031,Rediet Habte,M***8868,2026-01-14T17:55:49+03:00,Completed,Loan repayment,52821991,,1,format_violation
+TX-005102,cbe,FTOZJCNS6G29,5756.250604934932,ETB,Feven Negussie,R***1545,Bereket Umer,Z***4937,2025-01-27T08:59:36+03:00,Completed,Utility bill,06038505,,1,replay
+TX-005916,cbe_birr,FTEEQBRJ18,1300.0,ETB,Getachew Negussie,251961665687,Bereket Jembere,251920555663,2026-03-11T11:28:53+03:00,Completed,Service payment,,251944663512,1,format_violation
+TX-005089,dashen,618EF6YEL8GFWL23,565.0817056059655,ETB,Hailu Negussie,4524776350,Mulugeta Ahmed,5903446721,2026-02-06T20:34:11+03:00,Processed,Investment,,,1,replay
+TX-005487,cbe,FT1I7XJ2CZAF,3052.34,ETB,Konjit Negash,L***4921,Abebe Tessema,Q***1889,2025-07-17T19:41:07+03:00,Completed,Utility bill,93575384,,1,amount_tamper
+TX-005097,cbe,FT1AELDWQXKE,24116.725683779772,ETB,Robel Negash,I***2520,Bethlehem Weldemariam,F***7438,2025-11-17T13:26:11+03:00,Successful,Business transaction,76601444,,1,replay
+TX-005372,telebirr,CEZL67VR9J,1509.96,ETB,Wubit Haile,251974939098,Bekele Diriba,251922021512,2025-11-04T09:13:24+03:00,Successful,Loan repayment,,,1,amount_tamper
+TX-005155,telebirr,CEENPDKZ3A,4519.636948643107,ETB,Tekle Legesse,251730805728,Omar Haile,251966528530,2025-07-14T09:40:31+03:00,Success,Mobile top-up,,,1,replay
+TX-005469,telebirr,CE79XM98LN,65.45,ETB,Solomon Negussie,251977876597,Eyob Gebre,251760570502,2025-11-26T10:21:00+03:00,Successful,Insurance premium,,,1,amount_tamper
+TX-005725,telebirr,CEB8H7CYQB,705.99,ETB,Seyoum Tadesse,251783483114,Redwan Desta,251745334956,2025-10-07T12:00:06+03:00,Completed,Subscription fee,,,1,name_mismatch
+TX-005281,cbe,FTMEK33DCS56,800.0,ETB,Bekele Yimer,A***7067,Firehiwot Bogale,N***9313,2025-02-17T09:20:15+03:00,Completed,Mobile top-up,42550353,,1,fuzzing
+TX-005939,telebirr,CE:QODGQZU,277.13,ETB,Mesfin Taye,251790772202,Mahlet Bekele,251978588904,2025-12-16T02:08:04+03:00,Successful,School fee,,,1,format_violation
+TX-005995,abyssinia,EUy0EDbXh@T,44900.0,ETB,Kaleb Petros,9469264830235,Assefa Zewde,4856105683367,2025-08-11T06:00:54+03:00,Completed,Transfer,21491,,1,format_violation
+TX-005508,cbe,FTJLVH95MTAZ,9347.62,ETB,Mekonen Eshetu,J***6202,Dereje Worku,K***4692,2025-03-10T12:00:31+03:00,Completed,Service payment,34346609,,1,temporal_anomaly
+TX-005472,abyssinia,FTBYOOGBMG60,685.76,ETB,Girma Gebremariam,1478322881182,Bethlehem Gudeta,3436393658980,2025-05-02T14:28:56+03:00,Completed,Subscription fee,11001,,1,amount_tamper
+TX-005098,dashen,886ZLO8H6L1XW3ZS,1660.4043571872833,ETB,Ruth Kiros,0071995058,Sara Tessema,9691408436,2025-04-21T10:36:26+03:00,Processed,Refund,,,1,replay
+TX-005295,telebirr,CEZASAM1HE,630.57,ETB,Negash Bekele,251957275063,Saron Kiros,251929822505,2025-04-28T11:05:08+03:00,Successful,Loan repayment,,,1,fuzzing
+TX-005015,cbe_birr,3SLJEK2R2X,365.77587156932987,ETB,Alemu Tesfaye,251929834768,Fisseha Gebre,251995214762,2025-03-31T09:53:47+03:00,Completed,Utility bill,,251930174427,1,replay
+TX-005378,telebirr,CEWX8N1CM2,1854.89,ETB,Seyoum Hassen,251946534254,Olana Gebre,251988032602,2025-09-29T12:49:35+03:00,Completed,Savings deposit,,,1,amount_tamper
+TX-005594,telebirr,CETPI4I33M,15.13,ETB,Kidist Ibrahim,251918325798,Dereje Endale,251795352469,2025-04-01T08:16:48+03:00,Successful,School fee,,,1,temporal_anomaly
+TX-005284,cbe_birr,B8VDA7I3ZM,3420.79,ETB,Meseret Assefa,251967817837,Yared Desta,251905776604,2025-01-09T08:33:03+03:00,Success,Medical payment,,251749371562,1,fuzzing
+TX-005328,mpesa,Z213OE0QTG,354.34,ETB,Solomon Yilma,251984923184,Yeshi Taye,251794205950,2026-03-04T14:57:41+03:00,Successful,Gift,,,1,fuzzing
+TX-005623,cbe_birr,QO7FJPR2WU,800.0,ETB,Eyob Ayele,251754441154,Tirunesh Mohammed,251732902204,2026-02-17T03:33:44+03:00,Completed,Service payment,,251938183790,1,temporal_anomaly
+TX-005307,mpesa,M4CZH7X2GC,60.0,ETB,Tigist Assefa,251928225861,Abel Weldemariam,251980007747,2025-04-16T10:22:58+03:00,Completed,Savings deposit,,,1,fuzzing
+TX-005179,dashen,80018AZ90K11TC4Z,1816.55,ETB,Omar Yilma,6229977678,Biruk Yimer,1926022996,2025-02-07T09:09:51+03:00,Completed,Salary payment,,,1,fuzzing
+TX-005521,cbe,FTCAU9XVI09C,1813.52,ETB,Nahom Endale,X***7396,Redwan Kebede,P***2959,2025-12-23T15:30:44+03:00,Completed,Savings deposit,54899071,,1,temporal_anomaly
+TX-005930,cbe,cxrSdzbskbsBlJl,2751.6,ETB,Bezawit Petros,E***8200,Nardos Negash,B***6632,2025-04-25T05:35:39+03:00,Completed,Online purchase,11967748,,1,format_violation
+TX-005700,abyssinia,FTBUMI3VRU4H,977.92,ETB,Hiwot Gebremariam,3997476920963,Meron Tesfaye,4272011536101,2026-01-29T17:21:43+03:00,Successful,School fee,86771,,1,name_mismatch
+TX-005132,telebirr,CELW4MS18G,257.6870724658541,ETB,Chaltu Kiros,251985400076,Eleni Haile,251957834108,2025-03-26T14:26:28+03:00,Successful,Medical payment,,,1,replay
+TX-005357,cbe,FTRK7D30MM2S,6273.71,ETB,Kidist Eshetu,C***4010,Negash Bogale,D***2382,2025-09-20T14:29:14+03:00,Completed,School fee,66093796,,1,amount_tamper
+TX-005728,telebirr,CE78W66J7X,110.52,ETB,Chaltu Seyoum,251710102113,Alemu Yimer,251707814266,2025-04-28T10:36:12+03:00,Success,Subscription fee,,,1,name_mismatch
+TX-005582,telebirr,CEOGW8VUG0,462.47,ETB,Tekle Worku,251753546819,Selamawit Ibrahim,251930037363,2027-03-12T22:41:06+03:00,Completed,Subscription fee,,,1,temporal_anomaly
+TX-005743,cbe_birr,GB81KYJSDD,161.98,ETB,Rediet Legesse,251910867761,Assefa Mohammed,251761999631,2025-03-10T08:15:15+03:00,Success,Gift,,251782696380,1,name_mismatch
+TX-005732,telebirr,CE0A2FMNW0,803.21,ETB,Daniel Gebremariam,251751424696,Daniel Gebremariam,251909996412,2025-05-05T12:50:34+03:00,Completed,Refund,,,1,name_mismatch
+TX-005026,dashen,2440GWDS779PIWO4,4688.960068921041,ETB,Leul Berhane,1988787466,Firehiwot Hassen,7287952287,2026-02-13T08:10:18+03:00,Completed,Investment,,,1,replay
+TX-005264,telebirr,CE1DNE163P,77.77,ETB,Abel Yimer,251909065822,Chaltu Worku,251909463481,2025-09-21T11:20:37+03:00,Success,Salary payment,,,1,fuzzing
+TX-005134,telebirr,CEP1CCX4O1,3807.915448457675,ETB,Ermias Habte,251755647564,Fitsum Berhane,251793181312,2025-12-25T14:17:26+03:00,Completed,Tax payment,,,1,replay
+TX-005592,abyssinia,FTS5ORRN6GVF,4500.0,ETB,Marta Ayele,1843316911383,Hailu Gebremariam,7554295557239,2027-04-09T22:41:06+03:00,Completed,Payment for goods,07952,,1,temporal_anomaly
+TX-005474,dashen,860KWD7V9L4TSKNU,582.42,ETB,Kaleb Weldemariam,7433343411,Lidya Petros,2514864022,2026-04-17T16:15:03+03:00,Processed,Utility bill,,,1,amount_tamper
+TX-005944,cbe_birr,FTV2HWWUT8,300.0,ETB,Konjit Ahmed,251974652219,Abigail Lemma,251719426288,2025-02-11T14:10:46+03:00,Completed,Subscription fee,,251729498977,1,format_violation
+TX-005950,cbe,FT5JE1J4BUGKZL,3876.23,ETB,Bekele Lemma,T***1973,Yeshi Tesfaye,I***5789,2025-06-08T15:23:59+03:00,Successful,Business transaction,32490758,,1,format_violation
+TX-005358,mpesa,A99OM09TQA,622.83,ETB,Eden Ferede,251725409392,Nardos Yilma,251934141154,2025-05-26T12:10:47+03:00,Successful,Service payment,,,1,amount_tamper
+TX-005656,dashen,442W5VUG1KM072KS,10400.0,ETB,Mulugeta Ferede,0456815743,Nardos Jembere,7152832642,2025-07-25T10:24:57+03:00,Successful,Gift,,,1,temporal_anomaly
+TX-005235,cbe_birr,BXNUP06ZHO,590.78,ETB,Nardos Hassen,251934788299,Henok Zewde,251789071634,2025-01-24T13:42:17+03:00,Success,Loan repayment,,251791525484,1,fuzzing
+TX-005868,mpesa,fDvzMMf2S!f0y@Fn2xv,79.05,ETB,Tesfaye Yimer,251930486603,Hanna Gebremariam,251998307439,2026-01-28T09:37:44+03:00,Completed,Payment for goods,,,1,format_violation
+TX-005375,cbe_birr,AT7G79BQE6,611.16,ETB,Bereket Desta,251749870006,Binyam Bekele,251958109709,2025-07-18T01:53:02+03:00,Completed,Subscription fee,,251985190910,1,amount_tamper
+TX-005884,mpesa,CEI66WCCEO,270.15,ETB,Tesfaye Girmay,251734885123,Tekle Kebede,251920183020,2025-08-04T17:26:11+03:00,Completed,Subscription fee,,,1,format_violation
+TX-005665,dashen,337F7OQPGQVHP5EY,4811.23,ETB,Ermias Negussie,4106276904,Selamawit Bekele,0935467751,2027-01-08T22:41:06+03:00,Completed,Savings deposit,,,1,temporal_anomaly
+TX-005527,cbe_birr,G88DVWGQA8,600.0,ETB,Sara Desta,251755597055,Hiwot Gudeta,251944731707,2025-12-15T03:44:03+03:00,Success,Insurance premium,,251988990887,1,temporal_anomaly
+TX-005863,telebirr,onDqk,992.96,ETB,Solomon Mekonnen,251777239013,Liya Assefa,251788680198,2025-04-07T13:10:51+03:00,Completed,Donation,,,1,format_violation
+TX-005488,cbe_birr,KLYWF7E0DI,1335.18,ETB,Worku Jembere,251986643546,Girma Demeke,251956549651,2025-07-05T09:32:33+03:00,Completed,Mobile top-up,,251703711346,1,amount_tamper
+TX-005365,cbe,FT623AHW9TTK,51991.11,ETB,Fisseha Petros,G***6329,Saron Tesfaye,U***9702,2025-07-03T16:10:56+03:00,Completed,Tax payment,15481851,,1,amount_tamper
+TX-005157,cbe,FT3EKWH1MQ46,7458.35145630686,ETB,Rediet Worku,X***7481,Mesfin Ibrahim,G***1995,2025-11-11T08:20:51+03:00,Completed,Investment,22776414,,1,replay
+TX-005191,dashen,6B4COCNY31O3VYP9,4400.0,ETB,Tigist Eshetu,1168031413,Nardos Negussie,5926126404,2025-01-20T10:42:53+03:00,Completed,Online purchase,,,1,fuzzing
+TX-005881,abyssinia,4GJ06jRVr6RT4,3236.88,ETB,Mesfin Ferede,3544184224424,Meseret Petros,6068719372562,2025-07-01T10:34:16+03:00,Successful,Utility bill,40940,,1,format_violation
+TX-005099,mpesa,KQWGT9PODV,438.3447331720623,ETB,Lemma Mekonnen,251792379652,Feven Fikre,251960479159,2026-04-20T10:23:33+03:00,Completed,Donation,,,1,replay
+TX-005770,telebirr,CEENK1BKS9,1216.46,ETB,Hanna Gebre,251949093427,Sisay Fikre,251784752281,2025-06-26T14:11:53+03:00,Successful,Gift,,,1,name_mismatch
+TX-005844,dashen,FTFPMJWH5M7T2T84,72229.81,ETB,Negash Zeleke,6611665139,Lemma Demeke,1275342292,2025-04-17T12:05:12+03:00,Completed,Mobile top-up,,,1,format_violation
+TX-005253,mpesa,M4C2H7X2GC,60.0,ETB,Tigist Assefa,251928225861,Abel Weldemariam,251980007747,2025-04-16T10:22:58+03:00,Completed,Savings deposit,,,1,fuzzing
+TX-005712,cbe,FT8JY6VY0V3C,2500.0,ETB,Kebede Haile,B***7348,Saron Tesfaye,E***2642,2025-06-16T15:42:59+03:00,Successful,Savings deposit,48298781,,1,name_mismatch
+TX-005919,cbe_birr,716QZNKVEVi5MbpppN,61.07,ETB,Dewi Worku,251763210022,Olana Berhane,251701579054,2026-02-22T09:34:46+03:00,Success,Gift,,251964468366,1,format_violation
+TX-005834,abyssinia,FT?ZI6D>8YWC,14059.06,ETB,Genet Legesse,7584558063001,Rahel Eshetu,7550522210163,2025-03-26T16:18:15+03:00,Completed,Medical payment,23374,,1,format_violation
+TX-005164,mpesa,8GBZVS3BOH,250.6546208386658,ETB,Ruth Zeleke,251725762429,Lidya Negash,251921494795,2025-01-16T18:59:39+03:00,Completed,Savings deposit,,,1,replay
+TX-005825,mpesa,VMBXY19GWM,69.63,ETB,Tigist Eshetu,251941548548,Tigist Eshetu,251916007586,2025-06-02T15:29:32+03:00,Completed,Rent payment,,,1,name_mismatch
+TX-005278,telebirr,CEF2XN46YV,1285.56,ETB,Hagos Negussie,251722898992,Yeshi Assefa,251980310846,2026-03-27T17:59:11+03:00,Success,Savings deposit,,,1,fuzzing
+TX-005268,cbe,FTDIR14BIXLA,7626.01,ETB,Hiwot Chala,B***8463,Eleni Gudeta,P***5615,2025-12-15T01:23:20+03:00,Completed,School fee,15164119,,1,fuzzing
+TX-005397,dashen,848ZGYCEN05ZRLBZ,109.5,ETB,Olana Umer,9274871048,Redwan Kiros,0646673188,2025-02-27T10:27:47+03:00,Completed,Utility bill,,,1,amount_tamper
+TX-005346,cbe_birr,Q6AIP2XPAS,1772.56,ETB,Yared Yilma,251931602138,Konjit Zeleke,251933549597,2025-10-02T09:01:54+03:00,Success,Transfer,,251913091634,1,amount_tamper
+TX-005091,cbe,FTM242OM7ZTR,11913.11901047455,ETB,Aster Chala,G***2564,Binyam Habte,C***2931,2025-06-17T10:21:53+03:00,Successful,Refund,12975191,,1,replay
+TX-005406,cbe_birr,GL5NIBDRNC,831.47,ETB,Tigist Haile,251745568839,Bethlehem Ibrahim,251963260905,2025-01-01T16:03:33+03:00,Success,Salary payment,,251721748182,1,amount_tamper
+TX-005196,abyssinia,FTK9VFW0DAG6,69065.84,ETB,Mikael Regassa,2335074087492,Samuel Berhane,9310674786890,2025-04-24T12:11:47+03:00,Successful,Payment for goods,42362,,1,fuzzing
+TX-005260,mpesa,XDDS2TUBHV,700.0,ETB,Selamawit Bogale,251930070359,Nahom Kiros,251985647983,2025-04-21T22:35:09+03:00,Successful,Transfer,,,1,fuzzing
+TX-005422,telebirr,CE239Q45IU,596.95,ETB,Berhanu Lemma,251923703228,Liya Seyoum,251702600520,2025-07-21T00:48:53+03:00,Successful,Gift,,,1,amount_tamper
+TX-005783,abyssinia,FTKJWQNN2N6A,5000.0,ETB,Bekele Jembere,2137638810113,Zewditu Endale,2713689157199,2025-07-02T21:54:42+03:00,Completed,Tax payment,70852,,1,name_mismatch
+TX-005462,dashen,9277OAEPXJRNVJJN,703.76,ETB,Kidist Tessema,0874244355,Zewditu Petros,5716945288,2025-03-12T22:04:03+03:00,Processed,Savings deposit,,,1,amount_tamper
+TX-005635,dashen,484PIV7GBHGTSBC1,2897.81,ETB,Betelhem Seyoum,8834025862,Meron Tesfaye,8086927321,2025-01-07T14:15:30+03:00,Successful,Gift,,,1,temporal_anomaly
+TX-005615,mpesa,9AWSWH60RY,1710.0,ETB,Seyoum Eshetu,251993723102,Kebede Ayele,251965943356,2026-05-20T22:41:06+03:00,Successful,Business transaction,,,1,temporal_anomaly
+TX-005390,cbe_birr,Q6TIO4JZWN,49.82,ETB,Kaleb Zeleke,251714218787,Dewi Berhane,251769696195,2025-08-06T05:41:23+03:00,Success,Investment,,251968652748,1,amount_tamper
+TX-005741,telebirr,CEWUY6BIB8,400.0,ETB,Mahlet Demeke,251703847106,Ruth Bogale,251731736723,2025-11-28T09:45:01+03:00,Successful,Gift,,,1,name_mismatch
+TX-005839,mpesa,AAP18NUC1H2S22M,369.95,ETB,Alemu Yilma,251790495300,Liya Endale,251972564147,2025-10-06T16:31:26+03:00,Completed,Payment for goods,,,1,format_violation
+TX-005633,telebirr,CEMAJKMO7N,1195.16,ETB,Seyoum Umer,251725352537,Kebede Zeleke,251720659995,2026-03-30T01:33:05+03:00,Completed,Investment,,,1,temporal_anomaly
+TX-005233,mpesa,LPATKHCY4H,26.74,ETB,Henok Chala,251955029439,Bethlehem Demeke,251933585626,2025-10-09T17:43:13+03:00,Successful,Gift,,,1,fuzzing
+TX-005047,abyssinia,FTD838PLUG7U,8552.437042086985,ETB,Petros Ibrahim,6640870969901,Kebede Bekele,7974774758230,2025-01-01T13:40:35+03:00,Completed,Rent payment,94354,,1,replay
+TX-005993,dashen,IY20ZA0RDNLUL,7900.0,ETB,Eyob Desta,7324547007,Firehiwot Desta,8284351005,2026-04-17T05:35:07+03:00,Processed,Salary payment,,,1,format_violation
+TX-005417,abyssinia,FTR4GGEG2E4R,7799.11,ETB,Bekele Eshetu,5871872433879,Dawit Umer,6052891887003,2025-06-28T11:53:23+03:00,Completed,Savings deposit,78406,,1,amount_tamper
+TX-005341,cbe,FTCTFTT7IJA6,3909.79,ETB,Lemma Petros,E***6735,Saron Demeke,T***0479,2026-01-23T14:23:28+03:00,Completed,Online purchase,89621325,,1,amount_tamper
+TX-005698,cbe,FT506ALUMWFR,1752.17,ETB,Tsion Yilma,Z***2572,Teshome Tesfaye,U***4689,2025-12-05T08:46:43+03:00,Successful,Service payment,23344666,,1,name_mismatch
+TX-005216,mpesa,I1VY2D9RCV,200.0,ETB,Tekle Negash,251984481118,Redwan Legesse,251943505393,2025-06-25T17:34:36+03:00,Successful,Mobile top-up,,,1,fuzzing
+TX-005818,dashen,741IXP3W86AQPKYK,3138.27,ETB,Berhanu Abera,1294435400,Berhanu Abera,1748819096,2025-01-14T23:03:46+03:00,Successful,Insurance premium,,,1,name_mismatch
+TX-005116,cbe,FTYUYQRJZBZM,9838.718861718795,ETB,Mikael Mekonnen,Q***3562,Yoseph Yimer,M***6607,2025-05-19T04:58:08+03:00,Completed,Loan repayment,12081803,,1,replay
+TX-005322,cbe_birr,O7QBF1UD6E,2059.58,ETB,Sara Desta,251748663292,Dewi Negussie,251959812401,2025-06-02T09:53:12+03:00,Completed,Payment for goods,,251748378499,1,fuzzing
+TX-005302,cbe_birr,1PHL3JYU55,200.0,ETB,Kebede Zeleke,251774095505,Eleni Wolde,251797800491,2025-03-06T23:29:18+03:00,Completed,Savings deposit,,251781725066,1,fuzzing
+TX-005618,cbe,FT54G8HRVW0R,3139.53,ETB,Mahlet Bekele,O***4215,Ermias Wolde,T***3625,2026-03-30T08:08:11+03:00,Completed,Online purchase,90887548,,1,temporal_anomaly
+TX-005833,dashen,467W5ZP6C37Q5DKP,12000.0,ETB,Kebede Negussie,5217958322,Ermias Bekele,7748212570,2026-01-28T13:35:01+03:00,Processed,Rent payment,,,1,name_mismatch
+TX-005232,cbe,FTL8J5EUO4VK,3049.49,ETB,Sisay Desta,E***9317,Nardos Negussie,Q***6503,2025-09-28T15:23:53+03:00,Completed,Savings deposit,57779174,,1,fuzzing
+TX-005428,telebirr,CEUMQWQ7NU,3370.65,ETB,Tadesse Kebede,251731372651,Berhanu Eshetu,251785799252,2025-04-28T01:11:52+03:00,Successful,Salary payment,,,1,amount_tamper
+TX-005286,telebirr,CE48QKA4UN,364.34,ETB,Henok Zewde,251733749568,Hanna Umer,251782734707,2025-03-08T13:11:21+03:00,Successful,Tax payment,,,1,fuzzing
+TX-005647,telebirr,CEY6EG73FT,713.69,ETB,Fisseha Mekonnen,251989210758,Rahel Demeke,251958309753,2025-10-25T01:42:38+03:00,Successful,Utility bill,,,1,temporal_anomaly
+TX-005096,abyssinia,FTOEZFVVHJV7,266.8387936257672,ETB,Dewi Omer,2036368773715,Helen Haile,5793033622088,2025-08-28T17:30:02+03:00,Successful,Insurance premium,40470,,1,replay
+TX-005785,dashen,568BKFMHTN2P67QL,10782.97,ETB,Mikael Tadesse,1418047188,Redwan Lemma,3101127470,2025-11-11T17:51:33+03:00,Successful,Mobile top-up,,,1,name_mismatch
+TX-005923,abyssinia,FT1PN59SC2WFX6Q43,2076.34,ETB,Wubit Kebede,8431121629159,Betelhem Seyoum,9348102692729,2025-07-16T19:57:47+03:00,Completed,Subscription fee,01256,,1,format_violation
+TX-005704,cbe_birr,YWDB80J6GP,200.0,ETB,Bekele Yilma,251989411197,Aster Bogale,251964502142,2026-03-23T09:54:29+03:00,Success,Gift,,251926245208,1,name_mismatch
+TX-005252,dashen,371G2U0Y44O91ZH1,1713.79,ETB,Yohannes Desta,8281088438,Ermias Lemma,1321319107,2025-06-22T15:35:39+03:00,Completed,Subscription fee,,,1,fuzzing
+TX-005788,abyssinia,FT6K1THKL5UY,2396.67,ETB,Tekle Petros,7974965576558,Tekle Petros,1961324385350,2025-01-17T12:38:50+03:00,Successful,Business transaction,41746,,1,name_mismatch
+TX-005951,cbe_birr,X9B0YGONW4IO,65.51,ETB,Yeshi Berhane,251997104532,Dewi Hassen,251733575790,2025-12-22T05:01:56+03:00,Completed,Subscription fee,,251777290684,1,format_violation
+TX-005125,telebirr,CEB8H7CYQB,760.2903504641407,ETB,Eyob Diriba,251727271592,Seyoum Tadesse,251745334956,2025-08-18T10:34:17+03:00,Success,Subscription fee,,,1,replay
+TX-005808,mpesa,8GBZVS3BOH,129.39,ETB,Leul Ayele,251947929066,Leul Ayele,251921494795,2026-03-04T09:07:16+03:00,Completed,Savings deposit,,,1,name_mismatch
+TX-005194,dashen,7S9OU2B7MZ04RRNQ,2934.77,ETB,Dagmawit Girmay,2794097090,Aster Tesfaye,6275434539,2025-08-08T15:39:46+03:00,Processed,Insurance premium,,,1,fuzzing
+TX-005955,telebirr,FTUGW6BZI7,456.67,ETB,Fitsum Desta,251973508269,Nahom Wolde,251930228664,2025-09-25T01:09:05+03:00,Success,Savings deposit,,,1,format_violation
+TX-005425,cbe,FTY58VRW9MYY,16078.96,ETB,Kebede Negash,D***0303,Bezawit Bogale,E***3683,2025-02-10T04:30:27+03:00,Completed,Rent payment,22777079,,1,amount_tamper
+TX-005928,mpesa,GfsM@hYLumfYi@xvxoYR,2000.0,ETB,Yeshi Ferede,251765653845,Eyob Yimer,251941451226,2025-08-11T14:29:29+03:00,Successful,Donation,,,1,format_violation
+TX-005016,telebirr,CEKP79YIO0,174.98883057643147,ETB,Hagos Petros,251712986069,Tigist Abera,251973143090,2025-07-29T15:34:41+03:00,Completed,Refund,,,1,replay
+TX-005837,mpesa,VAWY2MTEMFJ2E32,500.0,ETB,Bezawit Legesse,251965051906,Mekdes Worku,251942052773,2025-12-16T11:20:47+03:00,Completed,Medical payment,,,1,format_violation
+TX-005255,cbe,FT1DS13PMNCY,1175.12,ETB,Rahel Hassen,U***8606,Nardos Negussie,H***4767,2025-02-14T17:36:43+03:00,Successful,Business transaction,28959103,,1,fuzzing
+TX-005111,cbe_birr,VLIISQRUA6,278.50609525273904,ETB,Rahel Abera,251966465879,Binyam Endale,251912414668,2025-12-31T17:25:41+03:00,Success,Payment for goods,,251931593783,1,replay
+TX-005655,cbe,FT3SD2O3DHJD,12404.11,ETB,Marta Chala,M***9461,Worku Ayele,S***5243,2021-11-16T22:41:06+03:00,Successful,Transfer,11686462,,1,temporal_anomaly
+TX-005028,abyssinia,FT89XDOREVCG,14450.518181118834,ETB,Binyam Gebremariam,4217542301442,Binyam Mekonnen,2410100202653,2025-09-30T01:59:10+03:00,Completed,Tax payment,31610,,1,replay
+TX-005883,mpesa,CEEVDFWGU3,113.71,ETB,Wubit Fikre,251770902372,Tekle Tessema,251913121061,2025-09-18T16:38:28+03:00,Successful,Business transaction,,,1,format_violation
+TX-005823,telebirr,CE79XM98LN,256.28,ETB,Leul Negash,251977876597,Eyob Gebre,251760570502,2025-11-26T10:21:00+03:00,Successful,Insurance premium,,,1,name_mismatch
+TX-005106,cbe_birr,0OZ63HZEEU,162.83203594872407,ETB,Chaltu Ahmed,251761531292,Abigail Mohammed,251701284827,2025-08-18T13:36:36+03:00,Success,Gift,,251740013027,1,replay
+TX-005377,abyssinia,FTRQ5OGDOSXG,4366.04,ETB,Lemma Bekele,9488523398794,Genet Tadesse,6692889543055,2025-06-23T08:54:24+03:00,Successful,Online purchase,98682,,1,amount_tamper
+TX-005675,cbe_birr,GCPCM529LV,1500.0,ETB,Abel Zewde,251993788122,Chaltu Ferede,251906834654,2026-02-16T23:52:26+03:00,Completed,Salary payment,,251953546589,1,name_mismatch
+TX-005719,cbe,FTV1T4JXA2YM,3300.0,ETB,Assefa Kiros,X***2150,Redwan Endale,J***2610,2025-08-17T11:23:02+03:00,Successful,School fee,43198392,,1,name_mismatch
+TX-005865,cbe_birr,tokb5#m,2310.8,ETB,Olana Omer,251746968338,Abel Tadesse,251792113946,2025-08-25T09:47:45+03:00,Success,Salary payment,,251776652861,1,format_violation
+TX-005222,telebirr,CEDTE0FJG4,1200.0,ETB,Leul Mekonnen,251960022265,Dagmawit Legesse,251799266243,2026-02-12T23:47:06+03:00,Success,Donation,,,1,fuzzing
+TX-005524,telebirr,CE7RD1NNZ0,900.0,ETB,Zewditu Diriba,251956336061,Tadesse Endale,251932312303,2026-03-02T14:32:18+03:00,Completed,Donation,,,1,temporal_anomaly
+TX-005248,mpesa,16B59YYQIS,113.14,ETB,Tigist Umer,251943599139,Assefa Taye,251782555205,2025-02-15T11:55:37+03:00,Completed,Insurance premium,,,1,fuzzing
+TX-005907,cbe_birr,NVHNMW0I24QA,276.09,ETB,Zewditu Legesse,251970983947,Eleni Umer,251971112499,2025-01-27T12:04:14+03:00,Completed,Insurance premium,,251793631541,1,format_violation
+TX-005812,telebirr,CEG3IX27KA,2016.14,ETB,Bezawit Abera,251729436813,Bezawit Abera,251739480720,2026-01-25T16:54:16+03:00,Success,Subscription fee,,,1,name_mismatch
+TX-005777,cbe,FTQIUT6HRCFU,10791.82,ETB,Ruth Gebre,I***3780,Ruth Gebre,A***4079,2025-04-07T16:53:28+03:00,Completed,Online purchase,92032735,,1,name_mismatch
+TX-005570,dashen,310H3JUWGJ4K56GA,1382.73,ETB,Daniel Ayele,4121329140,Daniel Mohammed,2291467156,2025-11-27T02:36:07+03:00,Completed,Loan repayment,,,1,temporal_anomaly
+TX-005798,cbe,FTJ7P3OPBL12,8638.84,ETB,Mekdes Taye,C***8277,Nardos Worku,J***7749,2025-07-18T23:18:23+03:00,Completed,Service payment,33188156,,1,name_mismatch
+TX-005701,cbe_birr,07L099681L,100.3,ETB,Sisay Kiros,251958593503,Lidya Tessema,251794629020,2025-09-18T16:16:06+03:00,Completed,Medical payment,,251963782789,1,name_mismatch
+TX-005938,dashen,ZZ1hh@P8lFqKRM!,6447.17,ETB,Bekele Diriba,3404620730,Fitsum Habte,9375153447,2025-10-15T06:48:36+03:00,Processed,Investment,,,1,format_violation
+TX-005964,cbe,CEVR6I7QL0KO,4400.0,ETB,Sara Mohammed,C***7386,Hiwot Hassen,R***6017,2025-06-26T13:08:54+03:00,Completed,Transfer,95413566,,1,format_violation
+TX-005720,telebirr,CEO0HLLSSG,768.86,ETB,Hagos Negash,251785991977,Meseret Habte,251786922543,2025-08-21T14:25:11+03:00,Successful,Tax payment,,,1,name_mismatch
+TX-005771,telebirr,CE9GZ4MX8Z,274.4,ETB,Abigail Ahmed,251744963242,Abigail Ahmed,251704729484,2025-03-17T19:01:00+03:00,Success,Business transaction,,,1,name_mismatch
+TX-005864,dashen,FTOFI11NPEF6K1NT,41610.22,ETB,Abigail Weldemariam,1401380080,Saron Yilma,2237505171,2025-04-20T17:51:59+03:00,Successful,Utility bill,,,1,format_violation
+TX-005659,mpesa,GNZ0F54VMT,20.0,ETB,Samuel Gebremariam,251755123259,Bekele Negash,251908498687,2026-03-19T04:30:01+03:00,Completed,Donation,,,1,temporal_anomaly
+TX-005891,telebirr,FTO8TQZSY9,261.89,ETB,Ruth Regassa,251976792152,Hailu Berhane,251717152092,2025-03-03T16:05:48+03:00,Successful,Rent payment,,,1,format_violation
+TX-005657,cbe_birr,GZXKPJ2PPS,122.13,ETB,Natnael Legesse,251991934586,Nahom Assefa,251703472607,2025-11-25T00:19:43+03:00,Success,School fee,,251917347127,1,temporal_anomaly
+TX-005918,abyssinia,9WFm@9ZYf7i,113300.0,ETB,Aster Desta,2994143499865,Lemma Diriba,0926735325469,2026-03-14T19:58:11+03:00,Successful,Insurance premium,63031,,1,format_violation
+TX-005443,mpesa,GC7MPDUKE1,170.18,ETB,Henok Girmay,251736988832,Mulugeta Ibrahim,251788660408,2025-04-28T07:15:12+03:00,Completed,Savings deposit,,,1,amount_tamper
+TX-005177,telebirr,CEZFP6WVS2,300.0,ETB,Betelhem Assefa,251777927969,Nahom Zeleke,251905515704,2026-01-22T06:47:47+03:00,Completed,Transfer,,,1,fuzzing
+TX-005639,cbe_birr,5DIAI6JKP4,158.9,ETB,Tirunesh Hassen,251788466920,Getachew Demeke,251964342522,2025-11-19T02:00:26+03:00,Completed,Business transaction,,251738093480,1,temporal_anomaly
+TX-005803,telebirr,CEH7JX1HX0,1078.47,ETB,Binyam Abera,251727656570,Seyoum Gebremariam,251914163502,2025-01-31T08:24:41+03:00,Completed,Rent payment,,,1,name_mismatch
+TX-005481,cbe,FTUOT477IQFX,492.03,ETB,Getachew Gebre,F***3790,Mulugeta Ferede,Z***6548,2025-10-27T16:17:51+03:00,Successful,Investment,54176755,,1,amount_tamper
+TX-005652,cbe,FT00DUBL6HUZ,1909.64,ETB,Aster Lemma,U***5080,Solomon Demeke,M***3580,2026-12-25T22:41:06+03:00,Completed,Subscription fee,50317235,,1,temporal_anomaly
+TX-005820,cbe,FT8ZC6PUCUXE,21373.85,ETB,Samuel Legesse,M***1690,Solomon Legesse,O***0590,2025-05-09T17:40:54+03:00,Successful,Service payment,96319946,,1,name_mismatch
+TX-005354,dashen,834EU5HWKN3MTF2W,3275.8,ETB,Rediet Diriba,8053882972,Abel Kiros,1185777951,2025-03-16T09:30:58+03:00,Processed,Donation,,,1,amount_tamper
+TX-005793,dashen,292UWAZY2SHD1WKZ,607.34,ETB,Mulugeta Ibrahim,9972382198,Lidya Gudeta,3769463352,2025-06-06T11:03:36+03:00,Completed,Online purchase,,,1,name_mismatch
+TX-005780,abyssinia,FT5W0BWYXZEC,1000.0,ETB,Marta Zewde,1917182702125,Solomon Abera,0010925893995,2026-01-21T13:03:01+03:00,Completed,Donation,27874,,1,name_mismatch
+TX-005581,mpesa,R6LGGWQXS5,264.8,ETB,Omar Legesse,251933816874,Hailu Mekonnen,251929521827,2025-04-01T08:49:03+03:00,Completed,Business transaction,,,1,temporal_anomaly
+TX-005163,cbe_birr,PIST9383HL,335.7046631925273,ETB,Yoseph Abera,251709510945,Tesfaye Mohammed,251720056529,2025-06-12T17:19:44+03:00,Completed,Mobile top-up,,251998345461,1,replay
+TX-005748,dashen,912U1AHCYB9912M7,487.94,ETB,Lemma Desta,5664187429,Lemma Desta,8806406858,2025-01-06T14:52:44+03:00,Processed,Loan repayment,,,1,name_mismatch
+TX-005229,cbe,FTT5EMC1KPTK,5982.37,ETB,Rediet Tessema,E***4118,Alemu Assefa,J***9353,2025-11-24T16:31:16+03:00,Completed,Salary payment,64005242,,1,fuzzing
+TX-005895,mpesa,CECRS5WJOJ,218.97,ETB,Genet Zeleke,251781849313,Betelhem Demeke,251789587680,2025-01-20T14:54:28+03:00,Completed,Loan repayment,,,1,format_violation
+TX-005385,cbe,FTIO1ZM4LCVH,291.2,ETB,Teshome Legesse,R***7741,Chaltu Legesse,U***5205,2026-02-12T11:46:27+03:00,Completed,Refund,83652037,,1,amount_tamper
+TX-005477,cbe,FTTVD1ZODXRK,36640.0,ETB,Dereje Bekele,Z***6144,Petros Gebre,S***9645,2025-12-03T11:13:04+03:00,Successful,Rent payment,15333497,,1,amount_tamper
+TX-005684,telebirr,CET4PSYYW0,200.0,ETB,Genet Yimer,251785321013,Abel Ayele,251909040037,2026-03-20T11:35:19+03:00,Successful,Investment,,,1,name_mismatch
+TX-005043,cbe_birr,W52G09LBLS,801.2827201573544,ETB,Seyoum Ibrahim,251920311609,Bezawit Assefa,251932981416,2025-01-08T23:50:58+03:00,Success,Business transaction,,251762905129,1,replay
+TX-005523,cbe,FT33BS1FQYL9,3100.0,ETB,Redwan Chala,M***6905,Mekonen Tessema,A***7620,2025-12-11T04:38:47+03:00,Completed,Insurance premium,79786305,,1,temporal_anomaly
+TX-005512,cbe_birr,VF0K9EZAYJ,54.85,ETB,Mekdes Wolde,251956017986,Tadesse Bekele,251989504922,2021-08-01T22:41:06+03:00,Success,Insurance premium,,251941100549,1,temporal_anomaly
+TX-005265,dashen,6G4T8P3LHGUEJ2QW,12046.13,ETB,Helen Jembere,5131280151,Fisseha Eshetu,3853603846,2026-01-13T15:17:53+03:00,Processed,Rent payment,,,1,fuzzing
+TX-005796,cbe_birr,890UMLF1NU,210.51,ETB,Dewi Chala,251982311450,Dewi Chala,251985621371,2025-09-27T00:24:46+03:00,Completed,Online purchase,,251761636378,1,name_mismatch
+TX-005528,cbe_birr,UKK47YTUC0,496.74,ETB,Yared Mekonnen,251984229382,Bethlehem Petros,251981743714,2021-05-20T22:41:06+03:00,Success,Online purchase,,251999604569,1,temporal_anomaly
+TX-005441,abyssinia,FTMKESLYQH3S,12564.56,ETB,Meron Worku,0393407373583,Chaltu Ayele,5240624514806,2025-09-18T11:57:23+03:00,Completed,Gift,86235,,1,amount_tamper
+TX-005779,abyssinia,FT2RBKB3VP2N,13200.0,ETB,Meseret Girmay,6155775380157,Girma Ayele,8521981039068,2026-01-15T13:57:53+03:00,Completed,Gift,52765,,1,name_mismatch
+TX-005007,cbe,FT9KOHD5MHBC,2527.042582761175,ETB,Henok Seyoum,F***3034,Solomon Zeleke,X***6598,2025-04-16T11:24:52+03:00,Successful,Business transaction,45418299,,1,replay
+TX-005605,mpesa,AZT7V0HT13,54.81,ETB,Meron Mohammed,251920983737,Hanna Worku,251793541431,2025-11-25T02:40:11+03:00,Successful,Refund,,,1,temporal_anomaly
+TX-005761,telebirr,CEZ2T391DN,629.89,ETB,Hagos Gebre,251792013303,Abebe Worku,251989951824,2025-04-17T14:21:00+03:00,Successful,Investment,,,1,name_mismatch
+TX-005339,mpesa,9SQVWXRRWL,148.29,ETB,Aster Jembere,251748261049,Eleni Bekele,251961021663,2025-12-15T08:50:27+03:00,Completed,Business transaction,,,1,amount_tamper
+TX-005151,dashen,0343KZQUUYHVMOUR,2821.9764506750867,ETB,Saron Tesfaye,5201970757,Mikael Tessema,8753570226,2026-01-01T17:19:49+03:00,Processed,Medical payment,,,1,replay
+TX-005804,cbe,FT6K33UFEVST,8108.68,ETB,Firehiwot Gudeta,O***3677,Firehiwot Gudeta,J***3435,2026-02-16T15:33:31+03:00,Successful,Insurance premium,71564380,,1,name_mismatch
+TX-005643,mpesa,CITRF0HK4I,21.49,ETB,Tadesse Taye,251920816494,Ruth Bekele,251724022218,2026-01-01T01:02:22+03:00,Successful,Rent payment,,,1,temporal_anomaly
+TX-005198,cbe,FT1DRYHR3YFK,2200.0,ETB,Eleni Jembere,Z***3919,Fisseha Weldemariam,K***4198,2025-08-15T09:41:52+03:00,Successful,Subscription fee,46853664,,1,fuzzing
+TX-005427,cbe_birr,TIL7RACWGI,628.41,ETB,Biruk Tadesse,251778733574,Abebe Haile,251947129787,2026-02-10T15:22:04+03:00,Success,Gift,,251771258351,1,amount_tamper
+TX-005166,telebirr,CEGM3LM8FH,873.561141600988,ETB,Bekele Assefa,251982783609,Bethlehem Legesse,251912746213,2025-10-09T09:45:19+03:00,Completed,Mobile top-up,,,1,replay
+TX-005588,mpesa,45SVVZMTBJ,273.36,ETB,Firehiwot Gebremariam,251919211605,Bekele Tessema,251936527653,2026-02-20T04:58:50+03:00,Completed,Tax payment,,,1,temporal_anomaly
+TX-005187,dashen,243RXBGU0OY847UD,6755.13,ETB,Tesfaye Hassen,4015250300,Tigist Ayele,4641731358,2025-01-16T12:45:44+03:00,Successful,Mobile top-up,,,1,fuzzing
+TX-005291,cbe_birr,ZCCK074C24,23.44,ETB,Konjit Gudeta,251949464177,Wubit Yimer,251907880525,2025-12-01T19:24:32+03:00,Completed,Medical payment,,251776776448,1,fuzzing
+TX-005986,dashen,FTLWSA79XJBBYYVH,581.29,ETB,Firehiwot Zewde,1124081891,Mesfin Fikre,3830155109,2026-03-11T08:12:45+03:00,Successful,Refund,,,1,format_violation
+TX-005178,dashen,23271N5KW77E08T3,21200.0,ETB,Konjit Tadesse,3018620284,Hailu Seyoum,5428118872,2025-07-14T05:30:25+03:00,Processed,Service payment,,,1,fuzzing
+TX-005600,telebirr,CENLGP52FO,1900.0,ETB,Olana Wolde,251715238778,Eden Gebremariam,251909854506,2025-12-05T04:24:23+03:00,Success,Business transaction,,,1,temporal_anomaly
+TX-005800,dashen,316Q3MLR9JI0QNEU,17364.02,ETB,Dagmawit Hassen,8705284531,Dagmawit Hassen,8707914813,2026-04-19T10:37:32+03:00,Completed,Transfer,,,1,name_mismatch
+TX-005306,cbe,FT5BQDB9BGV2,1000.0,ETB,Nahom Ibrahim,B***1071,Alemu Jembere,D***5838,2025-11-19T10:45:05+03:00,Successful,Online purchase,48467357,,1,fuzzing
+TX-005042,cbe,FTCOG1ZN1RIA,2050.299567097351,ETB,Dereje Bogale,T***1076,Nardos Negash,T***9140,2025-05-31T06:25:27+03:00,Completed,Online purchase,04432400,,1,replay
+TX-005073,telebirr,CECPWL6BMB,1304.5713912609656,ETB,Henok Umer,251920306714,Yeshi Wolde,251704122501,2026-02-21T00:24:54+03:00,Successful,Payment for goods,,,1,replay
+TX-005546,telebirr,CEBWXO0UH4,2500.0,ETB,Liya Endale,251996380264,Helen Bogale,251980315122,2026-01-23T04:06:56+03:00,Success,School fee,,,1,temporal_anomaly
+TX-005603,cbe_birr,FKVWNCKR7A,50.85,ETB,Abebe Taye,251794271812,Worku Girmay,251797280606,2023-04-21T22:41:06+03:00,Completed,Insurance premium,,251984091759,1,temporal_anomaly
+TX-005072,dashen,70874RRV2RBAJV87,3319.520194276437,ETB,Meseret Diriba,4036540693,Rediet Tesfaye,9354523565,2025-04-01T17:07:32+03:00,Processed,Service payment,,,1,replay
+TX-005037,abyssinia,FTPFIWPJ50X5,3244.182328946607,ETB,Amanuel Girmay,2587789092086,Sisay Girmay,7850631536030,2025-01-01T09:43:10+03:00,Completed,Transfer,81469,,1,replay
+TX-005025,cbe_birr,IV7URCPM8C,579.2581712963325,ETB,Assefa Omer,251782176672,Eyob Assefa,251929599436,2025-04-16T12:16:31+03:00,Success,Payment for goods,,251939390013,1,replay
+TX-005706,mpesa,HXGF6QD3PD,100.0,ETB,Saron Regassa,251710419670,Aster Kiros,251967626470,2025-09-01T02:03:32+03:00,Successful,Salary payment,,,1,name_mismatch
+TX-005604,cbe,FTZNBFWCT1I7,38053.39,ETB,Wubit Bogale,J***7848,Nahom Bekele,H***4857,2023-01-10T22:41:06+03:00,Completed,Gift,49272809,,1,temporal_anomaly
+TX-005455,cbe,FTS49CDZN1F0,1831.96,ETB,Mulugeta Legesse,P***2872,Birtukan Kiros,M***0416,2026-04-20T21:17:33+03:00,Successful,Investment,22483958,,1,amount_tamper
+TX-005854,abyssinia,FT8GGMA5VH,7500.0,ETB,Wubit Seyoum,6378492472700,Genet Weldemariam,9567754152598,2025-05-29T16:51:59+03:00,Completed,Gift,67297,,1,format_violation
+TX-005223,abyssinia,FTZW1KPQDQ8T,10800.0,ETB,Mahlet Omer,4239642378416,Daniel Bekele,0566937965389,2025-03-16T05:43:56+03:00,Successful,Donation,58521,,1,fuzzing
+TX-005673,cbe,FT3EKWH1MQ46,4113.05,ETB,Tekle Gebremariam,D***8637,Tekle Gebremariam,G***1995,2025-12-16T17:40:21+03:00,Successful,Investment,22776414,,1,name_mismatch
+TX-005722,telebirr,CE5802U2S4,1204.33,ETB,Kebede Endale,251766884331,Daniel Weldemariam,251998338127,2025-03-08T08:06:54+03:00,Completed,Insurance premium,,,1,name_mismatch
+TX-005983,abyssinia,FT0QU^R19B[E,2854.38,ETB,Teshome Bekele,4098644718506,Samuel Endale,5699214693962,2026-01-30T17:33:24+03:00,Successful,Medical payment,16501,,1,format_violation
+TX-005368,telebirr,CES41F2GQN,8628.57,ETB,Lidya Berhane,251974946454,Nardos Gebremariam,251900214366,2025-06-05T18:18:22+03:00,Completed,Donation,,,1,amount_tamper
+TX-005584,telebirr,CEMZDR175F,2868.43,ETB,Samuel Omer,251736143269,Jerusalem Habte,251976882409,2025-12-19T12:40:50+03:00,Completed,School fee,,,1,temporal_anomaly
+TX-005316,telebirr,CEZ8ZDE1ZU,2103.49,ETB,Eyob Kiros,251999707399,Seyoum Habte,251931039868,2025-09-05T06:21:38+03:00,Success,Rent payment,,,1,fuzzing
+TX-005054,telebirr,CEPLI69VIN,1181.768415174223,ETB,Seyoum Haile,251785362849,Tadesse Endale,251932312303,2025-12-26T17:02:20+03:00,Success,Donation,,,1,replay
+TX-005077,cbe_birr,Z4RG3B957W,294.04632599202176,ETB,Robel Fikre,251709889026,Meseret Yilma,251754213828,2026-03-31T14:43:31+03:00,Success,Insurance premium,,251740533628,1,replay
+TX-005658,cbe,FT5KN2R0GRIN,3085.86,ETB,Feven Chala,W***3224,Helen Ibrahim,P***3719,2026-10-31T22:41:06+03:00,Completed,Refund,45402894,,1,temporal_anomaly
+TX-005199,dashen,588VG3041WHS0RPO,1842.33,ETB,Hagos Legesse,1310097765,Yohannes Mohammed,7550282191,2025-01-27T10:42:29+03:00,Processed,Subscription fee,,,1,fuzzing
+TX-005053,cbe,FTBUOEY6DRHY,6632.578032811623,ETB,Mesfin Ahmed,L***0174,Hanna Regassa,I***4278,2026-04-10T14:37:53+03:00,Completed,Investment,49645495,,1,replay
+TX-005250,telebirr,CECOR7YBTS,600.0,ETB,Wubit Ferede,251743457128,Amanuel Gebremariam,251984058870,2025-04-30T09:36:12+03:00,Completed,Donation,,,1,fuzzing
+TX-005608,mpesa,0YV3WIYSA6,300.0,ETB,Alemu Habte,251714889596,Rahel Regassa,251961049551,2026-08-28T22:41:06+03:00,Completed,Transfer,,,1,temporal_anomaly
+TX-005464,telebirr,CEWVFEAKK7,3835.95,ETB,Worku Endale,251794340501,Mikael Kiros,251994575452,2025-04-15T16:38:29+03:00,Completed,Investment,,,1,amount_tamper
+TX-005545,abyssinia,FTPR5XC41HYW,577.77,ETB,Getachew Gebre,0830774318175,Meseret Fikre,3089839917537,2025-08-26T12:10:34+03:00,Successful,Insurance premium,86583,,1,temporal_anomaly
+TX-005718,cbe_birr,8TSTXZWUPO,18.62,ETB,Bekele Hassen,251767481385,Bekele Hassen,251777733619,2025-06-17T08:43:05+03:00,Success,Insurance premium,,251718922023,1,name_mismatch
+TX-005070,telebirr,CE44HBR4RB,132.12075745211473,ETB,Ruth Chala,251789512511,Mulugeta Lemma,251722519335,2025-11-17T11:33:59+03:00,Success,School fee,,,1,replay
+TX-005841,telebirr,FTWWA1F1YK,2105.53,ETB,Tigist Abera,251760171465,Tekle Yimer,251770347153,2025-07-16T11:13:42+03:00,Successful,Payment for goods,,,1,format_violation
+TX-005289,abyssinia,FT4377Y6M8GR,5552.42,ETB,Hanna Yilma,0109274179251,Samuel Haile,6957509486690,2025-01-14T11:50:44+03:00,Completed,Utility bill,71183,,1,fuzzing
+TX-005859,mpesa,TI0MQFD2EWJ6,1244.71,ETB,Yeshi Haile,251980672603,Seyoum Regassa,251734897867,2026-03-18T12:36:22+03:00,Successful,Tax payment,,,1,format_violation
+TX-005423,telebirr,CETHEGVP6U,853.9,ETB,Mekonen Tesfaye,251710670769,Tekle Ahmed,251925891271,2025-08-12T10:25:34+03:00,Successful,Savings deposit,,,1,amount_tamper
+TX-005323,cbe_birr,75AKTCOET8,4397.42,ETB,Getachew Assefa,251767026313,Bethlehem Assefa,251713539315,2025-08-29T14:45:29+03:00,Success,Loan repayment,,251941220571,1,fuzzing
+TX-005617,mpesa,C00MHWNG3W,130.79,ETB,Dewi Ayele,251769467082,Tsion Ayele,251913871854,2022-10-15T22:41:06+03:00,Successful,Business transaction,,,1,temporal_anomaly
+TX-005401,mpesa,HXGF6QD3PD,87.84,ETB,Aster Kiros,251710419670,Saron Regassa,251967626470,2025-09-01T02:03:32+03:00,Successful,Salary payment,,,1,amount_tamper
+TX-005733,dashen,159B9G96X90ROYLF,2700.0,ETB,Wubit Gudeta,4580282402,Seyoum Negussie,1019237026,2026-03-31T09:55:38+03:00,Completed,Insurance premium,,,1,name_mismatch
+TX-005739,mpesa,BFAP9U5VI1,60.0,ETB,Jerusalem Endale,251702569298,Zewditu Ibrahim,251776664352,2025-08-12T08:30:32+03:00,Completed,Service payment,,,1,name_mismatch
+TX-005188,abyssinia,FTFT39GQ8V33,4356.05,ETB,Dawit Bekele,6581972596072,Abigail Lemma,2690966952181,2025-11-06T16:58:45+03:00,Successful,Utility bill,89899,,1,fuzzing
+TX-005169,mpesa,024X1QSFO4,417.14,ETB,Yared Kebede,251954966425,Rediet Yimer,251756420892,2025-11-07T15:29:40+03:00,Successful,Service payment,,,1,fuzzing
+TX-005900,cbe_birr,ADMKO9LKOQQ1,83.6,ETB,Teshome Yimer,251714648794,Tsion Yilma,251708825647,2026-03-02T16:29:04+03:00,Success,Gift,,251739916444,1,format_violation
+TX-005399,dashen,081FJTIGOWD8TPWW,628.92,ETB,Abebe Taye,0794661303,Getachew Gudeta,3562213506,2025-05-06T21:01:42+03:00,Processed,Investment,,,1,amount_tamper
+TX-005695,telebirr,CEENPDKZ3A,3169.96,ETB,Betelhem Tesfaye,251741646071,Omar Haile,251966528530,2025-01-16T15:44:41+03:00,Successful,Mobile top-up,,,1,name_mismatch
+TX-005064,dashen,285D1WD2NUUURGQP,2293.602946360867,ETB,Wondwosen Ayele,8328325650,Chaltu Hassen,4817315852,2025-01-16T03:58:29+03:00,Successful,Refund,,,1,replay
+TX-005501,abyssinia,FT7Z5MX0PKXC,14412.76,ETB,Negash Mekonnen,9231443672631,Sara Yilma,2744971945629,2025-09-01T11:27:09+03:00,Completed,Salary payment,58644,,1,temporal_anomaly
+TX-005815,telebirr,CEGBQS6G8Z,1500.0,ETB,Jerusalem Seyoum,251737747693,Jerusalem Seyoum,251710583784,2025-10-13T13:02:03+03:00,Success,Gift,,,1,name_mismatch
+TX-005165,mpesa,JWJAS3JP7S,98.29322528323938,ETB,Ruth Eshetu,251708034821,Liya Weldemariam,251961716567,2025-03-08T16:34:24+03:00,Completed,Business transaction,,,1,replay
+TX-005727,mpesa,EY3031BEA0,400.0,ETB,Liya Gebre,251961856337,Amanuel Jembere,251760932439,2025-06-03T11:07:24+03:00,Completed,Salary payment,,,1,name_mismatch
+TX-005031,abyssinia,FTGFPYWO5YUU,2757.982645853684,ETB,Bereket Regassa,2336898653353,Nardos Tadesse,7128261136421,2025-08-21T13:59:07+03:00,Successful,Medical payment,12775,,1,replay
+TX-005009,cbe,FTFA2LR9P6HJ,1578.2156276530682,ETB,Worku Endale,H***1996,Iman Demeke,C***6516,2025-04-07T08:11:24+03:00,Successful,Subscription fee,98471391,,1,replay
+TX-005483,cbe,FTZXRAZMSAB3,3517.58,ETB,Henok Habte,B***9805,Seyoum Legesse,J***4199,2025-12-23T04:16:13+03:00,Successful,Salary payment,60502999,,1,amount_tamper
+TX-005006,telebirr,CEFH1UKDX0,6617.565531783241,ETB,Eden Zewde,251756101363,Iman Chala,251973707434,2025-11-24T12:38:37+03:00,Success,Investment,,,1,replay
+TX-005601,cbe,FTSQHZ3GJVMY,5944.62,ETB,Tirunesh Girmay,E***3918,Birtukan Kiros,V***7622,2025-08-14T11:53:15+03:00,Successful,Transfer,62016633,,1,temporal_anomaly
+TX-005059,mpesa,JV54PQL55W,1997.6115857461778,ETB,Hanna Eshetu,251960114724,Aster Weldemariam,251738088111,2025-03-01T13:01:16+03:00,Completed,Utility bill,,,1,replay
+TX-005629,cbe,FTOSGJM9I35N,700.0,ETB,Nardos Yilma,P***0124,Sisay Chala,J***4626,2025-04-08T09:48:59+03:00,Successful,Gift,88112103,,1,temporal_anomaly
+TX-005670,cbe,FT8KSFQE50C7,11000.0,ETB,Abel Girmay,S***8735,Betelhem Petros,P***2729,2025-10-17T06:40:46+03:00,Successful,Tax payment,02409398,,1,name_mismatch
+TX-005672,mpesa,2BS3LLKBHF,101.78,ETB,Bekele Seyoum,251959689936,Leul Yimer,251906821140,2025-06-27T08:19:55+03:00,Completed,Insurance premium,,,1,name_mismatch
+TX-005032,cbe_birr,FDT3UIO38I,159.99490426523454,ETB,Dawit Tadesse,251753406909,Mulugeta Assefa,251794443121,2025-05-31T01:30:25+03:00,Completed,Investment,,251781675492,1,replay
+TX-005364,telebirr,CE7RY736HX,1170.69,ETB,Zewditu Habte,251984788797,Abigail Taye,251758795797,2025-02-10T17:05:29+03:00,Successful,Gift,,,1,amount_tamper
+TX-005409,abyssinia,FT7KLZTSKNDX,12268.12,ETB,Bethlehem Mekonnen,9040642090000,Hailu Desta,2476433718319,2025-01-11T08:35:31+03:00,Successful,Service payment,31378,,1,amount_tamper
+TX-005494,telebirr,CEC1RL00M2,1036.77,ETB,Biruk Umer,251971108379,Yohannes Regassa,251798041865,2025-07-23T13:54:27+03:00,Successful,Gift,,,1,amount_tamper
+TX-005797,telebirr,CE2HAWC0NB,83.62,ETB,Abebe Diriba,251779524087,Zewditu Assefa,251955075764,2025-05-26T11:55:49+03:00,Successful,School fee,,,1,name_mismatch
+TX-005197,dashen,369M3F4ZIO6WSVTN,11500.0,ETB,Firehiwot Legesse,5503346948,Dereje Taye,3526780020,2025-07-25T08:51:05+03:00,Successful,Donation,,,1,fuzzing
+TX-005642,cbe,FTIZTEOD1332,3081.61,ETB,Rahel Legesse,D***8308,Seyoum Petros,B***0187,2026-04-06T11:37:05+03:00,Completed,Loan repayment,36786210,,1,temporal_anomaly
+TX-005872,telebirr,CE4E:1'55R,190.42,ETB,Yoseph Chala,251993409511,Mekonen Ayele,251759179413,2025-12-24T08:26:30+03:00,Success,Gift,,,1,format_violation
+TX-005945,telebirr,FT5H7VAAFT,2376.69,ETB,Biruk Tadesse,251911438689,Meron Regassa,251723531876,2025-01-27T09:58:34+03:00,Completed,Tax payment,,,1,format_violation
+TX-005922,dashen,1D7CFHXKG7UYK4UQ4PN,1894.12,ETB,Meseret Zeleke,9504956296,Mikael Gudeta,7333854798,2025-01-22T14:19:08+03:00,Completed,Business transaction,,,1,format_violation
+TX-005927,dashen,RH1P6S4NRJ1.WMS|,742.25,ETB,Tekle Gudeta,3853594504,Meseret Girmay,4352419752,2025-11-10T09:23:35+03:00,Successful,Salary payment,,,1,format_violation
+TX-005715,cbe,FTIFFVMAM3JK,21100.0,ETB,Mahlet Jembere,B***0268,Abebe Ferede,J***4867,2025-07-10T17:28:59+03:00,Successful,Salary payment,63656045,,1,name_mismatch
+TX-005985,cbe,FT8OTK4=*9*M,5800.0,ETB,Olana Omer,A***9240,Yohannes Gebre,B***8292,2025-10-15T16:33:09+03:00,Completed,Investment,68705983,,1,format_violation
+TX-005118,mpesa,HXGF6QD3PD,119.7493054788529,ETB,Leul Legesse,251748466134,Saron Regassa,251967626470,2025-05-13T12:51:18+03:00,Completed,Salary payment,,,1,replay
+TX-005711,telebirr,CEOP7LENB0,337.01,ETB,Girma Yimer,251755436233,Eleni Haile,251912108110,2025-04-14T11:59:46+03:00,Successful,Transfer,,,1,name_mismatch
+TX-005498,mpesa,TB19LHDMGP,395.56,ETB,Hanna Gebremariam,251722605174,Ruth Kiros,251706410644,2025-12-15T13:11:17+03:00,Completed,Rent payment,,,1,amount_tamper
+TX-005057,mpesa,PNH0HCN47I,385.0687482572718,ETB,Yoseph Regassa,251941416455,Robel Habte,251924262751,2025-07-21T15:28:37+03:00,Successful,Rent payment,,,1,replay
+TX-005063,abyssinia,FTZQCXLBLPQK,4621.243407977255,ETB,Tesfaye Wolde,1280760917142,Yared Habte,4705347508838,2025-12-30T12:54:23+03:00,Completed,School fee,13079,,1,replay
+TX-005942,telebirr,FTIJQZA471,400.0,ETB,Petros Mekonnen,251941097494,Petros Taye,251914446686,2025-04-07T10:36:12+03:00,Success,Rent payment,,,1,format_violation
+TX-005005,cbe,FT54N6O9JD3I,78295.45627241691,ETB,Bethlehem Mohammed,S***0201,Firehiwot Hassen,N***5612,2026-03-09T03:08:47+03:00,Successful,Service payment,00272063,,1,replay
+TX-005959,dashen,9J6508ZTSMLOF8,13836.01,ETB,Rediet Gebremariam,1145524262,Tesfaye Mohammed,3487470897,2026-03-30T09:34:36+03:00,Successful,Transfer,,,1,format_violation
+TX-005449,dashen,8740QMNXTDO51ATL,100310.41,ETB,Betelhem Ferede,5879162752,Nardos Bekele,4258452149,2025-08-18T10:57:52+03:00,Processed,Utility bill,,,1,amount_tamper
+TX-005018,dashen,0130TXFGV9PF3NRN,1276.8479935591818,ETB,Chaltu Eshetu,2053516700,Aster Lemma,2598436328,2025-10-30T09:59:12+03:00,Processed,Gift,,,1,replay
+TX-005576,cbe,FTKAOYO38QD5,11000.0,ETB,Robel Regassa,S***8735,Betelhem Petros,P***2729,2026-03-18T02:53:22+03:00,Successful,Tax payment,02409398,,1,temporal_anomaly
+TX-005634,telebirr,CE5481R57Z,74.38,ETB,Eyob Petros,251774643850,Abigail Regassa,251957044554,2026-11-01T22:41:06+03:00,Successful,Loan repayment,,,1,temporal_anomaly
+TX-005871,cbe,CEHOUZRXCT2B,9772.42,ETB,Feven Assefa,K***7198,Helen Negash,I***2860,2025-12-17T17:57:01+03:00,Successful,Savings deposit,55845014,,1,format_violation
+TX-005926,abyssinia,FTWGGRMSSSJ2DNJ3K,8951.32,ETB,Wubit Habte,9947269657903,Saron Tesfaye,8092279531280,2026-02-09T09:05:11+03:00,Completed,Online purchase,02770,,1,format_violation
+TX-005620,telebirr,CEOHQLAIXK,3104.99,ETB,Nahom Chala,251991651680,Getachew Assefa,251721535700,2025-12-08T01:49:09+03:00,Completed,School fee,,,1,temporal_anomaly
+TX-005329,cbe,FT1K3OMD4P0R,9130.33,ETB,Mulugeta Omer,M***7899,Tirunesh Omer,H***0806,2025-10-02T12:57:41+03:00,Successful,Tax payment,17957602,,1,fuzzing
+TX-005369,telebirr,CEMW7DGZNL,2342.08,ETB,Tsion Omer,251716480421,Kebede Tadesse,251962182358,2025-07-22T16:28:35+03:00,Successful,Medical payment,,,1,amount_tamper
+TX-005681,telebirr,CEG9O25RJ6,454.55,ETB,Bethlehem Ahmed,251750716239,Petros Lemma,251965557576,2026-02-28T09:10:53+03:00,Completed,Payment for goods,,,1,name_mismatch
+TX-005509,dashen,1130WHRX4QARU6PI,2400.0,ETB,Konjit Weldemariam,1489024239,Kaleb Lemma,8966999558,2026-03-27T10:17:52+03:00,Completed,Business transaction,,,1,temporal_anomaly
+TX-005653,cbe,FTXTDF2QMKPN,10000.0,ETB,Mekonen Kiros,Y***7352,Selamawit Worku,L***9517,2027-02-05T22:41:06+03:00,Completed,Transfer,22867106,,1,temporal_anomaly
+TX-005020,telebirr,CEPL0ARU5J,339.9199588000515,ETB,Meron Ayele,251757593767,Mahlet Yimer,251916861814,2026-01-28T10:28:02+03:00,Successful,Loan repayment,,,1,replay
+TX-005262,telebirr,CE041JV72B,663.95,ETB,Aster Tessema,251789527869,Abebe Ayele,251900451297,2026-01-19T09:58:56+03:00,Successful,Online purchase,,,1,fuzzing
+TX-005791,telebirr,CEODLFSTL7,127.13,ETB,Tadesse Ayele,251794917906,Tadesse Ayele,251925706029,2025-09-10T10:16:58+03:00,Successful,Investment,,,1,name_mismatch
+TX-005420,dashen,70742ZZ2PJD53SOB,516.56,ETB,Mekonen Regassa,0194166772,Dawit Habte,9380207615,2026-04-04T03:05:55+03:00,Successful,Insurance premium,,,1,amount_tamper
+TX-005371,dashen,242UUB5N033RI52I,1132.03,ETB,Liya Diriba,3317430171,Dewi Yimer,1065174580,2025-10-20T12:55:57+03:00,Completed,Online purchase,,,1,amount_tamper
+TX-005889,dashen,9O0IA3062UKD0W,1467.55,ETB,Hailu Seyoum,6435905665,Fisseha Omer,1845985824,2025-11-12T15:50:07+03:00,Completed,Service payment,,,1,format_violation
+TX-005048,dashen,737L8SJVOMZCXCKL,3588.211369662815,ETB,Omar Eshetu,1910275628,Eleni Tadesse,4660287902,2025-11-23T21:52:20+03:00,Completed,Tax payment,,,1,replay
+TX-005799,cbe,FTC8HS287QMR,2993.54,ETB,Olana Fikre,C***8860,Jerusalem Weldemariam,M***7449,2026-02-27T11:18:44+03:00,Completed,Insurance premium,96985045,,1,name_mismatch
+TX-005686,cbe,FTVTN4YPKW74,487.55,ETB,Liya Weldemariam,P***9817,Meron Tessema,Z***0463,2025-04-17T14:07:12+03:00,Successful,Rent payment,57660538,,1,name_mismatch
+TX-005526,cbe_birr,MHJK6GTL9H,9.0,ETB,Robel Demeke,251991157406,Mekdes Bekele,251729600772,2023-11-04T22:41:06+03:00,Success,Donation,,251764947538,1,temporal_anomaly
+TX-005259,abyssinia,FT67PB3RLINS,1856.12,ETB,Eyob Petros,7465944568164,Henok Tadesse,6452297125423,2025-10-20T21:30:37+03:00,Completed,Donation,47985,,1,fuzzing
+TX-005195,telebirr,CE9JBE69BO,685.63,ETB,Alemu Endale,251985950312,Zewditu Tessema,251759599592,2026-03-11T15:07:27+03:00,Success,Savings deposit,,,1,fuzzing
+TX-005821,cbe,FT0TPAC56T4U,2179.68,ETB,Dawit Girmay,G***3158,Dawit Girmay,X***2322,2026-02-24T13:50:59+03:00,Successful,Business transaction,42160733,,1,name_mismatch
+TX-005786,cbe,FTVRZK1I19VL,10871.72,ETB,Meseret Desta,U***4047,Eden Endale,I***6497,2025-03-13T23:51:32+03:00,Completed,Gift,19067100,,1,name_mismatch
+TX-005736,cbe,FT4XVOFXJX0G,3600.0,ETB,Solomon Taye,M***5748,Mikael Habte,J***3714,2026-02-02T14:09:30+03:00,Successful,Transfer,60012664,,1,name_mismatch
+TX-005429,dashen,8045EMKKZ6BQFQ8I,6018.55,ETB,Worku Endale,2037636703,Tirunesh Mohammed,9634737742,2025-10-07T14:48:53+03:00,Processed,Transfer,,,1,amount_tamper
+TX-005121,abyssinia,FT1YGE6QM8QP,15291.575200449362,ETB,Tekle Negussie,5542200164125,Mikael Ayele,6551379767502,2025-08-01T14:45:37+03:00,Completed,School fee,60053,,1,replay
+TX-005497,cbe,FTEJNOBBUNKN,1363.98,ETB,Konjit Diriba,T***1216,Seyoum Fikre,R***5239,2025-08-31T08:02:08+03:00,Successful,Subscription fee,72982595,,1,amount_tamper
+TX-005147,telebirr,CE0BGW6Y3C,5466.250037299266,ETB,Rediet Umer,251735223532,Lidya Zewde,251787415203,2025-08-05T19:14:03+03:00,Successful,Subscription fee,,,1,replay
+TX-005036,telebirr,CEO3SRQZW2,5711.786324198931,ETB,Betelhem Chala,251787425346,Wubit Endale,251786715429,2025-12-14T18:23:46+03:00,Successful,Savings deposit,,,1,replay
+TX-005963,mpesa,mX1P8tdNA,216.84,ETB,Mekdes Mohammed,251970957005,Olana Jembere,251723282886,2026-03-09T11:17:28+03:00,Completed,Transfer,,,1,format_violation
+TX-005816,dashen,758LC25JUV05FJHO,4299.9,ETB,Ruth Eshetu,5251612954,Ruth Eshetu,7955989834,2026-04-20T10:18:55+03:00,Completed,Payment for goods,,,1,name_mismatch
+TX-005738,cbe_birr,N5FEKZWG2C,189.1,ETB,Dawit Berhane,251788044235,Jerusalem Eshetu,251988705734,2025-07-01T13:43:36+03:00,Completed,Utility bill,,251934122301,1,name_mismatch
+TX-005694,dashen,9656ZEYFHPUVXO39,1147.84,ETB,Liya Demeke,4737583683,Mekdes Ahmed,2052511828,2025-11-22T01:59:40+03:00,Processed,Salary payment,,,1,name_mismatch
+TX-005484,cbe,FTOLT34KFF2J,17315.38,ETB,Tigist Negash,X***1373,Mahlet Wolde,J***5031,2026-02-03T17:02:44+03:00,Completed,Mobile top-up,69141939,,1,amount_tamper
+TX-005330,cbe,FT7O16RPZRXE,2154.6,ETB,Abebe Kebede,N***1353,Amanuel Gebre,K***5561,2025-09-23T14:46:09+03:00,Completed,Medical payment,84155109,,1,fuzzing
+TX-005651,abyssinia,FTWG9GCRPIMM,5381.56,ETB,Mekonen Taye,7308895137274,Mekdes Hassen,8671562334740,2023-06-21T22:41:06+03:00,Successful,Mobile top-up,57267,,1,temporal_anomaly
+TX-005805,cbe,FTXI04B7P47B,381.6,ETB,Bereket Haile,A***4991,Teshome Lemma,O***8872,2026-02-10T11:51:07+03:00,Successful,School fee,74205493,,1,name_mismatch
+TX-005435,mpesa,E02JWIWPQE,71.66,ETB,Betelhem Regassa,251771909394,Fisseha Bogale,251714114813,2025-01-22T13:28:51+03:00,Successful,Medical payment,,,1,amount_tamper
+TX-005120,telebirr,CE6D7GI980,753.7448519834438,ETB,Dawit Kebede,251735066861,Selamawit Negash,251785285295,2025-09-03T14:38:08+03:00,Successful,Rent payment,,,1,replay
+TX-005418,cbe,FTE9UF3QW2KD,14635.15,ETB,Mekdes Petros,U***4396,Omar Legesse,R***8720,2025-03-09T16:31:05+03:00,Completed,Mobile top-up,53476414,,1,amount_tamper
+TX-005697,cbe,FT42O83RLKTE,194.24,ETB,Bekele Bogale,L***4152,Bekele Bogale,U***4361,2025-12-01T15:04:08+03:00,Completed,Subscription fee,70051627,,1,name_mismatch
+TX-005679,telebirr,CEDJS6CK18,1600.0,ETB,Natnael Tessema,251791480405,Alemu Endale,251973345056,2025-12-01T16:18:54+03:00,Success,School fee,,,1,name_mismatch
+TX-005553,abyssinia,FTWIKUGUYYDC,251.58,ETB,Assefa Haile,4513786014742,Zewditu Negash,8624991813180,2026-10-20T22:41:06+03:00,Successful,Savings deposit,42530,,1,temporal_anomaly
+TX-005094,dashen,682OT0M7ZMG2W5SC,3358.7276521335857,ETB,Dawit Tessema,2597783946,Eden Haile,7495835811,2026-02-09T13:26:52+03:00,Successful,Investment,,,1,replay
+TX-005145,abyssinia,FTJEJ1OLMEIN,6640.923639080883,ETB,Birtukan Girmay,7190712675171,Mulugeta Mohammed,9602227019843,2025-04-30T19:04:23+03:00,Completed,Payment for goods,36345,,1,replay
+TX-005693,cbe_birr,MZI3C4JYMU,120.1,ETB,Mulugeta Demeke,251724144878,Mulugeta Demeke,251738757252,2026-04-16T15:23:15+03:00,Completed,Mobile top-up,,251705000439,1,name_mismatch
+TX-005050,cbe,FTNMIXWGY4JB,2569.7268309768874,ETB,Robel Petros,C***9662,Chaltu Gudeta,U***7692,2025-01-06T09:28:10+03:00,Completed,Utility bill,87158344,,1,replay
+TX-005491,cbe_birr,GJGTLUQEYP,2644.86,ETB,Yohannes Assefa,251965370296,Bereket Negussie,251729828163,2025-11-10T21:44:08+03:00,Completed,Business transaction,,251716921745,1,amount_tamper
+TX-005952,dashen,QQAT3NJEH792F9ZF56I,7100.0,ETB,Hanna Tadesse,9532988137,Mekonen Umer,7407744462,2025-04-28T10:06:19+03:00,Processed,Tax payment,,,1,format_violation
+TX-005537,telebirr,CELUQY9KJB,400.0,ETB,Mesfin Taye,251930092733,Ruth Eshetu,251989257026,2022-09-14T22:41:06+03:00,Success,Salary payment,,,1,temporal_anomaly
+TX-005445,mpesa,BI3POK9P4X,848.61,ETB,Iman Umer,251994599293,Kaleb Weldemariam,251921823180,2025-05-01T08:43:26+03:00,Successful,School fee,,,1,amount_tamper
+TX-005708,mpesa,POXRBLQ6QD,178.8,ETB,Yeshi Gebre,251746475081,Abebe Chala,251723683398,2025-12-22T15:12:17+03:00,Successful,Service payment,,,1,name_mismatch
+TX-005133,cbe_birr,7GLV0I046Z,48.35580858943543,ETB,Rediet Fikre,251759588979,Tekle Gebre,251748863029,2025-11-17T13:30:44+03:00,Completed,Rent payment,,251748459554,1,replay
+TX-005989,abyssinia,CEZBNOU8FI19,1309.73,ETB,Yoseph Wolde,9701770956605,Ermias Zeleke,0585646793321,2025-07-10T11:50:16+03:00,Successful,Subscription fee,54369,,1,format_violation
+TX-005757,cbe,FT6PUF3EDPVG,2200.0,ETB,Dawit Eshetu,Y***8783,Hailu Yilma,U***6828,2026-01-15T15:23:14+03:00,Completed,Savings deposit,52620294,,1,name_mismatch
+TX-005677,telebirr,CE8HW9WQBT,246.75,ETB,Feven Berhane,251964414877,Sara Ayele,251759941883,2025-06-30T00:34:37+03:00,Successful,Subscription fee,,,1,name_mismatch
+TX-005152,abyssinia,FTNWXBPL9K33,4538.513900314404,ETB,Hagos Berhane,1976453703710,Solomon Tesfaye,6185497864550,2025-05-22T14:06:08+03:00,Completed,Loan repayment,91362,,1,replay
+TX-005136,abyssinia,FTIE1L5M3T56,407.7864288032767,ETB,Fitsum Worku,0673342536148,Mekdes Negussie,1143151310140,2025-10-02T17:29:55+03:00,Successful,Refund,24095,,1,replay
+TX-005244,dashen,58L2E5TYZBL14Z3Y,2420.61,ETB,Hailu Wolde,0734294641,Bekele Omer,1393863085,2025-08-28T11:36:09+03:00,Processed,Subscription fee,,,1,fuzzing
+TX-005107,cbe,FTLQBYG6G04J,2114.4702487466534,ETB,Girma Weldemariam,V***8285,Mekdes Yilma,U***2894,2025-03-03T11:53:17+03:00,Successful,Savings deposit,62415285,,1,replay
+TX-005612,mpesa,O2MJ28LNS6,104.61,ETB,Helen Zeleke,251961831858,Fisseha Ahmed,251780285600,2025-06-14T10:18:04+03:00,Completed,Loan repayment,,,1,temporal_anomaly
+TX-005431,cbe_birr,9LQA6F00T1,7727.37,ETB,Berhanu Lemma,251916234624,Eleni Fikre,251787566232,2025-01-15T04:09:28+03:00,Completed,Utility bill,,251738762670,1,amount_tamper
+TX-005490,mpesa,M31LTOBF8O,240.31,ETB,Redwan Negash,251976874764,Yared Seyoum,251948752333,2026-04-01T09:06:42+03:00,Completed,Insurance premium,,,1,amount_tamper
+TX-005301,cbe_birr,HPRHL9PPT6,40.0,ETB,Tigist Mohammed,251988578402,Olana Lemma,251979627492,2025-06-23T17:25:29+03:00,Success,Mobile top-up,,251968715997,1,fuzzing
+TX-005713,dashen,777IZKGGDLY2RKJ2,1976.39,ETB,Mesfin Diriba,7782635316,Marta Girmay,4073560659,2025-08-24T16:32:41+03:00,Processed,Service payment,,,1,name_mismatch
+TX-005466,telebirr,CE906DLFHR,121.81,ETB,Redwan Haile,251999340960,Yohannes Gudeta,251768486558,2025-11-17T13:11:54+03:00,Success,Subscription fee,,,1,amount_tamper
+TX-005315,cbe_birr,5NLAWZ8OKH,432.55,ETB,Lidya Girmay,251958289595,Wubit Ahmed,251923919634,2025-01-10T16:13:52+03:00,Completed,Utility bill,,251933046572,1,fuzzing
+TX-005126,mpesa,YQ3UZWMWY1,67.84647739394498,ETB,Leul Girmay,251739031469,Dagmawit Eshetu,251786241840,2025-06-14T09:54:36+03:00,Successful,Tax payment,,,1,replay
+TX-005039,cbe,FTL2ZXJMYLRQ,26298.319225358417,ETB,Hagos Zewde,V***7480,Natnael Gudeta,U***1108,2025-08-05T09:52:07+03:00,Completed,Payment for goods,84887256,,1,replay
+TX-005905,telebirr,FTF64JX6CS,2999.51,ETB,Dagmawit Gebremariam,251783817686,Redwan Fikre,251962116337,2025-01-14T16:54:49+03:00,Completed,Subscription fee,,,1,format_violation
+TX-005173,telebirr,CEZ4P4A0QW,721.19,ETB,Tirunesh Negussie,251939934686,Lemma Gebremariam,251753919193,2025-09-19T17:52:05+03:00,Successful,Medical payment,,,1,fuzzing
+TX-005076,telebirr,CEKJ49YQMI,203.8871128029303,ETB,Lidya Habte,251989364208,Kaleb Kebede,251728886465,2025-04-14T11:40:25+03:00,Completed,Loan repayment,,,1,replay
+TX-005538,telebirr,CEQK9QEPSG,183.29,ETB,Tesfaye Ayele,251983949752,Tsion Diriba,251929042408,2023-02-22T22:41:06+03:00,Success,Gift,,,1,temporal_anomaly
+TX-005457,dashen,526DJFGPSG73B5FB,24422.76,ETB,Tekle Haile,7085194121,Mulugeta Worku,1553831615,2025-04-25T01:33:12+03:00,Completed,School fee,,,1,amount_tamper
+TX-005450,telebirr,CEL7A0YZC7,709.99,ETB,Betelhem Hassen,251732445743,Hagos Bogale,251959512286,2025-12-29T17:48:45+03:00,Successful,Subscription fee,,,1,amount_tamper
+TX-005240,dashen,503IPL28JG5W2YMJ,10700.0,ETB,Dereje Petros,8711702339,Yeshi Lemma,1853703074,2026-02-13T10:43:53+03:00,Processed,School fee,,,1,fuzzing
+TX-005587,telebirr,CEQJYENDB7,1012.14,ETB,Sisay Worku,251977146502,Chaltu Legesse,251911837691,2024-02-19T22:41:06+03:00,Successful,Rent payment,,,1,temporal_anomaly
+TX-005792,cbe,FT4M2EC8RA48,15623.66,ETB,Eleni Assefa,P***2846,Eleni Assefa,E***0867,2026-03-24T13:25:55+03:00,Completed,Service payment,18750036,,1,name_mismatch
+TX-005342,telebirr,CEMFOTE7C3,568.31,ETB,Abebe Endale,251932710732,Negash Mohammed,251792123034,2025-08-31T08:20:26+03:00,Completed,Salary payment,,,1,amount_tamper
+TX-005408,cbe,FTPPBQUAKX6W,94043.84,ETB,Yoseph Bekele,F***5883,Omar Ferede,Q***6812,2025-11-09T17:21:29+03:00,Completed,Loan repayment,46176792,,1,amount_tamper
+TX-005105,telebirr,CE8HW9WQBT,234.55357452408748,ETB,Alemu Fikre,251924496027,Sara Ayele,251759941883,2025-01-14T10:31:38+03:00,Successful,Subscription fee,,,1,replay
+TX-005691,dashen,125CTH3ZWCHFKF5U,1100.0,ETB,Yeshi Gebre,4180814784,Tadesse Eshetu,2358828031,2025-03-03T11:33:30+03:00,Completed,Salary payment,,,1,name_mismatch
+TX-005641,telebirr,CEXJFNMSLU,86.32,ETB,Feven Habte,251787441128,Hagos Petros,251721727421,2024-02-25T22:41:06+03:00,Success,Tax payment,,,1,temporal_anomaly
+TX-005109,telebirr,CET2WF559A,258.521209482963,ETB,Yeshi Weldemariam,251702374780,Rediet Bekele,251942068721,2025-06-23T22:36:38+03:00,Success,Transfer,,,1,replay
+TX-005035,telebirr,CEIRYCGFTC,2405.159305297917,ETB,Sisay Tadesse,251730856527,Lemma Haile,251973106526,2025-07-18T08:07:29+03:00,Successful,Service payment,,,1,replay
+TX-005204,cbe,FT95OJUV06YU,1205.13,ETB,Tekle Regassa,K***6624,Tekle Lemma,Y***8733,2025-05-26T14:58:03+03:00,Successful,Donation,82634351,,1,fuzzing
+TX-005437,cbe,FTLZOO0AHWY4,89933.65,ETB,Abebe Abera,C***2200,Tirunesh Regassa,J***8426,2026-01-24T17:13:13+03:00,Completed,Online purchase,79608289,,1,amount_tamper
+TX-005352,cbe_birr,JZRH9HC4HD,13165.36,ETB,Henok Petros,251983719082,Chaltu Bogale,251923586909,2025-01-16T11:52:39+03:00,Success,Salary payment,,251952542161,1,amount_tamper
+TX-005426,cbe,FTEWDW29PHBC,325.13,ETB,Aster Girmay,X***4487,Birtukan Umer,B***4833,2025-05-02T10:34:24+03:00,Successful,Utility bill,60213180,,1,amount_tamper
+TX-005212,telebirr,CE2BQ9NND1,368.54,ETB,Eyob Eshetu,251761280543,Eleni Ferede,251932255600,2025-02-18T13:19:30+03:00,Successful,Business transaction,,,1,fuzzing
+TX-005750,telebirr,CEFB6TFLNY,700.0,ETB,Fitsum Petros,251715869409,Liya Petros,251718829917,2025-09-12T15:56:25+03:00,Success,Rent payment,,,1,name_mismatch
+TX-005661,telebirr,CE0QPLRRV8,493.57,ETB,Sara Jembere,251963690089,Rediet Ahmed,251903659077,2025-05-12T12:13:12+03:00,Completed,Investment,,,1,temporal_anomaly
+TX-005383,telebirr,CEDQE3NHWV,7242.55,ETB,Bethlehem Chala,251782948630,Iman Umer,251728554179,2025-04-08T19:19:58+03:00,Completed,Salary payment,,,1,amount_tamper
+TX-005632,cbe_birr,Q2X5XBWTDX,195.23,ETB,Assefa Worku,251921308121,Betelhem Endale,251973459482,2022-02-19T22:41:06+03:00,Success,Salary payment,,251979682656,1,temporal_anomaly
+TX-005277,cbe_birr,VK483MG14I,46.91,ETB,Leul Berhane,251976676296,Zewditu Bogale,251716928614,2026-01-14T08:03:27+03:00,Completed,Medical payment,,251986646319,1,fuzzing
+TX-005386,cbe_birr,Q83QQHILWO,549.68,ETB,Liya Haile,251933902383,Natnael Gudeta,251988559549,2025-12-21T01:58:24+03:00,Completed,Gift,,251721491356,1,amount_tamper
+TX-005388,cbe,FTBWPVFZET8P,49004.59,ETB,Betelhem Ahmed,P***3031,Tekle Omer,W***8719,2026-01-08T03:23:18+03:00,Successful,Utility bill,01240254,,1,amount_tamper
+TX-005211,abyssinia,FTCXSPV3YOUU,2000.0,ETB,Yoseph Kiros,3414634647347,Amanuel Tadesse,1722974424097,2025-01-24T10:34:58+03:00,Completed,School fee,22113,,1,fuzzing
+TX-005087,cbe,FTMH6K1WXYWW,7076.022536401695,ETB,Firehiwot Kebede,G***7989,Binyam Jembere,J***0857,2026-04-13T22:28:00+03:00,Successful,Online purchase,30932998,,1,replay
+TX-005261,dashen,2Z6NV0WE9ZEJR476,5052.0,ETB,Abel Yilma,6687945754,Eyob Legesse,0406372541,2025-11-30T05:57:20+03:00,Completed,Mobile top-up,,,1,fuzzing
+TX-005485,abyssinia,FTSNMTBZMTKE,989.85,ETB,Mikael Legesse,4625121247876,Omar Endale,7417815188575,2026-02-28T10:48:51+03:00,Successful,Savings deposit,98647,,1,amount_tamper
+TX-005879,dashen,rhpwFceo,1661.79,ETB,Birtukan Ferede,5226523492,Yeshi Regassa,6232409816,2025-02-02T13:40:37+03:00,Completed,Loan repayment,,,1,format_violation
+TX-005778,cbe,FT4IZASNWYWR,4875.72,ETB,Kebede Tadesse,Q***4840,Kebede Tadesse,V***6211,2025-09-07T17:33:16+03:00,Successful,Mobile top-up,15679334,,1,name_mismatch
+TX-005668,telebirr,CEO64VC7AE,678.19,ETB,Tesfaye Negash,251911876567,Henok Lemma,251712865038,2025-05-29T17:22:51+03:00,Successful,Refund,,,1,name_mismatch
+TX-005473,cbe_birr,ZA1VFXD2WJ,26.7,ETB,Lemma Legesse,251907189476,Eyob Weldemariam,251749453536,2025-01-10T15:19:17+03:00,Success,Online purchase,,251776093324,1,amount_tamper
+TX-005707,telebirr,CE60TQCF8Y,548.59,ETB,Samuel Demeke,251700054312,Mesfin Kebede,251749232724,2025-10-29T20:42:22+03:00,Completed,Business transaction,,,1,name_mismatch
+TX-005436,telebirr,CEOA09R17W,263.24,ETB,Sara Ibrahim,251748813914,Teshome Bekele,251975694143,2025-02-03T09:15:37+03:00,Successful,Donation,,,1,amount_tamper
+TX-005552,cbe,FTB42OGOSK0R,2840.26,ETB,Dewi Desta,G***2648,Tsion Haile,J***9478,2021-09-30T22:41:06+03:00,Successful,Tax payment,14627301,,1,temporal_anomaly
+TX-005920,telebirr,KsL7AY1ivH,150.55,ETB,Seyoum Haile,251707346719,Chaltu Endale,251913840766,2025-02-25T17:32:16+03:00,Successful,School fee,,,1,format_violation
+TX-005965,cbe_birr,VnobB6PsOzX4gv,300.0,ETB,Abigail Fikre,251917458820,Tirunesh Gudeta,251725207281,2025-02-11T21:17:28+03:00,Completed,Investment,,251792456780,1,format_violation
+TX-005610,dashen,9082J9W4M28RYPXR,3656.26,ETB,Mekonen Endale,8269243935,Genet Demeke,1090837775,2026-02-04T03:50:26+03:00,Completed,Investment,,,1,temporal_anomaly
+TX-005662,telebirr,CEAIS9YZ8D,667.3,ETB,Mekonen Diriba,251955814791,Alemu Lemma,251715753809,2025-02-25T17:44:32+03:00,Success,Investment,,,1,temporal_anomaly
+TX-005309,cbe,FT27YCIFBR28,3864.21,ETB,Genet Tessema,Q***1589,Eleni Endale,R***8683,2025-05-15T11:18:40+03:00,Successful,Mobile top-up,66170715,,1,fuzzing
+TX-005580,mpesa,T88PC3WQD7,800.0,ETB,Betelhem Weldemariam,251755928598,Helen Fikre,251721276259,2024-03-12T22:41:06+03:00,Completed,Salary payment,,,1,temporal_anomaly
+TX-005892,dashen,$X/MD3PHZ5NY8Z*P,765.74,ETB,Abel Eshetu,7326519092,Yared Eshetu,6952275733,2025-05-09T16:50:52+03:00,Completed,Payment for goods,,,1,format_violation
+TX-005209,telebirr,CEDR2FP95D,4491.12,ETB,Dewi Mekonnen,251967895379,Teshome Seyoum,251963968248,2025-02-05T20:54:11+03:00,Successful,Tax payment,,,1,fuzzing
+TX-005931,dashen,HT1CHDFJY21UE842UH,13300.0,ETB,Bereket Desta,7792217921,Amanuel Desta,2720538937,2025-07-14T11:59:41+03:00,Successful,Investment,,,1,format_violation
+TX-005344,cbe_birr,NXLW8TESLM,799.29,ETB,Meseret Tadesse,251764156684,Selamawit Tadesse,251755894202,2025-06-28T12:19:00+03:00,Success,Mobile top-up,,251902094290,1,amount_tamper
+TX-005858,dashen,FTV6I0DAQW8HUN8T,6300.0,ETB,Firehiwot Hassen,3246708383,Tadesse Demeke,5720806837,2026-01-16T15:45:22+03:00,Processed,Tax payment,,,1,format_violation
+TX-005830,abyssinia,FTWG5L2326T0,614.8,ETB,Meseret Haile,0036121259819,Meseret Haile,7051116288728,2025-01-13T13:07:37+03:00,Completed,Transfer,20491,,1,name_mismatch
+TX-005682,telebirr,CEKIDCASE5,500.0,ETB,Hanna Ibrahim,251728857015,Aster Hassen,251771965263,2026-02-10T14:57:26+03:00,Successful,Subscription fee,,,1,name_mismatch
+TX-005056,cbe,FTJZX4XVQBZB,8754.456845884903,ETB,Sara Bekele,P***6304,Kebede Omer,O***3123,2025-10-09T13:48:57+03:00,Completed,Service payment,05218799,,1,replay
+TX-005219,dashen,369TVES2RI2BG2GW,6564.03,ETB,Hanna Zewde,2755718496,Alemu Haile,2992598346,2026-02-07T14:18:35+03:00,Processed,Insurance premium,,,1,fuzzing
+TX-005492,abyssinia,FTRO5JOMJESM,2567.19,ETB,Abel Jembere,2820617207203,Omar Ahmed,0463441337413,2026-03-25T12:16:20+03:00,Successful,Savings deposit,49344,,1,amount_tamper
+TX-005502,cbe,FT4SCC66BXAK,1802.59,ETB,Bezawit Ferede,X***0731,Kidist Demeke,I***5776,2027-03-30T22:41:06+03:00,Successful,Service payment,85089897,,1,temporal_anomaly
+TX-005835,dashen,iYXY4jBIS,11311.87,ETB,Sisay Tadesse,2430605402,Abebe Bogale,2799980609,2025-04-06T08:09:22+03:00,Successful,Tax payment,,,1,format_violation
+TX-005333,telebirr,CEWR1BZAFM,487.78,ETB,Aster Ahmed,251781164902,Hagos Seyoum,251989665367,2026-03-10T12:13:03+03:00,Success,School fee,,,1,fuzzing
+TX-005407,cbe,FTMXLVZ4QKE2,4534.98,ETB,Amanuel Gebremariam,E***5472,Konjit Kebede,W***8422,2026-02-04T10:10:15+03:00,Completed,Payment for goods,59274523,,1,amount_tamper
+TX-005577,mpesa,JYSK14ODOU,600.0,ETB,Natnael Habte,251905101443,Yohannes Fikre,251799085572,2025-07-07T11:09:15+03:00,Completed,Savings deposit,,,1,temporal_anomaly
+TX-005902,telebirr,FTP8KKXEOC,4940.19,ETB,Aster Zeleke,251941300399,Nardos Taye,251794093180,2026-02-13T16:13:51+03:00,Successful,Rent payment,,,1,format_violation
+TX-005140,telebirr,CEV8WXSQGU,2144.927491875982,ETB,Helen Ibrahim,251702890539,Saron Worku,251967208388,2025-01-17T10:21:16+03:00,Completed,Subscription fee,,,1,replay
+TX-005267,cbe,FT7KL9INTU01,4378.84,ETB,Binyam Tadesse,Y***4759,Chaltu Yilma,L***8947,2025-12-25T14:36:44+03:00,Completed,Investment,28532025,,1,fuzzing
+TX-005123,telebirr,CEJJEOXE6C,1604.759380046842,ETB,Saron Kiros,251702239377,Fisseha Bekele,251928212528,2025-08-05T23:26:00+03:00,Completed,Subscription fee,,,1,replay
+TX-005941,mpesa,K[D8JL:CAN,591.64,ETB,Tekle Lemma,251976491607,Eleni Tesfaye,251976333209,2025-08-29T11:05:43+03:00,Completed,Gift,,,1,format_violation
+TX-005724,cbe,FTL9Q3CYBYC4,390.31,ETB,Wondwosen Petros,S***5163,Teshome Tessema,C***1978,2025-08-11T03:34:03+03:00,Completed,Business transaction,91373265,,1,name_mismatch
+TX-005751,cbe_birr,AF90K0QT2O,606.37,ETB,Tekle Demeke,251940618083,Yared Fikre,251704791129,2026-03-26T12:36:11+03:00,Success,Medical payment,,251722695884,1,name_mismatch
+TX-005090,cbe,FTJ4BDFHJ4D0,3202.6719522583558,ETB,Redwan Yimer,Q***0983,Nahom Umer,S***8245,2025-04-15T09:36:42+03:00,Successful,Refund,47225699,,1,replay
+TX-005114,telebirr,CEES0P4OVU,111.22784487551122,ETB,Bereket Gudeta,251756612909,Natnael Girmay,251744722700,2026-04-20T10:59:26+03:00,Success,Refund,,,1,replay
+TX-005522,telebirr,CEO3QB2KD5,667.3,ETB,Mekonen Diriba,251955814791,Alemu Lemma,251715753809,2026-12-23T22:41:06+03:00,Success,Investment,,,1,temporal_anomaly
+TX-005465,telebirr,CECZ5U5MTX,895.66,ETB,Rediet Negash,251935740874,Kidist Assefa,251973972961,2025-12-22T13:28:31+03:00,Successful,Investment,,,1,amount_tamper
+TX-005049,mpesa,0DV0V846AO,26.716238276366365,ETB,Betelhem Habte,251914938210,Mesfin Zewde,251743064152,2026-02-17T17:12:52+03:00,Successful,Service payment,,,1,replay
+TX-005845,abyssinia,CEW1JNMWHOAF,19400.0,ETB,Biruk Eshetu,9637174839933,Iman Jembere,5874296704163,2026-02-04T13:52:14+03:00,Successful,Subscription fee,49564,,1,format_violation
+TX-005190,cbe,FTQYRUY4KJB6,7836.88,ETB,Meron Negussie,H***4785,Abel Jembere,X***9881,2026-04-20T17:34:01+03:00,Successful,Gift,50928605,,1,fuzzing
+TX-005940,cbe_birr,IwT@JglEkl7sMgxJXy,235.74,ETB,Berhanu Zeleke,251930501709,Eyob Haile,251971266111,2025-05-31T10:35:46+03:00,Completed,Loan repayment,,251727910490,1,format_violation
+TX-005929,cbe_birr,yhyx52I2,642.2,ETB,Nardos Mekonnen,251709188076,Mikael Jembere,251777615939,2025-02-08T07:37:27+03:00,Completed,Loan repayment,,251940038632,1,format_violation
+TX-005046,cbe_birr,AF90K0QT2O,856.0569496989802,ETB,Hailu Hassen,251723557619,Yared Yilma,251704791129,2025-01-15T10:31:28+03:00,Success,Medical payment,,251722695884,1,replay
+TX-005367,dashen,712LTG6KMDVH8XAC,326.2,ETB,Kidist Girmay,8444215345,Samuel Zewde,5249963055,2025-07-03T08:54:59+03:00,Completed,Tax payment,,,1,amount_tamper
+TX-005734,dashen,697O125X2E8NC9YH,12000.0,ETB,Kidist Gebremariam,0446419808,Kidist Gebremariam,6439211921,2025-04-09T09:59:49+03:00,Processed,Payment for goods,,,1,name_mismatch
+TX-005561,telebirr,CEG8UEB5VO,1142.99,ETB,Nardos Umer,251731200859,Dawit Demeke,251902417036,2025-11-02T02:00:37+03:00,Successful,Business transaction,,,1,temporal_anomaly
+TX-005304,cbe_birr,37ACH9EHNZ,200.0,ETB,Bezawit Mekonnen,251729086441,Sisay Ferede,251775301010,2025-11-01T10:20:16+03:00,Success,Subscription fee,,251988508418,1,fuzzing
+TX-005933,mpesa,142MUM5,238.02,ETB,Yoseph Mekonnen,251942225848,Mikael Ibrahim,251719031057,2025-11-26T10:04:47+03:00,Successful,Business transaction,,,1,format_violation
+TX-005755,cbe,FTXJNJ0KX69X,499.27,ETB,Mikael Chala,I***8348,Saron Hassen,L***8626,2026-02-02T14:53:19+03:00,Completed,Utility bill,07758708,,1,name_mismatch
+TX-005456,cbe,FTQIGYVZWD3K,2530.25,ETB,Abigail Tessema,T***5883,Mahlet Ayele,V***3403,2025-02-24T15:31:11+03:00,Completed,Payment for goods,54364597,,1,amount_tamper
+TX-005979,abyssinia,FTGYIZBJDYD5WQ,3800.0,ETB,Lidya Assefa,7839326525227,Binyam Bekele,5622069038061,2026-01-09T14:37:12+03:00,Successful,Savings deposit,05172,,1,format_violation
+TX-005060,cbe,FTZ3JUFXH8P0,3070.0716653784275,ETB,Zewditu Desta,L***3379,Abel Tessema,O***3066,2025-07-01T16:33:31+03:00,Successful,Service payment,88242655,,1,replay
+TX-005558,abyssinia,FTXV0T9CW7NF,4017.01,ETB,Lidya Gudeta,1807858652159,Mekdes Omer,1896137299770,2025-12-09T02:05:37+03:00,Completed,Online purchase,50356,,1,temporal_anomaly
+TX-005293,cbe,FTYYGFRNX7VH,6190.04,ETB,Dagmawit Ibrahim,O***4078,Tirunesh Taye,V***6985,2025-09-11T17:04:48+03:00,Completed,Payment for goods,66726418,,1,fuzzing
+TX-005862,cbe,CE4GT7K9WXZR,9641.44,ETB,Nahom Ahmed,Y***3691,Samuel Ferede,C***2241,2025-03-17T12:05:43+03:00,Successful,Savings deposit,61733651,,1,format_violation
+TX-005974,dashen,PJJLSS@HYLL#YIGR,11100.0,ETB,Feven Ayele,5812123856,Hanna Wolde,9456812041,2025-01-27T09:14:52+03:00,Successful,Insurance premium,,,1,format_violation
+TX-005413,cbe,FTDFGJ7NRSKO,8653.67,ETB,Bezawit Fikre,C***9919,Liya Wolde,O***7551,2025-03-14T12:19:06+03:00,Successful,Refund,25316498,,1,amount_tamper
+TX-005416,mpesa,Q46P87O4KZ,259.83,ETB,Omar Mekonnen,251747529538,Teshome Lemma,251967199118,2025-08-25T08:07:29+03:00,Completed,Subscription fee,,,1,amount_tamper
+TX-005517,abyssinia,FTU6LOBGKBFE,577.77,ETB,Getachew Gebre,0830774318175,Meseret Fikre,3089839917537,2025-08-26T12:10:34+03:00,Successful,Insurance premium,86583,,1,temporal_anomaly
+TX-005984,cbe_birr,KEK6OYS7D9B4,1579.97,ETB,Ermias Habte,251909706045,Jerusalem Diriba,251793576481,2025-03-26T10:45:00+03:00,Completed,Donation,,251718655866,1,format_violation
+TX-005764,cbe,FTEWDW29PHBC,1300.0,ETB,Aster Girmay,X***4487,Nahom Seyoum,B***4833,2025-05-02T10:34:24+03:00,Successful,Utility bill,60213180,,1,name_mismatch
+TX-005023,cbe,FT9RWV9NJS96,1273.6119203963237,ETB,Saron Legesse,R***0710,Negash Haile,I***7158,2025-10-19T14:17:16+03:00,Successful,Gift,63766046,,1,replay
+TX-005458,mpesa,GLQJICWQLK,892.95,ETB,Dagmawit Legesse,251743840152,Nahom Yilma,251964300648,2026-01-05T11:19:00+03:00,Successful,School fee,,,1,amount_tamper
+TX-005210,cbe_birr,58N6R6JD9Y,282.06,ETB,Lidya Assefa,251722815104,Henok Tesfaye,251704382124,2026-01-19T05:10:05+03:00,Completed,School fee,,251941101296,1,fuzzing
+TX-005514,abyssinia,FTY9ML0OKO74,6400.0,ETB,Seyoum Tessema,7514760771813,Iman Bekele,6728826704077,2025-11-07T04:18:56+03:00,Successful,School fee,28935,,1,temporal_anomaly
+TX-005104,telebirr,CEV4HU270A,2193.2475799275244,ETB,Natnael Regassa,251708970327,Tsion Chala,251912524587,2025-09-15T17:28:15+03:00,Completed,Salary payment,,,1,replay
+TX-005769,mpesa,MRK7WGG072,82.62,ETB,Genet Kebede,251754203126,Genet Kebede,251900887726,2026-01-30T12:46:10+03:00,Successful,Transfer,,,1,name_mismatch
+TX-005846,cbe,FT37692JJV,9600.0,ETB,Yared Seyoum,A***0663,Omar Yilma,W***2919,2026-03-25T16:33:38+03:00,Successful,Investment,61228886,,1,format_violation
+TX-005335,dashen,52108E077UP84ONA,18295.04,ETB,Dawit Assefa,3865268418,Rahel Gudeta,0539009058,2025-12-26T02:15:26+03:00,Processed,Investment,,,1,amount_tamper
+TX-005493,telebirr,CE7Q3VQJDD,14007.03,ETB,Liya Berhane,251993626313,Yeshi Demeke,251760781829,2025-06-10T04:06:37+03:00,Successful,Business transaction,,,1,amount_tamper
+TX-005231,cbe,FT8KPK7FVU3F,10700.0,ETB,Assefa Tesfaye,X***7565,Abigail Ferede,T***6359,2025-06-10T15:00:35+03:00,Successful,Salary payment,99314584,,1,fuzzing
+TX-005440,cbe_birr,NMO0BZXCBJ,218.81,ETB,Mekdes Demeke,251702127700,Wubit Yimer,251784771060,2025-07-06T08:49:56+03:00,Completed,School fee,,251774101323,1,amount_tamper
+TX-005254,mpesa,YNDV603AGA,612.75,ETB,Negash Negussie,251716874562,Assefa Ferede,251927613071,2026-01-02T08:44:05+03:00,Completed,Investment,,,1,fuzzing
+TX-005847,cbe_birr,FTMMKYR3CF,500.0,ETB,Eyob Negussie,251741892165,Mikael Jembere,251772143706,2025-03-03T06:30:00+03:00,Success,Loan repayment,,251703458825,1,format_violation
+TX-005184,abyssinia,FTU0S3VI9KCC,12877.77,ETB,Omar Bekele,3186182366646,Binyam Kebede,8665575772791,2026-03-01T17:38:02+03:00,Completed,Insurance premium,70325,,1,fuzzing
+TX-005709,cbe,FTDOXM7Z7AOL,1748.71,ETB,Bethlehem Lemma,M***5905,Getachew Zewde,C***7372,2025-03-10T14:55:44+03:00,Successful,Payment for goods,32381281,,1,name_mismatch
+TX-005650,cbe,FT28QD2NG2CR,2700.0,ETB,Wubit Ferede,E***7881,Bereket Negussie,N***1742,2026-04-14T12:53:15+03:00,Successful,Gift,90810818,,1,temporal_anomaly
+TX-005479,telebirr,CEUOTRB5EE,348.32,ETB,Dawit Gudeta,251723594021,Meron Umer,251968135636,2026-02-16T12:27:49+03:00,Success,Savings deposit,,,1,amount_tamper
+TX-005058,telebirr,CEEVSIINEY,9050.429190547475,ETB,Lidya Yimer,251725440633,Amanuel Gudeta,251916651899,2026-02-19T10:48:10+03:00,Success,Loan repayment,,,1,replay
+TX-005569,cbe,FT1DXUF8EQK2,4900.0,ETB,Robel Berhane,X***7626,Abel Yimer,G***4362,2025-12-22T02:38:25+03:00,Successful,Business transaction,59710725,,1,temporal_anomaly
+TX-005628,telebirr,CE9WY5IKK9,1151.24,ETB,Dawit Mohammed,251920082244,Wubit Ferede,251930610855,2026-04-16T03:54:33+03:00,Success,Transfer,,,1,temporal_anomaly
+TX-005325,dashen,2I4OMDT7TFF6GCXQ,3615.09,ETB,Genet Ayele,5225417094,Kebede Taye,4323752319,2025-06-12T03:39:58+03:00,Processed,School fee,,,1,fuzzing
+TX-005183,cbe_birr,0VLV4ZIX1O,1010.23,ETB,Meseret Yimer,251902348768,Kaleb Umer,251940021931,2026-03-30T13:16:05+03:00,Success,Mobile top-up,,251768634902,1,fuzzing
+TX-005768,mpesa,3A59IYBU5A,223.5,ETB,Yared Mekonnen,251745711937,Yared Mekonnen,251960456433,2025-03-13T15:20:46+03:00,Successful,Payment for goods,,,1,name_mismatch
+TX-005351,cbe,FTAFFLAFLGNF,4159.74,ETB,Yohannes Abera,G***5247,Girma Mekonnen,Z***7887,2025-11-17T11:00:46+03:00,Successful,Rent payment,39184180,,1,amount_tamper
+TX-005051,abyssinia,FT8AF6HEJ6HA,460.10954193963266,ETB,Bekele Zeleke,3100872042488,Assefa Kiros,1291141922088,2025-06-04T11:54:54+03:00,Successful,Medical payment,48907,,1,replay
+TX-005705,telebirr,CEDOSG53CA,733.8,ETB,Berhanu Endale,251994467507,Assefa Bekele,251761224714,2025-02-08T11:51:56+03:00,Successful,Online purchase,,,1,name_mismatch
+TX-005224,dashen,521O8E077UP84ONA,12395.42,ETB,Dawit Assefa,3865268418,Rahel Gudeta,0539009058,2025-12-26T02:15:26+03:00,Processed,Investment,,,1,fuzzing
+TX-005161,telebirr,CEDQE3NHWV,18081.28468394575,ETB,Daniel Weldemariam,251972964443,Iman Umer,251728554179,2025-07-09T16:06:36+03:00,Success,Salary payment,,,1,replay
+TX-005174,dashen,220FMNILSJL4FWNI,2400.0,ETB,Berhanu Chala,3417439711,Rahel Diriba,1143393143,2025-05-16T16:13:40+03:00,Processed,Donation,,,1,fuzzing
+TX-005912,cbe,dE10QKVaP6X,1432.0,ETB,Natnael Umer,A***0173,Helen Kebede,P***8194,2025-09-22T12:28:42+03:00,Successful,Tax payment,33546331,,1,format_violation
+TX-005238,cbe_birr,XFV9D1VTV9,1150.42,ETB,Iman Berhane,251923929915,Meseret Desta,251775542481,2025-04-15T17:46:27+03:00,Success,Medical payment,,251756485525,1,fuzzing
+TX-005690,cbe,FTWM72QLGDVC,10467.69,ETB,Mekdes Petros,I***5679,Mekdes Petros,H***2002,2025-05-29T13:19:37+03:00,Completed,Utility bill,74954508,,1,name_mismatch
+TX-005806,abyssinia,FT05R0L59K5H,1800.0,ETB,Fitsum Weldemariam,5223499367285,Olana Tadesse,9572529426692,2025-05-09T10:07:05+03:00,Completed,Medical payment,15970,,1,name_mismatch
+TX-005081,cbe,FTUHZOCJECB4,5675.46405573326,ETB,Yoseph Ibrahim,O***1326,Ruth Petros,O***8506,2025-05-12T06:12:34+03:00,Completed,Loan repayment,14835156,,1,replay
+TX-005680,telebirr,CEMLJYOAMN,681.37,ETB,Tekle Zewde,251976570779,Teshome Zeleke,251920032586,2025-06-29T10:05:26+03:00,Successful,Subscription fee,,,1,name_mismatch
+TX-005621,mpesa,NDQ9CG1T9U,758.63,ETB,Kebede Taye,251784845173,Birtukan Diriba,251771352606,2026-01-12T14:22:49+03:00,Completed,Loan repayment,,,1,temporal_anomaly
+TX-005832,telebirr,CEKAQLGXUD,975.67,ETB,Leul Gudeta,251794618416,Wondwosen Regassa,251714178741,2025-01-15T11:56:08+03:00,Success,School fee,,,1,name_mismatch
+TX-005337,abyssinia,FTI4ZAK3VR94,16516.57,ETB,Solomon Negussie,8522102342855,Fisseha Yimer,0530868660476,2025-09-19T14:09:37+03:00,Successful,Loan repayment,88216,,1,amount_tamper
+TX-005890,abyssinia,FTQA{X43E3PM,2015.13,ETB,Petros Wolde,1196685350083,Yoseph Hassen,6452390174421,2026-01-12T14:02:08+03:00,Completed,Medical payment,34900,,1,format_violation
+TX-005893,mpesa,"90M,LJR(T'",700.0,ETB,Meseret Bekele,251946635753,Berhanu Negash,251783099251,2025-01-24T13:17:43+03:00,Completed,Medical payment,,,1,format_violation
+TX-005471,cbe_birr,PB848J0OBB,322.56,ETB,Firehiwot Legesse,251905042423,Daniel Weldemariam,251953409140,2025-09-10T12:16:53+03:00,Completed,Refund,,251744953225,1,amount_tamper
+TX-005813,cbe,FTBXN1RP6X4S,8500.0,ETB,Firehiwot Negash,L***9559,Yoseph Kebede,F***9813,2025-04-28T04:18:04+03:00,Successful,Service payment,11801677,,1,name_mismatch
+TX-005040,telebirr,CE7JYLEVWX,1593.3746307400854,ETB,Yeshi Weldemariam,251949046301,Yeshi Kiros,251787015295,2026-03-02T17:39:29+03:00,Completed,Online purchase,,,1,replay
+TX-005801,cbe_birr,4CSUS443TZ,300.0,ETB,Kebede Zewde,251719464926,Fisseha Weldemariam,251788599681,2026-01-06T17:53:10+03:00,Completed,Medical payment,,251943114984,1,name_mismatch
+TX-005503,dashen,832F7GY6WMKB62OG,4751.76,ETB,Worku Weldemariam,1228669882,Bethlehem Zewde,3023721712,2026-08-20T22:41:06+03:00,Completed,Utility bill,,,1,temporal_anomaly
+TX-005767,telebirr,CENLYDCD0K,1800.0,ETB,Rahel Weldemariam,251939659782,Meron Fikre,251908004703,2025-03-31T08:52:33+03:00,Successful,Donation,,,1,name_mismatch
+TX-005640,abyssinia,FTHJ4CBE8909,6700.0,ETB,Iman Umer,1165689128981,Genet Tessema,5080330257777,2026-02-01T01:04:02+03:00,Successful,Salary payment,17152,,1,temporal_anomaly
+TX-005142,cbe,FTXQYJROFH6A,2338.0731981484846,ETB,Rahel Weldemariam,T***5638,Ruth Zewde,W***1484,2025-01-29T16:21:06+03:00,Successful,Gift,43899827,,1,replay
+TX-005182,cbe,FT8D6R82D5LO,22336.64,ETB,Nahom Regassa,G***3061,Natnael Zewde,G***5754,2025-12-02T17:13:54+03:00,Successful,Transfer,52602706,,1,fuzzing
+TX-005395,telebirr,CEBKDNL9RA,540.68,ETB,Seyoum Wolde,251903226073,Amanuel Negussie,251732674846,2025-05-10T09:49:03+03:00,Completed,Utility bill,,,1,amount_tamper
+TX-005470,cbe,FTDF76IMG7ZD,29668.79,ETB,Mesfin Kebede,X***8360,Wubit Regassa,I***9378,2025-04-24T17:42:24+03:00,Completed,Subscription fee,45269694,,1,amount_tamper
+TX-005664,dashen,692V8ZKP00HH9XYE,207.99,ETB,Dewi Negussie,9454374667,Betelhem Gudeta,8631204897,2025-10-28T04:07:46+03:00,Successful,Service payment,,,1,temporal_anomaly
+TX-005994,mpesa,lbnzp4Vy7Dpzh8qV,60.0,ETB,Abebe Mekonnen,251922510276,Kidist Regassa,251702882104,2026-03-31T04:26:08+03:00,Successful,Investment,,,1,format_violation
+TX-005374,abyssinia,FTQ6DBFTI1VO,699.03,ETB,Mulugeta Eshetu,9531571459151,Fisseha Girmay,0198097976595,2026-02-28T17:25:38+03:00,Completed,Business transaction,70921,,1,amount_tamper
+TX-005478,cbe,FTX5WVFGYW6Z,525.31,ETB,Sara Zeleke,J***7383,Hagos Ahmed,G***5977,2026-01-02T16:33:26+03:00,Completed,Medical payment,92407581,,1,amount_tamper
+TX-005819,dashen,266BG1X2WO8S1XOP,8039.95,ETB,Kidist Gudeta,9676226257,Eleni Umer,2651165975,2025-01-27T12:19:22+03:00,Completed,Refund,,,1,name_mismatch
+TX-005962,cbe,pU@CDhmL,2800.0,ETB,Meron Diriba,B***5021,Ruth Girmay,L***4450,2025-06-11T21:27:55+03:00,Completed,Transfer,42177070,,1,format_violation
+TX-005827,cbe,FTY7NJ0XTGB5,400.0,ETB,Kaleb Gudeta,P***2240,Amanuel Bogale,L***3061,2026-04-03T19:01:00+03:00,Successful,Insurance premium,89275234,,1,name_mismatch
+TX-005274,mpesa,9UQGV2CN77,76.91,ETB,Marta Habte,251743431911,Worku Petros,251950233504,2025-01-20T14:39:35+03:00,Successful,Service payment,,,1,fuzzing
+TX-005574,telebirr,CEL7I2OGLG,400.0,ETB,Samuel Ayele,251756466397,Girma Petros,251912063357,2025-11-04T01:08:45+03:00,Successful,Service payment,,,1,temporal_anomaly
+TX-005030,dashen,68147ZVPH31YZKLR,12913.565236442171,ETB,Meseret Yimer,9955902325,Fisseha Bogale,3937299818,2025-02-13T15:45:40+03:00,Completed,Rent payment,,,1,replay
+TX-005206,cbe_birr,X1KT728WCB,465.54,ETB,Kidist Hassen,251932115489,Selamawit Gebremariam,251775891093,2025-11-26T10:54:47+03:00,Completed,Business transaction,,251923049430,1,fuzzing
+TX-005434,telebirr,CEE2ST3VJQ,5304.84,ETB,Abebe Hassen,251797370612,Yoseph Eshetu,251751951322,2025-11-04T13:02:38+03:00,Successful,Transfer,,,1,amount_tamper
+TX-005221,dashen,G77MNQLX6DWG61QY,2126.93,ETB,Helen Haile,7263106815,Hagos Zewde,4445237646,2025-09-22T17:31:07+03:00,Completed,Insurance premium,,,1,fuzzing
+TX-005249,cbe,FT8WKFF02ADF,14500.0,ETB,Samuel Gudeta,D***4140,Marta Omer,Q***3437,2026-02-21T16:09:44+03:00,Completed,Utility bill,11682313,,1,fuzzing
+TX-005882,cbe_birr,TU9+4)|Z6L,228.23,ETB,Fitsum Bogale,251972879667,Sisay Desta,251980383078,2026-04-09T19:02:53+03:00,Success,Donation,,251754661623,1,format_violation
+TX-005932,abyssinia,FTNH0!QW5#_7,13624.63,ETB,Jerusalem Tesfaye,3288092449355,Dereje Negussie,8006489820073,2025-02-10T12:02:04+03:00,Completed,Business transaction,72675,,1,format_violation
+TX-005192,telebirr,CEL0MKXROP,200.0,ETB,Fitsum Endale,251969403242,Lemma Abera,251745324421,2025-05-26T08:18:36+03:00,Successful,Medical payment,,,1,fuzzing
+TX-005687,mpesa,ZN1J3OBFIV,85.47,ETB,Aster Bekele,251928545847,Binyam Bekele,251904780856,2025-05-02T13:36:10+03:00,Completed,Utility bill,,,1,name_mismatch
+TX-005156,cbe,FTGZOHC7TBH6,3023.0172348612714,ETB,Feven Zeleke,H***1344,Henok Zewde,N***3104,2026-02-10T16:17:55+03:00,Successful,Donation,00852946,,1,replay
+TX-005360,cbe,FTA3Z5NCY31Z,6256.42,ETB,Mahlet Desta,L***4265,Bereket Wolde,N***8939,2025-03-26T13:48:46+03:00,Completed,Investment,85238182,,1,amount_tamper
+TX-005389,mpesa,89QRKCE9M0,54.97,ETB,Nahom Gebremariam,251963444020,Feven Tesfaye,251903685391,2026-01-26T16:15:14+03:00,Successful,Refund,,,1,amount_tamper
+TX-005275,cbe,FTRANTYGDIHF,1756.97,ETB,Robel Ferede,Q***8899,Mekonen Mohammed,F***9893,2026-03-30T17:53:50+03:00,Successful,Loan repayment,54930364,,1,fuzzing
+TX-005033,telebirr,CEKJPKRSGL,2692.53632219073,ETB,Zewditu Gudeta,251751831407,Selamawit Mekonnen,251924274341,2025-02-15T15:39:26+03:00,Successful,Savings deposit,,,1,replay
+TX-005990,telebirr,CE7VS5-AL6,60.0,ETB,Mikael Zewde,251949521394,Chaltu Yilma,251910351530,2025-07-14T08:58:47+03:00,Success,Online purchase,,,1,format_violation
+TX-005775,dashen,4210MHNWIVB4Y6DD,4177.92,ETB,Henok Bekele,7197462942,Dewi Desta,1759039013,2026-03-10T08:50:41+03:00,Completed,Utility bill,,,1,name_mismatch
+TX-005857,abyssinia,FT2FBBPH824L32IYI,2100.0,ETB,Daniel Demeke,9582153146426,Marta Weldemariam,7266929581162,2025-03-03T09:20:13+03:00,Successful,School fee,83252,,1,format_violation
+TX-005555,cbe_birr,EZ8QPL9FIP,526.42,ETB,Lemma Bekele,251940941493,Birtukan Bekele,251730451873,2022-03-22T22:41:06+03:00,Success,Payment for goods,,251782224014,1,temporal_anomaly
+TX-005476,cbe,FT9RWV9NJS96,923.21,ETB,Olana Yilma,W***4476,Negash Haile,I***7158,2025-01-15T19:00:47+03:00,Completed,Gift,63766046,,1,amount_tamper
+TX-005996,cbe_birr,FTHY57317L,452.68,ETB,Sisay Tesfaye,251962892260,Nahom Chala,251776709381,2025-12-26T02:48:33+03:00,Completed,Subscription fee,,251710504775,1,format_violation
+TX-005790,telebirr,CESDZAH224,1300.0,ETB,Bereket Girmay,251716388832,Girma Endale,251710575498,2026-01-21T16:00:39+03:00,Successful,Salary payment,,,1,name_mismatch
+TX-005885,cbe_birr,EVEJL7#U)1,224.63,ETB,Zewditu Kebede,251940291900,Wondwosen Tessema,251927305113,2025-02-14T15:31:13+03:00,Completed,Subscription fee,,251952416507,1,format_violation
+TX-005424,telebirr,CEFL1ZYPEQ,455.87,ETB,Jerusalem Ahmed,251939338338,Kidist Legesse,251986898258,2025-02-28T16:55:46+03:00,Success,Donation,,,1,amount_tamper
+TX-005495,dashen,900BIHTQX6Y51G49,10084.5,ETB,Samuel Yimer,8885873782,Mikael Omer,8016181621,2025-02-13T14:31:48+03:00,Successful,Medical payment,,,1,amount_tamper
+TX-005128,cbe,FT99UPSRGI9P,45509.273397111196,ETB,Redwan Legesse,V***8961,Kidist Wolde,L***1931,2025-10-31T10:38:10+03:00,Successful,Donation,03747381,,1,replay
+TX-005861,telebirr,FTF2TGHA06,127.14,ETB,Tekle Yilma,251985610146,Liya Petros,251921326495,2025-07-28T15:23:59+03:00,Successful,Mobile top-up,,,1,format_violation
+TX-005013,telebirr,CE7Y5NT5D4,276.76623568300295,ETB,Jerusalem Gudeta,251942776415,Getachew Wolde,251930349025,2025-08-07T15:08:07+03:00,Success,Investment,,,1,replay
+TX-005560,mpesa,ARLMV5HEMT,273.8,ETB,Zewditu Weldemariam,251966316494,Berhanu Omer,251928220274,2025-12-28T02:18:30+03:00,Completed,Refund,,,1,temporal_anomaly
+TX-005380,telebirr,CED3RV621W,143.36,ETB,Bezawit Yilma,251723057620,Zewditu Negussie,251966931858,2026-01-05T09:33:27+03:00,Completed,Refund,,,1,amount_tamper
+TX-005300,cbe,FTR1GX1D0C5H,6817.88,ETB,Getachew Ahmed,W***2173,Betelhem Berhane,A***2422,2025-11-04T08:06:44+03:00,Completed,Payment for goods,63236540,,1,fuzzing
+TX-005319,cbe_birr,B0WD1F1Q7K,61.0,ETB,Alemu Worku,251766221523,Feven Worku,251736614141,2026-03-25T12:45:33+03:00,Success,Medical payment,,251974085060,1,fuzzing
+TX-005901,mpesa,M71MN5V,615.38,ETB,Eden Legesse,251969901324,Alemu Gebre,251969504407,2025-09-28T10:20:39+03:00,Completed,School fee,,,1,format_violation
+TX-005999,dashen,2v5ni0zmFmH3O6T0Ph!,202.49,ETB,Bekele Tessema,5108476509,Bekele Mekonnen,2190555960,2025-05-21T18:24:33+03:00,Successful,Utility bill,,,1,format_violation
+TX-005828,cbe,FTPN74PF4IO2,8407.4,ETB,Hiwot Zewde,N***1497,Getachew Mekonnen,T***7931,2025-09-08T17:44:49+03:00,Successful,Investment,84914986,,1,name_mismatch
+TX-005611,telebirr,CE5E4WCH6Y,175.64,ETB,Wondwosen Gebre,251939238165,Girma Zewde,251943294292,2022-07-22T22:41:06+03:00,Completed,Donation,,,1,temporal_anomaly
+TX-005144,cbe,FTSDUC4K9I14,6242.926098389753,ETB,Yoseph Gebremariam,T***2780,Amanuel Tadesse,X***2928,2025-04-21T11:17:48+03:00,Completed,Online purchase,50996218,,1,replay
+TX-005029,abyssinia,FTGFPYWO5YUU,2614.3823562851326,ETB,Dagmawit Endale,9285159751791,Nardos Tadesse,7128261136421,2025-12-29T15:26:18+03:00,Completed,Medical payment,12775,,1,replay
+TX-005314,telebirr,CECP2FBQAL,455.57,ETB,Chaltu Berhane,251937241749,Dawit Zeleke,251782769817,2025-11-24T14:18:09+03:00,Completed,Tax payment,,,1,fuzzing
+TX-005348,mpesa,UT6VB6AP3K,85.23,ETB,Dewi Endale,251968494064,Berhanu Endale,251977262509,2026-01-12T18:15:36+03:00,Completed,Refund,,,1,amount_tamper
+TX-005404,dashen,994CR567R2CF2R8X,387.79,ETB,Tirunesh Gebremariam,1937867032,Tirunesh Lemma,6561127406,2025-02-04T15:41:05+03:00,Processed,Insurance premium,,,1,amount_tamper
+TX-005513,cbe,FT86OOK02E92,19800.0,ETB,Feven Lemma,F***0288,Hailu Girmay,Z***2089,2026-04-15T02:14:28+03:00,Successful,Donation,01269625,,1,temporal_anomaly
+TX-005311,dashen,006JY136L5I2IE55,17116.78,ETB,Liya Ayele,8705276837,Lidya Yilma,5486691425,2026-01-14T10:20:41+03:00,Successful,Insurance premium,,,1,fuzzing
+TX-005402,telebirr,CEADFY056Z,34.35,ETB,Mikael Ibrahim,251901342148,Eden Legesse,251902986281,2025-02-08T09:37:25+03:00,Successful,Savings deposit,,,1,amount_tamper
+TX-005246,telebirr,CE694GBKCR,163.65,ETB,Solomon Legesse,251923998877,Abel Worku,251721085837,2025-06-24T16:57:50+03:00,Completed,Online purchase,,,1,fuzzing
+TX-005158,cbe_birr,F7K21XV529,579.7783060078963,ETB,Henok Endale,251960614894,Getachew Jembere,251944813241,2025-01-31T14:49:07+03:00,Success,School fee,,251759827501,1,replay
+TX-005998,cbe,MUGnSwspfO,3009.79,ETB,Olana Gebre,O***7202,Robel Jembere,C***0508,2025-01-22T08:15:00+03:00,Successful,Subscription fee,65033955,,1,format_violation
+TX-005340,cbe_birr,J2B20UWBOB,116.25,ETB,Redwan Yilma,251959750398,Henok Desta,251793277315,2025-08-10T22:09:39+03:00,Success,Rent payment,,251991255434,1,amount_tamper
+TX-005071,cbe,FTAU57OTE0Q3,18366.55375958721,ETB,Genet Diriba,K***9360,Fisseha Desta,D***0407,2025-04-03T17:34:04+03:00,Successful,Salary payment,60993247,,1,replay
+TX-005149,telebirr,CESHVOFBWK,1286.3658280000789,ETB,Seyoum Ahmed,251732784603,Binyam Weldemariam,251903724709,2026-01-21T11:49:08+03:00,Completed,Payment for goods,,,1,replay
+TX-005943,dashen,6JOZRZ2GB2I1V,2913.02,ETB,Berhanu Hassen,3423498306,Fitsum Ahmed,0161261558,2026-01-06T08:30:04+03:00,Completed,Payment for goods,,,1,format_violation
+TX-005991,mpesa,qseAmNYL@!,20.0,ETB,Genet Zeleke,251702048231,Abigail Gebre,251799247889,2026-03-30T09:37:36+03:00,Successful,Business transaction,,,1,format_violation
+TX-005237,dashen,Z407ED9ADKGH6UMG,5888.66,ETB,Dawit Fikre,7769850007,Nahom Girmay,9007401236,2025-07-02T12:54:48+03:00,Processed,Utility bill,,,1,fuzzing
+TX-005554,dashen,805GOE93GW1DYVEW,400.0,ETB,Kidist Girmay,8444215345,Samuel Zewde,5249963055,2023-07-30T22:41:06+03:00,Completed,Tax payment,,,1,temporal_anomaly
+TX-005294,dashen,342YAH9MCK3D6MJO,4111.57,ETB,Hiwot Weldemariam,9984508373,Mekdes Ayele,7698956092,2025-05-22T08:06:01+03:00,Completed,Loan repayment,,,1,fuzzing
+TX-005585,dashen,172459A182Z2EIIN,7170.71,ETB,Wubit Hassen,8300315791,Abebe Tesfaye,8618243661,2026-02-12T11:01:59+03:00,Processed,Insurance premium,,,1,temporal_anomaly
+TX-005376,dashen,734EZ7MDDD0QO20T,976.97,ETB,Hagos Tesfaye,0832864214,Zewditu Seyoum,3639517563,2026-01-02T20:01:09+03:00,Completed,Utility bill,,,1,amount_tamper
+TX-005069,cbe,FTPII2MVV4DC,8832.101046674794,ETB,Robel Jembere,F***3927,Binyam Haile,E***4559,2026-03-21T13:48:34+03:00,Successful,Investment,10903267,,1,replay
+TX-005903,abyssinia,CEP22N45PX8C,20600.0,ETB,Liya Umer,2853481773521,Biruk Regassa,0856454642500,2025-09-19T12:57:20+03:00,Successful,Donation,15313,,1,format_violation
+TX-005103,cbe,FTMXEBGXPEAM,1963.941780731875,ETB,Jerusalem Tesfaye,C***6937,Wubit Ibrahim,Z***0150,2025-03-24T13:25:57+03:00,Successful,Mobile top-up,55764756,,1,replay
+TX-005866,telebirr,CE$Y2NLTT8,900.0,ETB,Yoseph Ayele,251935912527,Daniel Weldemariam,251922340050,2025-11-25T16:11:06+03:00,Successful,Subscription fee,,,1,format_violation
+TX-005398,dashen,078SOBN9FE6XWJ8C,2738.34,ETB,Abel Seyoum,8506509431,Getachew Ibrahim,0486935723,2026-01-05T14:18:57+03:00,Processed,Transfer,,,1,amount_tamper
+TX-005591,abyssinia,FTQ0D257MP56,6065.38,ETB,Sara Jembere,3551428415775,Eden Gudeta,2323780064400,2022-09-25T22:41:06+03:00,Successful,Utility bill,70294,,1,temporal_anomaly
+TX-005430,telebirr,CEN05J3AYO,2970.12,ETB,Fisseha Umer,251920111628,Henok Endale,251955641990,2025-11-07T18:41:52+03:00,Successful,Service payment,,,1,amount_tamper
+TX-005510,telebirr,CE56JI1TVR,218.34,ETB,Genet Habte,251983703947,Samuel Ferede,251925497075,2025-02-17T15:26:31+03:00,Completed,Utility bill,,,1,temporal_anomaly
+TX-005299,cbe,FTUN6KHVLUCN,700.0,ETB,Wubit Eshetu,W***7905,Meseret Abera,S***1898,2025-07-09T09:54:45+03:00,Successful,Investment,36561833,,1,fuzzing
+TX-005542,cbe,FT46DRGZQUDZ,4857.58,ETB,Biruk Diriba,W***6484,Amanuel Umer,I***1163,2027-01-27T22:41:06+03:00,Completed,Tax payment,71130621,,1,temporal_anomaly
+TX-005359,abyssinia,FTVYL1KI7UKG,12904.09,ETB,Petros Omer,2690684979148,Seyoum Berhane,1374588208595,2025-02-07T14:41:19+03:00,Completed,Salary payment,82262,,1,amount_tamper
+TX-005597,cbe_birr,7YCIEEW2G7,40.0,ETB,Kidist Kebede,251976803191,Abel Regassa,251905622963,2025-12-15T02:08:32+03:00,Success,Mobile top-up,,251919751035,1,temporal_anomaly
+TX-005312,telebirr,CEDY1DEC08,900.0,ETB,Feven Lemma,251931978958,Feven Tesfaye,251901089810,2025-08-17T10:41:57+03:00,Successful,Tax payment,,,1,fuzzing
+TX-005874,mpesa,UvsrC#Rns#dSDl,200.0,ETB,Robel Demeke,251758185696,Rediet Omer,251788530060,2026-01-05T08:57:57+03:00,Successful,Online purchase,,,1,format_violation
+TX-005460,abyssinia,FTJVDS8A4INV,2208.84,ETB,Mikael Kiros,0455104599998,Tsion Gebre,8025129601324,2025-07-22T08:25:40+03:00,Completed,Gift,79985,,1,amount_tamper
+TX-005171,cbe,FT61QBRX1ELC,401.65,ETB,Yohannes Bekele,Y***8017,Genet Regassa,M***7782,2025-04-04T17:38:56+03:00,Successful,Service payment,04726426,,1,fuzzing
+TX-005207,cbe,FTM8NBOR7AAU,5556.66,ETB,Sara Ahmed,I***0378,Robel Endale,V***2339,2026-02-09T13:55:14+03:00,Successful,Tax payment,76255032,,1,fuzzing
+TX-005272,telebirr,CEN78POTW8,74.38,ETB,Eyob Petros,251774643850,Abigail Regassa,251957044554,2025-03-19T16:34:30+03:00,Successful,Loan repayment,,,1,fuzzing
+TX-005860,telebirr,FTHT61UCQZ,788.92,ETB,Ermias Umer,251958711926,Meron Kebede,251956208960,2026-02-02T15:34:09+03:00,Completed,Utility bill,,,1,format_violation
+TX-005914,mpesa,qcGLtA@b@B1Ya,691.61,ETB,Tesfaye Regassa,251774159828,Ruth Mohammed,251910448001,2025-11-09T13:52:48+03:00,Completed,Service payment,,,1,format_violation
+TX-005746,telebirr,CE9RABPKQI,658.55,ETB,Assefa Tadesse,251993318683,Assefa Tadesse,251791469366,2026-04-03T07:37:04+03:00,Successful,Donation,,,1,name_mismatch
+TX-005896,mpesa,!XQ6A3FkOPd90JilZ,1198.63,ETB,Negash Negash,251937381035,Henok Desta,251752281995,2025-04-07T02:10:36+03:00,Successful,Rent payment,,,1,format_violation
+TX-005894,mpesa,BPJ7Q9N,36.08,ETB,Omar Hassen,251787521320,Rahel Endale,251994180315,2025-02-04T12:58:23+03:00,Successful,Investment,,,1,format_violation
+TX-005915,cbe_birr,OLI1#Q_TQ|,528.68,ETB,Yoseph Lemma,251988030253,Natnael Fikre,251767392465,2025-10-10T03:20:30+03:00,Success,Donation,,251925428086,1,format_violation
+TX-005976,cbe_birr,ixTqHw,509.88,ETB,Betelhem Gudeta,251985913141,Meseret Tadesse,251951132292,2025-07-28T14:45:24+03:00,Success,Rent payment,,251908835121,1,format_violation
+TX-005534,mpesa,J9S5JX54S3,48.88,ETB,Helen Seyoum,251918952069,Meron Regassa,251742560743,2022-05-22T22:41:06+03:00,Successful,Payment for goods,,,1,temporal_anomaly
+TX-005754,mpesa,C0ZBRTNBRZ,30.0,ETB,Robel Lemma,251765821516,Meron Taye,251792114824,2025-05-14T22:31:32+03:00,Completed,Donation,,,1,name_mismatch
+TX-005685,telebirr,CEUVLYABZM,708.61,ETB,Mikael Assefa,251715041170,Mikael Assefa,251920925139,2025-01-14T13:02:04+03:00,Successful,Salary payment,,,1,name_mismatch
+TX-005843,telebirr,CEWF4L5JVYMWH,139.25,ETB,Nardos Gebremariam,251786660357,Assefa Mekonnen,251988770960,2025-07-23T13:27:16+03:00,Completed,Transfer,,,1,format_violation
+TX-005193,cbe_birr,8VEAJ8WOKM,147.52,ETB,Mekonen Regassa,251997662409,Olana Seyoum,251949208594,2025-07-17T12:29:01+03:00,Success,Medical payment,,251713418603,1,fuzzing
+TX-005636,telebirr,CE1MWI8YY7,50.0,ETB,Dewi Kebede,251772081727,Redwan Chala,251725893942,2025-06-13T11:28:18+03:00,Completed,Salary payment,,,1,temporal_anomaly
+TX-005113,cbe,FTZ4KSO03W2M,8086.108465368981,ETB,Getachew Eshetu,W***5234,Tadesse Haile,G***0835,2025-12-03T12:54:19+03:00,Successful,Utility bill,71531234,,1,replay
+TX-005551,cbe,FT1C7TQ4PLBL,14221.98,ETB,Tadesse Zewde,F***9025,Mahlet Endale,E***5204,2025-06-23T13:03:18+03:00,Completed,Subscription fee,32192855,,1,temporal_anomaly
+TX-005810,dashen,243RXBGUOOY847UD,6755.13,ETB,Petros Worku,4015250300,Tigist Ayele,4641731358,2025-01-16T12:45:44+03:00,Successful,Mobile top-up,,,1,name_mismatch
+TX-005851,abyssinia,APysGGmr5nq,1351.31,ETB,Zewditu Worku,2948565034603,Biruk Seyoum,2241982339427,2025-02-04T10:06:26+03:00,Completed,Payment for goods,76259,,1,format_violation
+TX-005270,telebirr,CEIW9ZAG5T,166.47,ETB,Yared Yimer,251981240147,Hiwot Ibrahim,251748461591,2025-01-13T10:58:36+03:00,Success,Rent payment,,,1,fuzzing
+TX-005127,telebirr,CEQEIHUO63,1069.8611876450504,ETB,Fitsum Gudeta,251938791057,Tesfaye Worku,251793589105,2026-02-13T11:08:26+03:00,Success,Tax payment,,,1,replay
+TX-005146,cbe,FTEB8753AYEQ,6114.509158489258,ETB,Feven Ahmed,O***0451,Feven Chala,Q***0420,2026-03-20T16:35:26+03:00,Successful,Transfer,16451046,,1,replay
+TX-005836,cbe_birr,3IPCUQF,1800.0,ETB,Omar Seyoum,251795896258,Tigist Endale,251766965882,2026-01-31T10:35:00+03:00,Completed,Savings deposit,,251758525849,1,format_violation
+TX-005616,abyssinia,FTDSY7O4CZWZ,1856.94,ETB,Mulugeta Chala,3133308811128,Chaltu Omer,3471064593400,2026-02-11T04:08:04+03:00,Successful,Savings deposit,36334,,1,temporal_anomaly
+TX-005972,abyssinia,MAzbeWbF3WEntEVku,11300.0,ETB,Dawit Gudeta,6135586841015,Alemu Gudeta,1491811122992,2025-11-03T08:41:00+03:00,Successful,Salary payment,51517,,1,format_violation
+TX-005505,dashen,219EYYYICY995JFN,700.0,ETB,Nahom Haile,8964696243,Yoseph Abera,3499925549,2026-02-17T02:53:44+03:00,Processed,Utility bill,,,1,temporal_anomaly
+TX-005160,cbe_birr,D9BCUX04N3,138.30760788337136,ETB,Marta Ahmed,251933959504,Bezawit Kebede,251795818772,2025-02-22T13:36:19+03:00,Completed,Transfer,,251772554285,1,replay
+TX-005975,mpesa,CEVUZXKEL9,289.63,ETB,Kaleb Ferede,251923974330,Samuel Abera,251938459335,2025-02-10T16:56:57+03:00,Completed,Utility bill,,,1,format_violation
+TX-005162,cbe,FTN8CQPHLI5L,37345.61899777516,ETB,Meseret Ferede,S***3128,Betelhem Weldemariam,T***3379,2026-04-10T10:30:54+03:00,Successful,Utility bill,95187794,,1,replay
+TX-005954,abyssinia,CEGXX66DQI96,3539.31,ETB,Iman Diriba,3763841207630,Tesfaye Kiros,3216124229496,2025-02-03T09:47:34+03:00,Completed,Mobile top-up,81979,,1,format_violation
+TX-005225,dashen,I4Z9OO0XGI0GAH9A,3549.87,ETB,Jerusalem Tesfaye,9615744342,Birtukan Regassa,1184629820,2025-02-24T04:11:42+03:00,Completed,Salary payment,,,1,fuzzing
+TX-005710,dashen,9277OAEPXJRNVJJN,1190.65,ETB,Kidist Tessema,0874244355,Kidist Tessema,5716945288,2025-03-12T22:04:03+03:00,Processed,Savings deposit,,,1,name_mismatch
+TX-005518,cbe_birr,XOV6RCFSS8,116.07,ETB,Chaltu Umer,251763276060,Tirunesh Zewde,251798747120,2026-07-02T22:41:06+03:00,Completed,Rent payment,,251724350003,1,temporal_anomaly
+TX-005873,dashen,CVHR}38UF7M02I9*,1700.0,ETB,Teshome Mekonnen,6058550363,Berhanu Tadesse,2566580540,2025-07-01T16:34:20+03:00,Successful,Investment,,,1,format_violation
+TX-005752,dashen,086AKFQAHPXRIOZM,1680.57,ETB,Fisseha Girmay,5930418610,Fisseha Girmay,6728095048,2025-12-26T09:43:09+03:00,Processed,Payment for goods,,,1,name_mismatch
+TX-005563,mpesa,S1GFXSL8VL,200.0,ETB,Daniel Wolde,251980336571,Bekele Negussie,251960262285,2021-12-18T22:41:06+03:00,Successful,Loan repayment,,,1,temporal_anomaly
+TX-005124,cbe,FTR7I0SAS3VA,5273.316398801501,ETB,Wondwosen Ahmed,B***7367,Assefa Endale,X***0563,2025-08-04T16:11:36+03:00,Successful,School fee,13116694,,1,replay
+TX-005956,dashen,X6k816,2186.29,ETB,Tsion Negash,0430824601,Hagos Tessema,2362104317,2025-12-01T12:40:47+03:00,Successful,Payment for goods,,,1,format_violation
+TX-005532,cbe,FTCMIUCJ9V14,28648.87,ETB,Zewditu Kebede,Y***7879,Solomon Kebede,L***9120,2025-12-08T14:15:29+03:00,Successful,School fee,66032358,,1,temporal_anomaly
+TX-005765,abyssinia,FTTYRARATF32,4525.23,ETB,Nahom Regassa,1047569597829,Teshome Umer,1992428003355,2025-11-28T10:43:47+03:00,Completed,Loan repayment,03516,,1,name_mismatch
+TX-005459,telebirr,CEUHMBKUFC,881.68,ETB,Bezawit Zeleke,251768576786,Ermias Assefa,251958290970,2025-12-18T14:50:33+03:00,Completed,School fee,,,1,amount_tamper
+TX-005988,cbe,FTTCZKCZ4L,500.0,ETB,Hailu Taye,X***9488,Tadesse Jembere,U***5779,2025-05-26T10:11:18+03:00,Successful,Utility bill,63191418,,1,format_violation
+TX-005110,abyssinia,FTN3SHEOH588,10970.281711349347,ETB,Redwan Mekonnen,5222580473783,Dewi Petros,7818455672896,2025-09-22T02:03:17+03:00,Successful,Investment,22798,,1,replay
+TX-005626,telebirr,CEJCJ55OQX,100.0,ETB,Sisay Tadesse,251995410842,Helen Negussie,251776426333,2026-04-25T22:41:06+03:00,Completed,Salary payment,,,1,temporal_anomaly
+TX-005795,abyssinia,FTB80VCL7LR1,1867.01,ETB,Berhanu Haile,5509882201860,Meron Fikre,8731549593284,2025-01-07T18:40:57+03:00,Completed,Investment,40911,,1,name_mismatch
+TX-005355,dashen,631JQULUF0RX4H5X,1145.49,ETB,Amanuel Demeke,2934546266,Seyoum Ahmed,5401720944,2025-01-03T08:20:22+03:00,Processed,Gift,,,1,amount_tamper
+TX-005236,telebirr,CEF9PTTMD8,857.8,ETB,Hailu Negash,251957044148,Teshome Gebre,251730259588,2025-09-23T10:57:28+03:00,Completed,Refund,,,1,fuzzing
+TX-005444,cbe_birr,H57QOYSLM3,3512.66,ETB,Chaltu Seyoum,251731313036,Dewi Habte,251967618547,2025-03-31T11:21:56+03:00,Success,Tax payment,,251702429397,1,amount_tamper
+TX-005776,abyssinia,FT5GAB8FF5BV,4500.0,ETB,Marta Ayele,1843316911383,Marta Ayele,7554295557239,2026-04-13T10:07:16+03:00,Completed,Payment for goods,07952,,1,name_mismatch
+TX-005433,dashen,9656ZEYFHPUVXO39,852.9,ETB,Kebede Worku,4737583683,Mekdes Ahmed,2052511828,2025-11-22T01:59:40+03:00,Processed,Salary payment,,,1,amount_tamper
+TX-005391,dashen,849OBJE3NV0K1DRE,5284.49,ETB,Berhanu Mohammed,4329220145,Lidya Tesfaye,6451254364,2026-03-27T12:35:43+03:00,Processed,Rent payment,,,1,amount_tamper
+TX-005802,dashen,123M3U2AGD6ZNZ0A,815.01,ETB,Seyoum Endale,8679514316,Eleni Hassen,8557754481,2026-03-26T01:42:28+03:00,Completed,Tax payment,,,1,name_mismatch
+TX-005362,cbe,FT9V08LIUQDN,7867.86,ETB,Lemma Negussie,L***3273,Leul Desta,J***1039,2025-08-08T17:28:15+03:00,Completed,Service payment,81952371,,1,amount_tamper
+TX-005762,abyssinia,FTH1XCM1SMJ0,322.12,ETB,Yared Assefa,8265095365015,Mikael Bogale,1790194148838,2025-11-09T17:51:20+03:00,Completed,Business transaction,11074,,1,name_mismatch
+TX-005318,cbe_birr,48ZWFBOERM,1277.05,ETB,Redwan Ibrahim,251985099879,Abel Chala,251751018184,2026-02-09T17:39:37+03:00,Success,Loan repayment,,251934031256,1,fuzzing
+TX-005414,cbe_birr,JG5OS6K9VS,24.97,ETB,Kaleb Wolde,251731155529,Dereje Wolde,251795286880,2025-05-18T13:45:52+03:00,Success,Refund,,251725828224,1,amount_tamper
+TX-005969,cbe,FT9X._77#6FI,2500.0,ETB,Chaltu Desta,B***3538,Hiwot Negash,G***8312,2025-02-14T15:11:25+03:00,Successful,Business transaction,88775378,,1,format_violation
+TX-005730,dashen,6230E4FZBCIE99SV,4387.15,ETB,Bereket Legesse,1553741030,Bereket Legesse,1359922715,2025-10-16T14:38:26+03:00,Completed,Savings deposit,,,1,name_mismatch
+TX-005024,cbe,FT9HPKQSOHQX,7631.641310768358,ETB,Hagos Haile,D***6445,Betelhem Kiros,Y***3951,2025-02-10T11:34:07+03:00,Successful,Online purchase,57416984,,1,replay
+TX-005667,telebirr,CELSTIZOOF,400.0,ETB,Meseret Negussie,251997852539,Konjit Wolde,251985413174,2025-04-30T13:51:44+03:00,Completed,Investment,,,1,temporal_anomaly
+TX-005288,telebirr,CEA7GGD93I,363.38,ETB,Hiwot Demeke,251756613961,Girma Gebremariam,251764734036,2025-02-18T16:16:02+03:00,Success,Rent payment,,,1,fuzzing
+TX-005540,telebirr,CEKVQ43ADN,97.7,ETB,Firehiwot Berhane,251925779830,Hagos Bogale,251914538233,2023-01-20T22:41:06+03:00,Successful,Mobile top-up,,,1,temporal_anomaly
+TX-005004,cbe,FT8ZC6PUCUXE,26554.703883815077,ETB,Redwan Ferede,N***0769,Samuel Legesse,O***0590,2026-01-04T09:55:42+03:00,Successful,Service payment,96319946,,1,replay
+TX-005496,cbe,FTO7UTXZBDQ5,42097.1,ETB,Dawit Taye,M***8034,Sara Jembere,J***4726,2025-05-21T22:33:57+03:00,Completed,Service payment,71812982,,1,amount_tamper
+TX-005379,cbe,FTQIUT6HRCFU,7752.04,ETB,Ruth Gebre,I***3780,Robel Mohammed,A***4079,2025-04-07T16:53:28+03:00,Completed,Online purchase,92032735,,1,amount_tamper
+TX-005773,abyssinia,FTL12AZX2LMX,23100.0,ETB,Fitsum Tessema,8406695445051,Getachew Gudeta,6591327845230,2025-12-05T19:00:24+03:00,Completed,School fee,64906,,1,name_mismatch
+TX-005290,abyssinia,FTB5JPLXAYRN,422.95,ETB,Redwan Girmay,0727264548437,Meron Taye,9037242479715,2025-12-27T22:15:49+03:00,Successful,Payment for goods,67441,,1,fuzzing
+TX-005625,cbe_birr,ZN98CJXAXP,325.58,ETB,Selamawit Umer,251787327290,Fisseha Regassa,251951179920,2026-03-06T01:13:19+03:00,Success,Rent payment,,251711914651,1,temporal_anomaly
+TX-005239,telebirr,CEVET46EF1,1900.0,ETB,Birtukan Omer,251700743262,Marta Gudeta,251732376035,2025-06-29T18:17:17+03:00,Success,Tax payment,,,1,fuzzing
+TX-005946,dashen,FTDYQBPOW6DVOF3M,6400.0,ETB,Hiwot Ayele,9866089296,Girma Abera,6411040822,2025-12-04T05:57:59+03:00,Completed,Gift,,,1,format_violation
+TX-005482,cbe,FTDHJ9ITCWZL,1621.22,ETB,Getachew Weldemariam,X***8726,Biruk Umer,N***3225,2025-02-07T12:50:09+03:00,Completed,Gift,04326118,,1,amount_tamper
+TX-005080,cbe,FT6R30OJHE4H,19509.70757218532,ETB,Mekonen Yilma,N***5140,Rediet Weldemariam,Q***2708,2025-11-28T12:16:36+03:00,Successful,Subscription fee,29221699,,1,replay
+TX-005214,cbe,FT19Q3CY8YC4,390.31,ETB,Abigail Zewde,S***5163,Teshome Tessema,C***1978,2025-08-11T03:34:03+03:00,Completed,Business transaction,91373265,,1,fuzzing
+TX-005117,cbe,FTDQJ3SXGTT0,3650.8300615935063,ETB,Dagmawit Ayele,L***5183,Konjit Chala,V***5843,2025-09-20T12:00:41+03:00,Successful,School fee,52019306,,1,replay
+TX-005088,cbe,FT4WB2CVB6DB,1715.9066364539226,ETB,Mulugeta Gebre,L***8084,Solomon Tessema,P***8462,2026-02-04T14:13:55+03:00,Successful,Transfer,52258987,,1,replay
+TX-005766,dashen,353B8XPYF1QGA8I4,4550.63,ETB,Hailu Bogale,6821338516,Girma Omer,1849834134,2025-06-26T01:35:06+03:00,Successful,Tax payment,,,1,name_mismatch
+TX-005683,telebirr,CEAOGRUOCG,90.0,ETB,Amanuel Berhane,251796909102,Birtukan Ibrahim,251979804460,2025-01-03T02:56:38+03:00,Success,Investment,,,1,name_mismatch
+TX-005186,telebirr,CEF189SH2U,20100.0,ETB,Bereket Fikre,251707429828,Tadesse Negash,251794400010,2026-02-25T16:57:36+03:00,Success,Tax payment,,,1,fuzzing
+TX-005960,cbe,FTB44TYSY,5500.0,ETB,Fisseha Ahmed,Q***5419,Bekele Yimer,R***2126,2026-01-06T17:08:30+03:00,Successful,Subscription fee,71975611,,1,format_violation
+TX-005678,dashen,391E8S0I7KXS8FPT,6300.0,ETB,Fitsum Demeke,9832044083,Liya Lemma,7448689683,2026-04-06T05:36:50+03:00,Processed,Tax payment,,,1,name_mismatch
+TX-005247,abyssinia,FTZVGN2KGVO1,4037.97,ETB,Sara Ibrahim,8348849908422,Natnael Kebede,0269475520660,2025-09-26T13:33:03+03:00,Completed,Utility bill,89213,,1,fuzzing
+TX-005230,cbe_birr,4E3WRX8H9P,846.95,ETB,Kidist Mekonnen,251733121618,Liya Yimer,251754523689,2026-02-19T15:30:05+03:00,Completed,Transfer,,251727114100,1,fuzzing
+TX-005676,dashen,618EF6YEL8GFWL23,356.01,ETB,Natnael Demeke,2385931484,Birtukan Tadesse,5903446721,2025-11-17T17:55:41+03:00,Successful,Investment,,,1,name_mismatch
+TX-005908,telebirr,CE4UVSDS,394.91,ETB,Olana Chala,251919549514,Rediet Tadesse,251798835490,2025-04-24T13:33:37+03:00,Completed,Medical payment,,,1,format_violation
+TX-005556,telebirr,CE1OWM9YAX,82.9,ETB,Yeshi Negash,251701791944,Zewditu Ferede,251757669625,2025-04-07T09:06:31+03:00,Completed,Payment for goods,,,1,temporal_anomaly
+TX-005809,telebirr,CEFP2GW2KU,300.0,ETB,Lemma Haile,251748729129,Lemma Haile,251773353706,2025-12-22T08:00:40+03:00,Completed,Service payment,,,1,name_mismatch
+TX-005350,dashen,783JRO4OM9O7YE3A,301.68,ETB,Yoseph Ferede,6526813246,Dewi Omer,4868454983,2025-09-18T08:00:08+03:00,Successful,Investment,,,1,amount_tamper
+TX-005285,telebirr,CE0Y7WP6BE,1482.21,ETB,Eden Habte,251901410082,Omar Weldemariam,251930651176,2025-09-23T10:57:07+03:00,Success,Utility bill,,,1,fuzzing
+TX-005549,telebirr,CE67ZMNY02,79.09,ETB,Alemu Desta,251782489182,Fitsum Eshetu,251737242009,2026-08-27T22:41:06+03:00,Success,Refund,,,1,temporal_anomaly
+TX-005115,dashen,750F992RFSTY5PHO,5786.787158663492,ETB,Henok Fikre,8413518197,Tsion Petros,5413887030,2025-06-25T14:47:20+03:00,Processed,Investment,,,1,replay
+TX-005520,cbe,FT49GOU8B070,2187.01,ETB,Kidist Hassen,O***4037,Wondwosen Negussie,N***8740,2027-02-16T22:41:06+03:00,Successful,Salary payment,49753411,,1,temporal_anomaly
+TX-005829,cbe,FT6M033IFHV1,7377.93,ETB,Eden Negussie,Y***9979,Helen Seyoum,T***5527,2025-02-03T12:50:17+03:00,Successful,Subscription fee,14770054,,1,name_mismatch
+TX-005536,cbe_birr,GMVM8HS233,369.47,ETB,Mekdes Hassen,251792627508,Solomon Ayele,251993904065,2025-05-10T13:55:51+03:00,Completed,Salary payment,,251957944388,1,temporal_anomaly
+TX-005017,telebirr,CE71IRTT73,605.2136259567835,ETB,Tsion Ahmed,251941371867,Meseret Bogale,251931972858,2025-03-12T08:05:16+03:00,Success,Mobile top-up,,,1,replay
+TX-005669,cbe,FTPUPLVQEXUY,2455.68,ETB,Alemu Ferede,N***2925,Tesfaye Taye,R***1252,2025-12-15T13:26:19+03:00,Successful,Utility bill,31220994,,1,name_mismatch
+TX-005074,cbe_birr,HXMQV8H5RS,278.3502721853654,ETB,Petros Gebre,251920973917,Abebe Berhane,251703109029,2025-03-08T12:42:07+03:00,Completed,Online purchase,,251991971256,1,replay
+TX-005559,dashen,203J7GD6S03Z7M7C,3000.0,ETB,Lemma Lemma,3139151037,Olana Diriba,9384921373,2026-04-18T04:19:33+03:00,Processed,Insurance premium,,,1,temporal_anomaly
+TX-005243,dashen,768JYXSVBBAY84F6,4616.91,ETB,Assefa Endale,4566252825,Worku Ayele,6465301938,2026-04-08T08:57:59+03:00,Successful,Service payment,,,1,fuzzing
+TX-005649,mpesa,EAZLJ0QFA7,3275.16,ETB,Worku Wolde,251942406933,Abel Habte,251940924350,2027-04-12T22:41:06+03:00,Successful,Tax payment,,,1,temporal_anomaly
+TX-005539,abyssinia,FTRVNF1NFORT,12600.0,ETB,Hanna Zewde,6952313628141,Petros Umer,3163880989917,2025-07-17T17:33:27+03:00,Completed,Insurance premium,83086,,1,temporal_anomaly
+TX-005966,cbe_birr,FT895HQ1M6,271.83,ETB,Leul Yilma,251959438144,Tsion Tessema,251751979484,2025-01-06T12:30:55+03:00,Success,Payment for goods,,251742055865,1,format_violation
+TX-005305,dashen,789382O16KJTIZDO,14700.0,ETB,Selamawit Zeleke,0685486712,Rediet Jembere,7927043971,2025-07-09T12:28:54+03:00,Completed,Salary payment,,,1,fuzzing
+TX-005609,telebirr,CEIVO909KL,1192.72,ETB,Zewditu Regassa,251945919878,Assefa Gudeta,251939172328,2025-09-04T11:39:11+03:00,Successful,Service payment,,,1,temporal_anomaly
+TX-005740,cbe_birr,72SEKUL71B,3000.0,ETB,Biruk Girmay,251755884962,Mesfin Gebremariam,251991012147,2025-05-19T09:26:07+03:00,Completed,Gift,,251778799353,1,name_mismatch
+TX-005745,dashen,8094FDV17A5FH9I1,319.02,ETB,Dawit Negash,9481112976,Liya Chala,7205158533,2026-02-09T10:18:50+03:00,Completed,Investment,,,1,name_mismatch
+TX-005321,dashen,S70PPGAQ6MZYWDKV,3147.03,ETB,Dewi Desta,0922717244,Alemu Desta,3235927916,2025-01-17T11:12:03+03:00,Processed,Transfer,,,1,fuzzing
+TX-005331,telebirr,CE1QAIDWME,200.0,ETB,Aster Demeke,251998893903,Betelhem Tessema,251796466802,2026-01-29T16:30:18+03:00,Successful,Donation,,,1,fuzzing
+TX-005486,telebirr,CEO350TT58,153.39,ETB,Hanna Abera,251771438401,Bekele Fikre,251703359690,2025-01-29T01:21:20+03:00,Completed,Transfer,,,1,amount_tamper
+TX-005602,cbe_birr,N0KWTZ7QTG,497.37,ETB,Robel Lemma,251764685121,Berhanu Kiros,251785388018,2023-03-28T22:41:06+03:00,Completed,Service payment,,251921650567,1,temporal_anomaly
+TX-005442,cbe,FTS49CDZN1F0,6339.58,ETB,Mulugeta Legesse,P***2872,Birtukan Kiros,M***0416,2026-04-20T21:17:33+03:00,Successful,Investment,22483958,,1,amount_tamper
+TX-005370,cbe,FT7PDJNL72PM,1629.27,ETB,Natnael Mohammed,B***8101,Robel Regassa,W***1297,2025-02-04T12:02:49+03:00,Successful,Business transaction,74812681,,1,amount_tamper
+TX-005138,dashen,538JHP40JAG5AIB9,4492.903577088049,ETB,Marta Desta,3732586042,Betelhem Bogale,8014312228,2025-06-19T13:18:14+03:00,Processed,Gift,,,1,replay
+TX-005135,cbe_birr,2PH8R8B008,475.7387980599339,ETB,Tadesse Gebre,251988638460,Binyam Kiros,251993627197,2026-04-03T08:39:35+03:00,Success,Rent payment,,251752975259,1,replay
+TX-005593,cbe,FTVSC8ON7KY2,17368.99,ETB,Worku Desta,H***5679,Hanna Negash,Y***6314,2025-07-21T17:41:06+03:00,Completed,Service payment,11307240,,1,temporal_anomaly
+TX-005565,cbe,FTKOQDE6V0KG,14113.48,ETB,Mahlet Eshetu,U***0152,Hiwot Diriba,V***9744,2021-06-19T22:41:06+03:00,Successful,Gift,83309587,,1,temporal_anomaly
+TX-005627,cbe,FT289YKYSA90,2996.67,ETB,Jerusalem Eshetu,G***7749,Zewditu Lemma,M***6329,2027-01-20T22:41:06+03:00,Successful,Tax payment,52259206,,1,temporal_anomaly
+TX-005992,abyssinia,UdNtLJ!ReGFg,7267.18,ETB,Berhanu Lemma,1133809946415,Mahlet Zewde,7990852932213,2025-05-27T14:58:27+03:00,Completed,Refund,58483,,1,format_violation
+TX-005019,dashen,886ZLO8H6L1XW3ZS,951.7438444449829,ETB,Tigist Haile,1140198344,Sara Tessema,9691408436,2025-07-09T10:40:45+03:00,Successful,Refund,,,1,replay
+TX-005334,telebirr,CENPX1WPXO,12770.91,ETB,Hanna Kiros,251901333279,Chaltu Hassen,251917026719,2025-09-29T17:18:39+03:00,Successful,Insurance premium,,,1,amount_tamper
+TX-005093,cbe,FTCX5J1IIPNQ,7582.064651687833,ETB,Kaleb Haile,V***3572,Solomon Tesfaye,V***1049,2025-03-13T16:57:12+03:00,Successful,Salary payment,28061990,,1,replay
+TX-005557,abyssinia,FTXWOLJ2CHBP,13765.15,ETB,Eden Yilma,2436871949234,Feven Assefa,8260991425645,2022-10-22T22:41:06+03:00,Successful,Transfer,92243,,1,temporal_anomaly
+TX-005726,dashen,3167QDB78PKDZ6QX,216.82,ETB,Chaltu Lemma,3519132364,Sisay Gebremariam,7240649764,2026-01-07T09:51:07+03:00,Successful,Salary payment,,,1,name_mismatch
+TX-005742,cbe_birr,GB81KYJSDD,161.98,ETB,Assefa Mohammed,251910867761,Fitsum Weldemariam,251761999631,2025-03-10T08:15:15+03:00,Success,Gift,,251782696380,1,name_mismatch
+TX-005935,abyssinia,CEEAFDL7TVMS,3745.45,ETB,Jerusalem Tesfaye,1778702070271,Abel Ibrahim,1387385186649,2026-04-08T17:03:21+03:00,Completed,Subscription fee,69435,,1,format_violation
+TX-005782,telebirr,CEBKNE4L16,200.0,ETB,Firehiwot Haile,251989966686,Firehiwot Haile,251731162106,2025-06-18T02:19:44+03:00,Successful,Loan repayment,,,1,name_mismatch
+TX-005849,cbe,uVt8AZE,24716.52,ETB,Rediet Jembere,X***2554,Natnael Seyoum,U***0778,2025-02-24T20:03:25+03:00,Successful,Investment,61119952,,1,format_violation
+TX-005548,mpesa,5Y4VPCERG2,400.0,ETB,Ruth Ibrahim,251978141044,Tirunesh Chala,251912090626,2022-03-21T22:41:06+03:00,Completed,Salary payment,,,1,temporal_anomaly
+TX-005159,cbe,FTAHRX0D9Y9B,30517.086117354644,ETB,Kidist Yilma,Q***9615,Yohannes Legesse,M***7005,2026-02-26T15:41:45+03:00,Successful,Mobile top-up,93233700,,1,replay
+TX-005345,cbe,FTY8Y0AWRHQS,4030.27,ETB,Saron Legesse,T***3765,Nardos Tadesse,Y***1676,2025-08-18T16:31:30+03:00,Completed,Subscription fee,83636885,,1,amount_tamper
+TX-005696,telebirr,CEROPBG3FK,200.0,ETB,Dagmawit Worku,251702402418,Dagmawit Worku,251785928686,2025-08-25T12:59:36+03:00,Success,Investment,,,1,name_mismatch
+TX-005606,cbe,FT5CDDE77612,7150.25,ETB,Wubit Yimer,O***3638,Ermias Abera,Q***2856,2026-06-13T22:41:06+03:00,Successful,Investment,86617706,,1,temporal_anomaly
+TX-005382,telebirr,CEH14LAO6I,1448.4,ETB,Assefa Legesse,251922377994,Petros Gebremariam,251749522249,2025-09-20T15:58:39+03:00,Completed,Utility bill,,,1,amount_tamper
+TX-005869,cbe,FTNMS08I8Z20P1HHT,969.86,ETB,Feven Endale,O***0943,Meseret Ibrahim,P***2857,2026-02-23T16:35:16+03:00,Successful,Transfer,16239494,,1,format_violation
+TX-005141,dashen,0541YIZJDILXP8QN,51429.4732870499,ETB,Alemu Ahmed,7533659916,Samuel Weldemariam,0869438374,2026-01-26T11:56:46+03:00,Processed,Loan repayment,,,1,replay
+TX-005061,telebirr,CE9J8OF7HN,1102.6220216578956,ETB,Hailu Zewde,251700045131,Dawit Umer,251754592544,2025-09-15T12:52:51+03:00,Success,School fee,,,1,replay
+TX-005692,mpesa,447JW6MYGE,48.88,ETB,Meron Regassa,251918952069,Helen Seyoum,251742560743,2025-03-06T14:02:19+03:00,Successful,Payment for goods,,,1,name_mismatch
+TX-005852,telebirr,CE$$42JV5U,175.63,ETB,Saron Worku,251724697054,Eleni Demeke,251913933936,2025-04-30T07:59:02+03:00,Success,Loan repayment,,,1,format_violation
+TX-005038,cbe,FTF4AF3QHYH0,687.029721760608,ETB,Tigist Negussie,Q***2297,Liya Mohammed,I***9391,2025-09-07T11:35:16+03:00,Completed,Refund,04886607,,1,replay
+TX-005068,cbe_birr,QWO76KASQA,382.5537972501578,ETB,Sisay Demeke,251796603128,Daniel Regassa,251928803869,2025-08-26T06:51:05+03:00,Completed,Utility bill,,251732149940,1,replay
+TX-005065,telebirr,CEGNT1JBHL,1285.5721059107432,ETB,Girma Ferede,251963794952,Betelhem Chala,251766291362,2026-01-09T14:43:39+03:00,Successful,Mobile top-up,,,1,replay
+TX-005934,cbe_birr,dWCScOSo@,1900.0,ETB,Hanna Negash,251957894793,Eyob Hassen,251741533598,2025-01-31T08:56:27+03:00,Completed,Payment for goods,,251736100034,1,format_violation
+TX-005630,telebirr,CEH5Y9XICU,75.07,ETB,Dewi Ferede,251981199428,Dereje Omer,251942064339,2026-01-18T04:29:14+03:00,Completed,Medical payment,,,1,temporal_anomaly
+TX-005850,cbe,CE7SDEP5RT1B,3505.38,ETB,Dagmawit Demeke,E***7367,Tesfaye Demeke,O***3532,2025-03-28T16:34:09+03:00,Successful,Savings deposit,47670166,,1,format_violation
+TX-005737,abyssinia,FTTNVFT4N47Z,7900.0,ETB,Tsion Regassa,0804431622356,Dawit Diriba,0289072345973,2025-11-10T11:13:00+03:00,Completed,Gift,94502,,1,name_mismatch
+TX-005624,telebirr,CEPGYNYPHP,148.94,ETB,Liya Abera,251941689506,Omar Mohammed,251913285155,2023-08-21T22:41:06+03:00,Success,Tax payment,,,1,temporal_anomaly
+TX-005112,abyssinia,FTQUHN8L64FM,700.8855416836565,ETB,Firehiwot Ayele,0478814654936,Yeshi Ahmed,1405671973541,2025-11-12T09:59:29+03:00,Successful,Medical payment,67547,,1,replay
+TX-005811,cbe,FTR23QIUA08E,1500.0,ETB,Nardos Girmay,J***2799,Getachew Negussie,O***2625,2025-10-27T00:55:40+03:00,Successful,Subscription fee,04649893,,1,name_mismatch
+TX-005716,dashen,0714A3MLWU1LRZHF,1100.0,ETB,Jerusalem Girmay,9460641933,Omar Diriba,5521550277,2025-02-24T17:41:42+03:00,Processed,Subscription fee,,,1,name_mismatch
+TX-005631,abyssinia,FT0LNVFAU4J5,12564.3,ETB,Mulugeta Ferede,6678546615571,Omar Hassen,8489334997649,2022-06-22T22:41:06+03:00,Completed,Refund,28542,,1,temporal_anomaly
+TX-005052,dashen,550QSYGMZT1IHJU2,4235.079108836325,ETB,Lidya Chala,8366154793,Marta Hassen,4609456758,2025-07-09T12:44:25+03:00,Successful,Transfer,,,1,replay
+TX-005507,cbe,FTTLDI9QMMYW,2557.72,ETB,Lidya Berhane,L***2593,Seyoum Negussie,A***7650,2025-10-02T08:30:34+03:00,Successful,Online purchase,22719260,,1,temporal_anomaly
+TX-005504,cbe,FT654HZEPB60,4900.0,ETB,Berhanu Mekonnen,O***7491,Dereje Ahmed,N***7550,2027-04-06T22:41:06+03:00,Successful,Savings deposit,31575229,,1,temporal_anomaly
+TX-005220,dashen,94706VM1FKNR9VZN,6391.17,ETB,Eleni Haile,8699336855,Wondwosen Tessema,4205334086,2026-02-11T11:43:35+03:00,Completed,Refund,,,1,fuzzing
+TX-005393,telebirr,CEPB32WTAU,8609.44,ETB,Tirunesh Tesfaye,251958623422,Mikael Berhane,251926410144,2026-03-30T08:23:24+03:00,Success,Savings deposit,,,1,amount_tamper
+TX-005287,cbe,FTMVWJMV0GDD,1600.0,ETB,Tadesse Habte,J***2216,Binyam Ibrahim,V***5496,2026-02-09T11:47:47+03:00,Completed,Donation,33444704,,1,fuzzing
+TX-005180,cbe,FTR1FBA9KEPA,1831.64,ETB,Eden Habte,O***0512,Yohannes Assefa,Y***6187,2025-03-28T08:52:24+03:00,Completed,Rent payment,36730371,,1,fuzzing
+TX-005403,cbe,FT9NT3W5UZBI,2511.04,ETB,Fisseha Ibrahim,I***7525,Petros Tesfaye,V***4192,2025-09-12T15:24:17+03:00,Completed,Savings deposit,03056413,,1,amount_tamper
+TX-005499,abyssinia,FT0M0BCPEGTC,561.56,ETB,Bezawit Zeleke,5017239070274,Kidist Zewde,4181642416219,2026-02-18T17:45:20+03:00,Completed,Loan repayment,69803,,1,amount_tamper
+TX-005848,mpesa,4O5G.S7>5H,300.34,ETB,Kidist Diriba,251701871717,Saron Tessema,251991841898,2025-08-06T10:05:15+03:00,Completed,Mobile top-up,,,1,format_violation
+TX-005807,mpesa,C0ZBRTNBRZ,30.0,ETB,Meron Taye,251765821516,Meseret Demeke,251792114824,2025-05-14T22:31:32+03:00,Completed,Donation,,,1,name_mismatch
+TX-005853,cbe,FT.|#ICBL1N7,4620.09,ETB,Saron Habte,J***7056,Feven Kiros,U***8649,2025-11-03T11:36:47+03:00,Successful,Payment for goods,04016082,,1,format_violation
+TX-005924,dashen,FTY5FGJGOM8MAGB3,4855.16,ETB,Kebede Gudeta,4442339013,Yohannes Jembere,2835204828,2025-10-03T09:55:40+03:00,Processed,Online purchase,,,1,format_violation
+TX-005062,telebirr,CEQ1MENEPY,53.553381277132836,ETB,Wubit Yilma,251975757701,Dagmawit Berhane,251765612806,2025-08-19T17:26:19+03:00,Success,Rent payment,,,1,replay
+TX-005936,dashen,nRil8dTfoTfag5g,6633.39,ETB,Tirunesh Diriba,1667698711,Tekle Seyoum,4207929510,2025-10-09T12:37:08+03:00,Processed,Mobile top-up,,,1,format_violation
+TX-005228,abyssinia,FTPYVRV320D1,1459.52,ETB,Bethlehem Zeleke,3570290369522,Solomon Girmay,7673275309757,2025-10-06T18:07:43+03:00,Completed,Salary payment,34012,,1,fuzzing
+TX-005971,dashen,S21PD8D-J47B69C2,4100.0,ETB,Tigist Kiros,8446079509,Tsion Weldemariam,4032190284,2025-09-23T05:13:44+03:00,Successful,Medical payment,,,1,format_violation
+TX-005937,cbe_birr,ES>Q<4AWYR,1236.28,ETB,Yeshi Kebede,251939690236,Mulugeta Fikre,251980430591,2025-02-12T11:49:58+03:00,Success,Gift,,251906159276,1,format_violation
+TX-005648,cbe,FTE5W5CX4Z2L,700.0,ETB,Nardos Yilma,P***0124,Sisay Chala,J***4626,2025-04-08T09:48:59+03:00,Successful,Gift,88112103,,1,temporal_anomaly
+TX-005086,abyssinia,FTOCU3TZH5GO,254.154472752058,ETB,Wondwosen Zewde,5793810058950,Zewditu Negash,8624991813180,2026-01-11T13:39:27+03:00,Completed,Savings deposit,42530,,1,replay
+TX-005898,mpesa,L1GPM2TTBI8IU,18.26,ETB,Negash Worku,251915065228,Firehiwot Kebede,251975610872,2025-01-03T16:06:12+03:00,Successful,School fee,,,1,format_violation
+TX-005855,mpesa,WkcoIpmsLWcLoVVnn,940.15,ETB,Kebede Legesse,251762988127,Eyob Endale,251950818624,2026-01-12T01:17:44+03:00,Completed,Gift,,,1,format_violation
+TX-005453,abyssinia,FTXN1XNOFJZ7,17585.02,ETB,Firehiwot Ayele,8219475202910,Tadesse Abera,8119678272388,2025-03-25T20:05:50+03:00,Completed,Business transaction,46935,,1,amount_tamper
+TX-005911,telebirr,FTYCGKKK7W,44.01,ETB,Worku Ahmed,251706834555,Mesfin Kebede,251731857261,2025-05-01T16:41:51+03:00,Successful,Payment for goods,,,1,format_violation
+TX-005022,telebirr,CEY7X32EUH,2069.8193160856727,ETB,Mesfin Bekele,251916013188,Bethlehem Lemma,251981839245,2026-03-17T00:22:44+03:00,Successful,Rent payment,,,1,replay
+TX-005467,telebirr,CE19WPDW8O,385.04,ETB,Tesfaye Ayele,251983949752,Tsion Diriba,251929042408,2026-02-02T14:06:39+03:00,Success,Gift,,,1,amount_tamper
+TX-005598,cbe_birr,NZTAV07V4F,170.03,ETB,Mekonen Bogale,251922589789,Genet Yilma,251932095170,2026-03-01T01:23:21+03:00,Success,Mobile top-up,,251774862869,1,temporal_anomaly
+TX-005412,cbe_birr,7FWUKW9KNM,870.36,ETB,Helen Kebede,251995177218,Dagmawit Haile,251777565918,2025-02-24T17:59:08+03:00,Success,Insurance premium,,251764149653,1,amount_tamper
+TX-005363,cbe_birr,RB6T09VW0Z,510.11,ETB,Alemu Habte,251762598723,Konjit Hassen,251746767416,2025-03-17T19:03:46+03:00,Success,Rent payment,,251901657481,1,amount_tamper
+TX-005729,dashen,004YTLG0MMK9ONNR,5900.0,ETB,Alemu Seyoum,5761102251,Bereket Berhane,6484132697,2025-11-03T17:55:52+03:00,Completed,School fee,,,1,name_mismatch
+TX-005842,cbe_birr,VX3SPZAALES180I,107.64,ETB,Yared Zeleke,251956191630,Berhanu Worku,251913994487,2025-08-29T12:22:20+03:00,Completed,Savings deposit,,251766905436,1,format_violation
+TX-005573,cbe,FTBGSE8CEJES,16200.0,ETB,Fisseha Ayele,S***0432,Lemma Worku,X***0233,2026-06-20T22:41:06+03:00,Completed,Payment for goods,13546212,,1,temporal_anomaly
+TX-005961,telebirr,CEX9/LS!7H,685.69,ETB,Binyam Legesse,251914166889,Eleni Gebre,251743171398,2026-02-26T17:11:55+03:00,Completed,Service payment,,,1,format_violation
+TX-005699,cbe_birr,BYP9SBSFG7,92.35,ETB,Kidist Tesfaye,251990139858,Meseret Ayele,251938146430,2025-01-06T10:10:05+03:00,Completed,Service payment,,251953152946,1,name_mismatch
+TX-005343,dashen,92031A5672TSOMI0,1048.41,ETB,Dewi Bogale,6726877206,Dagmawit Ahmed,6275545859,2026-04-13T15:49:56+03:00,Successful,Subscription fee,,,1,amount_tamper
+TX-005973,mpesa,K>Y1E2G!GW,80.0,ETB,Meseret Ahmed,251765075440,Teshome Lemma,251798662459,2025-05-12T10:13:31+03:00,Completed,Rent payment,,,1,format_violation
+TX-005084,telebirr,CEJJEOXE6C,3196.8206565027726,ETB,Assefa Fikre,251753918731,Fisseha Bekele,251928212528,2026-02-17T17:17:12+03:00,Success,Subscription fee,,,1,replay
+TX-005421,telebirr,CEWF55R0ZB,5420.06,ETB,Dagmawit Abera,251927254495,Kaleb Ayele,251930795825,2025-04-30T15:09:15+03:00,Successful,Mobile top-up,,,1,amount_tamper
+TX-005688,telebirr,CEHSZ3MO7L,243.16,ETB,Saron Petros,251989050526,Yared Negussie,251776564060,2025-01-06T18:13:01+03:00,Completed,Service payment,,,1,name_mismatch
+TX-005489,abyssinia,FT7BS94CKUKE,22451.43,ETB,Mekdes Omer,5924311421195,Rahel Negash,7626508616102,2025-10-06T16:41:05+03:00,Completed,Transfer,52265,,1,amount_tamper
+TX-005044,cbe,FTVB2YT9L6TW,6858.538697984523,ETB,Mikael Demeke,D***6004,Firehiwot Tesfaye,Y***1205,2025-06-30T10:40:17+03:00,Completed,Subscription fee,53074878,,1,replay
+TX-005840,telebirr,CEUUTC3N7',158.99,ETB,Mahlet Demeke,251984267018,Bezawit Bogale,251984124603,2025-03-03T08:41:22+03:00,Success,Gift,,,1,format_violation
+TX-005131,dashen,39056TAI2MKFP0X5,9501.396016255114,ETB,Mekonen Diriba,5030997220,Eleni Mohammed,5124179424,2025-02-14T19:49:04+03:00,Successful,Insurance premium,,,1,replay
+TX-005572,cbe_birr,7XZ58LRFHX,947.2,ETB,Ruth Fikre,251733413963,Girma Legesse,251737391275,2025-03-27T23:30:16+03:00,Success,Service payment,,251789784925,1,temporal_anomaly
+TX-005000,dashen,693XSWSGENIY3FSS,2229.903049069699,ETB,Teshome Negussie,5179790869,Bekele Hassen,1374959662,2025-06-27T17:56:48+03:00,Successful,Investment,,,1,replay
+TX-005273,abyssinia,FTDNUKE1W85J,18051.11,ETB,Samuel Tadesse,5152442643995,Mesfin Petros,1145430806129,2025-10-03T13:27:22+03:00,Successful,Savings deposit,81650,,1,fuzzing
+TX-005957,cbe,CEAJD609YIOK,8659.18,ETB,Tsion Seyoum,C***6630,Meseret Wolde,F***3931,2025-06-16T17:43:51+03:00,Successful,Rent payment,30738487,,1,format_violation
+TX-005511,telebirr,CEYFG8Z7JG,900.0,ETB,Feven Lemma,251931978958,Feven Tesfaye,251901089810,2023-11-02T22:41:06+03:00,Successful,Tax payment,,,1,temporal_anomaly
+TX-005041,telebirr,CE7WBQE7XY,2441.545702907352,ETB,Mekonen Haile,251717035934,Mekonen Negussie,251914305961,2025-07-08T17:26:02+03:00,Success,Business transaction,,,1,replay
+TX-005947,cbe_birr,YWk#o3YlmQ21mRE8H,300.0,ETB,Solomon Habte,251759519306,Meron Omer,251951923996,2026-04-17T16:36:26+03:00,Completed,Gift,,251941110822,1,format_violation
+TX-005320,telebirr,CEXRU948P9,371.81,ETB,Tadesse Yimer,251957541579,Bethlehem Abera,251728234282,2025-01-29T16:27:08+03:00,Completed,Business transaction,,,1,fuzzing
+TX-005544,cbe,FT1SSR3UCSWN,5323.87,ETB,Bethlehem Zewde,L***1300,Leul Ayele,Z***0198,2026-03-18T15:21:19+03:00,Successful,Medical payment,88084274,,1,temporal_anomaly
+TX-005276,abyssinia,FTG1X1IE8C8A,1889.2,ETB,Hagos Weldemariam,2393674968101,Mulugeta Legesse,9605061225584,2025-05-12T15:50:11+03:00,Successful,Refund,03843,,1,fuzzing
+TX-005234,mpesa,BB81506CDJ,112.27,ETB,Alemu Hassen,251947616605,Hagos Habte,251774487852,2025-10-27T14:27:50+03:00,Successful,Rent payment,,,1,fuzzing
+TX-005205,telebirr,CEKP17GCWJ,764.41,ETB,Samuel Ayele,251990107623,Tsion Petros,251756712301,2025-07-27T07:02:09+03:00,Completed,Transfer,,,1,fuzzing
+TX-005663,dashen,7320P3EYJFX61YJV,5375.65,ETB,Amanuel Diriba,4917922803,Seyoum Hassen,1458624757,2026-09-24T22:41:06+03:00,Successful,School fee,,,1,temporal_anomaly
+TX-005589,dashen,510FBSNF415JLXET,2400.0,ETB,Nardos Tadesse,1726370273,Bekele Hassen,1374959662,2022-11-27T22:41:06+03:00,Processed,Investment,,,1,temporal_anomaly
+TX-005980,cbe_birr,D8NSGSG74JTW7,84.23,ETB,Aster Ayele,251713875321,Feven Tessema,251931163194,2025-07-21T10:07:43+03:00,Completed,Refund,,251732404417,1,format_violation
+TX-005613,cbe,FT8FMNSB9PA5,5560.15,ETB,Tesfaye Endale,G***3892,Bethlehem Haile,Q***7882,2026-01-22T13:50:11+03:00,Successful,Donation,73048625,,1,temporal_anomaly
+TX-005899,cbe_birr,52BDM8#WC7,742.16,ETB,Amanuel Weldemariam,251909353146,Bereket Omer,251917053808,2025-09-15T20:21:55+03:00,Completed,Gift,,251963938763,1,format_violation
+TX-005541,cbe_birr,3T9M99IAQ7,469.13,ETB,Kebede Bogale,251953466026,Worku Zewde,251723046801,2026-03-24T14:38:28+03:00,Completed,Rent payment,,251798028681,1,temporal_anomaly
+TX-005781,mpesa,Y7IF7KDLSG,196.83,ETB,Jerusalem Gebre,251777291318,Kidist Ahmed,251971399690,2025-07-16T10:07:32+03:00,Completed,Payment for goods,,,1,name_mismatch
+TX-005446,telebirr,CEZ9JN375B,263.19,ETB,Abel Lemma,251791823316,Tsion Abera,251729968175,2025-05-27T09:18:52+03:00,Completed,Business transaction,,,1,amount_tamper
+TX-005432,abyssinia,FT7JGT0JSRLF,8900.02,ETB,Selamawit Jembere,1080761560383,Biruk Mekonnen,4504360303074,2025-06-02T16:03:01+03:00,Successful,Online purchase,43171,,1,amount_tamper
+TX-005353,cbe,FTGF4D8H4ZPA,8179.2,ETB,Leul Jembere,I***6160,Firehiwot Legesse,E***6438,2025-12-08T08:36:20+03:00,Completed,Medical payment,46176231,,1,amount_tamper
+TX-005870,dashen,1LR2NC5HS9FS3P941UY,6489.79,ETB,Girma Endale,2820185311,Feven Negussie,0482829005,2025-03-26T14:18:50+03:00,Processed,Gift,,,1,format_violation
+TX-005227,telebirr,CEN0SJ3AY0,728.39,ETB,Fisseha Umer,251920111628,Henok Endale,251955641990,2025-11-07T18:41:52+03:00,Successful,Service payment,,,1,fuzzing
+TX-005245,abyssinia,FT4EI0T3NRKY,28955.44,ETB,Yared Girmay,8898361256974,Rahel Ayele,6282894934467,2025-01-16T12:17:03+03:00,Successful,Investment,40966,,1,fuzzing
+TX-005338,cbe_birr,F9RDFDLAOB,488.79,ETB,Bereket Gebremariam,251703386136,Tsion Eshetu,251786736546,2025-08-18T05:04:14+03:00,Completed,Transfer,,251999439335,1,amount_tamper
+TX-005977,abyssinia,CEMK3F41AFEJ,850.05,ETB,Jerusalem Assefa,4418658050193,Negash Yilma,7415421141667,2025-10-14T09:00:27+03:00,Completed,Gift,88180,,1,format_violation
+TX-005530,cbe,FTK8BG024IEO,4816.01,ETB,Mekonen Demeke,L***1052,Hiwot Girmay,A***1673,2025-02-10T10:26:07+03:00,Successful,Transfer,24376545,,1,temporal_anomaly
+TX-005101,abyssinia,FT6K1THKL5UY,3457.503767428215,ETB,Mikael Diriba,5419092653848,Worku Fikre,1961324385350,2026-02-13T09:17:06+03:00,Completed,Business transaction,41746,,1,replay
+TX-005310,cbe_birr,UKJ226R8E3,374.85,ETB,Lidya Weldemariam,251713032258,Tadesse Lemma,251956524396,2025-01-07T02:42:10+03:00,Success,Salary payment,,251957663812,1,fuzzing
+TX-005122,cbe,FT29A7ZZ99HH,27818.79153249659,ETB,Nardos Yimer,H***2428,Meron Kebede,C***8922,2025-03-04T16:15:41+03:00,Successful,Subscription fee,65496602,,1,replay
+TX-005130,cbe,FTDUB9RBDL91,38721.949455332164,ETB,Sisay Legesse,K***4646,Liya Tessema,Q***2096,2025-09-22T16:52:13+03:00,Completed,Salary payment,13322889,,1,replay
+TX-005055,telebirr,CEGNF4MTBL,900.8239510143384,ETB,Getachew Negash,251909657061,Birtukan Habte,251780500985,2026-02-26T09:38:01+03:00,Completed,Investment,,,1,replay
+TX-005317,telebirr,CEWFS5R0Z8,1800.0,ETB,Dagmawit Abera,251927254495,Kaleb Ayele,251930795825,2025-04-30T15:09:15+03:00,Successful,Mobile top-up,,,1,fuzzing
+TX-005714,dashen,526DJFGPSG73B5FB,7024.17,ETB,Tekle Haile,7085194121,Fitsum Eshetu,1553831615,2025-04-25T01:33:12+03:00,Completed,School fee,,,1,name_mismatch
+TX-005838,dashen,DjNkBK2OUE7Ig0mhh,14838.72,ETB,Kebede Yimer,6454365995,Wubit Mekonnen,8726878416,2025-07-16T13:01:07+03:00,Successful,Savings deposit,,,1,format_violation
+TX-005003,mpesa,7NWLQHLQ32,25.645922502038758,ETB,Konjit Negussie,251758722150,Seyoum Girmay,251741708074,2026-02-23T10:43:38+03:00,Completed,Mobile top-up,,,1,replay
+TX-005298,cbe,FTY5BVRW9MYY,3700.0,ETB,Kebede Negash,D***0303,Bezawit Bogale,E***3683,2025-02-10T04:30:27+03:00,Completed,Rent payment,22777079,,1,fuzzing
+TX-005175,abyssinia,FTBA2VPZ15I0,15399.23,ETB,Leul Seyoum,8228974554350,Meron Regassa,2676925178486,2025-03-21T12:34:00+03:00,Completed,Rent payment,49709,,1,fuzzing
+TX-005787,cbe,FT0WUZLLGYG4,5047.73,ETB,Redwan Desta,B***5080,Redwan Demeke,T***1477,2025-05-27T13:40:13+03:00,Successful,Utility bill,47841715,,1,name_mismatch
+TX-005753,telebirr,CEVC79QZC4,695.02,ETB,Hiwot Worku,251767858766,Dereje Gebre,251977444156,2025-06-23T15:57:57+03:00,Successful,Subscription fee,,,1,name_mismatch
+TX-005085,dashen,412C7NPK4NYFA94A,3613.875244308199,ETB,Dawit Abera,7773811163,Iman Regassa,3224284973,2026-03-18T09:11:05+03:00,Completed,Service payment,,,1,replay
+TX-005129,dashen,199JURFPOXMRWDKC,2617.7297135327844,ETB,Mekdes Assefa,8333903195,Ruth Zeleke,2061253240,2026-03-13T11:03:42+03:00,Processed,Insurance premium,,,1,replay
+TX-005447,mpesa,EEFJYFN7F3,202.75,ETB,Hanna Bekele,251772985368,Olana Fikre,251789480859,2025-01-20T14:25:50+03:00,Completed,Subscription fee,,,1,amount_tamper
+TX-005119,dashen,225PEV0IAA08XQGZ,4953.345737035496,ETB,Assefa Zewde,3718588687,Mahlet Gudeta,5199936958,2025-02-24T15:31:02+03:00,Completed,Investment,,,1,replay
+TX-005763,telebirr,CEWQM1WT4A,400.0,ETB,Fisseha Assefa,251908210791,Wubit Haile,251779808745,2025-07-13T11:28:10+03:00,Successful,Business transaction,,,1,name_mismatch

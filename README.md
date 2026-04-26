@@ -520,6 +520,7 @@ Create a `.env` file in the root directory with the following variables:
 PORT=3001
 NODE_ENV=development # or production
 LOG_LEVEL=info       # or debug, error
+DATABASE_URL=postgresql://postgres:password@localhost:5432/verifier_api?schema=public
 MISTRAL_API_KEY=your_mistral_api_key # Required for image verification
 SKIP_PRIMARY_VERIFICATION=false      # Set to true to bypass primary fetch
 ```
@@ -571,7 +572,7 @@ LOG_LEVEL=debug
 - Cheerio – HTML parsing
 - Puppeteer – headless browser automation (used for CBE scraping)
 - Winston – structured logging
-- Prisma + MySQL (persistent storage)
+- Prisma + PostgreSQL (persistent storage)
 - Mistral AI – OCR for image-based verification
 
 ---

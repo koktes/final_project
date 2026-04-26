@@ -25,10 +25,10 @@ export const initializeStatsCache = async () => {
       SELECT 
         CONCAT(method, ' ', endpoint) as endpoint,
         COUNT(*) as count,
-        SUM(CASE WHEN statusCode < 400 THEN 1 ELSE 0 END) as successCount,
-        SUM(CASE WHEN statusCode >= 400 THEN 1 ELSE 0 END) as failureCount,
-        AVG(responseTime) as avgResponseTime
-      FROM UsageLog
+        SUM(CASE WHEN "statusCode" < 400 THEN 1 ELSE 0 END) as successCount,
+        SUM(CASE WHEN "statusCode" >= 400 THEN 1 ELSE 0 END) as failureCount,
+        AVG("responseTime") as avgResponseTime
+      FROM "UsageLog"
       GROUP BY method, endpoint
     `;
 
@@ -47,7 +47,7 @@ export const initializeStatsCache = async () => {
     // Get IP stats
     const ipStats = await prisma.$queryRaw`
       SELECT ip, COUNT(*) as count
-      FROM UsageLog
+      FROM "UsageLog"
       GROUP BY ip
     `;
 
@@ -159,16 +159,16 @@ export const getUsageStats = async () => {
       SELECT 
         CONCAT(method, ' ', endpoint) as endpoint,
         COUNT(*) as count,
-        SUM(CASE WHEN statusCode < 400 THEN 1 ELSE 0 END) as successCount,
-        SUM(CASE WHEN statusCode >= 400 THEN 1 ELSE 0 END) as failureCount,
-        AVG(responseTime) as avgResponseTime
-      FROM UsageLog
+        SUM(CASE WHEN "statusCode" < 400 THEN 1 ELSE 0 END) as successCount,
+        SUM(CASE WHEN "statusCode" >= 400 THEN 1 ELSE 0 END) as failureCount,
+        AVG("responseTime") as avgResponseTime
+      FROM "UsageLog"
       GROUP BY method, endpoint
     `;
 
     const ipStats = await prisma.$queryRaw`
       SELECT ip, COUNT(*) as count
-      FROM UsageLog
+      FROM "UsageLog"
       GROUP BY ip
     `;
 

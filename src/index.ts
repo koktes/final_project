@@ -12,11 +12,9 @@ import abyssiniaRouter from './routes/verifyAbyssiniaRoute';
 import cbebirrRouter from './routes/verifyCBEBirrRoute';
 import mpesaRouter from './routes/verifyMpesaRoute';
 import universalRouter from './routes/verifyUniversalRoute';
-import adminRouter from './routes/adminRoute';
 import logger from './utils/logger';
 import { verifyImageHandler } from "./services/verifyImage";
 import { requestLogger, initializeStatsCache } from './middleware/requestLogger';
-import { apiKeyAuth } from './middleware/apiKeyAuth';
 import { prisma, disconnectPrisma } from './utils/prisma';
 
 const app = express();
@@ -46,12 +44,6 @@ app.use(express.json());
 
 // Add request logging middleware
 app.use(requestLogger);
-
-// Register admin routes BEFORE API key authentication
-app.use('/admin', adminRouter);
-
-// Add API key authentication middleware (will not affect admin routes)
-app.use(apiKeyAuth as express.RequestHandler);
 
 // Error handling for JSON parsing - properly typed as an error handler
 const jsonErrorHandler: ErrorRequestHandler = async (err, req, res, next): Promise<void> => {

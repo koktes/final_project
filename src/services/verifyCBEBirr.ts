@@ -25,7 +25,7 @@ export interface CBEBirrReceipt {
 export async function verifyCBEBirr(
   receiptNumber: string,
   phoneNumber: string,
-  apiKey: string
+  apiKey?: string
 ): Promise<CBEBirrReceipt | { success: false; error: string }> {
   try {
     logger.info(`[CBEBirr] Starting verification for receipt: ${receiptNumber}, phone: ${phoneNumber}`);
@@ -34,13 +34,17 @@ export async function verifyCBEBirr(
     const url = `https://cbepay1.cbe.com.et/aureceipt?TID=${receiptNumber}&PH=${phoneNumber}`;
     logger.info(`[CBEBirr] Fetching PDF from: ${url}`);
 
+    const headers: Record<string, string> = {
+      'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36'
+    };
+    if (apiKey && apiKey.trim()) {
+      headers.Authorization = `Bearer ${apiKey}`;
+    }
+
     // Fetch the PDF
     const response = await axios.get(url, {
       responseType: 'arraybuffer',
-      headers: {
-        'Authorization': `Bearer ${apiKey}`,
-        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36'
-      },
+      headers,
       timeout: 30000
     });
 

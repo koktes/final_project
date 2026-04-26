@@ -1,0 +1,23 @@
+# AI Fraud Detection Module - Dependencies
+# Install: pip install -r requirements.txt
+
+# Web framework
+fastapi>=0.115.0
+uvicorn[standard]>=0.30.0
+
+# ML / Data Science
+scikit-learn>=1.6.0
+pandas>=2.2.0
+numpy>=2.0.0
+joblib>=1.4.0
+
+# Data validation
+pydantic>=2.9.0
+
+# Visualization (for evaluation plots)
+matplotlib>=3.9.0
+seaborn>=0.13.0
+
+# Testing
+pytest>=8.0.0
+httpx>=0.27.0

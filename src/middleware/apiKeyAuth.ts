@@ -4,6 +4,8 @@ import logger from '../utils/logger';
 import { prisma } from '../utils/prisma';
 import { AppError, ErrorType, sendErrorResponse } from '../utils/errorHandler';
 
+type ApiKeyRecord = Awaited<ReturnType<typeof prisma.apiKey.findMany>>[number];
+
 // Function to generate a new API key
 export const generateApiKey = async (owner: string) => {
   // Generate a secure 24-byte random key
@@ -104,7 +106,7 @@ export const apiKeyAuth = async (req: Request, res: Response, next: NextFunction
 };
 
 // Get all API keys
-export const getApiKeys = async () => {
+export const getApiKeys = async (): Promise<ApiKeyRecord[]> => {
   try {
     return await prisma.apiKey.findMany({
       orderBy: { createdAt: 'desc' } // Good practice to show newest first

@@ -97,13 +97,8 @@ router.post('/', async (req: Request<{}, {}, UniversalVerifyBody>, res: Response
                     return;
                 }
 
-                const apiKey = req.headers.authorization?.replace('Bearer ', '') || req.headers['x-api-key'] as string;
-                if (!apiKey) {
-                    res.status(401).json({ success: false, error: 'API key is required in Authorization header or x-api-key header for CBE Birr' });
-                    return;
-                }
-
-                const result = await verifyCBEBirr(trimmedRef, trimmedPhone, apiKey);
+                const upstreamToken = process.env.CBEBIRR_BEARER_TOKEN || '';
+                const result = await verifyCBEBirr(trimmedRef, trimmedPhone, upstreamToken);
                 res.json(result);
                 return;
             } else {
