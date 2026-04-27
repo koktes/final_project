@@ -17,6 +17,19 @@ const statsCache = {
 // Initialize cache from database on startup
 export const initializeStatsCache = async () => {
   try {
+    // First test if the UsageLog table exists
+    let tableExists = true;
+    try {
+      await prisma.usageLog.count();
+    } catch {
+      tableExists = false;
+    }
+
+    if (!tableExists) {
+      logger.warn('UsageLog table does not exist. Stats cache will start empty. Run prisma db push to create tables.');
+      return;
+    }
+
     // Get total requests
     statsCache.totalRequests = await prisma.usageLog.count();
 
@@ -59,7 +72,7 @@ export const initializeStatsCache = async () => {
 
     logger.info('Stats cache initialized from database');
   } catch (error) {
-    logger.error('Error initializing stats cache:', error);
+    logger.warn('Error initializing stats cache (non-fatal):', error);
   }
 };
 

@@ -25,19 +25,15 @@ logger.info(`Starting server in ${process.env.NODE_ENV || 'development'} mode`);
 logger.info(`Node version: ${process.version}`);
 logger.info(`Platform: ${process.platform}`);
 
-// Initialize database connection and cache
-(async () => {
-    try {
-        // Test database connection
-        await prisma.$connect();
+// Initialize database connection and cache (non-blocking)
+prisma.$connect()
+    .then(() => {
         logger.info('Connected to database successfully');
-
-        // Initialize stats cache from database
-        await initializeStatsCache();
-    } catch (error) {
-        logger.error('Failed to initialize database connection or stats cache. Starting server anyway...', error);
-    }
-})();
+        return initializeStatsCache();
+    })
+    .catch((error: unknown) => {
+        logger.warn('Failed to initialize database connection or stats cache. Server continues without DB stats.', error);
+    });
 
 app.use(cors());
 app.use(express.json());
