@@ -1,0 +1,110 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+// Necessary for Next auth
+model Account {
+  id                       String  @id @default(cuid())
+  userId                   String
+  type                     String
+  provider                 String
+  providerAccountId        String
+  refresh_token            String? @db.Text
+  access_token             String? @db.Text
+  expires_at               Int?
+  token_type               String?
+  scope                    String?
+  id_token                 String? @db.Text
+  session_state            String?
+  user                     User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+  refresh_token_expires_in Int?
+
+  @@unique([provider, providerAccountId])
+}
+
+model Session {
+  id           String   @id @default(cuid())
+  sessionToken String   @unique
+  userId       String
+  expires      DateTime
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model User {
+  id            String    @id @default(cuid())
+  name          String?
+  email         String?   @unique
+  emailVerified DateTime?
+  image         String?
+  accounts      Account[]
+  sessions      Session[]
+  ApiKey        ApiKey[]
+  role          Role      @default(USER)
+  createdAt     DateTime  @default(now())
+}
+
+enum Role {
+  USER
+  ADMIN
+}
+
+model VerificationToken {
+  identifier String
+  token      String   @unique
+  expires    DateTime
+
+  @@unique([identifier, token])
+}
+
+enum ApiTier {
+  FREE
+  PAID
+}
+
+model ApiKey {
+  id         String     @id @default(uuid())
+  key        String?     @unique
+
+  keyHash    String?    @unique 
+  prefix     String?    
+  tier       ApiTier    @default(FREE)
+  
+  owner      String
+  createdAt  DateTime   @default(now())
+  lastUsed   DateTime?
+  usageCount Int        @default(0)
+  isActive   Boolean    @default(true)
+  UsageLog   UsageLog[]
+  User       User?      @relation(fields: [userId], references: [id])
+  userId     String?
+
+  @@index([key])
+  @@index([userId])
+}
+
+model UsageLog {
+  id           Int      @id @default(autoincrement())
+  apiKeyId     String
+  apiKey       ApiKey   @relation(fields: [apiKeyId], references: [id])
+  endpoint     String
+  method       String
+  statusCode   Int
+  responseTime Int
+  ip           String
+  createdAt    DateTime @default(now())
+
+  @@index([apiKeyId])
+  @@index([endpoint])
+  @@index([createdAt])
+}
