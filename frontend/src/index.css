@@ -1,65 +1,65 @@
 /* ═══════════════════════════════════════════════════════════
-   Design System — Payment Verification Dashboard
+   Design System — Payment Verification Dashboard (Light)
    ═══════════════════════════════════════════════════════════ */
 
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap');
 
 /* ─── Design Tokens ──────────────────────────────────────── */
 :root {
-  /* Surface Colors — dark charcoal, not near-black */
-  --bg-primary: #13141c;
-  --bg-secondary: #1a1b26;
-  --bg-card: #1e1f2e;
-  --bg-card-hover: #252638;
-  --bg-glass: rgba(255, 255, 255, 0.06);
-  --bg-input: #1e1f2e;
-  --bg-input-focus: #252638;
+  /* Surface Colors — clean whites & soft grays */
+  --bg-primary: #f5f6fa;
+  --bg-secondary: #ffffff;
+  --bg-card: #ffffff;
+  --bg-card-hover: #f8f9fc;
+  --bg-glass: rgba(255, 255, 255, 0.85);
+  --bg-input: #f5f6fa;
+  --bg-input-focus: #ffffff;
 
   /* Border Colors */
-  --border-subtle: rgba(255, 255, 255, 0.09);
-  --border-default: rgba(255, 255, 255, 0.15);
-  --border-focus: rgba(139, 92, 246, 0.5);
+  --border-subtle: rgba(0, 0, 0, 0.06);
+  --border-default: rgba(0, 0, 0, 0.12);
+  --border-focus: rgba(79, 70, 229, 0.45);
 
   /* Text Colors */
-  --text-primary: #e8e9f0;
-  --text-secondary: #9496a8;
-  --text-muted: #6c6e82;
-  --text-inverse: #13141c;
+  --text-primary: #1a1d2e;
+  --text-secondary: #5f6580;
+  --text-muted: #9298b0;
+  --text-inverse: #ffffff;
 
-  /* Brand Colors */
-  --accent-primary: #8b5cf6;
-  --accent-primary-dim: rgba(139, 92, 246, 0.15);
-  --accent-gradient: linear-gradient(135deg, #8b5cf6 0%, #6366f1 100%);
+  /* Brand Colors — indigo/blue */
+  --accent-primary: #4f46e5;
+  --accent-primary-dim: rgba(79, 70, 229, 0.08);
+  --accent-gradient: linear-gradient(135deg, #4f46e5 0%, #6366f1 50%, #818cf8 100%);
 
   /* Status Colors */
-  --success: #22c55e;
-  --success-dim: rgba(34, 197, 94, 0.12);
-  --warning: #f59e0b;
-  --warning-dim: rgba(245, 158, 11, 0.12);
-  --error: #ef4444;
-  --error-dim: rgba(239, 68, 68, 0.12);
-  --info: #3b82f6;
-  --info-dim: rgba(59, 130, 246, 0.12);
+  --success: #16a34a;
+  --success-dim: rgba(22, 163, 74, 0.08);
+  --warning: #d97706;
+  --warning-dim: rgba(217, 119, 6, 0.08);
+  --error: #dc2626;
+  --error-dim: rgba(220, 38, 38, 0.06);
+  --info: #2563eb;
+  --info-dim: rgba(37, 99, 235, 0.08);
 
   /* Bank Identity Colors */
-  --bank-cbe: #a855f7;
-  --bank-cbe-dim: rgba(168, 85, 247, 0.12);
-  --bank-cbe-bg: rgba(168, 85, 247, 0.06);
-  --bank-cbebirr: #c084fc;
-  --bank-cbebirr-dim: rgba(192, 132, 252, 0.12);
-  --bank-cbebirr-bg: rgba(192, 132, 252, 0.06);
-  --bank-telebirr: #4ade80;
-  --bank-telebirr-dim: rgba(74, 222, 128, 0.12);
-  --bank-telebirr-bg: rgba(74, 222, 128, 0.06);
-  --bank-dashen: #60a5fa;
-  --bank-dashen-dim: rgba(96, 165, 250, 0.12);
-  --bank-dashen-bg: rgba(96, 165, 250, 0.06);
-  --bank-abyssinia: #fbbf24;
-  --bank-abyssinia-dim: rgba(251, 191, 36, 0.12);
-  --bank-abyssinia-bg: rgba(251, 191, 36, 0.06);
-  --bank-mpesa: #34d399;
-  --bank-mpesa-dim: rgba(52, 211, 153, 0.12);
-  --bank-mpesa-bg: rgba(52, 211, 153, 0.06);
+  --bank-cbe: #7c3aed;
+  --bank-cbe-dim: rgba(124, 58, 237, 0.08);
+  --bank-cbe-bg: rgba(124, 58, 237, 0.04);
+  --bank-cbebirr: #9333ea;
+  --bank-cbebirr-dim: rgba(147, 51, 234, 0.08);
+  --bank-cbebirr-bg: rgba(147, 51, 234, 0.04);
+  --bank-telebirr: #16a34a;
+  --bank-telebirr-dim: rgba(22, 163, 74, 0.08);
+  --bank-telebirr-bg: rgba(22, 163, 74, 0.04);
+  --bank-dashen: #2563eb;
+  --bank-dashen-dim: rgba(37, 99, 235, 0.08);
+  --bank-dashen-bg: rgba(37, 99, 235, 0.04);
+  --bank-abyssinia: #ca8a04;
+  --bank-abyssinia-dim: rgba(202, 138, 4, 0.08);
+  --bank-abyssinia-bg: rgba(202, 138, 4, 0.04);
+  --bank-mpesa: #059669;
+  --bank-mpesa-dim: rgba(5, 150, 105, 0.08);
+  --bank-mpesa-bg: rgba(5, 150, 105, 0.04);
 
   /* Typography */
   --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
@@ -77,11 +77,11 @@
   --radius-xl: 20px;
   --radius-full: 9999px;
 
-  /* Shadows */
-  --shadow-sm: 0 1px 2px rgba(0,0,0,0.3);
-  --shadow-md: 0 4px 12px rgba(0,0,0,0.4);
-  --shadow-lg: 0 8px 32px rgba(0,0,0,0.5);
-  --shadow-glow: 0 0 40px rgba(139, 92, 246, 0.15);
+  /* Shadows — light-mode appropriate */
+  --shadow-sm: 0 1px 3px rgba(0,0,0,0.04), 0 1px 2px rgba(0,0,0,0.06);
+  --shadow-md: 0 4px 12px rgba(0,0,0,0.06), 0 1px 4px rgba(0,0,0,0.04);
+  --shadow-lg: 0 10px 32px rgba(0,0,0,0.08), 0 2px 8px rgba(0,0,0,0.04);
+  --shadow-glow: 0 4px 24px rgba(79, 70, 229, 0.15);
 
   /* Transitions */
   --transition-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);
@@ -122,7 +122,7 @@ a {
 }
 
 a:hover {
-  color: #a78bfa;
+  color: #6366f1;
 }
 
 button {
@@ -145,11 +145,11 @@ input, select, textarea {
   background: transparent;
 }
 ::-webkit-scrollbar-thumb {
-  background: rgba(255, 255, 255, 0.1);
+  background: rgba(0, 0, 0, 0.12);
   border-radius: 3px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: rgba(255, 255, 255, 0.2);
+  background: rgba(0, 0, 0, 0.2);
 }
 
 /* ─── Utility Classes ────────────────────────────────────── */
@@ -164,12 +164,14 @@ input, select, textarea {
   background: var(--bg-card);
   border: 1px solid var(--border-subtle);
   border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
   transition: all var(--transition-base);
 }
 
 .card:hover {
   background: var(--bg-card-hover);
   border-color: var(--border-default);
+  box-shadow: var(--shadow-md);
 }
 
 /* ─── Animations ─────────────────────────────────────────── */

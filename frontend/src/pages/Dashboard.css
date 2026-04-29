@@ -14,11 +14,13 @@
   align-items: center;
   gap: 16px;
   transition: all var(--transition-base);
+  box-shadow: var(--shadow-sm);
 }
 
 .stat-card:hover {
   border-color: var(--border-default);
   transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
 }
 
 .stat-icon {
@@ -41,6 +43,7 @@
   font-size: 24px;
   font-weight: 700;
   letter-spacing: -0.5px;
+  color: var(--text-primary);
 }
 
 .stat-label {
@@ -60,6 +63,7 @@
   font-size: 20px;
   font-weight: 600;
   letter-spacing: -0.3px;
+  color: var(--text-primary);
 }
 
 .section-header p {
@@ -84,11 +88,12 @@
   overflow: hidden;
   transition: all var(--transition-base);
   color: var(--text-primary);
+  box-shadow: var(--shadow-sm);
 }
 
 .action-card:hover {
   border-color: var(--accent-primary);
-  background: var(--bg-card-hover);
+  background: var(--bg-card);
   transform: translateY(-3px);
   box-shadow: var(--shadow-glow);
 }
@@ -159,11 +164,13 @@
   font-weight: 500;
   transition: all var(--transition-fast);
   cursor: pointer;
+  box-shadow: var(--shadow-sm);
 }
 
 .bank-chip:hover {
   border-color: var(--bank-color);
   background: var(--bank-dim);
+  box-shadow: var(--shadow-md);
 }
 
 .bank-chip-dot {

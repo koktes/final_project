@@ -14,6 +14,7 @@
   transition: all var(--transition-base);
   position: relative;
   overflow: hidden;
+  box-shadow: var(--shadow-sm);
 }
 
 .bank-select-card::before {
@@ -34,7 +35,7 @@
 .bank-select-card:hover {
   background: var(--bbg);
   transform: translateY(-4px);
-  box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+  box-shadow: var(--shadow-lg);
 }
 
 .bank-select-card:hover::before {
@@ -81,7 +82,7 @@
   font-size: 11px;
   padding: 3px 10px;
   border-radius: var(--radius-full);
-  background: rgba(255,255,255,0.04);
+  background: rgba(0, 0, 0, 0.03);
   color: var(--text-muted);
   border: 1px solid var(--border-subtle);
 }
@@ -102,11 +103,13 @@
   color: var(--text-secondary);
   font-size: 14px;
   transition: all var(--transition-fast);
+  box-shadow: var(--shadow-sm);
 }
 
 .back-btn:hover {
   color: var(--text-primary);
   border-color: var(--border-default);
+  box-shadow: var(--shadow-md);
 }
 
 .flow-bank-info {
@@ -168,7 +171,7 @@
 .form-input:focus {
   background: var(--bg-input-focus);
   border-color: var(--border-focus);
-  box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.1);
+  box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.08);
 }
 
 .form-input::placeholder {
@@ -184,7 +187,7 @@
 .form-error {
   padding: 12px 16px;
   background: var(--error-dim);
-  border: 1px solid rgba(239, 68, 68, 0.2);
+  border: 1px solid rgba(220, 38, 38, 0.15);
   border-radius: var(--radius-md);
   color: var(--error);
   font-size: 14px;
@@ -204,11 +207,12 @@
   font-weight: 600;
   transition: all var(--transition-base);
   border: none;
+  box-shadow: 0 2px 8px rgba(79, 70, 229, 0.2);
 }
 
 .submit-btn:hover:not(:disabled) {
   transform: translateY(-1px);
-  box-shadow: 0 4px 20px rgba(139, 92, 246, 0.3);
+  box-shadow: 0 4px 20px rgba(79, 70, 229, 0.3);
 }
 
 .submit-btn:disabled {
@@ -251,11 +255,13 @@
   background: var(--bg-card);
   border: 1px solid var(--border-subtle);
   color: var(--text-secondary);
+  box-shadow: var(--shadow-sm);
 }
 
 .action-btn.secondary:hover {
   border-color: var(--border-default);
   color: var(--text-primary);
+  box-shadow: var(--shadow-md);
 }
 
 @media (max-width: 900px) {

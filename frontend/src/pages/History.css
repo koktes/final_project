@@ -5,6 +5,7 @@
   padding: 60px 40px;
   text-align: center;
   max-width: 600px;
+  box-shadow: var(--shadow-sm);
 }
 
 .placeholder-icon {
@@ -43,7 +44,7 @@
 .pf-chip {
   padding: 6px 14px;
   border-radius: var(--radius-full);
-  background: rgba(255,255,255,0.04);
+  background: rgba(0, 0, 0, 0.03);
   border: 1px solid var(--border-subtle);
   font-size: 13px;
   color: var(--text-muted);

@@ -18,16 +18,17 @@
   transition: all var(--transition-base);
   overflow: hidden;
   position: relative;
+  box-shadow: var(--shadow-sm);
 }
 
 .iv-dropzone:hover {
   border-color: var(--accent-primary);
-  background: rgba(139, 92, 246, 0.03);
+  background: rgba(79, 70, 229, 0.02);
 }
 
 .iv-dropzone.drag-over {
   border-color: var(--accent-primary);
-  background: rgba(139, 92, 246, 0.06);
+  background: rgba(79, 70, 229, 0.04);
   transform: scale(1.01);
 }
 
@@ -51,6 +52,7 @@
   font-size: 17px;
   font-weight: 600;
   margin-bottom: 6px;
+  color: var(--text-primary);
 }
 
 .dz-empty p {
@@ -77,7 +79,8 @@
 .scan-overlay {
   position: absolute;
   inset: 0;
-  background: rgba(10, 10, 15, 0.6);
+  background: rgba(255, 255, 255, 0.75);
+  backdrop-filter: blur(2px);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -90,7 +93,7 @@
   right: 10%;
   height: 2px;
   background: linear-gradient(90deg, transparent, var(--accent-primary), transparent);
-  box-shadow: 0 0 20px rgba(139, 92, 246, 0.5);
+  box-shadow: 0 0 20px rgba(79, 70, 229, 0.4);
   animation: scan 2s ease-in-out infinite;
 }
 
@@ -104,12 +107,13 @@
 .iv-change-btn {
   margin-top: 12px;
   padding: 8px 16px;
-  background: transparent;
+  background: var(--bg-card);
   border: 1px solid var(--border-subtle);
   border-radius: var(--radius-md);
   color: var(--text-secondary);
   font-size: 13px;
   transition: all var(--transition-fast);
+  box-shadow: var(--shadow-sm);
 }
 
 .iv-change-btn:hover {
@@ -123,6 +127,7 @@
   border: 1px solid var(--border-subtle);
   border-radius: var(--radius-xl);
   overflow: hidden;
+  box-shadow: var(--shadow-md);
 }
 
 .det-header {
@@ -149,6 +154,7 @@
   font-size: 16px;
   font-weight: 600;
   margin-bottom: 2px;
+  color: var(--text-primary);
 }
 
 .det-bank-name {
@@ -165,7 +171,7 @@
   justify-content: space-between;
   align-items: center;
   padding: 12px 24px;
-  border-bottom: 1px solid rgba(255,255,255,0.02);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.03);
 }
 
 .det-label {
@@ -198,7 +204,7 @@
 .det-params {
   padding: 20px 24px;
   border-top: 1px solid var(--border-subtle);
-  background: rgba(245, 158, 11, 0.03);
+  background: rgba(217, 119, 6, 0.03);
 }
 
 .det-params h4 {
@@ -250,6 +256,7 @@
   font-size: 17px;
   font-weight: 600;
   margin-bottom: 6px;
+  color: var(--text-primary);
 }
 
 .iv-verifying p {
@@ -260,10 +267,11 @@
 /* ─── Error state ───────────────────────────── */
 .iv-error {
   background: var(--bg-card);
-  border: 1px solid rgba(239, 68, 68, 0.15);
+  border: 1px solid rgba(220, 38, 38, 0.12);
   border-radius: var(--radius-xl);
   padding: 32px;
   text-align: center;
+  box-shadow: var(--shadow-sm);
 }
 
 .iv-error-icon {
@@ -284,6 +292,7 @@
   font-size: 17px;
   font-weight: 600;
   margin-bottom: 8px;
+  color: var(--text-primary);
 }
 
 .iv-error p {
@@ -303,12 +312,14 @@
   border: 1px solid var(--border-subtle);
   border-radius: var(--radius-xl);
   padding: 28px;
+  box-shadow: var(--shadow-sm);
 }
 
 .iv-instructions h3 {
   font-size: 16px;
   font-weight: 600;
   margin-bottom: 20px;
+  color: var(--text-primary);
 }
 
 .iv-steps {
@@ -342,6 +353,7 @@
   font-size: 14px;
   font-weight: 600;
   margin-bottom: 2px;
+  color: var(--text-primary);
 }
 
 .iv-step p {
