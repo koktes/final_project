@@ -1,0 +1,375 @@
+.iv-layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 28px;
+  align-items: start;
+}
+
+/* ─── Dropzone ──────────────────────────────── */
+.iv-dropzone {
+  border: 2px dashed var(--border-default);
+  border-radius: var(--radius-xl);
+  background: var(--bg-card);
+  min-height: 380px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all var(--transition-base);
+  overflow: hidden;
+  position: relative;
+}
+
+.iv-dropzone:hover {
+  border-color: var(--accent-primary);
+  background: rgba(139, 92, 246, 0.03);
+}
+
+.iv-dropzone.drag-over {
+  border-color: var(--accent-primary);
+  background: rgba(139, 92, 246, 0.06);
+  transform: scale(1.01);
+}
+
+.iv-dropzone.has-image {
+  border-style: solid;
+  cursor: default;
+}
+
+.dz-empty {
+  text-align: center;
+  padding: 40px;
+}
+
+.dz-icon {
+  font-size: 48px;
+  color: var(--text-muted);
+  margin-bottom: 16px;
+}
+
+.dz-empty h3 {
+  font-size: 17px;
+  font-weight: 600;
+  margin-bottom: 6px;
+}
+
+.dz-empty p {
+  font-size: 14px;
+  color: var(--text-muted);
+}
+
+.dz-preview {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+.dz-preview img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  max-height: 400px;
+  display: block;
+  padding: 12px;
+}
+
+/* Scan overlay */
+.scan-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(10, 10, 15, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.scan-line {
+  position: absolute;
+  left: 10%;
+  right: 10%;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--accent-primary), transparent);
+  box-shadow: 0 0 20px rgba(139, 92, 246, 0.5);
+  animation: scan 2s ease-in-out infinite;
+}
+
+.scan-text {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--accent-primary);
+  animation: pulse 1.5s ease-in-out infinite;
+}
+
+.iv-change-btn {
+  margin-top: 12px;
+  padding: 8px 16px;
+  background: transparent;
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  color: var(--text-secondary);
+  font-size: 13px;
+  transition: all var(--transition-fast);
+}
+
+.iv-change-btn:hover {
+  color: var(--text-primary);
+  border-color: var(--border-default);
+}
+
+/* ─── Detection Result ──────────────────────── */
+.iv-detection {
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+}
+
+.det-header {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 24px;
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.det-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+
+.det-header h3 {
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 2px;
+}
+
+.det-bank-name {
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.det-details {
+  padding: 4px 0;
+}
+
+.det-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 24px;
+  border-bottom: 1px solid rgba(255,255,255,0.02);
+}
+
+.det-label {
+  font-size: 13px;
+  color: var(--text-secondary);
+}
+
+.det-value {
+  font-size: 14px;
+  color: var(--text-primary);
+}
+
+.det-value.mono {
+  font-family: var(--font-mono);
+  letter-spacing: 0.5px;
+  color: var(--accent-primary);
+  font-weight: 500;
+}
+
+.det-confidence {
+  font-size: 13px;
+  font-weight: 500;
+}
+
+.det-confidence.high { color: var(--success); }
+.det-confidence.medium { color: var(--warning); }
+.det-confidence.low { color: var(--error); }
+
+/* Missing params */
+.det-params {
+  padding: 20px 24px;
+  border-top: 1px solid var(--border-subtle);
+  background: rgba(245, 158, 11, 0.03);
+}
+
+.det-params h4 {
+  font-size: 14px;
+  font-weight: 600;
+  margin-bottom: 14px;
+  color: var(--warning);
+}
+
+.det-param-field {
+  margin-bottom: 14px;
+}
+
+.det-param-field label {
+  display: block;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text-secondary);
+  margin-bottom: 6px;
+  text-transform: capitalize;
+}
+
+.det-param-field .form-input {
+  width: 100%;
+}
+
+.det-verify-btn {
+  margin: 16px 24px 24px;
+  width: calc(100% - 48px);
+}
+
+/* ─── Verifying state ───────────────────────── */
+.iv-verifying {
+  text-align: center;
+  padding: 60px 20px;
+}
+
+.verifying-spinner {
+  width: 48px;
+  height: 48px;
+  border: 3px solid var(--border-subtle);
+  border-top-color: var(--accent-primary);
+  border-radius: 50%;
+  margin: 0 auto 20px;
+  animation: spin 0.8s linear infinite;
+}
+
+.iv-verifying h3 {
+  font-size: 17px;
+  font-weight: 600;
+  margin-bottom: 6px;
+}
+
+.iv-verifying p {
+  color: var(--text-secondary);
+  font-size: 14px;
+}
+
+/* ─── Error state ───────────────────────────── */
+.iv-error {
+  background: var(--bg-card);
+  border: 1px solid rgba(239, 68, 68, 0.15);
+  border-radius: var(--radius-xl);
+  padding: 32px;
+  text-align: center;
+}
+
+.iv-error-icon {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background: var(--error-dim);
+  color: var(--error);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 16px;
+  font-size: 24px;
+  font-weight: 700;
+}
+
+.iv-error h3 {
+  font-size: 17px;
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+
+.iv-error p {
+  color: var(--text-secondary);
+  font-size: 14px;
+}
+
+.iv-error-hint {
+  color: var(--text-muted) !important;
+  font-size: 13px !important;
+  margin-top: 8px;
+}
+
+/* ─── Instructions ──────────────────────────── */
+.iv-instructions {
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-xl);
+  padding: 28px;
+}
+
+.iv-instructions h3 {
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 20px;
+}
+
+.iv-steps {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  margin-bottom: 24px;
+}
+
+.iv-step {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+}
+
+.step-num {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: var(--accent-primary-dim);
+  color: var(--accent-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+
+.iv-step h4 {
+  font-size: 14px;
+  font-weight: 600;
+  margin-bottom: 2px;
+}
+
+.iv-step p {
+  font-size: 13px;
+  color: var(--text-secondary);
+}
+
+.iv-supported {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding-top: 16px;
+  border-top: 1px solid var(--border-subtle);
+}
+
+.iv-supported-label {
+  font-size: 12px;
+  color: var(--text-muted);
+}
+
+.iv-supported-bank {
+  font-size: 12px;
+  font-weight: 600;
+}
+
+@media (max-width: 900px) {
+  .iv-layout {
+    grid-template-columns: 1fr;
+  }
+}

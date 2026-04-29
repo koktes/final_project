@@ -10,6 +10,7 @@ import { verifyDashen } from "./verifyDashen";
 import { verifyAbyssinia } from "./verifyAbyssinia";
 import { verifyCBEBirr } from "./verifyCBEBirr";
 import { verifyMpesa } from "./verifyMpesa";
+import { scoreFraudRisk } from "./fraudScoring";
 import dotenv from "dotenv";
 
 dotenv.config();
@@ -103,24 +104,25 @@ function detectFromText(rawText: string): ReceiptDetection | null {
 
     // ── Telebirr ──
     if (telebirrKeywords && !cbeKeywords) {
-        // Invoice No pattern: CIP240YHNO — must contain at least one digit to avoid matching plain words
+        // 1. URL-based extraction: Tesseract often reads the URL at the bottom of the receipt
+        //    e.g. "https://transactioninfo.ethiotelecom.et/receipt/CIP240YHNO"
+        const urlMatch = originalText.match(/(?:transactioninfo\.ethiotelecom\.et\/receipt\/)([A-Za-z0-9]+)/i);
+        // 2. Invoice No pattern: CIP240YHNO — try the label
         const invoiceMatch = text.match(/INVOICE\s+NO\.?\s*:?\s*([A-Z0-9]{8,14})/);
-        // CE-prefix pattern for telebirr: must contain both letters and digits (not plain English words)
+        // 3. CE/CIP-prefix pattern for telebirr: must contain both letters and digits
+        const cipMatch = text.match(/\b(CIP[A-Z0-9]{5,11})\b/);
         const ceMatch = text.match(/\b(C[A-Z]{2}\d[A-Z0-9]{4,10})\b/) || text.match(/\b(C[A-Z]{1,2}[A-Z0-9]*\d[A-Z0-9]*)\b/);
-        // Also try to find payer telebirr number as verification input (e.g. 251904440704)
-        const payerPhoneMatch = originalText.match(/(251\d{9})/);
-        const ref = invoiceMatch?.[1] || ceMatch?.[1];
+        const ref = urlMatch?.[1]?.toUpperCase() || invoiceMatch?.[1] || cipMatch?.[1] || ceMatch?.[1];
         if (ref && ref.length >= 8 && /\d/.test(ref)) {
             return {
                 bank: "telebirr",
                 reference: ref,
                 referenceLabel: "Invoice No",
-                confidence: "high",
+                confidence: urlMatch ? "high" : "high",
                 source: "local-ocr"
             };
         }
         // Telebirr identified but reference couldn't be extracted cleanly
-        // Return the bank identification so the user knows which verifier to use
         return {
             bank: "telebirr",
             reference: "",
@@ -168,7 +170,7 @@ function detectFromText(rawText: string): ReceiptDetection | null {
                 referenceLabel: "Transaction Reference",
                 confidence: abyssiniaLayoutPattern ? "high" : "medium",
                 source: "local-ocr",
-                missingParams: ["suffix"]
+                missingParams: ["accountNumber"]
             };
         }
         // Only CBE keywords, not Abyssinia
@@ -179,7 +181,7 @@ function detectFromText(rawText: string): ReceiptDetection | null {
                 referenceLabel: "Reference No",
                 confidence: "high",
                 source: "local-ocr",
-                missingParams: ["accountSuffix"]
+                missingParams: ["accountNumber"]
             };
         }
         // Default: if FT reference found but can't disambiguate, default to CBE
@@ -189,7 +191,7 @@ function detectFromText(rawText: string): ReceiptDetection | null {
             referenceLabel: "Reference No",
             confidence: "medium",
             source: "local-ocr",
-            missingParams: ["accountSuffix"]
+            missingParams: ["accountNumber"]
         };
     }
 
@@ -372,8 +374,8 @@ You are an Ethiopian payment receipt analyzer. Analyze the uploaded image and id
 
         // Determine missing params based on bank type
         const missingParams: string[] = [];
-        if (result.bank === "cbe") missingParams.push("accountSuffix");
-        if (result.bank === "abyssinia") missingParams.push("suffix");
+        if (result.bank === "cbe") missingParams.push("accountNumber");
+        if (result.bank === "abyssinia") missingParams.push("accountNumber");
         if (result.bank === "cbe_birr") missingParams.push("phoneNumber");
 
         return {
@@ -396,8 +398,8 @@ You are an Ethiopian payment receipt analyzer. Analyze the uploaded image and id
 
 const BANK_PARAM_INFO: Record<ReceiptType, { requiredExtra: string[]; paramDescriptions: Record<string, string> }> = {
     cbe: {
-        requiredExtra: ["accountSuffix"],
-        paramDescriptions: { accountSuffix: "Last 8 digits of the sender's bank account number" }
+        requiredExtra: ["accountNumber"],
+        paramDescriptions: { accountNumber: "Sender's bank account number (full number — last 8 digits will be used)" }
     },
     cbe_birr: {
         requiredExtra: ["phoneNumber"],
@@ -406,8 +408,8 @@ const BANK_PARAM_INFO: Record<ReceiptType, { requiredExtra: string[]; paramDescr
     telebirr: { requiredExtra: [], paramDescriptions: {} },
     dashen: { requiredExtra: [], paramDescriptions: {} },
     abyssinia: {
-        requiredExtra: ["suffix"],
-        paramDescriptions: { suffix: "Last 5 digits of the sender's bank account number" }
+        requiredExtra: ["accountNumber"],
+        paramDescriptions: { accountNumber: "Sender's bank account number (full number — last 5 digits will be used)" }
     },
     mpesa: { requiredExtra: [], paramDescriptions: {} }
 };
@@ -421,7 +423,8 @@ export const verifyImageHandler = [
         try {
             const autoVerify = req.query.autoVerify === "true";
             // Accept optional extra params from the form data
-            const accountSuffix = req.body?.suffix || req.body?.accountSuffix || null;
+            // Accept full account number and splice it later per-bank
+            const accountNumber = req.body?.accountNumber || req.body?.suffix || req.body?.accountSuffix || null;
             const phoneNumber = req.body?.phoneNumber || null;
 
             if (!req.file) {
@@ -465,7 +468,7 @@ export const verifyImageHandler = [
             });
 
             // Merge user-supplied params with detection
-            const suppliedParams = { accountSuffix, suffix: accountSuffix, phoneNumber };
+            const suppliedParams = { accountNumber, phoneNumber };
 
             // If not auto-verifying, return extraction results with routing info
             if (!autoVerify) {
@@ -545,7 +548,7 @@ function getForwardEndpoint(bank: ReceiptType): string {
 
 async function routeToVerifier(
     detection: ReceiptDetection,
-    suppliedParams: { accountSuffix: string | null; suffix: string | null; phoneNumber: string | null },
+    suppliedParams: { accountNumber: string | null; phoneNumber: string | null },
     req: Request,
     res: Response
 ): Promise<void> {
@@ -560,12 +563,25 @@ async function routeToVerifier(
                     res.status(404).json({ error: "Telebirr receipt not found or could not be processed." });
                     return;
                 }
+                // Path B: AI fraud scoring
+                const fraudResult = await scoreFraudRisk({
+                    bank: "telebirr",
+                    reference,
+                    amount: parseFloat(data.settledAmount?.replace(/[^\d.]/g, '') || '0'),
+                    payer_name: data.payerName,
+                    payer_account: data.payerTelebirrNo,
+                    receiver_name: data.creditedPartyName,
+                    receiver_account: data.creditedPartyAccountNo,
+                    transaction_date: data.paymentDate,
+                    transaction_status: data.transactionStatus,
+                });
                 res.json({
                     verified: true,
                     bank: "telebirr",
                     source,
                     reference,
-                    details: data
+                    details: data,
+                    fraudAnalysis: fraudResult,
                 });
                 return;
             }
@@ -573,12 +589,22 @@ async function routeToVerifier(
             // ── Dashen: no extra params needed ──
             case "dashen": {
                 const data = await verifyDashen(reference);
+                // Path B: AI fraud scoring
+                const fraudResult = data.success ? await scoreFraudRisk({
+                    bank: "dashen",
+                    reference,
+                    amount: data.transactionAmount || data.total || 0,
+                    payer_name: data.senderName || '',
+                    receiver_name: data.receiverName || '',
+                    transaction_date: data.transactionDate?.toISOString() || '',
+                }) : null;
                 res.json({
                     verified: data.success,
                     bank: "dashen",
                     source,
                     reference,
                     details: data,
+                    fraudAnalysis: fraudResult,
                     suggestion: data.success ? undefined : "Verification failed. Confirm the reference and try /verify-dashen directly."
                 });
                 return;
@@ -587,29 +613,51 @@ async function routeToVerifier(
             // ── M-Pesa: no extra params needed ──
             case "mpesa": {
                 const data = await verifyMpesa(reference);
+                // Path B: AI fraud scoring
+                const fraudResult = data.success ? await scoreFraudRisk({
+                    bank: "mpesa",
+                    reference,
+                    amount: data.amount || 0,
+                    payer_name: data.payerName || '',
+                    payer_account: data.payerAccount || '',
+                    receiver_name: data.receiverName || '',
+                    receiver_account: data.receiverAccount || '',
+                    transaction_date: data.paymentDate?.toISOString() || '',
+                }) : null;
                 res.json({
                     verified: data.success,
                     bank: "mpesa",
                     source,
                     reference,
                     details: data,
+                    fraudAnalysis: fraudResult,
                     suggestion: data.success ? undefined : "Verification failed. Confirm the receipt number and try /verify-mpesa directly."
                 });
                 return;
             }
 
-            // ── CBE: needs accountSuffix (8 digits) ──
+            // ── CBE: needs account number (last 8 digits used as suffix) ──
             case "cbe": {
-                if (!suppliedParams.accountSuffix) {
+                if (!suppliedParams.accountNumber) {
                     res.status(400).json({
                         bank: "cbe",
                         source,
                         reference,
-                        error: "CBE verification requires the sender's account suffix",
+                        error: "CBE verification requires the sender's account number",
                         missingParams: {
-                            accountSuffix: "Last 8 digits of the sender's bank account number. Pass as 'suffix' or 'accountSuffix' in the form data."
+                            accountNumber: "Sender's bank account number. The last 8 digits will be used for verification."
                         },
-                        hint: "Re-submit with the 'suffix' field in your form data, or call /verify-cbe directly."
+                        hint: "Re-submit with the 'accountNumber' field in your form data, or call /verify-cbe directly."
+                    });
+                    return;
+                }
+
+                // Splice: take last 8 digits from the full account number
+                const cbeAccountSuffix = suppliedParams.accountNumber.replace(/\D/g, '').slice(-8);
+                if (cbeAccountSuffix.length < 8) {
+                    res.status(400).json({
+                        bank: "cbe",
+                        error: "Account number must be at least 8 digits",
                     });
                     return;
                 }
@@ -619,12 +667,12 @@ async function routeToVerifier(
                     : [reference];
 
                 let usedReference = reference;
-                let data = await verifyCBE(usedReference, suppliedParams.accountSuffix);
+                let data = await verifyCBE(usedReference, cbeAccountSuffix);
 
                 for (const candidate of referencesToTry) {
                     if (candidate === usedReference) continue;
                     if (data.success) break;
-                    const retry = await verifyCBE(candidate, suppliedParams.accountSuffix);
+                    const retry = await verifyCBE(candidate, cbeAccountSuffix);
                     if (retry.success) {
                         usedReference = candidate;
                         data = retry;
@@ -632,41 +680,75 @@ async function routeToVerifier(
                     }
                 }
 
+                // Path B: AI fraud scoring
+                const cbeF = data.success ? await scoreFraudRisk({
+                    bank: "cbe",
+                    reference: usedReference,
+                    amount: data.amount || 0,
+                    payer_name: data.payer || '',
+                    payer_account: data.payerAccount || '',
+                    receiver_name: data.receiver || '',
+                    receiver_account: data.receiverAccount || '',
+                    transaction_date: data.date?.toISOString() || '',
+                    suffix: cbeAccountSuffix,
+                }) : null;
                 res.json({
                     verified: data.success,
                     bank: "cbe",
                     source,
                     reference: usedReference,
                     details: data,
-                    suggestion: data.success ? undefined : "Verification failed. Confirm the account suffix and reference, then try /verify-cbe directly."
+                    fraudAnalysis: cbeF,
+                    suggestion: data.success ? undefined : "Verification failed. Confirm the account number and reference, then try /verify-cbe directly."
                 });
                 return;
             }
 
-            // ── Abyssinia: needs suffix (5 digits) ──
+            // ── Abyssinia: needs account number (last 5 digits used as suffix) ──
             case "abyssinia": {
-                if (!suppliedParams.suffix) {
+                if (!suppliedParams.accountNumber) {
                     res.status(400).json({
                         bank: "abyssinia",
                         source,
                         reference,
-                        error: "Bank of Abyssinia verification requires the sender's account suffix",
+                        error: "Bank of Abyssinia verification requires the sender's account number",
                         missingParams: {
-                            suffix: "Last 5 digits of the sender's bank account number. Pass as 'suffix' in the form data."
+                            accountNumber: "Sender's bank account number. The last 5 digits will be used for verification."
                         },
-                        hint: "Re-submit with the 'suffix' field in your form data, or call /verify-abyssinia directly."
+                        hint: "Re-submit with the 'accountNumber' field in your form data, or call /verify-abyssinia directly."
                     });
                     return;
                 }
 
-                const data = await verifyAbyssinia(reference, suppliedParams.suffix);
+                // Splice: take last 5 digits from the full account number
+                const abySuffix = suppliedParams.accountNumber.replace(/\D/g, '').slice(-5);
+                if (abySuffix.length < 5) {
+                    res.status(400).json({
+                        bank: "abyssinia",
+                        error: "Account number must be at least 5 digits",
+                    });
+                    return;
+                }
+
+                const data = await verifyAbyssinia(reference, abySuffix);
+                // Path B: AI fraud scoring
+                const abyF = data.success ? await scoreFraudRisk({
+                    bank: "abyssinia",
+                    reference,
+                    amount: data.amount || 0,
+                    payer_name: data.payer || '',
+                    receiver_name: data.receiver || '',
+                    transaction_date: data.date?.toISOString() || '',
+                    suffix: abySuffix,
+                }) : null;
                 res.json({
                     verified: data.success,
                     bank: "abyssinia",
                     source,
                     reference,
                     details: data,
-                    suggestion: data.success ? undefined : "Verification failed. Confirm the suffix and reference, then try /verify-abyssinia directly."
+                    fraudAnalysis: abyF,
+                    suggestion: data.success ? undefined : "Verification failed. Confirm the account number and reference, then try /verify-abyssinia directly."
                 });
                 return;
             }
@@ -688,12 +770,22 @@ async function routeToVerifier(
                 }
 
                 const data = await verifyCBEBirr(reference, suppliedParams.phoneNumber);
+                const cbeBirrVerified = !("success" in data && data.success === false);
+                // Path B: AI fraud scoring
+                const cbeBirrF = cbeBirrVerified ? await scoreFraudRisk({
+                    bank: "cbe_birr",
+                    reference,
+                    amount: (data as any)?.amount || 0,
+                    payer_name: (data as any)?.payerName || '',
+                    phone_number: suppliedParams.phoneNumber,
+                }) : null;
                 res.json({
-                    verified: !("success" in data && data.success === false),
+                    verified: cbeBirrVerified,
                     bank: "cbe_birr",
                     source,
                     reference,
-                    details: data
+                    details: data,
+                    fraudAnalysis: cbeBirrF,
                 });
                 return;
             }

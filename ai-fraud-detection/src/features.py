@@ -445,7 +445,7 @@ def encode_bank(bank: str) -> Dict[str, float]:
 FEATURE_NAMES = [
     # Reference features
     "shannon_entropy", "structural_integrity", "ref_length_deviation",
-    "special_char_ratio",
+    "special_char_ratio", "char_ngram_anomaly",
     # Time features
     "hour", "day_of_week", "is_business_hours", "is_weekend", "is_night",
     "month", "hour_sin", "hour_cos", "dow_sin", "dow_cos",
@@ -494,6 +494,7 @@ def build_feature_dict(transaction: Dict,
     features["structural_integrity"] = compute_structural_integrity(reference, bank)
     features["ref_length_deviation"] = compute_reference_length_deviation(reference, bank)
     features["special_char_ratio"] = compute_special_char_ratio(reference)
+    features["char_ngram_anomaly"] = compute_char_ngram_anomaly(reference, bank)
     
     # 2. Time features
     features.update(compute_time_features(timestamp))
