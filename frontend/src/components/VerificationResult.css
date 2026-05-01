@@ -60,6 +60,24 @@
   border-bottom: 1px solid var(--border-subtle);
 }
 
+.vr-note {
+  padding: 12px 28px;
+  font-size: 13px;
+  color: var(--text-secondary);
+  background: rgba(0, 0, 0, 0.02);
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.vr-note.success {
+  color: var(--success);
+  background: var(--success-dim);
+}
+
+.vr-note.failure {
+  color: var(--error);
+  background: var(--error-dim);
+}
+
 .vr-details {
   padding: 8px 0;
 }

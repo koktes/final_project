@@ -20,6 +20,31 @@ export interface AbyssiniaReceipt {
     totalAmountIncludingVAT: string;
 }
 
+function parseAbyssiniaDate(value: string): Date | undefined {
+    const trimmed = value.trim();
+    if (!trimmed) return undefined;
+
+    const direct = new Date(trimmed);
+    if (!Number.isNaN(direct.getTime())) return direct;
+
+    const match = trimmed.match(/^(\d{1,2})\/(\d{1,2})\/(\d{2,4})\s+(\d{1,2}):(\d{2})(?::(\d{2}))?$/);
+    if (!match) return undefined;
+
+    const day = Number(match[1]);
+    const month = Number(match[2]);
+    let year = Number(match[3]);
+    const hour = Number(match[4]);
+    const minute = Number(match[5]);
+    const second = match[6] ? Number(match[6]) : 0;
+
+    if (year < 100) year += 2000;
+
+    const parsed = new Date(year, month - 1, day, hour, minute, second);
+    if (Number.isNaN(parsed.getTime())) return undefined;
+
+    return parsed;
+}
+
 /**
  * Verify Abyssinia bank transaction by fetching JSON data from their API
  * @param reference Transaction reference (e.g., "FT23062669JJ")
@@ -93,7 +118,7 @@ export async function verifyAbyssinia(reference: string, suffix: string): Promis
         const amount = transferredAmountStr ? parseFloat(transferredAmountStr.replace(/[^\d.]/g, '')) : undefined;
         
         const transactionDateStr = transactionData['Transaction Date'] || '';
-        const date = transactionDateStr ? new Date(transactionDateStr) : undefined;
+        const date = transactionDateStr ? parseAbyssiniaDate(transactionDateStr) : undefined;
         
         const result: VerifyResult = {
             success: true,

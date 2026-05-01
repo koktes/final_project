@@ -7,6 +7,7 @@ import './ImageVerify.css'
 type Stage = 'upload' | 'scanning' | 'detected' | 'params' | 'verifying' | 'result'
 
 export default function ImageVerify() {
+  const debugVision = new URLSearchParams(window.location.search).get('debugVision') === 'true'
   const [stage, setStage] = useState<Stage>('upload')
   const [file, setFile] = useState<File | null>(null)
   const [preview, setPreview] = useState<string | null>(null)
@@ -27,7 +28,7 @@ export default function ImageVerify() {
     setExtraParams({})
 
     try {
-      const det = await verifyImage(f)
+      const det = await verifyImage(f, undefined, false, debugVision)
       setDetection(det)
 
       if (det.error && !det.bank) {
@@ -161,10 +162,54 @@ export default function ImageVerify() {
               </div>
 
               <div className="det-details">
-                {detection.reference && (
+                {typeof detection.reference === 'string' && detection.reference && (
                   <div className="det-row">
-                    <span className="det-label">{detection.referenceLabel || 'Reference'}</span>
+                    <span className="det-label">{typeof detection.referenceLabel === 'string' ? detection.referenceLabel : 'Reference'}</span>
                     <span className="det-value mono">{detection.reference}</span>
+                  </div>
+                )}
+                {detection.visionReference && (
+                  <div className="det-row">
+                    <span className="det-label">Vision {detection.visionReferenceLabel || 'Reference'}</span>
+                    <span className="det-value mono">{detection.visionReference}</span>
+                  </div>
+                )}
+                {detection.visionOrderId && detection.visionOrderId !== detection.visionReference && (
+                  <div className="det-row">
+                    <span className="det-label">Vision Order ID</span>
+                    <span className="det-value mono">{detection.visionOrderId}</span>
+                  </div>
+                )}
+                {detection.visionReceiptNumber && detection.visionReceiptNumber !== detection.visionReference && (
+                  <div className="det-row">
+                    <span className="det-label">Vision Receipt Number</span>
+                    <span className="det-value mono">{detection.visionReceiptNumber}</span>
+                  </div>
+                )}
+                {detection.visionConfidence && (
+                  <div className="det-row">
+                    <span className="det-label">Vision Confidence</span>
+                    <span className={`det-confidence ${detection.visionConfidence}`}>
+                      {detection.visionConfidence === 'high' ? '● High' : detection.visionConfidence === 'medium' ? '◐ Medium' : '○ Low'}
+                    </span>
+                  </div>
+                )}
+                {detection.orderId && detection.orderId !== detection.reference && (
+                  <div className="det-row">
+                    <span className="det-label">Order ID</span>
+                    <span className="det-value mono">{detection.orderId}</span>
+                  </div>
+                )}
+                {detection.receiptNumber && detection.receiptNumber !== detection.reference && (
+                  <div className="det-row">
+                    <span className="det-label">Receipt Number</span>
+                    <span className="det-value mono">{detection.receiptNumber}</span>
+                  </div>
+                )}
+                {detection.extractedPhoneNumber && (
+                  <div className="det-row">
+                    <span className="det-label">Sender Phone</span>
+                    <span className="det-value mono">{detection.extractedPhoneNumber}</span>
                   </div>
                 )}
                 <div className="det-row">

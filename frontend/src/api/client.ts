@@ -105,6 +105,16 @@ export interface ImageDetectionResult {
   bank?: BankType;
   reference?: string | null;
   referenceLabel?: string;
+  orderId?: string;
+  receiptNumber?: string;
+  extractedPhoneNumber?: string;
+  visionBank?: BankType;
+  visionSource?: string;
+  visionReference?: string;
+  visionReferenceLabel?: string;
+  visionConfidence?: string;
+  visionOrderId?: string;
+  visionReceiptNumber?: string;
   confidence?: string;
   source?: string;
   forward_to?: string;
@@ -117,7 +127,8 @@ export interface ImageDetectionResult {
 export async function verifyImage(
   file: File,
   extraParams?: Record<string, string>,
-  autoVerify = false
+  autoVerify = false,
+  debugVision = false
 ): Promise<ImageDetectionResult> {
   const formData = new FormData();
   formData.append('file', file);
@@ -126,7 +137,11 @@ export async function verifyImage(
       if (v) formData.append(k, v);
     });
   }
-  const url = `${API_BASE}/verify-image${autoVerify ? '?autoVerify=true' : ''}`;
+  const params = new URLSearchParams();
+  if (autoVerify) params.set('autoVerify', 'true');
+  if (debugVision) params.set('debugVision', 'true');
+  const query = params.toString();
+  const url = `${API_BASE}/verify-image${query ? `?${query}` : ''}`;
   const res = await fetch(url, { method: 'POST', body: formData });
   return res.json();
 }

@@ -39,6 +39,8 @@ interface ReceiptDetection {
     referenceLabel: string;
     confidence: "high" | "medium" | "low";
     source: "local-ocr" | "mistral";
+    orderId?: string;
+    receiptNumber?: string;
     extraParams?: {
         accountSuffix?: string;
         suffix?: string;
@@ -89,15 +91,21 @@ function detectFromText(rawText: string): ReceiptDetection | null {
         const receiptMatch = text.match(/RECEIPT\s+NUMBER\s*:?\s*([A-Z0-9]{8,14})/);
         // Also look for DAH-prefix pattern specific to CBE Birr order IDs
         const dahPattern = text.match(/\b(DAH[A-Z0-9]{6,11})\b/);
-        const ref = orderIdMatch?.[1] || receiptMatch?.[1] || dahPattern?.[1];
+        const orderId = sanitizeReferenceCandidate(orderIdMatch?.[1]) || sanitizeReferenceCandidate(dahPattern?.[1]);
+        const receiptNumber = sanitizeReferenceCandidate(receiptMatch?.[1]);
+        const ref = orderId || receiptNumber;
         if (ref) {
+            const phoneNumber = extractEthiopianPhone(originalText);
             return {
                 bank: "cbe_birr",
                 reference: ref,
-                referenceLabel: orderIdMatch ? "Order ID" : (receiptMatch ? "Receipt Number" : "Order ID"),
+                referenceLabel: orderId ? "Order ID" : "Receipt Number",
                 confidence: "high",
                 source: "local-ocr",
-                missingParams: ["phoneNumber"]
+                orderId,
+                receiptNumber,
+                extraParams: phoneNumber ? { phoneNumber } : undefined,
+                missingParams: phoneNumber ? undefined : ["phoneNumber"]
             };
         }
     }
@@ -135,15 +143,15 @@ function detectFromText(rawText: string): ReceiptDetection | null {
 
     // ── Dashen ──
     if (dashenKeywords) {
-        const txIdMatch = text.match(/TRANSACTION\s+ID\s*:?\s*(\d{14,18})/);
-        const ftRefMatch = text.match(/FT\s*REF\s*:?\s*([A-Z0-9]{12,20})/);
         const txRefMatch = text.match(/TRANSACTION\s+REFERENCE\s*:?\s*([A-Z0-9]{14,20})/);
-        const ref = txIdMatch?.[1] || ftRefMatch?.[1] || txRefMatch?.[1];
+        const ftRefMatch = text.match(/FT\s*REF\s*:?\s*([A-Z0-9]{12,20})/);
+        const txIdMatch = text.match(/TRANSACTION\s+ID\s*:?\s*(\d{14,18})/);
+        const ref = txRefMatch?.[1] || ftRefMatch?.[1] || txIdMatch?.[1];
         if (ref) {
             return {
                 bank: "dashen",
                 reference: ref,
-                referenceLabel: txIdMatch ? "Transaction ID" : (ftRefMatch ? "FT Ref" : "Transaction Reference"),
+                referenceLabel: txRefMatch ? "Transaction Reference" : (ftRefMatch ? "FT Ref" : "Transaction ID"),
                 confidence: "high",
                 source: "local-ocr"
             };
@@ -225,7 +233,42 @@ function chooseBestReference(matches: string[], preferredLength?: number): strin
     return matches.sort((a, b) => b.length - a.length)[0];
 }
 
+function sanitizeReferenceCandidate(value?: string | null): string | undefined {
+    if (!value) return undefined;
+    const cleaned = value.replace(/[^A-Z0-9]/gi, "").toUpperCase();
+    if (!cleaned || !/\d/.test(cleaned)) return undefined;
+    return cleaned;
+}
+
 // ─── OCR Character Correction ──────────────────────────────────────────────────
+
+function normalizeEthiopianPhone(raw: string): string | null {
+    const digits = raw.replace(/\D/g, "");
+    if (!digits) return null;
+
+    if (digits.startsWith("251") && digits.length === 12) return digits;
+    if (digits.startsWith("09") && digits.length === 10) return `251${digits.slice(1)}`;
+    if (digits.startsWith("9") && digits.length === 9) return `251${digits}`;
+
+    return null;
+}
+
+function extractEthiopianPhone(text: string): string | null {
+    const patterns = [
+        /DEBIT\s+ACCOUNT[^\d]*(\+?2519\d{8}|09\d{8}|9\d{8})/i,
+        /PHONE\s*(?:NUMBER|NO)?[^\d]*(\+?2519\d{8}|09\d{8}|9\d{8})/i,
+    ];
+
+    for (const pattern of patterns) {
+        const match = text.match(pattern);
+        if (!match) continue;
+        const normalized = normalizeEthiopianPhone(match[1]);
+        if (normalized) return normalized;
+    }
+
+    const fallback = text.match(/(\+?2519\d{8}|09\d{8}|9\d{8})/);
+    return fallback ? normalizeEthiopianPhone(fallback[1]) : null;
+}
 
 function generateReferenceCandidates(reference: string): string[] {
     const candidates = new Set<string>([reference]);
@@ -252,6 +295,30 @@ function generateReferenceCandidates(reference: string): string[] {
     return [...candidates];
 }
 
+function generateO0Candidates(reference: string): string[] {
+    const candidates = new Set<string>([reference]);
+    const chars = reference.toUpperCase().split("");
+
+    for (let i = 0; i < chars.length; i++) {
+        if (chars[i] !== "0" && chars[i] !== "O") continue;
+        const copy = [...chars];
+        copy[i] = chars[i] === "0" ? "O" : "0";
+        candidates.add(copy.join(""));
+    }
+
+    return [...candidates];
+}
+
+const MAX_O0_RETRIES = 6;
+
+function getO0RetryCandidates(reference: string, source: ReceiptDetection["source"]): string[] {
+    if (source !== "local-ocr") return [reference];
+    const candidates = generateO0Candidates(reference);
+    return candidates.length > MAX_O0_RETRIES
+        ? candidates.slice(0, MAX_O0_RETRIES)
+        : candidates;
+}
+
 // ─── Local OCR Runner ──────────────────────────────────────────────────────────
 
 async function detectWithLocalOcr(filePath: string): Promise<ReceiptDetection | null> {
@@ -265,6 +332,19 @@ async function detectWithLocalOcr(filePath: string): Promise<ReceiptDetection | 
         return detectFromText(text);
     } catch (error) {
         logger.error("Local OCR failed", {
+            error: error instanceof Error ? error.message : String(error)
+        });
+        return null;
+    }
+}
+
+async function extractPhoneFromImage(filePath: string): Promise<string | null> {
+    try {
+        const ocrResult = await Tesseract.recognize(filePath, "eng");
+        const text = ocrResult.data?.text || "";
+        return extractEthiopianPhone(text);
+    } catch (error) {
+        logger.warn("Phone OCR extraction failed", {
             error: error instanceof Error ? error.message : String(error)
         });
         return null;
@@ -305,7 +385,9 @@ You are an Ethiopian payment receipt analyzer. Analyze the uploaded image and id
 4. **Dashen Bank** — Two variants:
    - Formal receipt: Blue "Dashen Bank Electronic Receipt" header, structured tables
    - App receipt: Green checkmark, "Successfully paid!", Dashen Bank watermark
-   - Reference label: "Transaction ID" (16-digit numeric) or "FT Ref" or "Transaction reference"
+    - If the receipt is the "Electronic Receipt" style, use "Transaction Reference"
+    - If the receipt shows an "FT Ref" label, use "FT Ref"
+    - Use "Transaction ID" only if neither Transaction Reference nor FT Ref is visible
    - No extra params needed
 
 5. **Bank of Abyssinia** — Golden/yellow theme, "Bank of Abyssinia" / "አቢሲንያ ባንክ":
@@ -322,6 +404,7 @@ You are an Ethiopian payment receipt analyzer. Analyze the uploaded image and id
 ## Instructions:
 - Identify the bank based on visual appearance, logos, colors, and text
 - Extract the primary reference/ID used for verification
+- For Dashen, use Transaction Reference for Electronic Receipt style; use FT Ref when that label is present; only use Transaction ID if neither appears
 - If you can see partial account numbers (masked like 1****2751), extract visible digits
 - Return ONLY valid JSON
 
@@ -362,13 +445,35 @@ You are an Ethiopian payment receipt analyzer. Analyze the uploaded image and id
 
         const result = JSON.parse(messageContent) as {
             bank?: ReceiptType;
-            reference?: string;
-            referenceLabel?: string;
+            reference?: string | Record<string, string>;
+            referenceLabel?: string | Record<string, string>;
             confidence?: "high" | "medium" | "low";
             partialAccountDigits?: string;
         };
 
-        if (!result.bank || !result.reference) {
+        let orderId: string | undefined;
+        let receiptNumber: string | undefined;
+        let reference: string | undefined;
+        let referenceLabel = "Reference";
+
+        if (typeof result.reference === "string") {
+            reference = result.reference.trim();
+        } else if (result.reference && typeof result.reference === "object") {
+            const refObj = result.reference as Record<string, string>;
+            orderId = sanitizeReferenceCandidate(refObj.orderID || refObj.orderId || refObj.order_id);
+            receiptNumber = sanitizeReferenceCandidate(refObj.receiptNumber || refObj.receipt_number);
+            reference = orderId || receiptNumber;
+        }
+
+        if (typeof result.referenceLabel === "string") {
+            referenceLabel = result.referenceLabel;
+        } else if (result.referenceLabel && typeof result.referenceLabel === "object") {
+            const labelObj = result.referenceLabel as Record<string, string>;
+            if (orderId) referenceLabel = labelObj.orderID || labelObj.orderId || labelObj.order_id || "Order ID";
+            if (!orderId && receiptNumber) referenceLabel = labelObj.receiptNumber || labelObj.receipt_number || "Receipt Number";
+        }
+
+        if (!result.bank || !reference) {
             return null;
         }
 
@@ -380,10 +485,12 @@ You are an Ethiopian payment receipt analyzer. Analyze the uploaded image and id
 
         return {
             bank: result.bank,
-            reference: result.reference,
-            referenceLabel: result.referenceLabel || "Reference",
+            reference,
+            referenceLabel,
             confidence: result.confidence || "medium",
             source: "mistral",
+            orderId,
+            receiptNumber,
             missingParams: missingParams.length > 0 ? missingParams : undefined
         };
     } catch (error) {
@@ -422,6 +529,7 @@ export const verifyImageHandler = [
     async (req: Request, res: Response): Promise<void> => {
         try {
             const autoVerify = req.query.autoVerify === "true";
+            const debugVision = req.query.debugVision === "true" || process.env.IMAGE_VERIFY_DEBUG_MISTRAL === "true";
             // Accept optional extra params from the form data
             // Accept full account number and splice it later per-bank
             const accountNumber = req.body?.accountNumber || req.body?.suffix || req.body?.accountSuffix || null;
@@ -447,8 +555,14 @@ export const verifyImageHandler = [
 
             // Two-stage detection: fast local OCR first, then Mistral Vision fallback
             let result = await detectWithLocalOcr(filePath);
+            let visionResult: ReceiptDetection | null = null;
             if (!result) {
                 result = await detectWithMistral(base64Image);
+            } else if (result.bank === "dashen" || result.bank === "telebirr") {
+                visionResult = await detectWithMistral(base64Image);
+                if (visionResult && visionResult.bank === result.bank && visionResult.reference) {
+                    result = visionResult;
+                }
             }
 
             if (!result) {
@@ -460,6 +574,29 @@ export const verifyImageHandler = [
                 return;
             }
 
+            if (result.bank === "cbe_birr" && !result.extraParams?.phoneNumber) {
+                const phoneFromOcr = await extractPhoneFromImage(filePath);
+                if (phoneFromOcr) {
+                    result.extraParams = { ...(result.extraParams || {}), phoneNumber: phoneFromOcr };
+                    if (result.missingParams) {
+                        result.missingParams = result.missingParams.filter(p => p !== "phoneNumber");
+                        if (!result.missingParams.length) result.missingParams = undefined;
+                    }
+                }
+            }
+
+            if (debugVision && !visionResult) {
+                visionResult = result.source === "mistral" ? result : await detectWithMistral(base64Image);
+            }
+            if (visionResult && debugVision) {
+                logger.info("Mistral debug result", {
+                    bank: visionResult.bank,
+                    reference: visionResult.reference,
+                    confidence: visionResult.confidence,
+                    source: visionResult.source,
+                });
+            }
+
             logger.info("Receipt detected", {
                 bank: result.bank,
                 reference: result.reference,
@@ -468,18 +605,34 @@ export const verifyImageHandler = [
             });
 
             // Merge user-supplied params with detection
-            const suppliedParams = { accountNumber, phoneNumber };
+            const suppliedParams = {
+                accountNumber,
+                phoneNumber: phoneNumber || result?.extraParams?.phoneNumber || null
+            };
 
             // If not auto-verifying, return extraction results with routing info
             if (!autoVerify) {
                 const bankInfo = BANK_PARAM_INFO[result.bank];
                 const forwardEndpoint = getForwardEndpoint(result.bank);
+                const visionPayload = debugVision && visionResult ? {
+                    visionBank: visionResult.bank,
+                    visionSource: visionResult.source,
+                    visionReference: visionResult.reference,
+                    visionReferenceLabel: visionResult.referenceLabel,
+                    visionConfidence: visionResult.confidence,
+                    visionOrderId: visionResult.orderId,
+                    visionReceiptNumber: visionResult.receiptNumber,
+                } : {};
                 res.json({
                     bank: result.bank,
                     source: result.source,
                     confidence: result.confidence,
                     reference: result.reference || null,
                     referenceLabel: result.referenceLabel,
+                    orderId: result.orderId,
+                    receiptNumber: result.receiptNumber,
+                    extractedPhoneNumber: result.extraParams?.phoneNumber,
+                    ...visionPayload,
                     forward_to: forwardEndpoint,
                     requiredParams: bankInfo.requiredExtra.length > 0
                         ? bankInfo.paramDescriptions
@@ -558,7 +711,20 @@ async function routeToVerifier(
         switch (bank) {
             // ── Telebirr: no extra params needed ──
             case "telebirr": {
-                const data = await verifyTelebirr(reference);
+                const referencesToTry = getO0RetryCandidates(reference, source);
+                let usedReference = reference;
+                let data = await verifyTelebirr(usedReference);
+
+                for (const candidate of referencesToTry) {
+                    if (candidate === usedReference) continue;
+                    if (data) break;
+                    const retry = await verifyTelebirr(candidate);
+                    if (retry) {
+                        usedReference = candidate;
+                        data = retry;
+                        break;
+                    }
+                }
                 if (!data) {
                     res.status(404).json({ error: "Telebirr receipt not found or could not be processed." });
                     return;
@@ -566,7 +732,7 @@ async function routeToVerifier(
                 // Path B: AI fraud scoring
                 const fraudResult = await scoreFraudRisk({
                     bank: "telebirr",
-                    reference,
+                    reference: usedReference,
                     amount: parseFloat(data.settledAmount?.replace(/[^\d.]/g, '') || '0'),
                     payer_name: data.payerName,
                     payer_account: data.payerTelebirrNo,
@@ -579,7 +745,7 @@ async function routeToVerifier(
                     verified: true,
                     bank: "telebirr",
                     source,
-                    reference,
+                    reference: usedReference,
                     details: data,
                     fraudAnalysis: fraudResult,
                 });
@@ -588,11 +754,25 @@ async function routeToVerifier(
 
             // ── Dashen: no extra params needed ──
             case "dashen": {
-                const data = await verifyDashen(reference);
+                const referencesToTry = getO0RetryCandidates(reference, source);
+
+                let usedReference = reference;
+                let data = await verifyDashen(usedReference);
+
+                for (const candidate of referencesToTry) {
+                    if (candidate === usedReference) continue;
+                    if (data.success) break;
+                    const retry = await verifyDashen(candidate);
+                    if (retry.success) {
+                        usedReference = candidate;
+                        data = retry;
+                        break;
+                    }
+                }
                 // Path B: AI fraud scoring
                 const fraudResult = data.success ? await scoreFraudRisk({
                     bank: "dashen",
-                    reference,
+                    reference: usedReference,
                     amount: data.transactionAmount || data.total || 0,
                     payer_name: data.senderName || '',
                     receiver_name: data.receiverName || '',
@@ -602,7 +782,7 @@ async function routeToVerifier(
                     verified: data.success,
                     bank: "dashen",
                     source,
-                    reference,
+                    reference: usedReference,
                     details: data,
                     fraudAnalysis: fraudResult,
                     suggestion: data.success ? undefined : "Verification failed. Confirm the reference and try /verify-dashen directly."
@@ -612,11 +792,24 @@ async function routeToVerifier(
 
             // ── M-Pesa: no extra params needed ──
             case "mpesa": {
-                const data = await verifyMpesa(reference);
+                const referencesToTry = getO0RetryCandidates(reference, source);
+                let usedReference = reference;
+                let data = await verifyMpesa(usedReference);
+
+                for (const candidate of referencesToTry) {
+                    if (candidate === usedReference) continue;
+                    if (data.success) break;
+                    const retry = await verifyMpesa(candidate);
+                    if (retry.success) {
+                        usedReference = candidate;
+                        data = retry;
+                        break;
+                    }
+                }
                 // Path B: AI fraud scoring
                 const fraudResult = data.success ? await scoreFraudRisk({
                     bank: "mpesa",
-                    reference,
+                    reference: usedReference,
                     amount: data.amount || 0,
                     payer_name: data.payerName || '',
                     payer_account: data.payerAccount || '',
@@ -628,7 +821,7 @@ async function routeToVerifier(
                     verified: data.success,
                     bank: "mpesa",
                     source,
-                    reference,
+                    reference: usedReference,
                     details: data,
                     fraudAnalysis: fraudResult,
                     suggestion: data.success ? undefined : "Verification failed. Confirm the receipt number and try /verify-mpesa directly."
@@ -769,12 +962,27 @@ async function routeToVerifier(
                     return;
                 }
 
-                const data = await verifyCBEBirr(reference, suppliedParams.phoneNumber);
-                const cbeBirrVerified = !("success" in data && data.success === false);
+                const referencesToTry = getO0RetryCandidates(reference, source);
+                let usedReference = reference;
+                let data = await verifyCBEBirr(usedReference, suppliedParams.phoneNumber);
+                let cbeBirrVerified = !("success" in data && data.success === false);
+
+                for (const candidate of referencesToTry) {
+                    if (candidate === usedReference) continue;
+                    if (cbeBirrVerified) break;
+                    const retry = await verifyCBEBirr(candidate, suppliedParams.phoneNumber);
+                    const retryVerified = !("success" in retry && retry.success === false);
+                    if (retryVerified) {
+                        usedReference = candidate;
+                        data = retry;
+                        cbeBirrVerified = retryVerified;
+                        break;
+                    }
+                }
                 // Path B: AI fraud scoring
                 const cbeBirrF = cbeBirrVerified ? await scoreFraudRisk({
                     bank: "cbe_birr",
-                    reference,
+                    reference: usedReference,
                     amount: (data as any)?.amount || 0,
                     payer_name: (data as any)?.payerName || '',
                     phone_number: suppliedParams.phoneNumber,
@@ -783,7 +991,7 @@ async function routeToVerifier(
                     verified: cbeBirrVerified,
                     bank: "cbe_birr",
                     source,
-                    reference,
+                    reference: usedReference,
                     details: data,
                     fraudAnalysis: cbeBirrF,
                 });

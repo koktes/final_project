@@ -27,7 +27,10 @@ export async function verifyMpesa(
 ): Promise<MpesaVerifyResult> {
     const primaryUrl = `https://m-pesabusiness.safaricom.et/api/receipt/getReceipt?trxNo=${transactionId}`;
     const proxyKey = process.env.MPESA_PROXY_KEY || '';
-    const fallbackUrl = `https://leul.et/mpesa.php?reference=${transactionId}&key=${proxyKey}`;
+    const hasProxyKey = proxyKey.trim().length > 0;
+    const fallbackUrl = hasProxyKey
+        ? `https://leul.et/mpesa.php?reference=${transactionId}&key=${proxyKey}`
+        : null;
     const skipPrimary = process.env.SKIP_PRIMARY_VERIFICATION === "true";
 
     async function fetchFromUrl(url: string, source: string): Promise<any> {
@@ -58,6 +61,13 @@ export async function verifyMpesa(
 
         // Try proxy if primary failed, skipped or returned a bad responseCode
         if (!data || data.responseCode !== "0" || !data.base64Data) {
+            if (!fallbackUrl) {
+                return {
+                    success: false,
+                    error: "M-Pesa primary verification failed or returned no receipt data."
+                };
+            }
+
             try {
                 data = await fetchFromUrl(fallbackUrl, "fallback proxy");
             } catch (err: any) {
@@ -88,6 +98,11 @@ export async function verifyMpesa(
                     error: `Failed to process PDF data: ${err.message}`
                 };
             }
+        } else if (data.responseCode === "401") {
+            return {
+                success: false,
+                error: "M-Pesa proxy rejected the request. Check MPESA_PROXY_KEY and the proxy server configuration."
+            };
         } else {
             logger.warn(`⚠️ M-Pesa returned unsuccessful code or missing data: ${JSON.stringify(data)}`);
             return {

@@ -35,9 +35,41 @@ function getRiskLabel(status: string): string {
 }
 
 export default function VerificationResult({ data, bank }: Props) {
-  const isSuccess = data?.success !== false && !data?.error
-  const receiptData = data?.data || data?.details || data
+  const detailsPayload = data?.data || data?.details || null
+  const detailsObject = detailsPayload && typeof detailsPayload === 'object'
+    ? detailsPayload as Record<string, unknown>
+    : null
+  const verifiedFlag = typeof data?.verified === 'boolean' ? data.verified : undefined
+  const detailsSuccess = typeof detailsObject?.success === 'boolean'
+    ? detailsObject?.success
+    : undefined
+
+  const isSuccess = data?.error
+    ? false
+    : typeof data?.success === 'boolean'
+      ? data.success
+      : typeof verifiedFlag === 'boolean'
+        ? verifiedFlag
+        : typeof detailsSuccess === 'boolean'
+          ? detailsSuccess
+          : true
+
+  const metaFields: Record<string, unknown> = {}
+  if (typeof data?.reference === 'string' && data.reference) metaFields.reference = data.reference
+  if (typeof data?.source === 'string' && data.source) metaFields.source = data.source
+  if (typeof data?.confidence === 'string' && data.confidence) metaFields.confidence = data.confidence
+
+  const receiptData = detailsObject
+    ? { ...metaFields, ...detailsObject }
+    : Object.keys(metaFields).length > 0
+      ? metaFields
+      : data
   const fraud: FraudAnalysis | null = data?.fraudAnalysis || null
+  const verificationNote = typeof verifiedFlag === 'boolean'
+    ? (verifiedFlag
+        ? 'Receipt correctly verified against the bank records.'
+        : 'Receipt detected, but verification failed. Check the reference and required inputs.')
+    : null
 
   return (
     <div className={`vr-card ${isSuccess ? 'vr-success' : 'vr-failure'}`} style={{ '--bcolor': bank.color } as React.CSSProperties}>
@@ -53,6 +85,12 @@ export default function VerificationResult({ data, bank }: Props) {
         </div>
       </div>
 
+      {verificationNote && (
+        <div className={`vr-note ${verifiedFlag ? 'success' : 'failure'}`}>
+          {verificationNote}
+        </div>
+      )}
+
       {data?.error && (
         <div className="vr-error-msg">{typeof data.error === 'string' ? data.error : JSON.stringify(data.error)}</div>
       )}
@@ -60,7 +98,7 @@ export default function VerificationResult({ data, bank }: Props) {
       {receiptData && typeof receiptData === 'object' && (
         <div className="vr-details">
           {Object.entries(receiptData).map(([key, value]) => {
-            if (value === null || value === undefined || value === '' || key === 'success' || key === 'error') return null
+            if (value === null || value === undefined || value === '' || key === 'success' || key === 'error' || key === 'verified') return null
             if (typeof value === 'object') return null
 
             const label = key
