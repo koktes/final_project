@@ -1,5 +1,7 @@
 import { Router, Request, Response } from 'express';
 import { verifyCBEBirr } from '../services/verifyCBEBirr';
+import { logVerification } from '../services/verificationRecords';
+import { AuthenticatedRequest } from '../middleware/jwtAuth';
 import logger from '../utils/logger';
 
 const router = Router();
@@ -47,6 +49,22 @@ router.post('/', async (req: Request, res: Response) => {
 
     // Call the verification service
     const result = await verifyCBEBirr(receiptNumber, phoneNumber, upstreamToken);
+
+    const authReq = req as AuthenticatedRequest;
+    const isSuccess = !('success' in result && result.success === false);
+    if (authReq.user?.id) {
+      await logVerification({
+        userId: authReq.user.id,
+        bank: 'cbe_birr',
+        method: 'MANUAL',
+        endpoint: '/verify-cbebirr',
+        requestPayload: req.body,
+        responsePayload: result,
+        status: isSuccess ? 'SUCCESS' : 'FAILED',
+        reference: receiptNumber,
+        error: isSuccess ? null : (result as { error?: string }).error || 'Verification failed'
+      });
+    }
 
     // Return the result
     res.json(result);
@@ -96,6 +114,22 @@ router.get('/', async (req: Request, res: Response) => {
 
     // Call the verification service
     const result = await verifyCBEBirr(receiptNumber, phoneNumber, upstreamToken);
+
+    const authReq = req as AuthenticatedRequest;
+    const isSuccess = !('success' in result && result.success === false);
+    if (authReq.user?.id) {
+      await logVerification({
+        userId: authReq.user.id,
+        bank: 'cbe_birr',
+        method: 'MANUAL',
+        endpoint: '/verify-cbebirr',
+        requestPayload: req.query as Record<string, string>,
+        responsePayload: result,
+        status: isSuccess ? 'SUCCESS' : 'FAILED',
+        reference: receiptNumber,
+        error: isSuccess ? null : (result as { error?: string }).error || 'Verification failed'
+      });
+    }
 
     // Return the result
     res.json(result);

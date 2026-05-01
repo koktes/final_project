@@ -47,11 +47,14 @@ model User {
   email         String?   @unique
   emailVerified DateTime?
   image         String?
+  passwordHash  String?
   accounts      Account[]
   sessions      Session[]
   ApiKey        ApiKey[]
+  verificationRecords VerificationRecord[]
   role          Role      @default(USER)
   createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
 }
 
 enum Role {
@@ -70,6 +73,19 @@ model VerificationToken {
 enum ApiTier {
   FREE
   PAID
+}
+
+enum VerificationStatus {
+  SUCCESS
+  FAILED
+}
+
+enum VerificationMethod {
+  API
+  MANUAL
+  IMAGE
+  BULK
+  RETRY
 }
 
 model ApiKey {
@@ -107,4 +123,33 @@ model UsageLog {
   @@index([apiKeyId])
   @@index([endpoint])
   @@index([createdAt])
+}
+
+model VerificationRecord {
+  id              String             @id @default(cuid())
+  userId          String
+  user            User               @relation(fields: [userId], references: [id], onDelete: Cascade)
+  bank            String
+  reference       String?
+  status          VerificationStatus
+  method          VerificationMethod
+  endpoint        String?
+  imagePath       String?
+  requestPayload  Json?
+  responsePayload Json?
+  amount          Float?
+  payerName       String?
+  receiverName    String?
+  phoneNumber     String?
+  error           String?
+  retryCount      Int                @default(0)
+  lastRetriedAt   DateTime?
+  createdAt       DateTime           @default(now())
+  updatedAt       DateTime           @updatedAt
+
+  @@index([userId])
+  @@index([createdAt])
+  @@index([status])
+  @@index([bank])
+  @@index([reference])
 }

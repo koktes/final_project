@@ -119,6 +119,11 @@
   color: var(--success);
 }
 
+.bulk-icon {
+  background: var(--warning-dim);
+  color: var(--warning);
+}
+
 .action-card h3 {
   font-size: 18px;
   font-weight: 600;

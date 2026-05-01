@@ -12,10 +12,14 @@ import abyssiniaRouter from './routes/verifyAbyssiniaRoute';
 import cbebirrRouter from './routes/verifyCBEBirrRoute';
 import mpesaRouter from './routes/verifyMpesaRoute';
 import universalRouter from './routes/verifyUniversalRoute';
+import historyRouter from './routes/historyRoute';
+import bulkRouter from './routes/bulkRoute';
 import logger from './utils/logger';
 import { verifyImageHandler } from "./services/verifyImage";
 import { requestLogger, initializeStatsCache } from './middleware/requestLogger';
+import { authenticateJwt } from './middleware/jwtAuth';
 import { prisma, disconnectPrisma } from './utils/prisma';
+import authRouter from './routes/authRoute';
 
 const app = express();
 const PORT = process.env.PORT || 3001;
@@ -38,9 +42,6 @@ prisma.$connect()
 app.use(cors());
 app.use(express.json());
 
-// Add request logging middleware
-app.use(requestLogger);
-
 // Error handling for JSON parsing - properly typed as an error handler
 const jsonErrorHandler: ErrorRequestHandler = async (err, req, res, next): Promise<void> => {
     if (err instanceof SyntaxError && 'body' in err) {
@@ -53,6 +54,15 @@ const jsonErrorHandler: ErrorRequestHandler = async (err, req, res, next): Promi
 
 app.use(jsonErrorHandler);
 
+// Auth routes (public)
+app.use('/auth', authRouter);
+
+// JWT auth for all protected routes
+app.use(authenticateJwt);
+
+// Add request logging middleware
+app.use(requestLogger);
+
 // ✅ Attach routers to paths
 app.use('/verify-cbe', CBERouter);
 app.use('/verify-telebirr', telebirrRouter);
@@ -62,6 +72,8 @@ app.use('/verify-cbebirr', cbebirrRouter);
 app.use('/verify-mpesa', mpesaRouter);
 app.post('/verify-image', verifyImageHandler);
 app.use('/verify', universalRouter);
+app.use('/history', historyRouter);
+app.use('/bulk', bulkRouter);
 
 
 // Health check endpoint

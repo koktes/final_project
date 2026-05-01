@@ -61,6 +61,12 @@ export default function Dashboard() {
             <p>Upload a receipt screenshot and let AI extract & verify automatically</p>
             <span className="action-arrow">→</span>
           </button>
+          <button className="action-card" onClick={() => navigate('/verify/bulk-images')}>
+            <div className="action-icon bulk-icon">▤</div>
+            <h3>Bulk Image Import</h3>
+            <p>Import multiple receipt images, process them in sequence, and review the outcomes</p>
+            <span className="action-arrow">→</span>
+          </button>
         </div>
       </section>
 

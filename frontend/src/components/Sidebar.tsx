@@ -1,15 +1,22 @@
 import { NavLink } from 'react-router-dom'
+import type { AuthUser } from '../api/client'
 import './Sidebar.css'
 
 const navItems = [
   { path: '/', label: 'Dashboard', icon: '◈' },
   { path: '/verify', label: 'Manual Verify', icon: '⬡' },
   { path: '/verify/image', label: 'Image Verify', icon: '◐' },
-  { path: '/history', label: 'History', icon: '◷', badge: 'Soon' },
-  { path: '/reports', label: 'Reports', icon: '▦', badge: 'Soon' },
+  { path: '/verify/bulk-images', label: 'Bulk Images', icon: '▤' },
+  { path: '/history', label: 'History', icon: '◷' },
+  { path: '/reports', label: 'Reports', icon: '▦' },
 ]
 
-export default function Sidebar() {
+interface SidebarProps {
+  user: AuthUser
+  onLogout: () => void
+}
+
+export default function Sidebar({ user, onLogout }: SidebarProps) {
   return (
     <aside className="sidebar">
       <div className="sidebar-brand">
@@ -32,16 +39,20 @@ export default function Sidebar() {
           >
             <span className="nav-icon">{item.icon}</span>
             <span className="nav-label">{item.label}</span>
-            {item.badge && <span className="nav-badge">{item.badge}</span>}
           </NavLink>
         ))}
       </nav>
 
       <div className="sidebar-footer">
+        <div className="sidebar-user">
+          <span className="sidebar-user-label">Signed in as</span>
+          <span className="sidebar-user-email">{user.email || user.name || 'User'}</span>
+        </div>
         <div className="sidebar-api-status">
           <span className="status-dot"></span>
           <span>API Connected</span>
         </div>
+        <button className="sidebar-logout-btn" onClick={onLogout}>Logout</button>
       </div>
     </aside>
   )

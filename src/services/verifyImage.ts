@@ -1,9 +1,12 @@
 import { Mistral } from "@mistralai/mistralai";
 import fs from "fs";
+import path from "path";
 import { Request, Response } from "express";
 import multer from "multer";
 import Tesseract from "tesseract.js";
 import logger from "../utils/logger";
+import { AuthenticatedRequest } from '../middleware/jwtAuth';
+import { logVerification } from './verificationRecords';
 import { verifyTelebirr } from "./verifyTelebirr";
 import { verifyCBE } from "./verifyCBE";
 import { verifyDashen } from "./verifyDashen";
@@ -56,10 +59,10 @@ function detectFromText(rawText: string): ReceiptDetection | null {
     const originalText = rawText; // Keep original case for some patterns
 
     // Keyword sets for each bank
-    const cbeKeywords = /COMMERCIAL\s+BANK\s+OF\s+ETHIOPIA|VAT\s+INVOICE\s*\/?\s*CUSTOMER\s+RECEIPT|REFERENCE\s+NO\.?\s*\(VAT/i.test(text);
+    const cbeKeywords = /VAT\s+INVOICE\s*\/?\s*CUSTOMER\s+RECEIPT|REFERENCE\s+NO\.?\s*\(VAT/i.test(text);
     const cbeBirrKeywords = /CBEBIR|CBE\s*BIR|ORDER\s+ID/i.test(text); // More flexible: "CBEBir" (OCR drops last r)
     const telebirrKeywords = /TELEBIR|ETHIO\s*TELECOM|PAYER\s+TELEBIR/i.test(text); // More flexible: "telebir" without trailing r
-    const dashenKeywords = /DASHEN\s*BANK|DASHEN\s*SUPERAPP|SUCCESSFULLY\s+PAID/i.test(text);
+    const dashenKeywords = /DASHEN\s*BANK|DASHEN\s*SUPERAPP|SUCCESSFULLY\s+PAID|FT\s*REF/i.test(text);
     const abyssiniaKeywords = /BANK\s+OF\s+ABYSSINIA|ABYSETAA|ABYSSINIA/i.test(text);
     const mpesaKeywords = /M[\-\s]*PESA|SAFARICOM|MOBILE\s+FINANCIAL\s+SERVICES/i.test(text);
 
@@ -143,15 +146,12 @@ function detectFromText(rawText: string): ReceiptDetection | null {
 
     // ── Dashen ──
     if (dashenKeywords) {
-        const txRefMatch = text.match(/TRANSACTION\s+REFERENCE\s*:?\s*([A-Z0-9]{14,20})/);
-        const ftRefMatch = text.match(/FT\s*REF\s*:?\s*([A-Z0-9]{12,20})/);
-        const txIdMatch = text.match(/TRANSACTION\s+ID\s*:?\s*(\d{14,18})/);
-        const ref = txRefMatch?.[1] || ftRefMatch?.[1] || txIdMatch?.[1];
-        if (ref) {
+        const ftRefMatch = text.match(/FT\s*REF\s*:?\s*([A-Z0-9]{10,20})/);
+        if (ftRefMatch?.[1]) {
             return {
                 bank: "dashen",
-                reference: ref,
-                referenceLabel: txRefMatch ? "Transaction Reference" : (ftRefMatch ? "FT Ref" : "Transaction ID"),
+                reference: ftRefMatch[1],
+                referenceLabel: "FT Ref",
                 confidence: "high",
                 source: "local-ocr"
             };
@@ -527,6 +527,7 @@ export const verifyImageHandler = [
     upload.single("file"),
 
     async (req: Request, res: Response): Promise<void> => {
+        let persistedImagePath: string | null = null;
         try {
             const autoVerify = req.query.autoVerify === "true";
             const debugVision = req.query.debugVision === "true" || process.env.IMAGE_VERIFY_DEBUG_MISTRAL === "true";
@@ -541,6 +542,9 @@ export const verifyImageHandler = [
                 return;
             }
 
+            const tempPath = req.file.path;
+            const authReq = req as AuthenticatedRequest;
+
             if (!SUPPORTED_IMAGE_MIME_TYPES.has(req.file.mimetype)) {
                 res.status(400).json({
                     error: "Unsupported image format",
@@ -549,7 +553,7 @@ export const verifyImageHandler = [
                 return;
             }
 
-            const filePath = req.file.path;
+            const filePath = tempPath;
             const imageBuffer = fs.readFileSync(filePath);
             const base64Image = imageBuffer.toString("base64");
 
@@ -657,8 +661,16 @@ export const verifyImageHandler = [
                 return;
             }
 
+            if (autoVerify && authReq.user?.id) {
+                try {
+                    persistedImagePath = persistUploadedImage(tempPath, req.file.originalname, req.file.mimetype);
+                } catch (persistError) {
+                    logger.warn('Failed to persist uploaded receipt image', persistError);
+                }
+            }
+
             // ── Auto-verify: route to the correct verifier ──
-            await routeToVerifier(result, suppliedParams, req, res);
+            await routeToVerifier(result, suppliedParams, req, res, persistedImagePath);
 
         } catch (err) {
             const message = err instanceof Error ? err.message : String(err);
@@ -670,7 +682,7 @@ export const verifyImageHandler = [
                 details: message
             });
         } finally {
-            if (req.file?.path) {
+            if (req.file?.path && !persistedImagePath) {
                 try {
                     fs.unlinkSync(req.file.path);
                     logger.debug("Temp file deleted", { path: req.file.path });
@@ -699,11 +711,75 @@ function getForwardEndpoint(bank: ReceiptType): string {
     return map[bank];
 }
 
+function getImageExtension(originalName: string, mimeType: string): string {
+    const mimeMap: Record<string, string> = {
+        "image/jpeg": "jpg",
+        "image/jpg": "jpg",
+        "image/png": "png",
+        "image/webp": "webp",
+        "image/bmp": "bmp",
+        "image/tiff": "tiff"
+    };
+
+    if (mimeMap[mimeType]) return mimeMap[mimeType];
+
+    const ext = path.extname(originalName || "").replace(".", "").toLowerCase();
+    if (ext && ext.length <= 5) return ext;
+
+    return "jpg";
+}
+
+function persistUploadedImage(tempPath: string, originalName: string, mimeType: string): string {
+    const uploadsDir = path.join(process.cwd(), "uploads", "history");
+    fs.mkdirSync(uploadsDir, { recursive: true });
+
+    const ext = getImageExtension(originalName, mimeType);
+    const stamp = Date.now();
+    const random = Math.random().toString(36).slice(2, 8);
+    const filename = `receipt-${stamp}-${random}.${ext}`;
+    const targetPath = path.join(uploadsDir, filename);
+
+    fs.renameSync(tempPath, targetPath);
+    return path.relative(process.cwd(), targetPath).replace(/\\/g, "/");
+}
+
+async function maybeLogImageVerification(
+    req: Request,
+    bank: string,
+    reference: string,
+    requestPayload: Record<string, unknown>,
+    responsePayload: Record<string, unknown>,
+    imagePath: string | null,
+    verified: boolean,
+    error?: string
+): Promise<void> {
+    const authReq = req as AuthenticatedRequest;
+    if (!authReq.user?.id) return;
+
+    try {
+        await logVerification({
+            userId: authReq.user.id,
+            bank,
+            method: 'IMAGE',
+            endpoint: '/verify-image',
+            requestPayload,
+            responsePayload,
+            status: verified ? 'SUCCESS' : 'FAILED',
+            reference,
+            imagePath,
+            error: verified ? null : error || 'Verification failed'
+        });
+    } catch (logError) {
+        logger.warn('Failed to log image verification record', logError);
+    }
+}
+
 async function routeToVerifier(
     detection: ReceiptDetection,
     suppliedParams: { accountNumber: string | null; phoneNumber: string | null },
     req: Request,
-    res: Response
+    res: Response,
+    imagePath: string | null
 ): Promise<void> {
     const { bank, reference, source } = detection;
 
@@ -749,6 +825,15 @@ async function routeToVerifier(
                     details: data,
                     fraudAnalysis: fraudResult,
                 });
+                await maybeLogImageVerification(
+                    req,
+                    'telebirr',
+                    usedReference,
+                    { source, suppliedParams },
+                    { details: data, fraudAnalysis: fraudResult },
+                    imagePath,
+                    true
+                );
                 return;
             }
 
@@ -778,7 +863,7 @@ async function routeToVerifier(
                     receiver_name: data.receiverName || '',
                     transaction_date: data.transactionDate?.toISOString() || '',
                 }) : null;
-                res.json({
+                const payload = {
                     verified: data.success,
                     bank: "dashen",
                     source,
@@ -786,7 +871,18 @@ async function routeToVerifier(
                     details: data,
                     fraudAnalysis: fraudResult,
                     suggestion: data.success ? undefined : "Verification failed. Confirm the reference and try /verify-dashen directly."
-                });
+                };
+                res.json(payload);
+                await maybeLogImageVerification(
+                    req,
+                    'dashen',
+                    usedReference,
+                    { source, suppliedParams },
+                    payload,
+                    imagePath,
+                    data.success,
+                    data.success ? undefined : data.error
+                );
                 return;
             }
 
@@ -817,7 +913,7 @@ async function routeToVerifier(
                     receiver_account: data.receiverAccount || '',
                     transaction_date: data.paymentDate?.toISOString() || '',
                 }) : null;
-                res.json({
+                const payload = {
                     verified: data.success,
                     bank: "mpesa",
                     source,
@@ -825,7 +921,18 @@ async function routeToVerifier(
                     details: data,
                     fraudAnalysis: fraudResult,
                     suggestion: data.success ? undefined : "Verification failed. Confirm the receipt number and try /verify-mpesa directly."
-                });
+                };
+                res.json(payload);
+                await maybeLogImageVerification(
+                    req,
+                    'mpesa',
+                    usedReference,
+                    { source, suppliedParams },
+                    payload,
+                    imagePath,
+                    data.success,
+                    data.success ? undefined : data.error
+                );
                 return;
             }
 
@@ -885,7 +992,7 @@ async function routeToVerifier(
                     transaction_date: data.date?.toISOString() || '',
                     suffix: cbeAccountSuffix,
                 }) : null;
-                res.json({
+                const payload = {
                     verified: data.success,
                     bank: "cbe",
                     source,
@@ -893,7 +1000,18 @@ async function routeToVerifier(
                     details: data,
                     fraudAnalysis: cbeF,
                     suggestion: data.success ? undefined : "Verification failed. Confirm the account number and reference, then try /verify-cbe directly."
-                });
+                };
+                res.json(payload);
+                await maybeLogImageVerification(
+                    req,
+                    'cbe',
+                    usedReference,
+                    { source, suppliedParams },
+                    payload,
+                    imagePath,
+                    data.success,
+                    data.success ? undefined : data.error
+                );
                 return;
             }
 
@@ -934,7 +1052,7 @@ async function routeToVerifier(
                     transaction_date: data.date?.toISOString() || '',
                     suffix: abySuffix,
                 }) : null;
-                res.json({
+                const payload = {
                     verified: data.success,
                     bank: "abyssinia",
                     source,
@@ -942,7 +1060,18 @@ async function routeToVerifier(
                     details: data,
                     fraudAnalysis: abyF,
                     suggestion: data.success ? undefined : "Verification failed. Confirm the account number and reference, then try /verify-abyssinia directly."
-                });
+                };
+                res.json(payload);
+                await maybeLogImageVerification(
+                    req,
+                    'abyssinia',
+                    reference,
+                    { source, suppliedParams },
+                    payload,
+                    imagePath,
+                    data.success,
+                    data.success ? undefined : data.error
+                );
                 return;
             }
 
@@ -987,14 +1116,25 @@ async function routeToVerifier(
                     payer_name: (data as any)?.payerName || '',
                     phone_number: suppliedParams.phoneNumber,
                 }) : null;
-                res.json({
+                const payload = {
                     verified: cbeBirrVerified,
                     bank: "cbe_birr",
                     source,
                     reference: usedReference,
                     details: data,
                     fraudAnalysis: cbeBirrF,
-                });
+                };
+                res.json(payload);
+                await maybeLogImageVerification(
+                    req,
+                    'cbe_birr',
+                    usedReference,
+                    { source, suppliedParams },
+                    payload,
+                    imagePath,
+                    cbeBirrVerified,
+                    cbeBirrVerified ? undefined : (data as { error?: string }).error
+                );
                 return;
             }
 

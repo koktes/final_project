@@ -1,5 +1,7 @@
 import { Router, Request, Response } from 'express';
 import { verifyAbyssinia } from '../services/verifyAbyssinia';
+import { logVerification } from '../services/verificationRecords';
+import { AuthenticatedRequest } from '../middleware/jwtAuth';
 import logger from '../utils/logger';
 
 const router = Router();
@@ -47,6 +49,21 @@ router.post('/', async (req: Request, res: Response): Promise<void> => {
         
         // Call the verification service
         const result = await verifyAbyssinia(reference, suffix);
+
+        const authReq = req as AuthenticatedRequest;
+        if (authReq.user?.id) {
+            await logVerification({
+                userId: authReq.user.id,
+                bank: 'abyssinia',
+                method: 'MANUAL',
+                endpoint: '/verify-abyssinia',
+                requestPayload: req.body,
+                responsePayload: result,
+                status: result.success ? 'SUCCESS' : 'FAILED',
+                reference,
+                error: result.success ? null : result.error || 'Verification failed'
+            });
+        }
         
         if (result.success) {
             logger.info(`✅ Abyssinia verification successful for reference: ${reference}`);
@@ -114,6 +131,21 @@ router.get('/', async (req: Request, res: Response): Promise<void> => {
         
         // Call the verification service
         const result = await verifyAbyssinia(reference, suffix);
+
+        const authReq = req as AuthenticatedRequest;
+        if (authReq.user?.id) {
+            await logVerification({
+                userId: authReq.user.id,
+                bank: 'abyssinia',
+                method: 'MANUAL',
+                endpoint: '/verify-abyssinia',
+                requestPayload: req.query as Record<string, string>,
+                responsePayload: result,
+                status: result.success ? 'SUCCESS' : 'FAILED',
+                reference,
+                error: result.success ? null : result.error || 'Verification failed'
+            });
+        }
         
         if (result.success) {
             logger.info(`✅ Abyssinia verification successful for reference: ${reference}`);

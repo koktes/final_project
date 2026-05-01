@@ -122,6 +122,28 @@
   border-top: 1px solid var(--border-subtle);
 }
 
+.sidebar-user {
+  margin-bottom: 12px;
+  display: grid;
+  gap: 2px;
+}
+
+.sidebar-user-label {
+  font-size: 11px;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.sidebar-user-email {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-primary);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
 .sidebar-api-status {
   display: flex;
   align-items: center;
@@ -136,4 +158,23 @@
   border-radius: 50%;
   background: var(--success);
   box-shadow: 0 0 6px rgba(22, 163, 74, 0.4);
+}
+
+.sidebar-logout-btn {
+  margin-top: 12px;
+  width: 100%;
+  border-radius: 10px;
+  border: 1px solid var(--border-default);
+  background: white;
+  color: var(--text-primary);
+  font-size: 13px;
+  font-weight: 600;
+  padding: 9px 10px;
+  transition: all var(--transition-fast);
+}
+
+.sidebar-logout-btn:hover {
+  background: rgba(220, 38, 38, 0.08);
+  border-color: rgba(220, 38, 38, 0.35);
+  color: #991b1b;
 }

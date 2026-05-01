@@ -1,5 +1,7 @@
 import { Router, Request, Response } from 'express';
 import { verifyCBE } from '../services/verifyCBE';
+import { logVerification } from '../services/verificationRecords';
+import { AuthenticatedRequest } from '../middleware/jwtAuth';
 import logger from '../utils/logger';
 
 const router = Router();
@@ -22,6 +24,22 @@ router.post('/', async function (
 
     try {
         const result = await verifyCBE(reference, accountSuffix);
+
+        const authReq = req as AuthenticatedRequest;
+        if (authReq.user?.id) {
+            await logVerification({
+                userId: authReq.user.id,
+                bank: 'cbe',
+                method: 'MANUAL',
+                endpoint: '/verify-cbe',
+                requestPayload: req.body,
+                responsePayload: result,
+                status: result.success ? 'SUCCESS' : 'FAILED',
+                reference,
+                error: result.success ? null : result.error || 'Verification failed'
+            });
+        }
+
         res.json(result);
     } catch (err) {
         logger.error("💥 Payment verification failed:", err);
@@ -42,6 +60,22 @@ router.get('/', async function(
 
     try {
         const result = await verifyCBE(reference, accountSuffix);
+
+        const authReq = req as AuthenticatedRequest;
+        if (authReq.user?.id) {
+            await logVerification({
+                userId: authReq.user.id,
+                bank: 'cbe',
+                method: 'MANUAL',
+                endpoint: '/verify-cbe',
+                requestPayload: req.query as Record<string, string>,
+                responsePayload: result,
+                status: result.success ? 'SUCCESS' : 'FAILED',
+                reference,
+                error: result.success ? null : result.error || 'Verification failed'
+            });
+        }
+
         res.json(result);
     } catch (err) {
         logger.error(err);

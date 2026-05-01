@@ -88,7 +88,7 @@ export const requestLogger = (req: Request, res: Response, next: NextFunction) =
     userAgent: req.get('user-agent'),
     body: req.method === 'POST' ? JSON.stringify(req.body) : undefined,
     query: Object.keys(req.query).length ? req.query : undefined,
-    apiKeyOwner: (req as any).apiKeyData ? (req as any).apiKeyData.owner : 'none'
+    userId: (req as any).user ? (req as any).user.id : 'anonymous'
   });
 
   // Update in-memory cache for quick access
@@ -126,14 +126,13 @@ export const requestLogger = (req: Request, res: Response, next: NextFunction) =
       (endpointStat.avgResponseTime * (endpointStat.count - 1) + responseTime) / endpointStat.count;
 
     // Get a safe representation of the key for logging (prefix or legacy substring)
-    const keyDetails = (req as any).apiKeyData;
-    const safeKeyLog = keyDetails ? (keyDetails.prefix || (keyDetails.key ? keyDetails.key.substring(0, 8) : 'unknown')) : 'none';
+    const userId = (req as any).user ? (req as any).user.id : 'anonymous';
 
     logger.info(`[${requestId}] Response sent in ${responseTime}ms with status ${res.statusCode}`, {
       statusCode: res.statusCode,
       responseTime,
       contentLength: res.get('Content-Length') || 'unknown',
-      apiKey: safeKeyLog
+      userId
     });
 
     if (res.statusCode >= 400) {

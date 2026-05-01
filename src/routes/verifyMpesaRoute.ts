@@ -1,5 +1,7 @@
 import { Router, Request, Response } from 'express';
 import { verifyMpesa } from '../services/verifyMpesa';
+import { logVerification } from '../services/verificationRecords';
+import { AuthenticatedRequest } from '../middleware/jwtAuth';
 import logger from '../utils/logger';
 
 const router = Router();
@@ -26,6 +28,21 @@ router.post('/', async function (
     try {
         logger.info(`🔍 Verifying M-Pesa transaction: ${reference}`);
         const result = await verifyMpesa(reference);
+
+        const authReq = req as AuthenticatedRequest;
+        if (authReq.user?.id) {
+            await logVerification({
+                userId: authReq.user.id,
+                bank: 'mpesa',
+                method: 'MANUAL',
+                endpoint: '/verify-mpesa',
+                requestPayload: req.body,
+                responsePayload: result,
+                status: result.success ? 'SUCCESS' : 'FAILED',
+                reference,
+                error: result.success ? null : result.error || 'Verification failed'
+            });
+        }
 
         if (result.success) {
             logger.info(`✅ M-Pesa verification successful for: ${reference}`);
@@ -61,6 +78,21 @@ router.get('/', async function (
     try {
         logger.info(`🔍 Verifying M-Pesa transaction (GET): ${reference}`);
         const result = await verifyMpesa(reference);
+
+        const authReq = req as AuthenticatedRequest;
+        if (authReq.user?.id) {
+            await logVerification({
+                userId: authReq.user.id,
+                bank: 'mpesa',
+                method: 'MANUAL',
+                endpoint: '/verify-mpesa',
+                requestPayload: req.query as Record<string, string>,
+                responsePayload: result,
+                status: result.success ? 'SUCCESS' : 'FAILED',
+                reference,
+                error: result.success ? null : result.error || 'Verification failed'
+            });
+        }
 
         if (result.success) {
             logger.info(`✅ M-Pesa verification successful for: ${reference}`);
