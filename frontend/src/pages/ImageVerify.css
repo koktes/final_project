@@ -23,12 +23,12 @@
 
 .iv-dropzone:hover {
   border-color: var(--accent-primary);
-  background: rgba(79, 70, 229, 0.02);
+  background: rgba(15, 118, 110, 0.03);
 }
 
 .iv-dropzone.drag-over {
   border-color: var(--accent-primary);
-  background: rgba(79, 70, 229, 0.04);
+  background: rgba(15, 118, 110, 0.05);
   transform: scale(1.01);
 }
 
@@ -93,7 +93,7 @@
   right: 10%;
   height: 2px;
   background: linear-gradient(90deg, transparent, var(--accent-primary), transparent);
-  box-shadow: 0 0 20px rgba(79, 70, 229, 0.4);
+  box-shadow: 0 0 18px rgba(15, 118, 110, 0.32);
   animation: scan 2s ease-in-out infinite;
 }
 
@@ -187,8 +187,34 @@
 .det-value.mono {
   font-family: var(--font-mono);
   letter-spacing: 0.5px;
-  color: var(--accent-primary);
+  color: #0f766e;
   font-weight: 500;
+}
+
+/* AI-only checkbox row (isolated to avoid colliding with generic param styles) */
+.ai-only-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding-top: 6px;
+  margin-top: 8px;
+  padding-left: 25px;
+}
+.ai-only-row input[type="checkbox"] {
+  width: 16px;
+  height: 16px;
+  margin: 0;
+  vertical-align: middle;
+}
+.ai-only-row .ai-only-label {
+  font-size: 14px;
+  color: var(--text-primary);
+  font-weight: 600;
+}
+.ai-only-row .form-help {
+  margin-left: 8px;
+  color: var(--text-muted);
+  font-size: 13px;
 }
 
 .det-confidence {

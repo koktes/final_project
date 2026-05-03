@@ -3,3 +3,9 @@ node_modules/
 dist/
 logs/
 /uploads
+
+# Python bytecode/cache
+__pycache__/
+*.pyc
+*.pyo
+*.pyd

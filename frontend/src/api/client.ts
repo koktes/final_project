@@ -265,7 +265,8 @@ export async function verifyImage(
   file: File,
   extraParams?: Record<string, string>,
   autoVerify = false,
-  debugVision = false
+  debugVision = false,
+  aiOnly = false
 ): Promise<ImageDetectionResult> {
   const formData = new FormData();
   formData.append('file', file);
@@ -277,6 +278,7 @@ export async function verifyImage(
   const params = new URLSearchParams();
   if (autoVerify) params.set('autoVerify', 'true');
   if (debugVision) params.set('debugVision', 'true');
+  if (aiOnly) params.set('aiOnly', 'true');
   const query = params.toString();
   const url = `${API_BASE}/verify-image${query ? `?${query}` : ''}`;
   return apiFetch<ImageDetectionResult>(url.replace(API_BASE, ''), {
@@ -287,9 +289,10 @@ export async function verifyImage(
 
 export async function verifyImageAutoVerify(
   file: File,
-  extraParams?: Record<string, string>
+  extraParams?: Record<string, string>,
+  aiOnly = false
 ): Promise<any> {
-  return verifyImage(file, extraParams, true);
+  return verifyImage(file, extraParams, true, false, aiOnly);
 }
 
 export type VerificationStatus = 'SUCCESS' | 'FAILED';

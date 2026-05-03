@@ -1,116 +1,116 @@
 {
-  "timestamp": "2026-04-23T22:41:12.767110",
+  "timestamp": "2026-05-01T23:31:32.562646",
   "n_samples": 6000,
   "n_positive": 1000,
   "n_negative": 5000,
   "overall_metrics": {
-    "accuracy": 0.8753,
-    "precision": 0.6019,
-    "recall": 0.744,
-    "f1_score": 0.6655,
-    "roc_auc": 0.8567
+    "accuracy": 0.8755,
+    "precision": 0.6028,
+    "recall": 0.742,
+    "f1_score": 0.6652,
+    "roc_auc": 0.8553
   },
   "confusion_matrix": {
-    "tn": 4508,
-    "fp": 492,
-    "fn": 256,
-    "tp": 744
+    "tn": 4511,
+    "fp": 489,
+    "fn": 258,
+    "tp": 742
   },
   "roc_auc_detailed": {
-    "auc": 0.8567
+    "auc": 0.8553
   },
   "pr_auc": {
-    "auc": 0.6938
+    "auc": 0.6916
   },
   "per_attack_metrics": {
-    "temporal_anomaly": {
-      "count": 167,
-      "detected": 76,
-      "detection_rate": 0.4551,
-      "avg_risk_score": 32.68,
-      "median_risk_score": 11.94,
-      "min_risk_score": 1.74,
-      "max_risk_score": 94.85
-    },
-    "fuzzing": {
-      "count": 167,
-      "detected": 12,
-      "detection_rate": 0.0719,
-      "avg_risk_score": 11.67,
-      "median_risk_score": 6.12,
-      "min_risk_score": 1.84,
-      "max_risk_score": 94.63
-    },
-    "amount_tamper": {
-      "count": 167,
-      "detected": 167,
-      "detection_rate": 1.0,
-      "avg_risk_score": 50.36,
-      "median_risk_score": 49.63,
-      "min_risk_score": 24.72,
-      "max_risk_score": 90.33
+    "none": {
+      "count": 5000,
+      "detected": 489,
+      "detection_rate": 0.0978,
+      "avg_risk_score": 10.13,
+      "median_risk_score": 5.95,
+      "min_risk_score": 1.41,
+      "max_risk_score": 85.11
     },
     "name_mismatch": {
       "count": 166,
       "detected": 166,
       "detection_rate": 1.0,
-      "avg_risk_score": 62.74,
-      "median_risk_score": 54.72,
-      "min_risk_score": 19.88,
-      "max_risk_score": 99.54
-    },
-    "none": {
-      "count": 5000,
-      "detected": 492,
-      "detection_rate": 0.0984,
-      "avg_risk_score": 10.08,
-      "median_risk_score": 5.92,
-      "min_risk_score": 1.34,
-      "max_risk_score": 84.87
-    },
-    "format_violation": {
-      "count": 166,
-      "detected": 156,
-      "detection_rate": 0.9398,
-      "avg_risk_score": 83.88,
-      "median_risk_score": 90.68,
-      "min_risk_score": 3.09,
-      "max_risk_score": 99.77
+      "avg_risk_score": 62.91,
+      "median_risk_score": 55.28,
+      "min_risk_score": 21.69,
+      "max_risk_score": 99.62
     },
     "replay": {
       "count": 167,
       "detected": 167,
       "detection_rate": 1.0,
-      "avg_risk_score": 53.85,
-      "median_risk_score": 52.04,
-      "min_risk_score": 30.87,
-      "max_risk_score": 87.38
+      "avg_risk_score": 53.93,
+      "median_risk_score": 51.94,
+      "min_risk_score": 31.79,
+      "max_risk_score": 87.71
+    },
+    "fuzzing": {
+      "count": 167,
+      "detected": 12,
+      "detection_rate": 0.0719,
+      "avg_risk_score": 11.71,
+      "median_risk_score": 6.11,
+      "min_risk_score": 1.96,
+      "max_risk_score": 95.42
+    },
+    "format_violation": {
+      "count": 166,
+      "detected": 156,
+      "detection_rate": 0.9398,
+      "avg_risk_score": 84.21,
+      "median_risk_score": 90.89,
+      "min_risk_score": 3.28,
+      "max_risk_score": 99.78
+    },
+    "temporal_anomaly": {
+      "count": 167,
+      "detected": 74,
+      "detection_rate": 0.4431,
+      "avg_risk_score": 31.51,
+      "median_risk_score": 11.25,
+      "min_risk_score": 1.82,
+      "max_risk_score": 93.51
+    },
+    "amount_tamper": {
+      "count": 167,
+      "detected": 167,
+      "detection_rate": 1.0,
+      "avg_risk_score": 50.07,
+      "median_risk_score": 48.57,
+      "min_risk_score": 26.01,
+      "max_risk_score": 91.15
     }
   },
   "classification_report": {
     "Clean": {
-      "precision": 0.9462636439966414,
-      "recall": 0.9016,
-      "f1-score": 0.9233920524375256,
+      "precision": 0.94590060809394,
+      "recall": 0.9022,
+      "f1-score": 0.9235336267785853,
       "support": 5000.0
     },
     "Fraud": {
-      "precision": 0.6019417475728155,
-      "recall": 0.744,
-      "f1-score": 0.6654740608228981,
+      "precision": 0.602761982128351,
+      "recall": 0.742,
+      "f1-score": 0.6651725683549977,
       "support": 1000.0
     },
-    "accuracy": 0.8753333333333333,
+    "accuracy": 0.8755,
     "macro avg": {
-      "precision": 0.7741026957847285,
-      "recall": 0.8228,
-      "f1-score": 0.7944330566302118,
+      "precision": 0.7743312951111455,
+      "recall": 0.8221,
+      "f1-score": 0.7943530975667915,
       "support": 6000.0
     },
     "weighted avg": {
-      "precision": 0.8888766612593372,
-      "recall": 0.8753333333333333,
-      "f1-score": 0.8804057205017544,
+      "precision": 0.8887108370996751,
+      "recall": 0.8755,
+      "f1-score": 0.8804734503746541,
       "support": 6000.0
     }
   }

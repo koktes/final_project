@@ -34,7 +34,7 @@ export default function Sidebar({ user, onLogout }: SidebarProps) {
           <NavLink
             key={item.path}
             to={item.path}
-            end={item.path === '/'}
+            end
             className={({ isActive }) => `nav-item ${isActive ? 'active' : ''}`}
           >
             <span className="nav-icon">{item.icon}</span>

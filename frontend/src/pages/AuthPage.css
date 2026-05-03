@@ -5,9 +5,9 @@
   position: relative;
   overflow: hidden;
   background:
-    radial-gradient(circle at 10% 0%, rgba(37, 99, 235, 0.15), transparent 40%),
-    radial-gradient(circle at 90% 80%, rgba(16, 185, 129, 0.12), transparent 45%),
-    linear-gradient(135deg, #f8fafc 0%, #ecfeff 100%);
+    radial-gradient(circle at 10% 0%, rgba(15, 118, 110, 0.12), transparent 40%),
+    radial-gradient(circle at 90% 80%, rgba(37, 99, 235, 0.08), transparent 45%),
+    linear-gradient(135deg, #f8fafc 0%, #eef2f7 100%);
   padding: 24px;
 }
 
@@ -21,7 +21,7 @@
 .auth-shape-a {
   width: 380px;
   height: 380px;
-  background: rgba(37, 99, 235, 0.09);
+  background: rgba(37, 99, 235, 0.08);
   top: -120px;
   right: -90px;
 }
@@ -29,7 +29,7 @@
 .auth-shape-b {
   width: 420px;
   height: 420px;
-  background: rgba(5, 150, 105, 0.09);
+  background: rgba(15, 118, 110, 0.08);
   left: -120px;
   bottom: -130px;
 }
@@ -59,7 +59,7 @@
   border-radius: 12px;
   display: grid;
   place-items: center;
-  background: linear-gradient(145deg, #0f766e, #2563eb);
+  background: linear-gradient(145deg, #0f766e, #1d4ed8);
   color: white;
   font-size: 18px;
 }
@@ -140,7 +140,7 @@
 
 .auth-submit {
   border-radius: 12px;
-  background: linear-gradient(135deg, #2563eb, #0f766e);
+  background: linear-gradient(135deg, #0f766e, #1d4ed8);
   color: white;
   padding: 12px;
   font-weight: 700;

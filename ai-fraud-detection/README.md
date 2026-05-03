@@ -12,7 +12,7 @@ ai-fraud-detection/
 ├── src/
 │   ├── __init__.py           # Package metadata
 │   ├── data_generator.py     # Synthetic transaction dataset generator
-│   ├── features.py           # Feature engineering pipeline (36 features)
+│   ├── features.py           # Feature engineering pipeline (38 features)
 │   ├── model.py              # Isolation Forest + LR calibration model
 │   ├── evaluate.py           # Evaluation framework (metrics + plots)
 │   └── api.py                # FastAPI microservice
@@ -46,7 +46,7 @@ python scripts/train.py
 
 This will:
 1. Generate 5,000 clean + 1,000 contaminated synthetic transactions
-2. Engineer 36 numerical features per transaction
+2. Engineer 38 numerical features per transaction
 3. Train an Isolation Forest anomaly detector on clean data
 4. Calibrate risk scores using Logistic Regression
 5. Evaluate with Precision/Recall/F1/ROC-AUC
@@ -75,11 +75,11 @@ python -m pytest tests/ -v
 
 2. **Logistic Regression Calibrator** (Supervised) — Maps raw Isolation Forest anomaly scores to interpretable risk scores (0–100) using labeled training data.
 
-### Feature Categories (36 total)
+### Feature Categories (38 total)
 
 | Category | Features | Purpose |
 |---|---|---|
-| Reference Analysis | Shannon entropy, structural integrity, length deviation, special chars | Detect forged/manipulated reference numbers |
+| Reference Analysis | Shannon entropy, structural integrity, length deviation, special chars, OCR n-gram anomaly | Detect forged/manipulated reference numbers |
 | Temporal Analysis | Hour, day-of-week, business hours, weekend, night, cyclic encoding, future detection | Detect implausible timestamps |
 | Amount Analysis | Log-amount, z-score, round number, magnitude, decimal part | Detect unusual transaction amounts |
 | Identity Analysis | Name lengths, similarity, identical check, word counts | Detect name manipulation |

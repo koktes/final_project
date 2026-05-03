@@ -14,6 +14,7 @@ import { verifyAbyssinia } from "./verifyAbyssinia";
 import { verifyCBEBirr } from "./verifyCBEBirr";
 import { verifyMpesa } from "./verifyMpesa";
 import { scoreFraudRisk } from "./fraudScoring";
+import { isSeenTransaction, addSeenTransaction } from "./seenTransactions";
 import dotenv from "dotenv";
 
 dotenv.config();
@@ -147,10 +148,12 @@ function detectFromText(rawText: string): ReceiptDetection | null {
     // ── Dashen ──
     if (dashenKeywords) {
         const ftRefMatch = text.match(/FT\s*REF\s*:?\s*([A-Z0-9]{10,20})/);
-        if (ftRefMatch?.[1]) {
+        const transactionReferenceMatch = text.match(/TRANSACTION\s*REFERENCE\s*:?[\s]*([A-Z0-9]{10,20})/);
+        const reference = ftRefMatch?.[1] || transactionReferenceMatch?.[1];
+        if (reference) {
             return {
                 bank: "dashen",
-                reference: ftRefMatch[1],
+                reference,
                 referenceLabel: "FT Ref",
                 confidence: "high",
                 source: "local-ocr"
@@ -404,7 +407,7 @@ You are an Ethiopian payment receipt analyzer. Analyze the uploaded image and id
 ## Instructions:
 - Identify the bank based on visual appearance, logos, colors, and text
 - Extract the primary reference/ID used for verification
-- For Dashen, use Transaction Reference for Electronic Receipt style; use FT Ref when that label is present; only use Transaction ID if neither appears
+- For Dashen, normalize the extracted reference label to FT Ref whenever possible; only fall back to Transaction ID if no FT Ref or Transaction Reference is visible
 - If you can see partial account numbers (masked like 1****2751), extract visible digits
 - Return ONLY valid JSON
 
@@ -557,12 +560,18 @@ export const verifyImageHandler = [
             const imageBuffer = fs.readFileSync(filePath);
             const base64Image = imageBuffer.toString("base64");
 
-            // Two-stage detection: fast local OCR first, then Mistral Vision fallback
+            // Two-stage detection: fast local OCR first, then Mistral Vision fallback.
+            // Dashen gives priority to Mistral when it can extract a usable FT Ref.
             let result = await detectWithLocalOcr(filePath);
             let visionResult: ReceiptDetection | null = null;
             if (!result) {
                 result = await detectWithMistral(base64Image);
-            } else if (result.bank === "dashen" || result.bank === "telebirr") {
+            } else if (result.bank === "dashen") {
+                visionResult = await detectWithMistral(base64Image);
+                if (visionResult && visionResult.bank === "dashen" && visionResult.reference) {
+                    result = visionResult;
+                }
+            } else if (result.bank === "telebirr") {
                 visionResult = await detectWithMistral(base64Image);
                 if (visionResult && visionResult.bank === result.bank && visionResult.reference) {
                     result = visionResult;
@@ -670,7 +679,8 @@ export const verifyImageHandler = [
             }
 
             // ── Auto-verify: route to the correct verifier ──
-            await routeToVerifier(result, suppliedParams, req, res, persistedImagePath);
+            const aiOnlyMode = req.query.aiOnly === "true" || req.query.mode === "ai" || process.env.IMAGE_VERIFY_AI_ONLY === "true";
+            await routeToVerifier(result, suppliedParams, req, res, persistedImagePath, { aiOnly: aiOnlyMode });
 
         } catch (err) {
             const message = err instanceof Error ? err.message : String(err);
@@ -779,370 +789,334 @@ async function routeToVerifier(
     suppliedParams: { accountNumber: string | null; phoneNumber: string | null },
     req: Request,
     res: Response,
-    imagePath: string | null
+    imagePath: string | null,
+    options?: { aiOnly?: boolean }
 ): Promise<void> {
     const { bank, reference, source } = detection;
+    let replayAlert: {
+        type: 'warning';
+        code: 'replay_suspected';
+        title: string;
+        message: string;
+    } | null = null;
+
+    if (options?.aiOnly) {
+        // Ensure required fields for the AI service are present (amount > 0, ISO timestamp)
+        const now = new Date().toISOString();
+        const aiInput = {
+            bank,
+            reference,
+            amount: 1.0,
+            payer_name: '',
+            payer_account: suppliedParams.accountNumber || '',
+            receiver_name: '',
+            receiver_account: '',
+            transaction_date: now,
+            transaction_status: 'OCR_ONLY',
+            reason: 'AI_ONLY_BYPASS',
+            suffix: suppliedParams.accountNumber || '',
+            phone_number: suppliedParams.phoneNumber || '',
+        };
+
+        const fraudResult = await scoreFraudRisk(aiInput);
+
+        if (!fraudResult) {
+            const errPayload = {
+                verified: false,
+                bank,
+                source,
+                reference,
+                aiOnly: true,
+                fraudAnalysis: null,
+                error: 'AI service unavailable or returned error',
+                suggestion: 'AI-only bypass attempted but the fraud detection service did not respond.'
+            };
+            res.status(502).json(errPayload);
+            await maybeLogImageVerification(
+                req,
+                bank,
+                reference,
+                { source, suppliedParams, aiOnly: true },
+                errPayload,
+                imagePath,
+                false,
+                'AI-only bypass failed - AI service unavailable'
+            );
+            return;
+        }
+
+        const payload = {
+            verified: false,
+            bank,
+            source,
+            reference,
+            aiOnly: true,
+            fraudAnalysis: fraudResult,
+            suggestion: 'AI-only bypass mode enabled; bank APIs and replay checks were skipped.'
+        };
+
+        res.status(200).json(payload);
+        await maybeLogImageVerification(
+            req,
+            bank,
+            reference,
+            { source, suppliedParams, aiOnly: true },
+            payload,
+            imagePath,
+            false,
+            'AI-only bypass mode'
+        );
+        return;
+    }
 
     try {
-        switch (bank) {
-            // ── Telebirr: no extra params needed ──
-            case "telebirr": {
-                const referencesToTry = getO0RetryCandidates(reference, source);
-                let usedReference = reference;
-                let data = await verifyTelebirr(usedReference);
-
-                for (const candidate of referencesToTry) {
-                    if (candidate === usedReference) continue;
-                    if (data) break;
-                    const retry = await verifyTelebirr(candidate);
-                    if (retry) {
-                        usedReference = candidate;
-                        data = retry;
-                        break;
-                    }
-                }
-                if (!data) {
-                    res.status(404).json({ error: "Telebirr receipt not found or could not be processed." });
-                    return;
-                }
-                // Path B: AI fraud scoring
-                const fraudResult = await scoreFraudRisk({
-                    bank: "telebirr",
-                    reference: usedReference,
-                    amount: parseFloat(data.settledAmount?.replace(/[^\d.]/g, '') || '0'),
-                    payer_name: data.payerName,
-                    payer_account: data.payerTelebirrNo,
-                    receiver_name: data.creditedPartyName,
-                    receiver_account: data.creditedPartyAccountNo,
-                    transaction_date: data.paymentDate,
-                    transaction_status: data.transactionStatus,
-                });
-                res.json({
-                    verified: true,
-                    bank: "telebirr",
-                    source,
-                    reference: usedReference,
-                    details: data,
-                    fraudAnalysis: fraudResult,
-                });
-                await maybeLogImageVerification(
-                    req,
-                    'telebirr',
-                    usedReference,
-                    { source, suppliedParams },
-                    { details: data, fraudAnalysis: fraudResult },
-                    imagePath,
-                    true
-                );
-                return;
-            }
-
-            // ── Dashen: no extra params needed ──
-            case "dashen": {
-                const referencesToTry = getO0RetryCandidates(reference, source);
-
-                let usedReference = reference;
-                let data = await verifyDashen(usedReference);
-
-                for (const candidate of referencesToTry) {
-                    if (candidate === usedReference) continue;
-                    if (data.success) break;
-                    const retry = await verifyDashen(candidate);
-                    if (retry.success) {
-                        usedReference = candidate;
-                        data = retry;
-                        break;
-                    }
-                }
-                // Path B: AI fraud scoring
-                const fraudResult = data.success ? await scoreFraudRisk({
-                    bank: "dashen",
-                    reference: usedReference,
-                    amount: data.transactionAmount || data.total || 0,
-                    payer_name: data.senderName || '',
-                    receiver_name: data.receiverName || '',
-                    transaction_date: data.transactionDate?.toISOString() || '',
-                }) : null;
-                const payload = {
-                    verified: data.success,
-                    bank: "dashen",
-                    source,
-                    reference: usedReference,
-                    details: data,
-                    fraudAnalysis: fraudResult,
-                    suggestion: data.success ? undefined : "Verification failed. Confirm the reference and try /verify-dashen directly."
+        // Local Postgres replay prevention: check SeenTransaction
+        try {
+            const seen = await isSeenTransaction(bank, reference);
+            if (seen) {
+                replayAlert = {
+                    type: 'warning',
+                    code: 'replay_suspected',
+                    title: 'Possible Replay Detected',
+                    message: 'This reference has been seen before. Verification continued, but review this transaction carefully.'
                 };
-                res.json(payload);
                 await maybeLogImageVerification(
                     req,
-                    'dashen',
-                    usedReference,
-                    { source, suppliedParams },
-                    payload,
-                    imagePath,
-                    data.success,
-                    data.success ? undefined : data.error
-                );
-                return;
-            }
-
-            // ── M-Pesa: no extra params needed ──
-            case "mpesa": {
-                const referencesToTry = getO0RetryCandidates(reference, source);
-                let usedReference = reference;
-                let data = await verifyMpesa(usedReference);
-
-                for (const candidate of referencesToTry) {
-                    if (candidate === usedReference) continue;
-                    if (data.success) break;
-                    const retry = await verifyMpesa(candidate);
-                    if (retry.success) {
-                        usedReference = candidate;
-                        data = retry;
-                        break;
-                    }
-                }
-                // Path B: AI fraud scoring
-                const fraudResult = data.success ? await scoreFraudRisk({
-                    bank: "mpesa",
-                    reference: usedReference,
-                    amount: data.amount || 0,
-                    payer_name: data.payerName || '',
-                    payer_account: data.payerAccount || '',
-                    receiver_name: data.receiverName || '',
-                    receiver_account: data.receiverAccount || '',
-                    transaction_date: data.paymentDate?.toISOString() || '',
-                }) : null;
-                const payload = {
-                    verified: data.success,
-                    bank: "mpesa",
-                    source,
-                    reference: usedReference,
-                    details: data,
-                    fraudAnalysis: fraudResult,
-                    suggestion: data.success ? undefined : "Verification failed. Confirm the receipt number and try /verify-mpesa directly."
-                };
-                res.json(payload);
-                await maybeLogImageVerification(
-                    req,
-                    'mpesa',
-                    usedReference,
-                    { source, suppliedParams },
-                    payload,
-                    imagePath,
-                    data.success,
-                    data.success ? undefined : data.error
-                );
-                return;
-            }
-
-            // ── CBE: needs account number (last 8 digits used as suffix) ──
-            case "cbe": {
-                if (!suppliedParams.accountNumber) {
-                    res.status(400).json({
-                        bank: "cbe",
-                        source,
-                        reference,
-                        error: "CBE verification requires the sender's account number",
-                        missingParams: {
-                            accountNumber: "Sender's bank account number. The last 8 digits will be used for verification."
-                        },
-                        hint: "Re-submit with the 'accountNumber' field in your form data, or call /verify-cbe directly."
-                    });
-                    return;
-                }
-
-                // Splice: take last 8 digits from the full account number
-                const cbeAccountSuffix = suppliedParams.accountNumber.replace(/\D/g, '').slice(-8);
-                if (cbeAccountSuffix.length < 8) {
-                    res.status(400).json({
-                        bank: "cbe",
-                        error: "Account number must be at least 8 digits",
-                    });
-                    return;
-                }
-
-                const referencesToTry = source === "local-ocr"
-                    ? generateReferenceCandidates(reference)
-                    : [reference];
-
-                let usedReference = reference;
-                let data = await verifyCBE(usedReference, cbeAccountSuffix);
-
-                for (const candidate of referencesToTry) {
-                    if (candidate === usedReference) continue;
-                    if (data.success) break;
-                    const retry = await verifyCBE(candidate, cbeAccountSuffix);
-                    if (retry.success) {
-                        usedReference = candidate;
-                        data = retry;
-                        break;
-                    }
-                }
-
-                // Path B: AI fraud scoring
-                const cbeF = data.success ? await scoreFraudRisk({
-                    bank: "cbe",
-                    reference: usedReference,
-                    amount: data.amount || 0,
-                    payer_name: data.payer || '',
-                    payer_account: data.payerAccount || '',
-                    receiver_name: data.receiver || '',
-                    receiver_account: data.receiverAccount || '',
-                    transaction_date: data.date?.toISOString() || '',
-                    suffix: cbeAccountSuffix,
-                }) : null;
-                const payload = {
-                    verified: data.success,
-                    bank: "cbe",
-                    source,
-                    reference: usedReference,
-                    details: data,
-                    fraudAnalysis: cbeF,
-                    suggestion: data.success ? undefined : "Verification failed. Confirm the account number and reference, then try /verify-cbe directly."
-                };
-                res.json(payload);
-                await maybeLogImageVerification(
-                    req,
-                    'cbe',
-                    usedReference,
-                    { source, suppliedParams },
-                    payload,
-                    imagePath,
-                    data.success,
-                    data.success ? undefined : data.error
-                );
-                return;
-            }
-
-            // ── Abyssinia: needs account number (last 5 digits used as suffix) ──
-            case "abyssinia": {
-                if (!suppliedParams.accountNumber) {
-                    res.status(400).json({
-                        bank: "abyssinia",
-                        source,
-                        reference,
-                        error: "Bank of Abyssinia verification requires the sender's account number",
-                        missingParams: {
-                            accountNumber: "Sender's bank account number. The last 5 digits will be used for verification."
-                        },
-                        hint: "Re-submit with the 'accountNumber' field in your form data, or call /verify-abyssinia directly."
-                    });
-                    return;
-                }
-
-                // Splice: take last 5 digits from the full account number
-                const abySuffix = suppliedParams.accountNumber.replace(/\D/g, '').slice(-5);
-                if (abySuffix.length < 5) {
-                    res.status(400).json({
-                        bank: "abyssinia",
-                        error: "Account number must be at least 5 digits",
-                    });
-                    return;
-                }
-
-                const data = await verifyAbyssinia(reference, abySuffix);
-                // Path B: AI fraud scoring
-                const abyF = data.success ? await scoreFraudRisk({
-                    bank: "abyssinia",
-                    reference,
-                    amount: data.amount || 0,
-                    payer_name: data.payer || '',
-                    receiver_name: data.receiver || '',
-                    transaction_date: data.date?.toISOString() || '',
-                    suffix: abySuffix,
-                }) : null;
-                const payload = {
-                    verified: data.success,
-                    bank: "abyssinia",
-                    source,
-                    reference,
-                    details: data,
-                    fraudAnalysis: abyF,
-                    suggestion: data.success ? undefined : "Verification failed. Confirm the account number and reference, then try /verify-abyssinia directly."
-                };
-                res.json(payload);
-                await maybeLogImageVerification(
-                    req,
-                    'abyssinia',
+                    bank,
                     reference,
                     { source, suppliedParams },
-                    payload,
+                    { replayDetected: true, alertCode: 'replay_suspected' },
                     imagePath,
-                    data.success,
-                    data.success ? undefined : data.error
+                    false,
+                    'Replay suspected in local store (non-blocking)'
                 );
-                return;
             }
+        } catch (seenErr) {
+            // If replay check fails due to DB, log and continue (fail-open)
+            logger.warn('SeenTransaction check failed, continuing', { err: seenErr });
+        }
 
-            // ── CBE Birr: needs phoneNumber ──
-            case "cbe_birr": {
-                if (!suppliedParams.phoneNumber) {
-                    res.status(400).json({
-                        bank: "cbe_birr",
-                        source,
-                        reference,
-                        error: "CBE Birr verification requires the sender's phone number",
-                        missingParams: {
-                            phoneNumber: "Sender's phone number in 251XXXXXXXXX format (10-12 digits starting with 251). Pass as 'phoneNumber' in the form data."
-                        },
-                        hint: "Re-submit with the 'phoneNumber' field in your form data, or call /verify-cbebirr directly."
-                    });
-                    return;
-                }
+        // Helper to attempt remote verification and normalize outcomes.
+        // Returns: { outcome: 'verified' | 'not_found' | 'api_error', data?, usedReference? }
+        async function attemptRemoteVerify(): Promise<any> {
+            try {
+                switch (bank) {
+                    case 'telebirr': {
+                        const referencesToTry = getO0RetryCandidates(reference, source);
+                        let usedReference = reference;
+                        let data = await verifyTelebirr(usedReference);
 
-                const referencesToTry = getO0RetryCandidates(reference, source);
-                let usedReference = reference;
-                let data = await verifyCBEBirr(usedReference, suppliedParams.phoneNumber);
-                let cbeBirrVerified = !("success" in data && data.success === false);
-
-                for (const candidate of referencesToTry) {
-                    if (candidate === usedReference) continue;
-                    if (cbeBirrVerified) break;
-                    const retry = await verifyCBEBirr(candidate, suppliedParams.phoneNumber);
-                    const retryVerified = !("success" in retry && retry.success === false);
-                    if (retryVerified) {
-                        usedReference = candidate;
-                        data = retry;
-                        cbeBirrVerified = retryVerified;
-                        break;
+                        for (const candidate of referencesToTry) {
+                            if (candidate === usedReference) continue;
+                            if (data) break;
+                            const retry = await verifyTelebirr(candidate);
+                            if (retry) {
+                                usedReference = candidate;
+                                data = retry;
+                                break;
+                            }
+                        }
+                        if (!data) return { outcome: 'not_found' };
+                        return { outcome: 'verified', data, usedReference };
                     }
-                }
-                // Path B: AI fraud scoring
-                const cbeBirrF = cbeBirrVerified ? await scoreFraudRisk({
-                    bank: "cbe_birr",
-                    reference: usedReference,
-                    amount: (data as any)?.amount || 0,
-                    payer_name: (data as any)?.payerName || '',
-                    phone_number: suppliedParams.phoneNumber,
-                }) : null;
-                const payload = {
-                    verified: cbeBirrVerified,
-                    bank: "cbe_birr",
-                    source,
-                    reference: usedReference,
-                    details: data,
-                    fraudAnalysis: cbeBirrF,
-                };
-                res.json(payload);
-                await maybeLogImageVerification(
-                    req,
-                    'cbe_birr',
-                    usedReference,
-                    { source, suppliedParams },
-                    payload,
-                    imagePath,
-                    cbeBirrVerified,
-                    cbeBirrVerified ? undefined : (data as { error?: string }).error
-                );
-                return;
-            }
 
-            default: {
-                res.status(422).json({ error: "Unknown or unsupported receipt type detected" });
-                return;
+                    case 'dashen': {
+                        const referencesToTry = getO0RetryCandidates(reference, source);
+                        let usedReference = reference;
+                        let data = await verifyDashen(usedReference);
+
+                        for (const candidate of referencesToTry) {
+                            if (candidate === usedReference) continue;
+                            if (data.success) break;
+                            const retry = await verifyDashen(candidate);
+                            if (retry.success) {
+                                usedReference = candidate;
+                                data = retry;
+                                break;
+                            }
+                        }
+                        if (!data || data.success === false) return { outcome: 'not_found', data };
+                        return { outcome: 'verified', data, usedReference };
+                    }
+
+                    case 'mpesa': {
+                        const referencesToTry = getO0RetryCandidates(reference, source);
+                        let usedReference = reference;
+                        let data = await verifyMpesa(usedReference);
+
+                        for (const candidate of referencesToTry) {
+                            if (candidate === usedReference) continue;
+                            if (data.success) break;
+                            const retry = await verifyMpesa(candidate);
+                            if (retry.success) {
+                                usedReference = candidate;
+                                data = retry;
+                                break;
+                            }
+                        }
+                        if (!data || data.success === false) return { outcome: 'not_found', data };
+                        return { outcome: 'verified', data, usedReference };
+                    }
+
+                    case 'cbe': {
+                        if (!suppliedParams.accountNumber) return { outcome: 'not_found' };
+                        const cbeAccountSuffix = suppliedParams.accountNumber.replace(/\D/g, '').slice(-8);
+                        const referencesToTry = source === 'local-ocr' ? generateReferenceCandidates(reference) : [reference];
+                        let usedReference = reference;
+                        let data = await verifyCBE(usedReference, cbeAccountSuffix);
+
+                        for (const candidate of referencesToTry) {
+                            if (candidate === usedReference) continue;
+                            if (data.success) break;
+                            const retry = await verifyCBE(candidate, cbeAccountSuffix);
+                            if (retry.success) {
+                                usedReference = candidate;
+                                data = retry;
+                                break;
+                            }
+                        }
+                        if (!data || data.success === false) return { outcome: 'not_found', data };
+                        return { outcome: 'verified', data, usedReference };
+                    }
+
+                    case 'abyssinia': {
+                        if (!suppliedParams.accountNumber) return { outcome: 'not_found' };
+                        const abySuffix = suppliedParams.accountNumber.replace(/\D/g, '').slice(-5);
+                        const data = await verifyAbyssinia(reference, abySuffix);
+                        if (!data || data.success === false) return { outcome: 'not_found', data };
+                        return { outcome: 'verified', data, usedReference: reference };
+                    }
+
+                    case 'cbe_birr': {
+                        if (!suppliedParams.phoneNumber) return { outcome: 'not_found' };
+                        const referencesToTry = getO0RetryCandidates(reference, source);
+                        let usedReference = reference;
+                        let data = await verifyCBEBirr(usedReference, suppliedParams.phoneNumber);
+                        let cbeBirrVerified = !('success' in data && data.success === false);
+
+                        for (const candidate of referencesToTry) {
+                            if (candidate === usedReference) continue;
+                            if (cbeBirrVerified) break;
+                            const retry = await verifyCBEBirr(candidate, suppliedParams.phoneNumber);
+                            const retryVerified = !('success' in retry && retry.success === false);
+                            if (retryVerified) {
+                                usedReference = candidate;
+                                data = retry;
+                                cbeBirrVerified = retryVerified;
+                                break;
+                            }
+                        }
+                        if (!cbeBirrVerified) return { outcome: 'not_found', data };
+                        return { outcome: 'verified', data, usedReference };
+                    }
+
+                    default:
+                        return { outcome: 'api_error' };
+                }
+            } catch (err: any) {
+                // Treat network/timeouts or unexpected errors as API unavailability
+                logger.warn('Remote API call failed, treating as api_error', { bank, err: err?.message || err });
+                return { outcome: 'api_error', error: err };
             }
         }
+
+        const remote = await attemptRemoteVerify();
+        if (remote.outcome === 'verified') {
+            // Persist seen transaction deterministically
+            try {
+                await addSeenTransaction(bank, remote.usedReference || reference);
+            } catch (e) {
+                logger.warn('Failed to persist seen transaction', { err: e });
+            }
+
+            const payload = {
+                verified: true,
+                bank,
+                source,
+                reference: remote.usedReference || reference,
+                details: remote.data,
+                replayDetected: !!replayAlert,
+                flags: replayAlert ? ['replay_suspected'] : [],
+                alerts: replayAlert ? [replayAlert] : [],
+            };
+            res.json(payload);
+            await maybeLogImageVerification(
+                req,
+                bank,
+                remote.usedReference || reference,
+                { source, suppliedParams },
+                payload,
+                imagePath,
+                true
+            );
+            return;
+        }
+
+        if (remote.outcome === 'not_found') {
+            // Deterministic invalid (404/400) — do not call ML
+            const payload = {
+                verified: false,
+                bank,
+                source,
+                reference,
+                details: remote.data || null,
+                error: 'Reference not found or verification failed by bank ledger',
+                replayDetected: !!replayAlert,
+                flags: replayAlert ? ['replay_suspected'] : [],
+                alerts: replayAlert ? [replayAlert] : [],
+            };
+            res.status(404).json(payload);
+            await maybeLogImageVerification(
+                req,
+                bank,
+                reference,
+                { source, suppliedParams },
+                payload,
+                imagePath,
+                false,
+                'Reference rejected by bank ledger'
+            );
+            return;
+        }
+
+        // remote.outcome === 'api_error' -> fall through to ML fallback
+        // Build OCR-only payload for ML fallback
+        const mlPayload: any = {
+            bank,
+            reference,
+            amount: 0,
+            payer_name: '',
+            payer_account: suppliedParams.accountNumber || '',
+            receiver_name: '',
+            receiver_account: '',
+            transaction_date: '',
+        };
+
+        const fraudResult = await scoreFraudRisk(mlPayload);
+        const fallbackPayload = {
+            verified: false,
+            bank,
+            source,
+            reference,
+            fraudAnalysis: fraudResult,
+            suggestion: 'Bank API unreachable — reported as Suspicious by ML fallback',
+            replayDetected: !!replayAlert,
+            flags: replayAlert ? ['replay_suspected'] : [],
+            alerts: replayAlert ? [replayAlert] : [],
+        };
+        res.status(200).json(fallbackPayload);
+        await maybeLogImageVerification(
+            req,
+            bank,
+            reference,
+            { source, suppliedParams },
+            fallbackPayload,
+            imagePath,
+            false,
+            'ML fallback used due to API unavailability'
+        );
+        return;
+
     } catch (verifyErr: any) {
         logger.error(`${bank} verification failed`, { verifyErr });
 

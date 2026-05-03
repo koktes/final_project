@@ -23,6 +23,13 @@ export interface FraudScoreResult {
         value: number;
         deviation: number;
     }>;
+    verification_source?: string;
+    reason_codes?: string[];
+    extracted_metadata?: Record<string, unknown>;
+    raw?: {
+        deterministic?: unknown;
+        ml?: unknown;
+    };
 }
 
 export interface FraudScoreInput {

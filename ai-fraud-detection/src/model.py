@@ -16,6 +16,7 @@ Model persistence uses joblib for efficient serialization of numpy-backed models
 
 import os
 import json
+import logging
 import numpy as np
 import pandas as pd
 import joblib
@@ -30,10 +31,12 @@ from sklearn.model_selection import train_test_split
 from .features import (
     build_feature_matrix,
     compute_bank_amount_stats,
-    ReferenceFrequencyTracker,
     FEATURE_NAMES,
     NUM_FEATURES,
 )
+
+
+logger = logging.getLogger("fraud_detection_model")
 
 
 # ──────────────────────────────────────────────────────────────────────────────
@@ -91,7 +94,6 @@ class FraudDetectionModel:
         
         # Feature context
         self.bank_stats: Optional[Dict] = None
-        self.freq_tracker: Optional[ReferenceFrequencyTracker] = None
         self.feature_names: List[str] = FEATURE_NAMES.copy()
         
         # Metadata
@@ -109,6 +111,33 @@ class FraudDetectionModel:
         """Build scaled feature matrix from a dataframe."""
         X, _ = build_feature_matrix(df, self.bank_stats, self.freq_tracker)
         return X
+
+    def _align_feature_matrix(self, X: np.ndarray) -> np.ndarray:
+        """Pad or trim features so inference matches the loaded scaler."""
+        if self.scaler is None:
+            return X
+
+        expected_features = getattr(self.scaler, "n_features_in_", X.shape[1])
+        current_features = X.shape[1]
+
+        if current_features == expected_features:
+            return X
+
+        if current_features < expected_features:
+            logger.warning(
+                "Padding feature matrix from %s to %s columns for compatibility",
+                current_features,
+                expected_features,
+            )
+            padding = np.zeros((X.shape[0], expected_features - current_features), dtype=X.dtype)
+            return np.hstack([X, padding])
+
+        logger.warning(
+            "Trimming feature matrix from %s to %s columns for compatibility",
+            current_features,
+            expected_features,
+        )
+        return X[:, :expected_features]
     
     def train(self, clean_df: pd.DataFrame, 
               contaminated_df: pd.DataFrame,
@@ -143,14 +172,7 @@ class FraudDetectionModel:
             print("\n[1/7] Computing bank amount statistics...")
         self.bank_stats = compute_bank_amount_stats(clean_df)
         
-        # ── Step 2: Build frequency tracker ──
-        if verbose:
-            print("[2/7] Building reference frequency tracker...")
-        full_df = pd.concat([clean_df, contaminated_df], ignore_index=True)
-        self.freq_tracker = ReferenceFrequencyTracker()
-        self.freq_tracker.build_from_dataset(full_df)
-        
-        # ── Step 3: Build feature matrices ──
+        # ── Step 2: Build feature matrices ──
         if verbose:
             print("[3/7] Engineering features...")
         X_clean = self._build_features(clean_df)
@@ -160,14 +182,14 @@ class FraudDetectionModel:
             print(f"       Clean features shape:        {X_clean.shape}")
             print(f"       Contaminated features shape:  {X_contaminated.shape}")
         
-        # ── Step 4: Fit scaler on clean data ──
+        # ── Step 3: Fit scaler on clean data ──
         if verbose:
             print("[4/7] Fitting StandardScaler on clean data...")
         self.scaler = StandardScaler()
         X_clean_scaled = self.scaler.fit_transform(X_clean)
         X_contaminated_scaled = self.scaler.transform(X_contaminated)
         
-        # ── Step 5: Train Isolation Forest ──
+        # ── Step 4: Train Isolation Forest ──
         if verbose:
             print(f"[5/7] Training Isolation Forest (n_estimators={self.config['if_n_estimators']})...")
         
@@ -181,7 +203,7 @@ class FraudDetectionModel:
         )
         self.isolation_forest.fit(X_clean_scaled)
         
-        # ── Step 6: Build calibration features ──
+        # ── Step 5: Build calibration features ──
         if verbose:
             print("[6/7] Building calibration features...")
         
@@ -216,7 +238,7 @@ class FraudDetectionModel:
             stratify=y_all,
         )
         
-        # ── Step 7: Train Logistic Regression calibrator ──
+        # ── Step 6: Train Logistic Regression calibrator ──
         if verbose:
             print("[7/7] Training Logistic Regression calibrator...")
         
@@ -293,6 +315,10 @@ class FraudDetectionModel:
         # Build feature vector
         from .features import build_feature_vector
         feature_vec = build_feature_vector(transaction, self.bank_stats, self.freq_tracker)
+
+        # Keep inference compatible with legacy saved artifacts if the feature
+        # builder and scaler were trained with different column counts.
+        feature_vec = self._align_feature_matrix(feature_vec.reshape(1, -1))[0]
         
         # Scale
         feature_vec_scaled = self.scaler.transform(feature_vec.reshape(1, -1))
@@ -344,6 +370,7 @@ class FraudDetectionModel:
             raise RuntimeError("Model not trained.")
         
         X = self._build_features(df)
+        X = self._align_feature_matrix(X)
         X_scaled = self.scaler.transform(X)
         
         # Raw anomaly scores

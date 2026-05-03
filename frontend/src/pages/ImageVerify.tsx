@@ -16,6 +16,7 @@ export default function ImageVerify() {
   const [result, setResult] = useState<any>(null)
   const [error, setError] = useState<string | null>(null)
   const [dragOver, setDragOver] = useState(false)
+  const [aiOnly, setAiOnly] = useState(false)
   const inputRef = useRef<HTMLInputElement>(null)
 
   const handleFile = useCallback(async (f: File) => {
@@ -26,6 +27,7 @@ export default function ImageVerify() {
     setDetection(null)
     setResult(null)
     setExtraParams({})
+    setAiOnly(false)
 
     try {
       const det = await verifyImage(f, undefined, false, debugVision)
@@ -65,7 +67,7 @@ export default function ImageVerify() {
     setStage('verifying')
     try {
       const allParams = { ...extraParams }
-      const res = await verifyImageAutoVerify(file, allParams)
+      const res = await verifyImageAutoVerify(file, allParams, aiOnly)
       setResult(res)
       setStage('result')
     } catch (err: any) {
@@ -245,6 +247,16 @@ export default function ImageVerify() {
                   })}
                 </div>
               )}
+
+              <label className="ai-only-row">
+                <input
+                  type="checkbox"
+                  checked={aiOnly}
+                  onChange={e => setAiOnly(e.target.checked)}
+                />
+                <span className="ai-only-label">AI-only mode</span>
+                <span className="form-help">Skip bank API and replay checks, and score the OCR payload directly.</span>
+              </label>
 
               <button
                 className="submit-btn det-verify-btn"

@@ -1,14 +1,15 @@
 {
   "version": "1.0.0",
-  "trained_at": "2026-04-23T22:41:10.582396",
+  "trained_at": "2026-05-01T23:31:30.560596",
   "n_train_clean": 5000,
   "n_train_contaminated": 1000,
-  "n_features": 37,
+  "n_features": 38,
   "feature_names": [
     "shannon_entropy",
     "structural_integrity",
     "ref_length_deviation",
     "special_char_ratio",
+    "char_ngram_anomaly",
     "hour",
     "day_of_week",
     "is_business_hours",
@@ -55,11 +56,11 @@
     "threshold_low_risk": 25,
     "threshold_suspicious": 50,
     "threshold_high_risk": 80,
-    "binary_threshold": 0.195,
+    "binary_threshold": 0.19,
     "test_size": 0.15,
     "val_size": 0.15
   },
-  "calibration_accuracy": 0.8589,
-  "binary_threshold": 0.195,
-  "optimal_f1": 0.6467
+  "calibration_accuracy": 0.8622,
+  "binary_threshold": 0.19,
+  "optimal_f1": 0.6429
 }

@@ -372,5 +372,35 @@ class TestSpecialCharRatio:
         assert compute_special_char_ratio("") == 0.0
 
 
+# ──────────────────────────────────────────────────────────────────────────────
+# Character N-Gram Anomaly Tests
+# ──────────────────────────────────────────────────────────────────────────────
+
+class TestCharNgramAnomaly:
+    """Test OCR-like substitution anomaly scoring."""
+
+    def test_fuzzed_reference_scores_higher(self):
+        """OCR-style substitutions should score higher than a clean reference."""
+        clean = build_feature_dict({
+            "reference": "FT2513001V2G",
+            "bank": "cbe",
+            "amount": 5000.0,
+            "transaction_date": "2026-04-22T10:30:00+03:00",
+            "payer_name": "Abebe Kebede",
+            "receiver_name": "Tigist Haile",
+        })["char_ngram_anomaly"]
+
+        fuzzed = build_feature_dict({
+            "reference": "FT2513OO1V2G",
+            "bank": "cbe",
+            "amount": 5000.0,
+            "transaction_date": "2026-04-22T10:30:00+03:00",
+            "payer_name": "Abebe Kebede",
+            "receiver_name": "Tigist Haile",
+        })["char_ngram_anomaly"]
+
+        assert fuzzed > clean
+
+
 if __name__ == "__main__":
     pytest.main([__file__, "-v"])

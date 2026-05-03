@@ -18,6 +18,13 @@ interface Props {
   bank: BankInfo
 }
 
+interface VerificationAlert {
+  type?: string
+  code?: string
+  title?: string
+  message?: string
+}
+
 function getRiskColor(score: number): string {
   if (score < 25) return 'var(--success)'
   if (score < 60) return 'var(--warning)'
@@ -65,6 +72,7 @@ export default function VerificationResult({ data, bank }: Props) {
       ? metaFields
       : data
   const fraud: FraudAnalysis | null = data?.fraudAnalysis || null
+  const alerts: VerificationAlert[] = Array.isArray(data?.alerts) ? data.alerts : []
   const verificationNote = typeof verifiedFlag === 'boolean'
     ? (verifiedFlag
         ? 'Receipt correctly verified against the bank records.'
@@ -90,6 +98,13 @@ export default function VerificationResult({ data, bank }: Props) {
           {verificationNote}
         </div>
       )}
+
+      {alerts.map((alert, idx) => (
+        <div key={`${alert.code || 'alert'}-${idx}`} className="vr-alert vr-alert-warning" role="alert">
+          <strong>{alert.title || 'Warning'}</strong>
+          <span>{alert.message || 'A verification warning was raised for this transaction.'}</span>
+        </div>
+      ))}
 
       {data?.error && (
         <div className="vr-error-msg">{typeof data.error === 'string' ? data.error : JSON.stringify(data.error)}</div>

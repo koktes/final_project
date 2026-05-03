@@ -70,6 +70,16 @@ BANK_REFERENCE_PATTERNS = {
 }
 
 
+OCR_CONFUSABLES = {
+    "O": "0",
+    "I": "1",
+    "S": "5",
+    "Z": "2",
+    "B": "8",
+    "G": "6",
+}
+
+
 # ──────────────────────────────────────────────────────────────────────────────
 # 1. Reference Analysis Features
 # ──────────────────────────────────────────────────────────────────────────────
@@ -187,6 +197,42 @@ def compute_special_char_ratio(reference: str) -> float:
     return special_count / len(reference)
 
 
+def compute_char_ngram_anomaly(reference: str, bank: str) -> float:
+    """
+    Score OCR-like substitution patterns and repeated character noise.
+
+    This is a targeted feature for the fuzzing attack class. It boosts the score
+    when a reference contains confusable OCR pairs such as O/0, I/1, and S/5,
+    or repeated runs that are uncommon in legitimate transaction references.
+    """
+    if not reference:
+        return 0.0
+
+    normalized = reference.upper()
+    normalized_candidate = "".join(OCR_CONFUSABLES.get(char, char) for char in normalized)
+    substitution_delta = sum(
+        1 for original, candidate in zip(normalized, normalized_candidate) if original != candidate
+    ) / len(normalized)
+
+    confusable_hits = sum(1 for char in normalized if char in OCR_CONFUSABLES)
+    confusable_ratio = confusable_hits / len(normalized)
+
+    # Detect suspicious repeated character runs like "AAA" or "111".
+    repeated_run = 1.0 if re.search(r"(.)\1{2,}", normalized) else 0.0
+
+    # Bank references are usually compact alphanumeric strings.
+    # A high concentration of OCR-confusable characters is suspicious.
+    bank_bonus = 0.0
+    if bank in BANK_REFERENCE_PATTERNS:
+      pattern = BANK_REFERENCE_PATTERNS[bank]
+      expected_charset = pattern["charset"]
+      valid_ratio = sum(1 for char in normalized if char in expected_charset) / len(normalized)
+      bank_bonus = 1.0 - valid_ratio
+
+    score = (0.60 * substitution_delta) + (0.25 * confusable_ratio) + (0.10 * repeated_run) + (0.05 * bank_bonus)
+    return round(min(max(score, 0.0), 1.0), 6)
+
+
 # ──────────────────────────────────────────────────────────────────────────────
 # 2. Temporal Analysis Features
 # ──────────────────────────────────────────────────────────────────────────────
@@ -244,7 +290,7 @@ def compute_time_features(timestamp_str: str) -> Dict[str, float]:
     is_night = 1.0 if hour <= 5 or hour >= 23 else 0.0
     
     # Future detection
-    now = datetime.now()
+    now = datetime.now(dt.tzinfo) if dt.tzinfo is not None else datetime.now()
     is_future = 1.0 if dt > now else 0.0
     days_from_now = abs((dt - now).days)
     
@@ -376,42 +422,28 @@ def compute_name_features(payer_name: str, receiver_name: str) -> Dict[str, floa
 
 class ReferenceFrequencyTracker:
     """
-    Tracks reference number frequencies for replay attack detection.
-    
-    Maintains a history of seen references and counts occurrences.
-    In production, this would be backed by a database or Redis.
-    For training, we compute frequencies from the full dataset.
+    Compatibility shim for older model artifacts.
+
+    Replay detection is now handled deterministically by the PostgreSQL-backed
+    SeenTransaction store at runtime, so this class is kept only so previously
+    trained `freq_tracker.joblib` files can still unpickle during server startup.
     """
-    
+
     def __init__(self):
         self.reference_counts: Counter = Counter()
         self.payer_reference_counts: Counter = Counter()
-    
+
     def build_from_dataset(self, df: pd.DataFrame) -> None:
-        """Build frequency maps from a dataset."""
-        self.reference_counts = Counter(df["reference"].values)
-        # Track payer + reference combos
-        self.payer_reference_counts = Counter(
-            zip(df["reference"].values, df["payer_name"].values)
-        )
-    
-    def get_frequency_features(self, reference: str, 
-                                payer_name: str = "") -> Dict[str, float]:
-        """
-        Get frequency-based features for a transaction.
-        
-        Features:
-            - reference_count: Number of times this reference appears in history
-            - is_duplicate: 1.0 if reference appears more than once
-            - payer_reference_count: Times this payer used this reference
-        """
-        ref_count = self.reference_counts.get(reference, 0)
-        payer_ref_count = self.payer_reference_counts.get((reference, payer_name), 0)
-        
+        # No-op for the current architecture.
+        self.reference_counts = Counter()
+        self.payer_reference_counts = Counter()
+
+    def get_frequency_features(self, reference: str, payer_name: str = "") -> Dict[str, float]:
+        # Returned for backward compatibility only; the values are unused.
         return {
-            "reference_count": float(ref_count),
-            "is_duplicate": 1.0 if ref_count > 1 else 0.0,
-            "payer_reference_count": float(payer_ref_count),
+            "reference_count": 0.0,
+            "is_duplicate": 0.0,
+            "payer_reference_count": 0.0,
         }
 
 
@@ -456,8 +488,7 @@ FEATURE_NAMES = [
     # Name features
     "payer_name_length", "receiver_name_length", "names_identical",
     "name_similarity", "payer_word_count", "receiver_word_count",
-    # Frequency features
-    "reference_count", "is_duplicate", "payer_reference_count",
+    # Frequency features removed (replay detection handled by Postgres)
     # Bank encoding (one-hot)
     "bank_cbe", "bank_telebirr", "bank_dashen",
     "bank_abyssinia", "bank_cbe_birr", "bank_mpesa",
@@ -468,7 +499,7 @@ NUM_FEATURES = len(FEATURE_NAMES)
 
 def build_feature_dict(transaction: Dict,
                         bank_stats: Optional[Dict] = None,
-                        freq_tracker: Optional[ReferenceFrequencyTracker] = None) -> Dict[str, float]:
+                        freq_tracker: Optional[object] = None) -> Dict[str, float]:
     """
     Build a complete feature dictionary from a transaction record.
     
@@ -505,13 +536,8 @@ def build_feature_dict(transaction: Dict,
     # 4. Name features
     features.update(compute_name_features(payer_name, receiver_name))
     
-    # 5. Frequency features
-    if freq_tracker:
-        features.update(freq_tracker.get_frequency_features(reference, payer_name))
-    else:
-        features["reference_count"] = 0.0
-        features["is_duplicate"] = 0.0
-        features["payer_reference_count"] = 0.0
+    # Note: frequency/replay-related features were removed; deterministic
+    # replay detection is handled by the local Postgres store at runtime.
     
     # 6. Bank encoding
     features.update(encode_bank(bank))
@@ -521,7 +547,7 @@ def build_feature_dict(transaction: Dict,
 
 def build_feature_vector(transaction: Dict,
                           bank_stats: Optional[Dict] = None,
-                          freq_tracker: Optional[ReferenceFrequencyTracker] = None) -> np.ndarray:
+                          freq_tracker: Optional[object] = None) -> np.ndarray:
     """
     Build a numerical feature vector from a transaction record.
     
@@ -533,7 +559,7 @@ def build_feature_vector(transaction: Dict,
 
 def build_feature_matrix(df: pd.DataFrame,
                           bank_stats: Optional[Dict] = None,
-                          freq_tracker: Optional[ReferenceFrequencyTracker] = None) -> Tuple[np.ndarray, List[str]]:
+                          freq_tracker: Optional[object] = None) -> Tuple[np.ndarray, List[str]]:
     """
     Build feature matrix for an entire dataset.
     

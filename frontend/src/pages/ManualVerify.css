@@ -171,7 +171,7 @@
 .form-input:focus {
   background: var(--bg-input-focus);
   border-color: var(--border-focus);
-  box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.08);
+  box-shadow: 0 0 0 3px rgba(15, 118, 110, 0.08);
 }
 
 .form-input::placeholder {
@@ -201,18 +201,18 @@
   width: 100%;
   padding: 14px;
   border-radius: var(--radius-md);
-  background: var(--accent-gradient);
+  background: linear-gradient(135deg, #0f766e, #1d4ed8);
   color: white;
   font-size: 15px;
   font-weight: 600;
   transition: all var(--transition-base);
   border: none;
-  box-shadow: 0 2px 8px rgba(79, 70, 229, 0.2);
+  box-shadow: 0 10px 24px rgba(15, 118, 110, 0.18);
 }
 
 .submit-btn:hover:not(:disabled) {
   transform: translateY(-1px);
-  box-shadow: 0 4px 20px rgba(79, 70, 229, 0.3);
+  box-shadow: 0 14px 28px rgba(15, 118, 110, 0.24);
 }
 
 .submit-btn:disabled {

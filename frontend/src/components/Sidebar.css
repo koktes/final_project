@@ -4,13 +4,14 @@
   left: 0;
   width: var(--sidebar-width);
   height: 100vh;
-  background: var(--bg-secondary);
-  border-right: 1px solid var(--border-subtle);
+  background:
+    linear-gradient(180deg, rgba(15, 23, 42, 0.98) 0%, rgba(17, 24, 39, 0.97) 100%);
+  border-right: 1px solid rgba(255, 255, 255, 0.06);
   display: flex;
   flex-direction: column;
   z-index: 100;
   transition: width var(--transition-base);
-  box-shadow: 1px 0 8px rgba(0, 0, 0, 0.03);
+  box-shadow: 16px 0 40px rgba(15, 23, 42, 0.14);
 }
 
 .sidebar-brand {
@@ -18,19 +19,19 @@
   align-items: center;
   gap: 14px;
   padding: 24px 20px;
-  border-bottom: 1px solid var(--border-subtle);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
 }
 
 .sidebar-logo {
   width: 40px;
   height: 40px;
   border-radius: var(--radius-md);
-  background: var(--accent-gradient);
+  background: linear-gradient(145deg, #0f766e, #2563eb);
   display: flex;
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
-  box-shadow: 0 2px 8px rgba(79, 70, 229, 0.25);
+  box-shadow: 0 8px 24px rgba(15, 118, 110, 0.34);
 }
 
 .logo-icon {
@@ -41,14 +42,14 @@
 .sidebar-brand-text h1 {
   font-size: 18px;
   font-weight: 700;
-  letter-spacing: -0.5px;
-  color: var(--text-primary);
+  letter-spacing: -0.03em;
+  color: rgba(255, 255, 255, 0.96);
   line-height: 1.2;
 }
 
 .sidebar-brand-text span {
   font-size: 11px;
-  color: var(--text-muted);
+  color: rgba(255, 255, 255, 0.62);
   text-transform: uppercase;
   letter-spacing: 1px;
 }
@@ -67,7 +68,7 @@
   gap: 12px;
   padding: 11px 14px;
   border-radius: var(--radius-md);
-  color: var(--text-secondary);
+  color: rgba(255, 255, 255, 0.7);
   font-size: 14px;
   font-weight: 500;
   transition: all var(--transition-fast);
@@ -76,13 +77,13 @@
 }
 
 .nav-item:hover {
-  background: rgba(0, 0, 0, 0.03);
-  color: var(--text-primary);
+  background: rgba(255, 255, 255, 0.06);
+  color: rgba(255, 255, 255, 0.96);
 }
 
 .nav-item.active {
-  background: var(--accent-primary-dim);
-  color: var(--accent-primary);
+  background: linear-gradient(135deg, rgba(15, 118, 110, 0.22), rgba(37, 99, 235, 0.18));
+  color: #ffffff;
   font-weight: 600;
 }
 
@@ -95,7 +96,7 @@
   width: 3px;
   height: 24px;
   border-radius: 0 3px 3px 0;
-  background: var(--accent-primary);
+  background: #8ee3db;
 }
 
 .nav-icon {
@@ -110,8 +111,8 @@
   font-size: 10px;
   padding: 2px 8px;
   border-radius: var(--radius-full);
-  background: rgba(0, 0, 0, 0.04);
-  color: var(--text-muted);
+  background: rgba(255, 255, 255, 0.08);
+  color: rgba(255, 255, 255, 0.58);
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.5px;
@@ -119,7 +120,7 @@
 
 .sidebar-footer {
   padding: 16px 20px;
-  border-top: 1px solid var(--border-subtle);
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
 }
 
 .sidebar-user {
@@ -130,7 +131,7 @@
 
 .sidebar-user-label {
   font-size: 11px;
-  color: var(--text-muted);
+  color: rgba(255, 255, 255, 0.52);
   text-transform: uppercase;
   letter-spacing: 0.08em;
 }
@@ -138,7 +139,7 @@
 .sidebar-user-email {
   font-size: 13px;
   font-weight: 600;
-  color: var(--text-primary);
+  color: rgba(255, 255, 255, 0.92);
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -149,24 +150,24 @@
   align-items: center;
   gap: 8px;
   font-size: 12px;
-  color: var(--text-muted);
+  color: rgba(255, 255, 255, 0.64);
 }
 
 .status-dot {
   width: 7px;
   height: 7px;
   border-radius: 50%;
-  background: var(--success);
-  box-shadow: 0 0 6px rgba(22, 163, 74, 0.4);
+  background: #34d399;
+  box-shadow: 0 0 10px rgba(52, 211, 153, 0.45);
 }
 
 .sidebar-logout-btn {
   margin-top: 12px;
   width: 100%;
   border-radius: 10px;
-  border: 1px solid var(--border-default);
-  background: white;
-  color: var(--text-primary);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.04);
+  color: rgba(255, 255, 255, 0.9);
   font-size: 13px;
   font-weight: 600;
   padding: 9px 10px;
@@ -174,7 +175,7 @@
 }
 
 .sidebar-logout-btn:hover {
-  background: rgba(220, 38, 38, 0.08);
-  border-color: rgba(220, 38, 38, 0.35);
-  color: #991b1b;
+  background: rgba(220, 38, 38, 0.16);
+  border-color: rgba(248, 113, 113, 0.45);
+  color: #fff;
 }

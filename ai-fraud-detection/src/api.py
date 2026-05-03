@@ -14,18 +14,33 @@ Endpoints:
 
 import os
 import sys
+import logging
 from typing import Dict, List, Optional, Any
 from datetime import datetime
 
 from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel, Field
+from fastapi.requests import Request
+from fastapi.responses import JSONResponse
+from fastapi.exceptions import RequestValidationError
 import numpy as np
 
 # Add parent directory to path for imports
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 from src.model import FraudDetectionModel
+
+
+logger = logging.getLogger("fraud_detection_api")
+if not logger.handlers:
+    handler = logging.StreamHandler()
+    formatter = logging.Formatter(
+        "%(asctime)s %(levelname)s %(name)s - %(message)s"
+    )
+    handler.setFormatter(formatter)
+    logger.addHandler(handler)
+logger.setLevel(logging.INFO)
 
 
 # ──────────────────────────────────────────────────────────────────────────────
@@ -91,6 +106,22 @@ class PredictionResponse(BaseModel):
         default_factory=list,
         description="Top features contributing to the risk score"
     )
+    verification_source: str = Field(
+        default="Internal_ML_Engine",
+        description="Source of the decision for thesis reporting",
+    )
+    reason_codes: List[str] = Field(
+        default_factory=list,
+        description="Short reason codes derived from the strongest signals",
+    )
+    extracted_metadata: Dict[str, Any] = Field(
+        default_factory=dict,
+        description="Normalized transaction metadata used for scoring",
+    )
+    raw: Dict[str, Any] = Field(
+        default_factory=dict,
+        description="Raw model outputs and supporting evidence",
+    )
 
 
 class BatchPredictionResponse(BaseModel):
@@ -117,6 +148,59 @@ class ModelInfoResponse(BaseModel):
     calibration_accuracy: Optional[float]
 
 
+def build_reason_codes(contributions: List[ContributingFeature], status: str) -> List[str]:
+    """Convert the strongest feature signals into thesis-friendly reason codes."""
+    feature_to_reason = {
+        "shannon_entropy": "ENTROPY_ANOMALY",
+        "structural_integrity": "FORMAT_VIOLATION",
+        "ref_length_deviation": "REFERENCE_LENGTH_DRIFT",
+        "special_char_ratio": "SPECIAL_CHARACTER_VIOLATION",
+        "char_ngram_anomaly": "OCR_SUBSTITUTION_PATTERN",
+        "is_future": "FUTURE_TIMESTAMP",
+        "days_from_now": "TIMESTAMP_DRIFT",
+        "z_score_amount": "AMOUNT_OUTLIER",
+        "is_round_number": "ROUND_AMOUNT_PATTERN",
+        "names_identical": "SELF_TRANSFER_PATTERN",
+        "name_similarity": "IDENTITY_SIMILARITY",
+        "reference_count": "REFERENCE_REUSE",
+        "is_duplicate": "DUPLICATE_REFERENCE",
+        "payer_reference_count": "PAYER_REFERENCE_REUSE",
+    }
+
+    reason_codes: List[str] = []
+    for contribution in contributions[:3]:
+        reason = feature_to_reason.get(contribution.feature, contribution.feature.upper())
+        if reason not in reason_codes:
+            reason_codes.append(reason)
+
+    if not reason_codes:
+        reason_codes.append("MODEL_SCORE_ONLY")
+
+    if status == "Invalid" and "HIGH_RISK_SCORE" not in reason_codes:
+        reason_codes.append("HIGH_RISK_SCORE")
+
+    return reason_codes
+
+
+def build_extracted_metadata(transaction: TransactionRequest) -> Dict[str, Any]:
+    """Build a normalized metadata payload for the prediction response."""
+    return {
+        "bank": transaction.bank,
+        "reference": transaction.reference,
+        "amount": transaction.amount,
+        "currency": "ETB",
+        "transaction_date": transaction.transaction_date,
+        "payer_name": transaction.payer_name,
+        "payer_account": transaction.payer_account,
+        "receiver_name": transaction.receiver_name,
+        "receiver_account": transaction.receiver_account,
+        "transaction_status": transaction.transaction_status,
+        "reason": transaction.reason,
+        "suffix": transaction.suffix,
+        "phone_number": transaction.phone_number,
+    }
+
+
 # ──────────────────────────────────────────────────────────────────────────────
 # Application Setup
 # ──────────────────────────────────────────────────────────────────────────────
@@ -131,6 +215,7 @@ model: Optional[FraudDetectionModel] = None
 async def lifespan(app: FastAPI):
     """Load the trained model on startup, cleanup on shutdown."""
     global model
+    logger.info("Starting fraud detection service")
     
     # Look for model in standard locations
     model_dir = os.environ.get("MODEL_DIR", os.path.join(
@@ -138,18 +223,24 @@ async def lifespan(app: FastAPI):
         "models", "production"
     ))
     
+    logger.info("Using model directory: %s", model_dir)
     if os.path.exists(model_dir) and os.path.exists(os.path.join(model_dir, "metadata.json")):
         model = FraudDetectionModel()
-        model.load(model_dir)
-        print(f"Model loaded from {model_dir}")
+        try:
+            model.load(model_dir)
+            logger.info("Model loaded from %s", model_dir)
+        except Exception:
+            logger.exception("Failed to load model from %s", model_dir)
+            model = None
     else:
-        print(f"No trained model found at {model_dir}")
-        print(f"Run 'python scripts/train.py' first to train the model.")
+        logger.warning("No trained model found at %s", model_dir)
+        logger.warning("Run 'python scripts/train.py' first to train the model.")
         model = None
     
     yield  # App runs here
     
     # Cleanup (if needed)
+    logger.info("Shutting down fraud detection service")
     model = None
 
 
@@ -173,6 +264,24 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
+
+@app.exception_handler(RequestValidationError)
+async def validation_exception_handler(request: Request, exc: RequestValidationError):
+    logger.warning("Validation failed for %s %s: %s", request.method, request.url.path, exc.errors())
+    return JSONResponse(
+        status_code=422,
+        content={"detail": exc.errors()},
+    )
+
+
+@app.exception_handler(Exception)
+async def unhandled_exception_handler(request: Request, exc: Exception):
+    logger.exception("Unhandled error during %s %s", request.method, request.url.path)
+    return JSONResponse(
+        status_code=500,
+        content={"detail": "Internal server error", "error": str(exc)},
+    )
 
 
 # ──────────────────────────────────────────────────────────────────────────────
@@ -219,7 +328,34 @@ async def predict(transaction: TransactionRequest):
         raise HTTPException(status_code=503, detail="Model not loaded. Run training first.")
     
     tx_dict = transaction.model_dump()
-    result = model.predict(tx_dict)
+    logger.info(
+        "Predict request received bank=%s reference=%s amount=%s status=%s",
+        transaction.bank,
+        transaction.reference,
+        transaction.amount,
+        transaction.transaction_status,
+    )
+
+    try:
+        result = model.predict(tx_dict)
+        contributing = [ContributingFeature(**f) for f in result["contributing_features"]]
+    except Exception:
+        logger.exception(
+            "Prediction failed bank=%s reference=%s amount=%s",
+            transaction.bank,
+            transaction.reference,
+            transaction.amount,
+        )
+        raise HTTPException(status_code=500, detail="Prediction failed")
+
+    logger.info(
+        "Prediction complete bank=%s reference=%s risk_score=%s status=%s anomaly=%s",
+        transaction.bank,
+        transaction.reference,
+        result["risk_score"],
+        result["status"],
+        result["is_anomaly"],
+    )
     
     return PredictionResponse(
         risk_score=result["risk_score"],
@@ -227,9 +363,13 @@ async def predict(transaction: TransactionRequest):
         is_anomaly=result["is_anomaly"],
         confidence=result["confidence"],
         anomaly_score_raw=result["anomaly_score_raw"],
-        contributing_features=[
-            ContributingFeature(**f) for f in result["contributing_features"]
-        ],
+        contributing_features=contributing,
+        reason_codes=build_reason_codes(contributing, result["status"]),
+        extracted_metadata=build_extracted_metadata(transaction),
+        raw={
+            "ml": result,
+            "deterministic": {},
+        },
     )
 
 
@@ -244,21 +384,36 @@ async def predict_batch(request: BatchTransactionRequest):
     if model is None:
         raise HTTPException(status_code=503, detail="Model not loaded. Run training first.")
     
+    logger.info("Batch predict request received count=%s", len(request.transactions))
     predictions = []
     risk_scores = []
     
     for tx in request.transactions:
         tx_dict = tx.model_dump()
-        result = model.predict(tx_dict)
+        try:
+            result = model.predict(tx_dict)
+            contributing = [ContributingFeature(**f) for f in result["contributing_features"]]
+        except Exception:
+            logger.exception(
+                "Batch prediction failed bank=%s reference=%s amount=%s",
+                tx.bank,
+                tx.reference,
+                tx.amount,
+            )
+            raise HTTPException(status_code=500, detail="Batch prediction failed")
         predictions.append(PredictionResponse(
             risk_score=result["risk_score"],
             status=result["status"],
             is_anomaly=result["is_anomaly"],
             confidence=result["confidence"],
             anomaly_score_raw=result["anomaly_score_raw"],
-            contributing_features=[
-                ContributingFeature(**f) for f in result["contributing_features"]
-            ],
+            contributing_features=contributing,
+            reason_codes=build_reason_codes(contributing, result["status"]),
+            extracted_metadata=build_extracted_metadata(tx),
+            raw={
+                "ml": result,
+                "deterministic": {},
+            },
         ))
         risk_scores.append(result["risk_score"])
     
@@ -275,6 +430,7 @@ async def predict_batch(request: BatchTransactionRequest):
         "n_invalid": sum(1 for p in predictions if p.status == "Invalid"),
     }
     
+    logger.info("Batch predict complete count=%s avg_risk=%s", len(predictions), summary["avg_risk_score"])
     return BatchPredictionResponse(predictions=predictions, summary=summary)
 
 
