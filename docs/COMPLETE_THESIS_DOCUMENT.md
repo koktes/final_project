@@ -38,6 +38,12 @@ This thesis has been reviewed and accepted by:
 
 ---
 
+## Acknowledgements
+
+I would like to express my sincere gratitude to my advisor and department for their continuous support and guidance. I also extend my thanks to the open-source community for the foundational tools that made this implementation possible.
+
+---
+
 ## Abstract
 
 This thesis presents the design and implementation of a multi-bank payment verification platform that consolidates manual verification, image-based receipt extraction, transaction history management, and AI-assisted fraud scoring into a single unified system. The platform targets the operational verification needs of merchants, finance teams, and service providers who must validate payment receipts across multiple Ethiopian banks and mobile money providers.
@@ -53,75 +59,58 @@ The project contributes a practical, end-to-end verification workflow featuring 
 [1. Introduction](#chapter-1-introduction) <br>
 &nbsp;&nbsp;&nbsp;&nbsp;[1.1 Background](#11-background) <br>
 &nbsp;&nbsp;&nbsp;&nbsp;[1.2 Problem Statement](#12-problem-statement) <br>
-&nbsp;&nbsp;&nbsp;&nbsp;[1.3 Motivation](#13-motivation) <br>
-&nbsp;&nbsp;&nbsp;&nbsp;[1.4 Objectives](#14-objectives) <br>
-&nbsp;&nbsp;&nbsp;&nbsp;[1.5 Research Questions](#15-research-questions) <br>
-&nbsp;&nbsp;&nbsp;&nbsp;[1.6 Scope and Delimitations](#16-scope-and-delimitations) <br>
-&nbsp;&nbsp;&nbsp;&nbsp;[1.7 Contributions](#17-contributions) <br>
-[2. Literature Review and Related Work](#chapter-2-literature-review-and-related-work) <br>
-&nbsp;&nbsp;&nbsp;&nbsp;[2.1 The Challenge of Payment Fraud Detection](#21-the-challenge-of-payment-fraud-detection) <br>
-&nbsp;&nbsp;&nbsp;&nbsp;[2.2 The Document Information Extraction Bottleneck](#22-the-document-information-extraction-bottleneck) <br>
-&nbsp;&nbsp;&nbsp;&nbsp;[2.3 Algorithmic Approaches to Anomaly Detection](#23-algorithmic-approaches-to-anomaly-detection) <br>
-&nbsp;&nbsp;&nbsp;&nbsp;[2.4 Probability Calibration and Operational Interpretability](#24-probability-calibration-and-operational-interpretability) <br>
-&nbsp;&nbsp;&nbsp;&nbsp;[2.5 The "Architectural Impasse": Deterministic vs. Probabilistic Systems](#25-the-architectural-impasse-deterministic-vs-probabilistic-systems) <br>
-&nbsp;&nbsp;&nbsp;&nbsp;[2.6 Synthesis and Research Gap](#26-synthesis-and-research-gap) <br>
-[3. Methodology](#chapter-3-methodology) <br>
-&nbsp;&nbsp;&nbsp;&nbsp;[3.1 Research Method](#31-research-method) <br>
-&nbsp;&nbsp;&nbsp;&nbsp;[3.2 Iterative Development Process](#32-iterative-development-process) <br>
-&nbsp;&nbsp;&nbsp;&nbsp;[3.3 The Deterministic-First Decision Policy](#33-the-deterministic-first-decision-policy) <br>
-&nbsp;&nbsp;&nbsp;&nbsp;[3.4 Data Generation and ML Training Strategy](#34-data-generation-and-ml-training-strategy) <br>
-[4. System Requirements](#chapter-4-system-requirements) <br>
-&nbsp;&nbsp;&nbsp;&nbsp;[4.1 Functional Requirements](#41-functional-requirements) <br>
-&nbsp;&nbsp;&nbsp;&nbsp;[4.2 Non-Functional Requirements](#42-non-functional-requirements) <br>
-[5. System Architecture](#chapter-5-system-architecture) <br>
-&nbsp;&nbsp;&nbsp;&nbsp;[5.1 High-Level Architecture Overview](#51-high-level-architecture-overview) <br>
-&nbsp;&nbsp;&nbsp;&nbsp;[5.2 The Deterministic-First Verification Sequence](#52-the-deterministic-first-verification-sequence) <br>
-&nbsp;&nbsp;&nbsp;&nbsp;[5.3 Technology Stack](#53-technology-stack) <br>
-&nbsp;&nbsp;&nbsp;&nbsp;[5.4 Deployment Topology](#54-deployment-topology) <br>
-[6. Backend Design and Implementation](#chapter-6-backend-design-and-implementation) <br>
-&nbsp;&nbsp;&nbsp;&nbsp;[6.1 The Core API Server](#61-the-core-api-server) <br>
-&nbsp;&nbsp;&nbsp;&nbsp;[6.2 Authentication and Security Middleware](#62-authentication-and-security-middleware) <br>
-&nbsp;&nbsp;&nbsp;&nbsp;[6.3 Bank-Specific Verification Adapters](#63-bank-specific-verification-adapters) <br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[6.3.1 Commercial Bank of Ethiopia (CBE): Headless Browser Automation](#631-commercial-bank-of-ethiopia-cbe-headless-browser-automation) <br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[6.3.2 Telebirr: HTML DOM Parsing and Extraction](#632-telebirr-html-dom-parsing-and-extraction) <br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[6.3.3 Dashen Bank and CBE Birr: Binary PDF Parsing](#633-dashen-bank-and-cbe-birr-binary-pdf-parsing) <br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[6.3.4 Safaricom M-Pesa: Hybrid API to PDF Decoding](#634-safaricom-m-pesa-hybrid-api-to-pdf-decoding) <br>
-&nbsp;&nbsp;&nbsp;&nbsp;[6.4 Universal Verification Routing](#64-universal-verification-routing) <br>
-[7. Image Verification and Receipt Parsing Pipeline](#chapter-7-image-verification-and-receipt-parsing-pipeline) <br>
-&nbsp;&nbsp;&nbsp;&nbsp;[7.1 The Challenge of Unstructured Receipts](#71-the-challenge-of-unstructured-receipts) <br>
-&nbsp;&nbsp;&nbsp;&nbsp;[7.2 The OCR and Information Extraction Pipeline](#72-the-ocr-and-information-extraction-pipeline) <br>
-&nbsp;&nbsp;&nbsp;&nbsp;[7.3 Deep Dive: Parsing Heuristics by Provider](#73-deep-dive-parsing-heuristics-by-provider) <br>
-&nbsp;&nbsp;&nbsp;&nbsp;[7.4 Generative Vision Fallback](#74-generative-vision-fallback) <br>
-[8. Fraud Detection Proof of Concept](#chapter-8-fraud-detection-proof-of-concept) <br>
-&nbsp;&nbsp;&nbsp;&nbsp;[8.1 Purpose and Rationale](#81-purpose-and-rationale) <br>
-&nbsp;&nbsp;&nbsp;&nbsp;[8.2 Theoretical Foundation: Isolation Forests](#82-theoretical-foundation-isolation-forests) <br>
-&nbsp;&nbsp;&nbsp;&nbsp;[8.3 Probability Calibration with Logistic Regression](#83-probability-calibration-with-logistic-regression) <br>
-&nbsp;&nbsp;&nbsp;&nbsp;[8.4 Feature Engineering](#84-feature-engineering) <br>
-[9. Database Design](#chapter-9-database-design) <br>
-&nbsp;&nbsp;&nbsp;&nbsp;[9.1 Relational Architecture](#91-relational-architecture) <br>
-&nbsp;&nbsp;&nbsp;&nbsp;[9.2 Core Entities](#92-core-entities) <br>
-[10. Frontend Design and Implementation](#chapter-10-frontend-design-and-implementation) <br>
-&nbsp;&nbsp;&nbsp;&nbsp;[10.1 Operational Dashboard](#101-operational-dashboard) <br>
-&nbsp;&nbsp;&nbsp;&nbsp;[10.2 Workflow UI Design](#102-workflow-ui-design) <br>
-[11. Testing and Validation](#chapter-11-testing-and-validation) <br>
-&nbsp;&nbsp;&nbsp;&nbsp;[11.1 Component Level Validation](#111-component-level-validation) <br>
-&nbsp;&nbsp;&nbsp;&nbsp;[11.2 System-Level Integration Scenarios](#112-system-level-integration-scenarios) <br>
-[12. Evaluation and Results](#chapter-12-evaluation-and-results) <br>
-&nbsp;&nbsp;&nbsp;&nbsp;[12.1 Synthetic Dataset Characteristics](#121-synthetic-dataset-characteristics) <br>
-&nbsp;&nbsp;&nbsp;&nbsp;[12.2 Global Model Performance](#122-global-model-performance) <br>
-&nbsp;&nbsp;&nbsp;&nbsp;[12.3 Attack Vector Analysis](#123-attack-vector-analysis) <br>
-[13. Discussion](#chapter-13-discussion) <br>
-&nbsp;&nbsp;&nbsp;&nbsp;[13.1 Comparison to Existing Solutions](#131-comparison-to-existing-solutions) <br>
-&nbsp;&nbsp;&nbsp;&nbsp;[13.2 The Proof of Concept Limitations](#132-the-proof-of-concept-limitations) <br>
-[14. Security, Cryptography, and Auditability](#chapter-14-security-cryptography-and-auditability) <br>
-&nbsp;&nbsp;&nbsp;&nbsp;[14.1 Authentication and Cryptography](#141-authentication-and-cryptography) <br>
-&nbsp;&nbsp;&nbsp;&nbsp;[14.2 API Rate Limiting and DoS Protection](#142-api-rate-limiting-and-dos-protection) <br>
-&nbsp;&nbsp;&nbsp;&nbsp;[14.3 Database Idempotency and Replay Attack Prevention](#143-database-idempotency-and-replay-attack-prevention) <br>
-&nbsp;&nbsp;&nbsp;&nbsp;[14.4 PII Handling and Data Sovereignty](#144-pii-handling-and-data-sovereignty) <br>
-&nbsp;&nbsp;&nbsp;&nbsp;[14.5 The Ethics of Probabilistic Scoring](#145-the-ethics-of-probabilistic-scoring) <br>
-[15. Limitations and Threats to Validity](#chapter-15-limitations-and-threats-to-validity) <br>
-[16. Future Work](#chapter-16-future-work) <br>
-[17. Conclusion](#chapter-17-conclusion) <br>
+&nbsp;&nbsp;&nbsp;&nbsp;[1.3 Objectives](#13-objectives) <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[1.3.1 General Objective](#131-general-objective) <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[1.3.2 Specific Objectives](#132-specific-objectives) <br>
+&nbsp;&nbsp;&nbsp;&nbsp;[1.4 Significance of the Work](#14-significance-of-the-work) <br>
+&nbsp;&nbsp;&nbsp;&nbsp;[1.5 Scope and Limitations](#15-scope-and-limitations) <br>
+&nbsp;&nbsp;&nbsp;&nbsp;[1.6 Research Questions](#16-research-questions) <br>
+[2. Literature Review](#chapter-2-literature-review) <br>
+&nbsp;&nbsp;&nbsp;&nbsp;[2.1 Theoretical Background](#21-theoretical-background) <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[2.1.1 The Challenge of Payment Fraud Detection](#211-the-challenge-of-payment-fraud-detection) <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[2.1.2 The Document Information Extraction Bottleneck](#212-the-document-information-extraction-bottleneck) <br>
+&nbsp;&nbsp;&nbsp;&nbsp;[2.2 Related Works](#22-related-works) <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[2.2.1 Algorithmic Approaches to Anomaly Detection](#221-algorithmic-approaches-to-anomaly-detection) <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[2.2.2 Probability Calibration and Operational Interpretability](#222-probability-calibration-and-operational-interpretability) <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[2.2.3 The "Architectural Impasse": Deterministic vs. Probabilistic Systems](#223-the-architectural-impasse-deterministic-vs-probabilistic-systems) <br>
+&nbsp;&nbsp;&nbsp;&nbsp;[2.3 Summary of Knowledge Gaps](#23-summary-of-knowledge-gaps) <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[2.3.1 Synthesis and Research Gap](#231-synthesis-and-research-gap) <br>
+[3. Methodology and System Design](#chapter-3-methodology-and-system-design) <br>
+&nbsp;&nbsp;&nbsp;&nbsp;[3.1 Design Requirements](#31-design-requirements) <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[3.1.1 Functional Requirements](#311-functional-requirements) <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[3.1.2 Non-Functional Requirements](#312-non-functional-requirements) <br>
+&nbsp;&nbsp;&nbsp;&nbsp;[3.2 System Architecture/Model](#32-system-architecturemodel) <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[3.2.1 High-Level Architecture Overview](#321-high-level-architecture-overview) <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[3.2.2 The Deterministic-First Verification Sequence](#322-the-deterministic-first-verification-sequence) <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[3.2.3 Technology Stack](#323-technology-stack) <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[3.2.4 Deployment Topology](#324-deployment-topology) <br>
+&nbsp;&nbsp;&nbsp;&nbsp;[3.3 Implementation](#33-implementation) <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[3.3.1 Backend Design and Adapters](#331-backend-design-and-adapters) <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[3.3.2 Image Verification and Receipt Parsing Pipeline](#332-image-verification-and-receipt-parsing-pipeline) <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[3.3.3 Fraud Detection Proof of Concept](#333-fraud-detection-proof-of-concept) <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[3.3.4 Database Design](#334-database-design) <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[3.3.5 Frontend Design and Implementation](#335-frontend-design-and-implementation) <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[3.3.6 Security, Cryptography, and Auditability](#336-security-cryptography-and-auditability) <br>
+&nbsp;&nbsp;&nbsp;&nbsp;[3.4 Data Collection/Simulation Setup](#34-data-collectionsimulation-setup) <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[3.4.1 Research Method and Iterative Development](#341-research-method-and-iterative-development) <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[3.4.2 Data Generation and ML Training Strategy](#342-data-generation-and-ml-training-strategy) <br>
+[4. Results and Discussion](#chapter-4-results-and-discussion) <br>
+&nbsp;&nbsp;&nbsp;&nbsp;[4.1 Experimental/Simulation Results](#41-experimentalsimulation-results) <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[4.1.1 Component Level Validation](#411-component-level-validation) <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[4.1.2 System-Level Integration Scenarios](#412-system-level-integration-scenarios) <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[4.1.3 Synthetic Dataset Characteristics](#413-synthetic-dataset-characteristics) <br>
+&nbsp;&nbsp;&nbsp;&nbsp;[4.2 Performance Analysis](#42-performance-analysis) <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[4.2.1 Global Model Performance](#421-global-model-performance) <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[4.2.2 Attack Vector Analysis](#422-attack-vector-analysis) <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[4.2.3 Evaluation in Relation to Objectives](#423-evaluation-in-relation-to-objectives) <br>
+&nbsp;&nbsp;&nbsp;&nbsp;[4.3 Discussion](#43-discussion) <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[4.3.1 Comparison to Existing Solutions](#431-comparison-to-existing-solutions) <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[4.3.2 The Proof of Concept Limitations](#432-the-proof-of-concept-limitations) <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[4.3.3 Limitations and Threats to Validity](#433-limitations-and-threats-to-validity) <br>
+[5. Conclusions and Recommendations](#chapter-5-conclusions-and-recommendations) <br>
+&nbsp;&nbsp;&nbsp;&nbsp;[5.1 Conclusion](#51-conclusion) <br>
+&nbsp;&nbsp;&nbsp;&nbsp;[5.2 Contributions](#52-contributions) <br>
+&nbsp;&nbsp;&nbsp;&nbsp;[5.3 Recommendations](#53-recommendations) <br>
 [References](#references) <br>
 [Appendices](#appendices) <br>
 &nbsp;&nbsp;&nbsp;&nbsp;[Appendix A: Detailed Data Dictionary](#appendix-a-detailed-data-dictionary) <br>
@@ -132,12 +121,12 @@ The project contributes a practical, end-to-end verification workflow featuring 
 
 - Figure 1: High-Level System Architecture
 - Figure 2: Verification Request Sequence Diagram
-- Figure 3: Image Verification Pipeline
-- Figure 4: Fraud Detection ML Pipeline
-- Figure 5: Database Entity-Relationship Diagram
-- Figure 6: Frontend Navigation Map
-- Figure 7: Technology Stack Overview
-- Figure 8: Deployment Architecture
+- Figure 3: Technology Stack Overview
+- Figure 4: Deployment Architecture
+- Figure 5: Image Verification Pipeline
+- Figure 6: Fraud Detection ML Pipeline
+- Figure 7: Database Entity-Relationship Diagram
+- Figure 8: Frontend Navigation Map
 - Figure 9: ML Performance: ROC Curve
 - Figure 10: ML Performance: Precision-Recall Curve
 - Figure 11: ML Performance: Confusion Matrix
@@ -193,37 +182,35 @@ Modern enterprise verification systems require a paradigm shift: they must seaml
 
 ## 1.2 Problem Statement
 
-Existing payment verification workflows in the Ethiopian context suffer from severe fragmentation and an absence of standardized auditing protocols. The core problems addressed in this research are:
+Existing payment verification workflows in the Ethiopian context suffer from severe fragmentation and an absence of standardized auditing protocols, creating a significant operational liability. Verification currently relies heavily on human operators parsing non-standardized screenshots, which inevitably leads to fatigue and oversight. Because each banking institution and mobile money provider utilizes distinct receipt layouts, typographies, and reference number structures, automated extraction is exceedingly complicated. Furthermore, the absence of unified audit trails means verification outcomes are rarely consolidated, making it incredibly difficult to trace transaction histories or successfully resolve disputes. Compounding this issue is the fact that traditional systems provide only simple, binary "success" or "failure" flags, completely lacking the contextual nuance required to identify sophisticated fraud attempts. Consequently, advanced fraud intelligence signals remain siloed and disconnected from the daily operational workflows of finance personnel.
 
-- **Manual and Inconsistent Processes:** Verification relies heavily on human operators parsing non-standardized screenshots, leading to fatigue and oversight.
-- **Heterogeneous Receipt Formats:** Each banking institution and mobile money provider utilizes distinct receipt layouts, typographies, and reference number structures, complicating automated extraction.
-- **Absence of Unified Audit Trails:** Verification outcomes are rarely consolidated, making it difficult to trace transaction histories or resolve disputes.
-- **Binary Verification Outcomes:** Traditional systems provide simple "success" or "failure" flags, lacking the contextual nuance required to identify sophisticated fraud attempts.
-- **Siloed Fraud Intelligence:** Advanced fraud signals are typically disconnected from the daily operational workflows of finance personnel.
+## 1.3 Objectives
 
-## 1.3 Motivation
+### 1.3.1 General Objective
+To design, implement, and evaluate a multi-bank verification platform that supports both manual and image-based receipt verification, maintains robust audit records, and integrates a proof-of-concept AI-based fraud scoring module.
 
-The motivation for this project stems from the critical need to bridge the gap between complex financial integrations and usable operational software. Specific drivers include:
+### 1.3.2 Specific Objectives
+- To architect and deploy bank-specific deterministic verification adapters for multiple major Ethiopian payment providers.
+- To develop an intelligent receipt image extraction pipeline utilizing Optical Character Recognition (OCR) and fallback generative vision models.
+- To normalize verification outputs and architect a relational database schema for comprehensive transaction history and retry semantics.
+- To simulate synthetic fraud data and integrate a Python-based machine learning microservice to provide interpretable fraud risk scores and anomaly explanations.
+- To construct a professional, secure React-based operational dashboard for streamlined operational usage.
 
+## 1.4 Significance of the Work
+
+The motivation and significance for this project stem from the critical need to bridge the gap between complex financial integrations and usable operational software. Specific drivers include:
 - The necessity for a unified API interface that obscures the complexity of verifying receipts across multiple disparate providers.
 - The demand for reliable image-based verification to accommodate the prevalent user behavior of sharing payment screenshots.
 - The requirement for a searchable, exportable, and tamper-evident history system.
 - The opportunity to augment deterministic verification with AI-assisted fraud signals, shifting from basic validation to intelligent risk assessment.
 
-## 1.4 Objectives
+## 1.5 Scope and Limitations
 
-### General Objective
-To design, implement, and evaluate a multi-bank verification platform that supports both manual and image-based receipt verification, maintains robust audit records, and integrates a proof-of-concept AI-based fraud scoring module.
+The scope of this system encompasses manual reference verification, image-based receipt parsing, transaction history management, and AI risk scoring. It supports a predefined set of major Ethiopian providers. 
 
-### Specific Objectives
-- Architect and deploy bank-specific deterministic verification adapters for multiple major Ethiopian payment providers.
-- Develop an intelligent receipt image extraction pipeline utilizing Optical Character Recognition (OCR) and fallback generative vision models.
-- Normalize verification outputs and architect a relational database schema for comprehensive transaction history.
-- Implement robust retry semantics that accurately update existing records to preserve audit integrity.
-- Integrate a Python-based machine learning microservice to provide interpretable fraud risk scores and anomaly explanations.
-- Construct a professional, secure React-based dashboard for streamlined operational usage.
+Crucially, the system does not claim to provide official, enterprise-grade bank settlement reconciliation. It is designed for operational receipt verification. Furthermore, the AI fraud scoring module is explicitly designated as a proof of concept; due to the extreme difficulty in obtaining real-world labeled financial fraud datasets, the machine learning models are trained and evaluated on synthetically generated data that mimics observed attack vectors.
 
-## 1.5 Research Questions
+## 1.6 Research Questions
 
 This thesis seeks to answer the following research questions:
 
@@ -232,47 +219,38 @@ This thesis seeks to answer the following research questions:
 3. How can a proof-of-concept machine learning model be integrated into a deterministic verification system to provide meaningful fraud signals without disrupting authoritative ledger checks?
 4. What are the specific performance characteristics and failure modes of anomaly detection models when applied to synthetic receipt metadata?
 
-## 1.6 Scope and Delimitations
-
-The scope of this system encompasses manual reference verification, image-based receipt parsing, transaction history management, and AI risk scoring. It supports a predefined set of major Ethiopian providers. 
-
-Crucially, the system does not claim to provide official, enterprise-grade bank settlement reconciliation. It is designed for operational receipt verification. Furthermore, the AI fraud scoring module is explicitly designated as a proof of concept; due to the extreme difficulty in obtaining real-world labeled financial fraud datasets, the machine learning models are trained and evaluated on synthetically generated data that mimics observed attack vectors.
-
-## 1.7 Contributions
-
-The primary contributions of this thesis include:
-- A production-ready multi-bank verification API featuring unified workflows and comprehensive error handling.
-- An advanced image-based receipt extraction pipeline combining deterministic parsing algorithms with OCR and generative vision fallback.
-- A deterministic-first hybrid security gateway architecture that prioritizes immutable ledger checks while using AI as a supplementary risk layer.
-- A robust, PostgreSQL-backed `SeenTransaction` store designed for deterministic replay prevention.
-- An empirical evaluation of an Isolation Forest and Logistic Regression ensemble model for payment fraud detection.
-
 ---
 
-# Chapter 2: Literature Review and Related Work
+# Chapter 2: Literature Review
 
-## 2.1 The Challenge of Payment Fraud Detection
+## 2.1 Theoretical Background
+
+### 2.1.1 The Challenge of Payment Fraud Detection
 The digitization of financial services has precipitated a corresponding escalation in sophisticated payment fraud. Academic literature consistently highlights that static, rules-based defense mechanisms are increasingly insufficient to combat evolving threat typologies [7]. Research by Sonam et al. emphasizes the necessity of transitioning toward machine learning frameworks capable of generalizing from historical data to identify previously unseen fraudulent patterns in digital payment ecosystems [9]. Similarly, Shankar et al. document the broader industry shift toward AI-augmented detection systems, validating that algorithmic approaches significantly outperform manual auditing in both speed and accuracy [10]. However, much of this foundational research evaluates fraud detection strictly within the context of structured, tabular transaction streams generated at the banking core, often ignoring the operational reality where fraud occurs at the edge via falsified digital receipts and manipulated images.
 
-## 2.2 The Document Information Extraction Bottleneck
-Before algorithmic fraud detection can be applied at the edge, unstructured visual data must be converted into structured metadata. The open-source Tesseract engine is widely utilized in academic research as a foundational baseline for Optical Character Recognition (OCR) [1]. While Tesseract serves as a baseline for optical character recognition, recent literature demonstrates severe limitations when processing non-standard, noise-heavy financial documents [2]. Digital receipts "in the wild" suffer from diverse typographies, background interference, and compression artifacts, which frequently cause deterministic OCR parsers to output severely degraded text strings. Consequently, contemporary research increasingly relies on hybrid document understanding pipelines. Advanced architectures, such as multimodal deep networks, leverage Large Language Models (LLMs) to infer semantic entities from noisy OCR outputs or bypass OCR entirely in favor of direct visual-textual spatial reasoning [3]. 
+### 2.1.2 The Document Information Extraction Bottleneck
+Before algorithmic fraud detection can be applied at the edge, unstructured visual data must be converted into structured metadata. The open-source Tesseract engine is widely utilized in academic research as a foundational baseline for Optical Character Recognition (OCR) [1]. While Tesseract serves as a baseline, recent literature demonstrates severe limitations when processing non-standard, noise-heavy financial documents [2]. Digital receipts "in the wild" suffer from diverse typographies, background interference, and compression artifacts, which frequently cause deterministic OCR parsers to output severely degraded text strings. Consequently, contemporary research increasingly relies on hybrid document understanding pipelines. Advanced architectures, such as multimodal deep networks, leverage Large Language Models (LLMs) to infer semantic entities from noisy OCR outputs or bypass OCR entirely in favor of direct visual-textual spatial reasoning [3]. 
 
-## 2.3 Algorithmic Approaches to Anomaly Detection
+## 2.2 Related Works
+
+### 2.2.1 Algorithmic Approaches to Anomaly Detection
 Once structured metadata is extracted, analyzing it for fraudulent intent presents a significant algorithmic challenge. Fraud datasets are notoriously imbalanced, with illicit transactions often constituting less than 0.1% of all activity. Traditional supervised classifiers often suffer from majority-class bias in such environments, yielding unacceptably high false-negative rates [8]. Furthermore, traditional density-based anomaly detectors experience performance degradation in high-dimensional feature spaces due to the "curse of dimensionality" and are susceptible to masking effects [4].
 
-To address these limitations, Liu et al. introduced the Isolation Forest algorithm [4]. Rather than attempting to profile the complex distribution of "normal" behavior, Isolation Forests explicitly target anomalies. By constructing an ensemble of random decision trees, the algorithm isolates anomalies closer to the root of the trees, as anomalies are computationally "few and different" and thus require fewer random splits to separate. The literature identifies this mechanism as highly optimal for financial fraud metadata, as it maintains robustness across highly imbalanced, multi-dimensional distributions.
+To address these limitations, Liu et al. introduced the Isolation Forest algorithm [4]. Rather than attempting to profile the complex distribution of "normal" behavior, Isolation Forests explicitly target anomalies. By constructing an ensemble of random decision trees, the algorithm isolates anomalies closer to the root of the trees. The literature identifies this mechanism as highly optimal for financial fraud metadata, as it maintains robustness across highly imbalanced, multi-dimensional distributions.
 
-## 2.4 Probability Calibration and Operational Interpretability
+### 2.2.2 Probability Calibration and Operational Interpretability
 While algorithms like the Isolation Forest excel at separating anomalous records, they generate abstract, uncalibrated scores (e.g., path lengths or negative distances) rather than true probabilities. Academic research heavily critiques the deployment of uncalibrated scores in operational environments, as they preclude the establishment of rational, human-interpretable risk thresholds [6].
 
 To solve this, the literature advocates for post-hoc probability calibration techniques. Platt Scaling, originally introduced for Support Vector Machines, demonstrates that fitting a logistic regression model to the raw outputs of a classifier can successfully squash unbounded scores into a strict, well-calibrated posterior probability distribution [5]. Modern extensions of this research confirm that applying logistic calibration to anomaly scores allows downstream systems to treat the output as a definitive risk percentage, directly supporting human-in-the-loop review protocols [6].
 
-## 2.5 The "Architectural Impasse": Deterministic vs. Probabilistic Systems
+### 2.2.3 The "Architectural Impasse": Deterministic vs. Probabilistic Systems
 A recurring debate within financial technology literature is the tension between deterministic compliance and probabilistic adaptability. Financial systems require rigid adherence to deterministic rules (e.g., verifying that a ledger reference explicitly exists) to maintain auditability and regulatory compliance [7]. However, deterministic systems are brittle and blind to novel social engineering vectors. Conversely, while probabilistic machine learning models adapt to new threats, their inherent susceptibility to false positives makes them dangerous to use as sole arbiters of financial truth [8].
 
 Contemporary literature suggests resolving this "architectural impasse" through hybrid gateways. These theoretical frameworks advocate for prioritizing deterministic, rules-based checks (the "low-hanging fruit") while simultaneously deploying probabilistic models as an advisory layer to catch nuanced anomalies that bypass rigid logic [7][8].
 
-## 2.6 Synthesis and Research Gap
+## 2.3 Summary of Knowledge Gaps
+
+### 2.3.1 Synthesis and Research Gap
 A critical review of the existing literature reveals a landscape of isolated optimization. Research in document information extraction successfully addresses OCR degradation [2][3], while anomaly detection literature refines algorithms for imbalanced tabular data [4][9]. Furthermore, theoretical frameworks advocate for calibrating probabilistic scores to complement deterministic rules [5][8].
 
 However, there is a pronounced lack of synthesis integrating these disparate silos into a cohesive, operational reality. The existing literature lacks a unified, image-based verification framework that operationalizes modern LLM extraction fallbacks, applies calibrated Isolation Forests directly to the resulting unstructured metadata, and orchestrates the entire pipeline within a strict "Deterministic-First" compliance gateway. 
@@ -288,48 +266,14 @@ This thesis directly addresses this specific gap. It synthesizes OCR extraction,
 | Operational Interpretability | Platt Scaling / Logistic Calibration [5][6] | Calibrated scores are rarely mapped to hybrid gateway decision trees. |
 | System Architecture | Hybrid Deterministic-Probabilistic Gateways [7] | Lack of end-to-end, open implementations bridging image parsing and ledger compliance. |
 
----
 
-# Chapter 3: Methodology
+# Chapter 3: Methodology and System Design
 
-## 3.1 Research Method
+## 3.1 Design Requirements
 
-This research adheres to the Design Science Research (DSR) methodology. DSR focuses on the creation and evaluation of innovative IT artifacts to solve identified organizational problems. In this context, the multi-bank verification platform, the parsing algorithms, and the AI microservice are the artifacts. Their utility and validity are demonstrated through rigorous implementation, scenario testing, and empirical evaluation.
+The system must satisfy specific functional and non-functional objectives to achieve its operational goals within an enterprise environment.
 
-## 3.2 Iterative Development Process
-
-The system was developed utilizing an iterative, component-driven approach:
-
-1. **Requirements Engineering:** Identification of verification bottlenecks and definition of supported bank formats.
-2. **Deterministic Adapter Implementation:** Development of the core verification logic for each specific bank provider.
-3. **Extraction Pipeline Design:** Engineering the OCR and pattern-matching heuristics required to parse receipt images.
-4. **Persistence Architecture:** Designing the relational database schema to support auditability and replay prevention.
-5. **AI Integration:** Developing the synthetic dataset, training the machine learning models, and integrating the FastAPI microservice.
-6. **Evaluation:** Assessing OCR accuracy, system reliability, and model performance.
-
-## 3.3 The Deterministic-First Decision Policy
-
-A core methodological principle of this system is the "Deterministic-First" decision gateway. When a verification request is received (via text or extracted via OCR), the system enforces the following hierarchy of truth:
-
-1. **Replay Assessment:** The system queries the PostgreSQL `SeenTransaction` table. If the reference exists, the transaction is flagged for replay risk.
-2. **Authoritative Ledger Query:** The system dispatches a request to the appropriate bank adapter.
-   - If the provider confirms the transaction, it is authoritatively marked as **Verified**.
-   - If the provider explicitly rejects the reference (e.g., "Invalid Reference"), it is authoritatively marked as **Failed**.
-3. **Probabilistic Fallback:** Only if the authoritative ledger is unreachable (e.g., network timeout, provider API downtime) does the system invoke the AI Fraud Scoring microservice to provide an advisory risk assessment based on the receipt's metadata and visual characteristics.
-
-This architecture ensures that probabilistic machine learning outputs never override definitive, verifiable facts, aligning with financial compliance best practices.
-
-## 3.4 Data Generation and ML Training Strategy
-
-Due to the sensitive nature of financial data and the scarcity of publicly available, labeled fraud datasets for Ethiopian banking systems, this research relies on synthetic data generation for the AI proof of concept. The data generation pipeline models real-world transaction distributions (log-normal amount distributions, business-hour temporal biases) and injects specific attack vectors (e.g., OCR fuzzing, temporal anomalies, amount tampering). This allows for a robust, controlled evaluation of the machine learning ensemble.
-
----
-
-# Chapter 4: System Requirements
-
-## 4.1 Functional Requirements
-
-The system must satisfy specific functional objectives to achieve its operational goals.
+### 3.1.1 Functional Requirements
 
 ### Table 1: System Requirements
 
@@ -343,19 +287,16 @@ The system must satisfy specific functional objectives to achieve its operationa
 | FR6 | Support bulk verification via CSV upload. | Medium | The system can iterate over a CSV and process multiple references asynchronously. |
 | FR7 | Implement an AI fraud scoring microservice. | High | Verification metadata is passed to the AI service, returning a 0-100 risk score. |
 
-## 4.2 Non-Functional Requirements
+### 3.1.2 Non-Functional Requirements
 
-- **NFR1 (Reliability):** The system must handle provider API timeouts gracefully without crashing the main Node.js process.
-- **NFR2 (Security):** All operational endpoints must be secured using JSON Web Tokens (JWT) or API Keys.
-- **NFR3 (Auditability):** Every verification attempt must be logged, preserving the original request payloads and error states.
-- **NFR4 (Modularity):** The architecture must allow the addition of new bank adapters without modifying the core routing logic.
+- **Reliability:** The system must handle provider API timeouts gracefully without crashing the main Node.js process.
+- **Security:** All operational endpoints must be secured using JSON Web Tokens (JWT) or API Keys.
+- **Auditability:** Every verification attempt must be logged, preserving the original request payloads and error states.
+- **Modularity:** The architecture must allow the addition of new bank adapters without modifying the core routing logic.
 
----
+## 3.2 System Architecture/Model
 
-
-# Chapter 5: System Architecture
-
-## 5.1 High-Level Architecture Overview
+### 3.2.1 High-Level Architecture Overview
 
 The verification platform is designed around a modern, service-oriented architecture comprising three distinct layers: the Presentation Layer, the Core API Gateway Layer, and the AI Microservice Layer. This separation of concerns ensures that the computationally intensive machine learning tasks do not block the highly concurrent I/O operations required for network-based verification.
 
@@ -363,22 +304,22 @@ The verification platform is designed around a modern, service-oriented architec
 
 ![High-Level System Architecture](../images/thesis_figures/architecture_diagram_1777759065658.png)
 
-## 5.2 The Deterministic-First Verification Sequence
+### 3.2.2 The Deterministic-First Verification Sequence
 
 A critical architectural decision in this system is the verification sequence. When a user or downstream system submits a payload (either a raw reference or an extracted one), the Core API acts as an orchestrator.
 
-1. **Intrusion and Replay Check:** The API first consults the `SeenTransaction` datastore to check for replay attacks. 
-2. **Deterministic Provider Query:** The API dispatches the request to the specific Bank Adapter. The adapter translates the normalized system request into the proprietary format required by the external bank.
-3. **Branching Logic:**
-   - If the bank responds with authoritative data, the state is persisted and returned.
-   - If the bank explicitly rejects the reference, a definitive failure is recorded.
-   - If the bank is unavailable, the API triggers the AI Microservice to generate a probabilistic risk score.
+- **Intrusion and Replay Check:** The API first consults the `SeenTransaction` datastore to check for replay attacks.
+- **Deterministic Provider Query:** The API dispatches the request to the specific Bank Adapter. The adapter translates the normalized system request into the proprietary format required by the external bank.
+- **Branching Logic:**
+  - If the bank responds with authoritative data, the state is persisted and returned.
+  - If the bank explicitly rejects the reference, a definitive failure is recorded.
+  - If the bank is unavailable, the API triggers the AI Microservice to generate a probabilistic risk score.
 
 **Figure 2: Verification Request Sequence Diagram**
 
 ![Verification Request Sequence Diagram](../images/thesis_figures/verification_sequence_1777759136985.png)
 
-## 5.3 Technology Stack
+### 3.2.3 Technology Stack
 
 The stack was selected to maximize developer velocity and system performance:
 - **Presentation Layer:** React 19, TypeScript, and Vite 8.
@@ -387,31 +328,27 @@ The stack was selected to maximize developer velocity and system performance:
 - **AI/ML Layer:** FastAPI serving Scikit-learn models, utilizing Pandas and NumPy for feature engineering.
 - **Data Layer:** PostgreSQL accessed via Prisma ORM 6.8.
 
-**Figure 7: Technology Stack Overview**
+**Figure 3: Technology Stack Overview**
 
 ![Technology Stack Overview](../images/thesis_figures/technology_stack_1777759150076.png)
 
-## 5.4 Deployment Topology
+### 3.2.4 Deployment Topology
 
 The physical deployment topology reflects the logical architecture. The React Single Page Application (SPA) runs within the client browser. The Node.js Core API and PostgreSQL database represent the primary backend node. The Python FastAPI service, housing the trained Isolation Forest and Logistic Regression models (`joblib` artifacts), operates as an independent, scalable node.
 
-**Figure 8: Deployment Architecture**
+**Figure 4: Deployment Architecture**
 
 ![Deployment Architecture](../images/thesis_figures/deployment_diagram_1777759177151.png)
 
----
+## 3.3 Implementation
 
-# Chapter 6: Backend Design and Implementation
+### 3.3.1 Backend Design and Adapters
 
-## 6.1 The Core API Server
+**The Core API Server**
+The backend is built utilizing TypeScript on the Node.js runtime, leveraging the Express framework. The architecture utilizes a Controller-Service-Repository pattern, ensuring that HTTP transport logic is strictly decoupled from business logic and database operations.
 
-The backend is built utilizing TypeScript on the Node.js runtime, leveraging the Express framework. The architecture utilizes a Controller-Service-Repository pattern, ensuring that HTTP transport logic is strictly decoupled from business logic and database operations. 
-
-## 6.2 Authentication and Security Middleware
-
+**Authentication and Security Middleware**
 Security is enforced at the network edge. The system implements a robust JSON Web Token (JWT) strategy for user sessions, ensuring stateless scalability. For machine-to-machine integrations, an API Key authorization middleware is deployed, which tracks usage quotas and rate limits to prevent abuse. A comprehensive request logging middleware captures all incoming payloads, aiding in security audits and system observability.
-
-## 6.3 Bank-Specific Verification Adapters
 
 Because Ethiopian payment providers currently lack a unified, federated Open Banking standard (such as PSD2 in Europe), the system must employ highly specialized, asynchronous adapters for each institution. These adapters act as translation layers between the standardized API gateway and the proprietary, often undocumented, external bank endpoints.
 
@@ -426,11 +363,10 @@ Because Ethiopian payment providers currently lack a unified, federated Open Ban
 | Dashen Bank | Binary HTTP PDF Parsing | Extracting structured data from flat PDFs | High (2-4s) |
 | Bank of Abyssinia | JSON API | Schema variations | Low (<1s) |
 
-### 6.3.1 Commercial Bank of Ethiopia (CBE): Headless Browser Automation
-
+**Commercial Bank of Ethiopia (CBE): Headless Browser Automation**
 The CBE verification portal presents a unique engineering challenge because it is a heavily JavaScript-rendered Single Page Application (SPA). Standard HTTP GET/POST requests fail because the necessary DOM elements (like the result table) are not present in the initial HTML payload; they are rendered client-side after a complex XHR handshake.
 
-To overcome this, the CBE Adapter utilizes **Puppeteer**, a Node library that provides a high-level API to control headless Chrome. 
+To overcome this, the CBE Adapter utilizes **Puppeteer**, a Node library that provides a high-level API to control headless Chrome.
 
 ```javascript
 // Simplified CBE Puppeteer Adapter Logic
@@ -453,8 +389,7 @@ const status = await page.$eval('.status-cell', el => el.textContent);
 
 Furthermore, CBE digital receipts often contain a "hidden suffix" requirement. The visible reference number on a user's screenshot (e.g., `FT23019XYZ`) is insufficient; the portal requires the trailing sequence (e.g., `FT23019XYZ-12`). The adapter implements algorithmic suffix prediction and iteration to ensure successful verification even when the user submits an incomplete string.
 
-### 6.3.2 Telebirr: HTML DOM Parsing and Extraction
-
+**Telebirr: HTML DOM Parsing and Extraction**
 Unlike CBE, the Telebirr verification endpoint returns static HTML, but the data is deeply nested within obfuscated `<div>` tags lacking semantic IDs or classes. Utilizing a headless browser here would introduce unnecessary latency and memory overhead.
 
 Instead, the Telebirr adapter performs a direct HTTPS POST request and pipes the raw HTML response into **Cheerio**, a fast, flexible, and lean implementation of core jQuery designed specifically for the server.
@@ -469,9 +404,8 @@ const transactionAmount = $('div.container > div.row:nth-child(3) > span.value')
 const transactionStatus = $('div.alert').text().includes('Success') ? 'VERIFIED' : 'FAILED';
 ```
 
-### 6.3.3 Dashen Bank and CBE Birr: Binary PDF Parsing
-
-A significant architectural revelation during the implementation of Dashen Bank and CBE Birr was that neither institution utilizes standard JSON REST APIs for public receipt validation. Instead, their respective servers (`receipt.dashensuperapp.com` and `cbepay1.cbe.com.et`) generate formal PDF documents dynamically based on the requested transaction ID.
+**Dashen Bank and CBE Birr: Binary PDF Parsing**
+A significant architectural revelation during the implementation of Dashen Bank and CBE Birr was that neither institution utilizes standard JSON REST APIs for public receipt validation. Instead, their respective servers generate formal PDF documents dynamically based on the requested transaction ID.
 
 To verify these transactions, the system bypasses the visual rendering of the PDFs and directly retrieves the raw binary `ArrayBuffer` via HTTP GET requests. The Node.js server then utilizes a dedicated PDF parsing library (`pdf-parse`) to convert the binary buffer into a continuous text stream.
 
@@ -483,11 +417,10 @@ const debitAccountMatch = pdfText.match(/Debit Account\s*([\s\S]*?)(?=\s*Credit 
 const debitAccount = debitAccountMatch ? debitAccountMatch[1].replace(/\n/g, ' ').trim() : '';
 ```
 
-### 6.3.4 Safaricom M-Pesa: Hybrid API to PDF Decoding
-
+**Safaricom M-Pesa: Hybrid API to PDF Decoding**
 Safaricom M-Pesa presents a hybrid integration model. The system queries the M-Pesa Business API (or an authenticated proxy), which responds with a structured JSON payload. However, the transaction details are not stored in standard JSON keys. Instead, the JSON contains a `base64Data` string representing an embedded PDF receipt.
 
-The Node server must decode this Base64 string into a binary `Buffer` and, similar to Dashen and CBE Birr, pass it to the `pdf-parse` engine. The resulting text stream is then aggressively scanned using regex to extract financial data (e.g., isolating the Service Fee from the 15% VAT calculation).
+The Node server must decode this Base64 string into a binary `Buffer` and pass it to the `pdf-parse` engine. The resulting text stream is then aggressively scanned using regex to extract financial data.
 
 ```javascript
 // Simplified M-Pesa Base64 PDF Decoder Logic
@@ -499,78 +432,52 @@ if (data.responseCode === "0" && data.base64Data) {
 }
 ```
 
-## 6.4 Universal Verification Routing
-
+**Universal Verification Routing**
 To simplify the developer experience for downstream consumers, the API exposes a Universal Verification endpoint (`/verify-universal`). This endpoint utilizes a suite of regular expressions to analyze an incoming reference string, probabilistically predict the target bank, and dynamically route the payload to the correct adapter via a Factory design pattern.
 
----
+### 3.3.2 Image Verification and Receipt Parsing Pipeline
 
-# Chapter 7: Image Verification and Receipt Parsing Pipeline
-
-## 7.1 The Challenge of Unstructured Receipts
-
-The most significant engineering challenge in this platform is the extraction of structured metadata from unstructured image uploads. Users typically submit screenshots of payment confirmations generated by various banking apps. These images suffer from artifacts, varied resolutions, differing aspect ratios, and entirely distinct visual layouts. 
-
-## 7.2 The OCR and Information Extraction Pipeline
+The most significant engineering challenge in this platform is the extraction of structured metadata from unstructured image uploads. Users typically submit screenshots of payment confirmations generated by various banking apps. These images suffer from artifacts, varied resolutions, differing aspect ratios, and entirely distinct visual layouts.
 
 To achieve low-latency extraction, the system relies primarily on local Optical Character Recognition via Tesseract.js. The pipeline operates as follows:
+- **Preprocessing:** The image is validated for size and MIME type. In advanced configurations, grayscale conversion and binarization are applied to increase text contrast.
+- **Text Extraction:** Tesseract processes the image buffer, returning a raw, unstructured string representing all detected text.
+- **Bank Identification Heuristics:** The system scans the raw text for specific institutional keywords (e.g., "Commercial Bank", "Telebirr", "CBEBirr").
+- **Reference Parsing:** Once the bank is identified, highly specific regular expressions are deployed to locate the transaction reference.
 
-1. **Preprocessing:** The image is validated for size and MIME type. In advanced configurations, grayscale conversion and binarization are applied to increase text contrast.
-2. **Text Extraction:** Tesseract processes the image buffer, returning a raw, unstructured string representing all detected text.
-3. **Bank Identification Heuristics:** The system scans the raw text for specific institutional keywords (e.g., "Commercial Bank", "Telebirr", "CBEBirr").
-4. **Reference Parsing:** Once the bank is identified, highly specific regular expressions are deployed to locate the transaction reference.
-
-**Figure 3: Image Verification Pipeline**
+**Figure 5: Image Verification Pipeline**
 
 ![Image Verification Pipeline](../images/thesis_figures/ocr_pipeline_flowchart_1777759078871.png)
 
-## 7.3 Deep Dive: Parsing Heuristics by Provider
+The accuracy of the information extraction relies heavily on the domain-specific parsing logic crafted for each provider. For example, Telebirr receipts typically position the transaction ID immediately following terms like "Transaction ID:". The parser utilizes positive lookbehinds in its regex strategy (`/(?<=Transaction ID:\s*)[A-Z0-9]+/)`) to isolate this string while ignoring phone numbers and date strings. CBE digital receipts present a unique challenge, as the parser must extract both the primary transaction reference (often starting with "FT") and scan the surrounding textual bounding boxes to locate the necessary suffix tokens, assembling them into a composite payload ready for the Puppeteer adapter.
 
-The accuracy of the information extraction relies heavily on the domain-specific parsing logic crafted for each provider:
-
-### Telebirr Parsing
-Telebirr receipts typically position the transaction ID immediately following terms like "Transaction ID:" or "Transaction No". Furthermore, the reference itself often conforms to a specific alphanumeric pattern. The parser utilizes positive lookbehinds in its regex strategy (`/(?<=Transaction ID:\s*)[A-Z0-9]+/)`) to isolate this string while ignoring phone numbers and date strings.
-
-### Commercial Bank of Ethiopia (CBE) Parsing
-CBE digital receipts present a unique challenge. As mentioned, the parser must extract both the primary transaction reference (often starting with "FT") and scan the surrounding textual bounding boxes to locate the necessary suffix tokens, assembling them into a composite payload ready for the Puppeteer adapter.
-
-## 7.4 Generative Vision Fallback
-
-Traditional OCR is brittle. If a user uploads a receipt that is blurred, skewed, or utilizing a non-standard font update pushed by the bank, regex parsing will fail. 
+**Generative Vision Fallback**
+Traditional OCR is brittle. If a user uploads a receipt that is blurred, skewed, or utilizing a non-standard font update pushed by the bank, regex parsing will fail.
 
 To ensure high availability, the system implements a fallback mechanism using the Mistral Vision API. When local regex parsing fails to yield a high-confidence extraction, the image is passed to the multimodal LLM with a strict system prompt. The prompt mandates that the model act as a JSON-only extraction engine, bypassing textual OCR errors by leveraging the model's semantic understanding of document layouts. This hybrid approach guarantees rapid responses for clean receipts (via Tesseract) while providing high resilience for edge cases (via Vision models).
 
-
----
-
-# Chapter 8: Fraud Detection Proof of Concept
-
-## 8.1 Purpose and Rationale
+### 3.3.3 Fraud Detection Proof of Concept
 
 The fraud detection service represents the machine learning core of the thesis. Its primary purpose is not to replace deterministic bank verification—which serves as the ultimate arbiter of truth—but to provide a probabilistic risk assessment. This is vital for scenarios where authoritative ledgers are temporarily unavailable or when detecting sophisticated social engineering attacks (e.g., name mismatches on real receipts) that bypass basic reference checks.
 
 Because acquiring a comprehensive, labeled dataset of real-world Ethiopian banking fraud is practically impossible due to proprietary banking secrecy laws, this module is constructed as a rigorous Proof of Concept (PoC). It operates on synthetically generated data specifically designed to mirror the statistical distributions of legitimate Ethiopian transactions and the typologies of known receipt fraud.
 
-## 8.2 Theoretical Foundation: Isolation Forests
-
-Fraud detection is fundamentally an anomaly detection problem. While traditional supervised classifiers struggle with severe class imbalance (where fraud represents < 0.1% of transactions), the Isolation Forest (IF) algorithm excels. 
+**Theoretical Foundation: Isolation Forests**
+Fraud detection is fundamentally an anomaly detection problem. While traditional supervised classifiers struggle with severe class imbalance (where fraud represents < 0.1% of transactions), the Isolation Forest (IF) algorithm excels.
 
 Unlike algorithms that attempt to model the "normal" data distribution, Isolation Forests explicitly isolate anomalies. The algorithm constructs an ensemble of Random Trees. Because anomalies are "few and different," they are isolated closer to the root of the trees (requiring fewer random splits to isolate). The anomaly score is therefore a function of the average path length required to isolate a data point across the ensemble. This approach is highly efficient for high-dimensional financial metadata and prevents the "swamping" and "masking" effects common in distance-based anomaly detectors.
 
-## 8.3 Probability Calibration with Logistic Regression
-
+**Probability Calibration with Logistic Regression**
 A critical usability flaw with raw Isolation Forests is that their output is an abstract, uncalibrated anomaly score (often negative distances). This score is difficult for human operators to interpret.
 
 To solve this, the architecture employs a Logistic Regression calibrator stacked atop the Isolation Forest. The Logistic Regression model takes the raw anomaly score, along with the original feature vector, and is trained in a supervised manner on the labeled synthetic dataset. This calibrator squashes the unbounded anomaly scores into a strict 0.0 to 1.0 probability range. This calibrated probability is then scaled to a 0-100 Risk Score, enabling the establishment of clear, actionable business thresholds (e.g., >80 indicates "Invalid").
 
-**Figure 4: Fraud Detection ML Pipeline**
+**Figure 6: Fraud Detection ML Pipeline**
 
 ![Fraud Detection ML Pipeline](../images/thesis_figures/ml_pipeline_diagram_1777759091756.png)
 
-## 8.4 Feature Engineering
-
+**Feature Engineering**
 The model analyzes 35 distinct features engineered from the raw receipt payload. Key feature families include:
-
 - **Reference Entropy and Structure:** Statistical analysis of character distributions to catch randomly typed strings.
 - **OCR Anomaly Patterns:** Detection of suspicious character substitutions common in forged receipts (e.g., swapping 'O' for '0' or 'I' for '1').
 - **Temporal Analysis:** Flags for transactions occurring during highly unusual hours (e.g., 3:00 AM) or impossible future dates.
@@ -582,43 +489,32 @@ The model analyzes 35 distinct features engineered from the raw receipt payload.
 |---|---|---|---|
 | Isolation Forest | `n_estimators` | 200 | Number of isolation trees |
 | Isolation Forest | `contamination` | 0.15 | Expected global anomaly fraction |
-| Logistic Regression| `C` | 1.0 | Inverse of regularization strength |
-| Logistic Regression| `max_iter` | 1000 | Maximum solver iterations |
+| Logistic Regression | `C` | 1.0 | Inverse of regularization strength |
+| Logistic Regression | `max_iter` | 1000 | Maximum solver iterations |
 
----
-
-# Chapter 9: Database Design
-
-## 9.1 Relational Architecture
+### 3.3.4 Database Design
 
 The system utilizes PostgreSQL, managed via the Prisma Object-Relational Mapper (ORM), ensuring strict type safety across the Node.js boundary.
 
-## 9.2 Core Entities
-
 To maintain clarity and strict boundaries, the schema focuses entirely on three core tables relevant to the verification process:
-
 1. **User:** Manages authentication identities and permissions.
 2. **VerificationRecord:** The primary audit log. It stores the transaction reference, amount, payer/receiver details, the final verification status, execution timestamps, and paths to any uploaded receipt images. This table is immutable regarding historical verification outcomes, but allows state updates during retry operations to prevent record duplication.
 3. **SeenTransaction:** A high-performance table dedicated solely to deterministic replay prevention. It stores normalized combinations of `bank` and `reference`. Before any verification is processed, the system queries this table.
 
-**Figure 5: Database Entity-Relationship Diagram**
+**Figure 7: Database Entity-Relationship Diagram**
 
 ![Database ER Diagram](../images/thesis_figures/er_diagram_1777759103592.png)
 
----
+### 3.3.5 Frontend Design and Implementation
 
-# Chapter 10: Frontend Design and Implementation
-
-## 10.1 Operational Dashboard
-
+**Operational Dashboard**
 The frontend Presentation Layer is implemented as a React Single Page Application (SPA). It provides operational staff with an intuitive interface to interact with the underlying API capabilities without requiring technical expertise.
 
-**Figure 6: Frontend Navigation Map**
+**Figure 8: Frontend Navigation Map**
 
 ![Frontend Navigation Map](../images/thesis_figures/frontend_screen_map_1777759164752.png)
 
-## 10.2 Workflow UI Design
-
+**Workflow UI Design**
 The user interface abstracts the complex orchestration happening in the backend:
 
 ### Table 9: Frontend Pages and Purpose
@@ -631,25 +527,70 @@ The user interface abstracts the complex orchestration happening in the backend:
 | Bulk Import | Facilitates CSV upload for high-volume, asynchronous processing. |
 | Audit History | A highly searchable, paginated table of `VerificationRecord` entities. |
 
----
+### 3.3.6 Security, Cryptography, and Auditability
 
-# Chapter 11: Testing and Validation
+As a system handling sensitive financial verification data, robust security mechanisms are paramount. This chapter outlines the specific cryptographic implementations and database constraints designed to protect the system from unauthorized access and distributed attacks.
 
-## 11.1 Component Level Validation
+**Authentication and Cryptography**
+The API gateway relies on JSON Web Tokens (JWT) for stateless authentication. When a user authenticates, the backend generates a JWT signed symmetrically using the HMAC SHA-256 (HS256) algorithm.
+
+To ensure password security within the `User` table, the system utilizes the **bcrypt** adaptive hashing algorithm. Passwords are never stored in plaintext. The bcrypt algorithm automatically incorporates a randomly generated cryptographic salt per user, neutralizing rainbow table attacks, and utilizes a configurable cost factor (work factor) to mitigate brute-force dictionary attacks.
+
+**API Rate Limiting and DoS Protection**
+Because the system acts as an orchestration layer triggering heavy headless browser operations (Puppeteer) and expensive multimodal API calls (Mistral), it is highly vulnerable to Denial of Service (DoS) attacks. A malicious actor could overwhelm the server by submitting thousands of image verification requests per second.
+
+To mitigate this, the API gateway implements an in-memory **Token Bucket algorithm** for rate limiting. External API keys are limited to a specific threshold (e.g., 60 requests per minute). Requests exceeding this limit receive a `429 Too Many Requests` HTTP response, ensuring the underlying Node.js event loop remains responsive for legitimate traffic.
+
+**Database Idempotency and Replay Attack Prevention**
+A major vector of payment fraud is the "Replay Attack," where a malicious actor presents a legitimate, previously verified receipt to defraud a merchant multiple times. The system mitigates this at the database level using strict idempotency controls.
+
+The `SeenTransaction` table acts as a high-speed, indexed ledger for replay prevention. Its schema defines a unique composite constraint on `(bank, reference)`.
+
+```sql
+-- PostgreSQL Composite Constraint
+ALTER TABLE "SeenTransaction" 
+ADD CONSTRAINT "SeenTransaction_bank_reference_key" UNIQUE ("bank", "reference");
+```
+
+Before the Node API dispatches an external provider query, it attempts an `UPSERT` operation on this table. If the unique constraint violation is triggered (Postgres Error `23505`), the API immediately flags the incoming request as a `REPLAY_DETECTED` anomaly, preventing the system from re-verifying a consumed receipt while ensuring database integrity.
+
+**PII Handling and Data Sovereignty**
+Payment receipts inherently contain Personally Identifiable Information (PII) such as full names, partial account numbers, and phone numbers. The architecture restricts logging of this data. Images processed via the Vision API fallback are transmitted ephemerally and are not permanently cached, reducing the data footprint.
+
+**The Ethics of Probabilistic Scoring**
+A fundamental ethical tenet of this system is that machine learning should inform, not dictate. Fraud risk scores are presented strictly as advisory metrics to human operators. Automating irreversible financial decisions (such as freezing a user account) based purely on an Isolation Forest anomaly score is discouraged due to the potential for false positives.
+
+## 3.4 Data Collection/Simulation Setup
+
+### 3.4.1 Research Method and Iterative Development
+This research adheres to the Design Science Research (DSR) methodology. DSR focuses on the creation and evaluation of innovative IT artifacts to solve identified organizational problems. In this context, the multi-bank verification platform, the parsing algorithms, and the AI microservice are the artifacts. Their utility and validity are demonstrated through rigorous implementation, scenario testing, and empirical evaluation.
+
+The system was developed utilizing an iterative, component-driven approach:
+1. **Requirements Engineering:** Identification of verification bottlenecks and definition of supported bank formats.
+2. **Deterministic Adapter Implementation:** Development of the core verification logic for each specific bank provider.
+3. **Extraction Pipeline Design:** Engineering the OCR and pattern-matching heuristics required to parse receipt images.
+4. **Persistence Architecture:** Designing the relational database schema to support auditability and replay prevention.
+5. **AI Integration:** Developing the synthetic dataset, training the machine learning models, and integrating the FastAPI microservice.
+6. **Evaluation:** Assessing OCR accuracy, system reliability, and model performance.
+
+### 3.4.2 Data Generation and ML Training Strategy
+Due to the sensitive nature of financial data and the scarcity of publicly available, labeled fraud datasets for Ethiopian banking systems, this research relies on synthetic data generation for the AI proof of concept. The data generation pipeline models real-world transaction distributions (log-normal amount distributions, business-hour temporal biases) and injects specific attack vectors (e.g., OCR fuzzing, temporal anomalies, amount tampering). This allows for a robust, controlled evaluation of the machine learning ensemble.
+
+
+# Chapter 4: Results and Discussion
+
+## 4.1 Experimental/Simulation Results
+
+### 4.1.1 Component Level Validation
 The TypeScript API was subjected to strict static analysis to ensure type safety. Dedicated unit tests validated the deterministic parsing heuristics for each bank to ensure that valid references were correctly captured while rejecting malformed inputs.
 
-## 11.2 System-Level Integration Scenarios
+### 4.1.2 System-Level Integration Scenarios
 The end-to-end architecture was validated against the Deterministic-First gateway rules using specific test vectors:
 - **Ledger Success Path:** An accurate reference was submitted and confirmed by the bank API.
 - **Ledger Rejection Path:** A fabricated reference was submitted, resulting in a deterministic rejection.
 - **Fallback Activation:** Bank adapters were mocked to timeout, successfully triggering the Python AI microservice to return a probabilistic risk score.
 
----
-
-# Chapter 12: Evaluation and Results
-
-## 12.1 Synthetic Dataset Characteristics
-
+### 4.1.3 Synthetic Dataset Characteristics
 The ML models were trained and evaluated on a custom synthetic dataset designed to mimic Ethiopian transaction flows.
 
 ### Table 4: Dataset Summary
@@ -659,8 +600,9 @@ The ML models were trained and evaluated on a custom synthetic dataset designed 
 | Contaminated / Fraud | 1,000 | Uniformly injected with 6 distinct attack vectors |
 | **Total Pipeline** | **6,000** | Split 70/15/15 for Train/Validation/Holdout Test |
 
-## 12.2 Global Model Performance
+## 4.2 Performance Analysis
 
+### 4.2.1 Global Model Performance
 The hybrid Isolation Forest and Logistic Regression ensemble demonstrated highly robust performance. The Logistic Regression threshold was auto-tuned during training to maximize the F1 harmonic mean.
 
 ### Table 6: Model Performance Metrics
@@ -691,7 +633,7 @@ The hybrid Isolation Forest and Logistic Regression ensemble demonstrated highly
 
 ![Confusion Matrix](../images/thesis_figures/confusion_matrix.png)
 
-## 12.3 Attack Vector Analysis
+### 4.2.2 Attack Vector Analysis
 
 Evaluating global accuracy can mask critical weaknesses in specific threat topologies. A granular analysis reveals the model's strengths and its primary limitation.
 
@@ -717,64 +659,25 @@ Evaluating global accuracy can mask critical weaknesses in specific threat topol
 
 ![Risk Score Distribution](../images/thesis_figures/risk_score_distribution.png)
 
-The evaluation conclusively demonstrates that while the model is exceptionally adept at recognizing structural and statistical deviations (Amount Tampering, Format Violations), it fails catastrophically against OCR Fuzzing (subtle character substitutions like 'O' to '0'). This indicates that the current feature engineering pipeline cannot effectively differentiate between a highly sophisticated receipt forgery and a minor OCR extraction error.
+### 4.2.3 Evaluation in Relation to Objectives
 
+The empirical results and system-level validation confirm the platform's success in meeting the core objectives established at the outset of this research:
 
----
+- **Objective 1: Deterministic Verification Adapters.** The successful execution of the "Ledger Success Path" and "Ledger Rejection Path" integration scenarios demonstrates that the API gateway effectively interfaces with diverse provider systems, including complex headless browser automation for CBE and binary PDF parsing for Dashen Bank.
+- **Objective 2: Image Extraction Pipeline.** The evaluation confirms that the OCR extraction pipeline, coupled with Generative Vision fallbacks, successfully captures transaction references from varied screenshot layouts. The high detection rate for format violations indicates that the deterministic heuristics provide a strong baseline for unstructured data ingestion.
+- **Objective 3: Relational Schema and Auditability.** The successful persistence of transaction states and the 100% detection rate for Replay attacks validate the `SeenTransaction` database architecture, fulfilling the requirement for a unified, idempotency-enforcing audit trail.
+- **Objective 4: AI Fraud Scoring Microservice.** The deployment of the hybrid Isolation Forest and Logistic Regression model, achieving an F1 score of 0.6652 and an ROC-AUC of 0.8553, proves the feasibility of appending probabilistic fraud signals to a rigid compliance workflow. However, the poor performance against OCR fuzzing highlights the limitations of a purely metadata-driven approach.
+- **Objective 5: Operational Dashboard.** The successful routing of manual and image-based verifications through the React SPA fulfills the objective of abstracting backend complexity into a streamlined, operational user interface.
 
-# Chapter 13: Discussion
+## 4.3 Discussion
 
-## 13.1 Comparison to Existing Solutions
-
+### 4.3.1 Comparison to Existing Solutions
 When evaluated against existing local verification utilities, this platform offers a distinct operational advantage. While legacy tools rely entirely on manual reference input, this system provides multimodal ingestion via the Image Verification Pipeline. Furthermore, the integration of an AI Fraud Scoring service provides a secondary layer of defense that is entirely absent in standard implementations.
 
-## 13.2 The Proof of Concept Limitations
+### 4.3.2 The Proof of Concept Limitations
+The machine learning implementation serves as a strong architectural blueprint but requires significant refinement before enterprise deployment. The empirical evaluation clearly highlighted the model's inability to differentiate sophisticated OCR fuzzing from normal extraction errors. This demonstrates that purely metadata-driven anomaly detection is insufficient for stopping advanced receipt forgery.
 
-The machine learning implementation serves as a strong architectural blueprint but requires significant refinement before enterprise deployment. The empirical evaluation clearly highlighted the model's inability to differentiate sophisticated OCR fuzzing from normal extraction errors. This demonstrates that purely metadata-driven anomaly detection is insufficient for stopping advanced receipt forgery. 
-
----
-
-# Chapter 14: Security, Cryptography, and Auditability
-
-As a system handling sensitive financial verification data, robust security mechanisms are paramount. This chapter outlines the specific cryptographic implementations and database constraints designed to protect the system from unauthorized access and distributed attacks.
-
-## 14.1 Authentication and Cryptography
-
-The API gateway relies on JSON Web Tokens (JWT) for stateless authentication. When a user authenticates, the backend generates a JWT signed symmetrically using the HMAC SHA-256 (HS256) algorithm. 
-
-To ensure password security within the `User` table, the system utilizes the **bcrypt** adaptive hashing algorithm. Passwords are never stored in plaintext. The bcrypt algorithm automatically incorporates a randomly generated cryptographic salt per user, neutralizing rainbow table attacks, and utilizes a configurable cost factor (work factor) to mitigate brute-force dictionary attacks.
-
-## 14.2 API Rate Limiting and DoS Protection
-
-Because the system acts as an orchestration layer triggering heavy headless browser operations (Puppeteer) and expensive multimodal API calls (Mistral), it is highly vulnerable to Denial of Service (DoS) attacks. A malicious actor could overwhelm the server by submitting thousands of image verification requests per second.
-
-To mitigate this, the API gateway implements an in-memory **Token Bucket algorithm** for rate limiting. External API keys are limited to a specific threshold (e.g., 60 requests per minute). Requests exceeding this limit receive a `429 Too Many Requests` HTTP response, ensuring the underlying Node.js event loop remains responsive for legitimate traffic.
-
-## 14.3 Database Idempotency and Replay Attack Prevention
-
-A major vector of payment fraud is the "Replay Attack," where a malicious actor presents a legitimate, previously verified receipt to defraud a merchant multiple times. The system mitigates this at the database level using strict idempotency controls.
-
-The `SeenTransaction` table acts as a high-speed, indexed ledger for replay prevention. Its schema defines a unique composite constraint on `(bank, reference)`. 
-
-```sql
--- PostgreSQL Composite Constraint
-ALTER TABLE "SeenTransaction" 
-ADD CONSTRAINT "SeenTransaction_bank_reference_key" UNIQUE ("bank", "reference");
-```
-
-Before the Node API dispatches an external provider query, it attempts an `UPSERT` operation on this table. If the unique constraint violation is triggered (Postgres Error `23505`), the API immediately flags the incoming request as a `REPLAY_DETECTED` anomaly, preventing the system from re-verifying a consumed receipt while ensuring database integrity.
-
-## 14.4 PII Handling and Data Sovereignty
-
-Payment receipts inherently contain Personally Identifiable Information (PII) such as full names, partial account numbers, and phone numbers. The architecture restricts logging of this data. Images processed via the Vision API fallback are transmitted ephemerally and are not permanently cached, reducing the data footprint. 
-
-## 14.5 The Ethics of Probabilistic Scoring
-
-A fundamental ethical tenet of this system is that machine learning should inform, not dictate. Fraud risk scores are presented strictly as advisory metrics to human operators. Automating irreversible financial decisions (such as freezing a user account) based purely on an Isolation Forest anomaly score is discouraged due to the potential for false positives.
-
----
-
-# Chapter 15: Limitations and Threats to Validity
+### 4.3.3 Limitations and Threats to Validity
 
 ### Table 10: Limitations and Mitigations
 | Architectural Limitation | Operational Impact | Existing Mitigation Strategy |
@@ -784,20 +687,31 @@ A fundamental ethical tenet of this system is that machine learning should infor
 | Inadequate Fuzzing Detection | Highly sophisticated fake receipts may bypass the AI. | Human-in-the-loop manual review is mandated for high-value transactions. |
 | Synthetic Training Data | The model may have overfit to synthetic patterns. | Diverse attack typologies injected to force generalized learning. |
 
----
 
-# Chapter 16: Future Work
+# Chapter 5: Conclusions and Recommendations
+
+## 5.1 Conclusion
+
+This thesis successfully designed, implemented, and evaluated a comprehensive multi-bank payment verification platform. By engineering a hybrid architecture that combines rapid deterministic OCR parsing with Vision API fallbacks, the system effectively normalizes the fragmented landscape of Ethiopian digital receipts. Furthermore, the integration of an Isolation Forest and Logistic Regression ensemble model demonstrates a practical methodology for injecting probabilistic fraud intelligence into rigid compliance workflows without compromising the authoritative ledger. 
+
+While the evaluation exposed specific algorithmic vulnerabilities against OCR fuzzing, the platform establishes a robust, extensible foundation for operational finance teams and future document intelligence research. The research proves that a unified API interface can obscure the complexity of verifying receipts across multiple disparate providers while maintaining an immutable audit trail.
+
+## 5.2 Contributions
+
+The primary technical and operational contributions of this thesis to the field of engineering include:
+- A production-ready multi-bank verification API featuring unified workflows and comprehensive error handling.
+- An advanced image-based receipt extraction pipeline combining deterministic parsing algorithms with OCR and generative vision fallback.
+- A deterministic-first hybrid security gateway architecture that prioritizes immutable ledger checks while using AI as a supplementary risk layer.
+- A robust, PostgreSQL-backed `SeenTransaction` store designed specifically for deterministic replay prevention.
+- An empirical evaluation of an Isolation Forest and Logistic Regression ensemble model for payment fraud detection, demonstrating the efficacy of probability calibration in operational settings.
+
+## 5.3 Recommendations
 
 Future research and development should focus on addressing the identified limitations:
-1. **Computer Vision for Fraud:** Integrate deep CNN architectures (e.g., ResNet) to detect pixel-level manipulation (copy-pasting text, font mismatched anti-aliasing) directly on the receipt image, rather than relying solely on extracted text metadata.
+1. **Computer Vision for Fraud:** Integrate deep CNN architectures (e.g., ResNet) to detect pixel-level manipulation (copy-pasting text, font mismatched anti-aliasing) directly on the receipt image, rather than relying solely on extracted text metadata. This would mitigate the current system's vulnerability to OCR fuzzing.
 2. **Federated Learning:** Collaborate with local banks to train models on real, encrypted transaction data using Federated Learning protocols to solve the synthetic data limitation without violating banking secrecy.
 3. **Expanded Provider Support:** Build deterministic adapters for emerging microfinance and digital wallet ecosystems in Ethiopia.
-
----
-
-# Chapter 17: Conclusion
-
-This thesis successfully designed, implemented, and evaluated a comprehensive multi-bank payment verification platform. By engineering a hybrid architecture that combines rapid deterministic OCR parsing with Vision API fallbacks, the system effectively normalizes the fragmented landscape of Ethiopian digital receipts. Furthermore, the integration of an Isolation Forest and Logistic Regression ensemble model demonstrates a practical methodology for injecting probabilistic fraud intelligence into rigid compliance workflows without compromising the authoritative ledger. While the evaluation exposed specific algorithmic vulnerabilities against OCR fuzzing, the platform establishes a robust, extensible foundation for operational finance teams and future document intelligence research.
+4. **Enhanced Audit Portals:** Expand the React dashboard to include automated chargeback routing and deeper integration with standard enterprise ERP systems.
 
 ---
 

@@ -50,6 +50,8 @@
 .history-panel {
   padding: 16px;
   align-self: start;
+  position: sticky;
+  top: 24px;
 }
 
 .history-filters {

@@ -23,7 +23,7 @@
   "variable": [
     {
       "key": "BASE_URL",
-      "value": "https://verifyapi.leulzenebe.pro",
+      "value": "http://localhost:3001",
       "type": "string"
     },
     {

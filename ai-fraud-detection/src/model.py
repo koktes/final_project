@@ -351,7 +351,7 @@ class FraudDetectionModel:
             "risk_score": risk_score,
             "status": status,
             "is_anomaly": bool(is_anomaly),
-            "confidence": round(1.0 - abs(fraud_probability - 0.5) * 2, 4),
+            "confidence": round(abs(fraud_probability - 0.5) * 2, 4),
             "anomaly_score_raw": round(float(raw_score), 6),
             "contributing_features": contributing,
         }

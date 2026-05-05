@@ -128,7 +128,7 @@ This will skip the primary Telebirr receipt fetch entirely and go straight to th
 
 ```bash
 # Clone the repository
-git clone https://github.com/Vixen878/verifier-api
+git clone https://github.com/Kokeb/verifier-api
 
 # Navigate to the project directory
 cd verifier-api
@@ -343,7 +343,7 @@ Multipart form-data with an image file.
 ### 🚀 Universal Smart Router
 
 ```bash
-curl -X POST https://verifyapi.leulzenebe.pro/verify \
+curl -X POST http://localhost:3000/verify \
   -H "x-api-key: YOUR_API_KEY" \
   -H "Content-Type: application/json" \
   -d '{ "reference": "FT253089F68Z", "suffix": "16825193" }'
@@ -352,7 +352,7 @@ curl -X POST https://verifyapi.leulzenebe.pro/verify \
 ### ✅ CBE
 
 ```bash
-curl -X POST https://verifyapi.leulzenebe.pro/verify-cbe \
+curl -X POST http://localhost:3000/verify-cbe \
   -H "x-api-key: YOUR_API_KEY" \
   -H "Content-Type: application/json" \
   -d '{ "reference": "FT2513001V2G", "accountSuffix": "39003377" }'
@@ -361,7 +361,7 @@ curl -X POST https://verifyapi.leulzenebe.pro/verify-cbe \
 ### ✅ Telebirr
 
 ```bash
-curl -X POST https://verifyapi.leulzenebe.pro/verify-telebirr \
+curl -X POST http://localhost:3000/verify-telebirr \
   -H "x-api-key: YOUR_API_KEY" \
   -H "Content-Type: application/json" \
   -d '{ "reference": "CE2513001XYT" }'
@@ -370,7 +370,7 @@ curl -X POST https://verifyapi.leulzenebe.pro/verify-telebirr \
 ### ✅ Dashen Bank
 
 ```bash
-curl -X POST https://verifyapi.leulzenebe.pro/verify-dashen \
+curl -X POST http://localhost:3000/verify-dashen \
   -H "x-api-key: YOUR_API_KEY" \
   -H "Content-Type: application/json" \
   -d '{ "reference": "DASHEN_REFERENCE_NUMBER" }'
@@ -379,7 +379,7 @@ curl -X POST https://verifyapi.leulzenebe.pro/verify-dashen \
 ### ✅ Bank of Abyssinia
 
 ```bash
-curl -X POST https://verifyapi.leulzenebe.pro/verify-abyssinia \
+curl -X POST http://localhost:3000/verify-abyssinia \
   -H "x-api-key: YOUR_API_KEY" \
   -H "Content-Type: application/json" \
   -d '{ "reference": "ABYSSINIA_REFERENCE", "suffix": "12345" }'
@@ -388,7 +388,7 @@ curl -X POST https://verifyapi.leulzenebe.pro/verify-abyssinia \
 ### ✅ CBE Birr
 
 ```bash
-curl -X POST https://verifyapi.leulzenebe.pro/verify-cbebirr \
+curl -X POST http://localhost:3000/verify-cbebirr \
   -H "x-api-key: YOUR_API_KEY" \
   -H "Content-Type: application/json" \
   -d '{ "receiptNumber": "RECEIPT_NUMBER", "phoneNumber": "251912345678" }'
@@ -397,7 +397,7 @@ curl -X POST https://verifyapi.leulzenebe.pro/verify-cbebirr \
 ### ✅ M-Pesa
 
 ```bash
-curl -X POST https://verifyapi.leulzenebe.pro/verify-mpesa \
+curl -X POST http://localhost:3000/verify-mpesa \
   -H "x-api-key: YOUR_API_KEY" \
   -H "Content-Type: application/json" \
   -d '{ "receiptNumber": "RECEIPT_REFERENCE" }'
@@ -406,7 +406,7 @@ curl -X POST https://verifyapi.leulzenebe.pro/verify-mpesa \
 ### ✅ Image
 
 ```bash
-curl -X POST https://verifyapi.leulzenebe.pro/verify-image?autoVerify=true \
+curl -X POST http://localhost:3000/verify-image?autoVerify=true \
   -H "x-api-key: YOUR_API_KEY" \
   -F "file=@yourfile.jpg" \
   -F "suffix=39003377"
@@ -454,7 +454,7 @@ Get information about the API and available endpoints.
     "/verify-image"
   ],
   "health": "/health",
-  "documentation": "https://github.com/Vixen878/verifier-api"
+  "documentation": "https://github.com/Kokeb/verifier-api"
 }
 ```
 
@@ -468,7 +468,7 @@ Pass the key using either:
 - Header: `x-api-key: YOUR_API_KEY`
 - Query: `?apiKey=YOUR_API_KEY`
 
-To **generate an API key**, visit: [https://verify.leul.et](https://verify.leul.et)
+To **generate an API key**, visit: [http://localhost:5173](http://localhost:5173)
 
 ---
 
@@ -477,10 +477,10 @@ To **generate an API key**, visit: [https://verify.leul.et](https://verify.leul.
 Use your API key to call endpoints from:
 
 ```
-https://verifyapi.leulzenebe.pro/[endpoint]
+http://localhost:3000/[endpoint]
 ```
 
-API Documentation: [https://verify.leul.et/docs](https://verify.leul.et/docs)
+API Documentation: [http://localhost:3000/docs](http://localhost:3000/docs)
 
 ---
 
@@ -597,7 +597,7 @@ MIT License — see the [LICENSE](./LICENSE) file for details.
 
 ## 👤 Maintainer
 
-**Leul Zenebe**  
+**Kokeb**  
 Creofam LLC  
 🌐 [creofam.com](https://creofam.com)  
-🌐 [Personal Site](https://leulzenebe.pro)
+🌐 [Personal Site](#)
