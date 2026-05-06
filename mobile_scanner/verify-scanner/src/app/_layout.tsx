@@ -26,7 +26,7 @@ function RootNavigator() {
       router.replace('/login');
     } else if (isAuthenticated && !inAppGroup) {
       // Logged in but on login/index → redirect to scan
-      router.replace('/(app)/scan');
+      router.replace('/(app)');
     }
   }, [isAuthenticated, isLoading, segments]);
 

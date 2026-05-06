@@ -17,6 +17,7 @@ import {
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Text } from '@/components/themed-text';
 import { useTheme } from '@/hooks/use-theme';
+import { Ionicons } from '@expo/vector-icons';
 
 interface ScannerProps {
   title: string;
@@ -351,7 +352,7 @@ export const Scanner: React.FC<ScannerProps> = ({
               accessibilityLabel={flashEnabled ? 'Turn flash off' : 'Turn flash on'}
               hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}
             >
-              <Text style={styles.flashText}>{flashEnabled ? '⚡' : '🔦'}</Text>
+              <Ionicons name={flashEnabled ? "flash" : "flash-off"} size={22} color="#FFF" />
             </TouchableOpacity>
           </View>
 

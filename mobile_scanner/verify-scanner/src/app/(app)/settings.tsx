@@ -9,6 +9,7 @@ import { useAuth } from '@/context/auth';
 import { useTheme } from '@/hooks/use-theme';
 import { PROVIDERS } from '@/constants/api';
 import { Radius, Spacing } from '@/constants/theme';
+import { Ionicons } from '@expo/vector-icons';
 
 export default function SettingsScreen() {
   const theme = useTheme();
@@ -23,7 +24,7 @@ export default function SettingsScreen() {
     <SafeAreaView style={[styles.safe, { backgroundColor: theme.background }]}>
       <View style={[styles.header, { borderBottomColor: theme.borderLight }]}>
         <TouchableOpacity onPress={() => router.back()} hitSlop={12}>
-          <Text size="xl" style={{ color: theme.primary }}>←</Text>
+          <Ionicons name="arrow-back" size={24} color={theme.primary} />
         </TouchableOpacity>
         <Text weight="semibold" size="lg" style={{ color: theme.text, flex: 1, textAlign: 'center' }}>
           Settings
@@ -62,7 +63,7 @@ export default function SettingsScreen() {
           </View>
           <View style={[styles.aboutRow, { borderTopWidth: StyleSheet.hairlineWidth, borderTopColor: theme.borderLight }]}>
             <Text size="sm" color="secondary">Developer</Text>
-            <Text size="sm" weight="medium" style={{ color: theme.text }}>Kokeb • Creofam</Text>
+            <Text size="sm" weight="medium" style={{ color: theme.text }}>MIT • IT Department</Text>
           </View>
         </View>
 
@@ -72,6 +73,7 @@ export default function SettingsScreen() {
           onPress={handleLogout}
           activeOpacity={0.85}
         >
+          <Ionicons name="log-out-outline" size={18} color={theme.error} style={{ marginRight: 8 }} />
           <Text weight="semibold" style={{ color: theme.error }}>Logout</Text>
         </TouchableOpacity>
       </ScrollView>
@@ -87,5 +89,5 @@ const styles = StyleSheet.create({
   providerRow: { flexDirection: 'row', alignItems: 'center', paddingHorizontal: 16, paddingVertical: 14, gap: 12 },
   dot: { width: 10, height: 10, borderRadius: 5 },
   aboutRow: { flexDirection: 'row', justifyContent: 'space-between', paddingHorizontal: 16, paddingVertical: 14 },
-  logoutBtn: { marginTop: 32, height: 50, borderRadius: Radius.md, borderWidth: 1, justifyContent: 'center', alignItems: 'center' },
+  logoutBtn: { marginTop: 32, height: 50, borderRadius: Radius.md, borderWidth: 1, justifyContent: 'center', alignItems: 'center', flexDirection: 'row' },
 });

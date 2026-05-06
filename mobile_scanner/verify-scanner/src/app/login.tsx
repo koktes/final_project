@@ -68,7 +68,7 @@ export default function LoginScreen() {
 
       const res = await authLogin({ email: trimmedEmail, password });
       await login(res.token);
-      router.replace('/(app)/scan');
+      router.replace('/(app)');
     } catch (e: any) {
       setError(e.message || 'Login failed. Please check your credentials.');
     } finally {

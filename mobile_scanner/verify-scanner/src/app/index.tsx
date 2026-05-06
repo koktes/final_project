@@ -19,7 +19,7 @@ export default function IndexScreen() {
   }
 
   if (isAuthenticated) {
-    return <Redirect href="/(app)/scan" />;
+    return <Redirect href="/(app)" />;
   }
 
   return <Redirect href="/login" />;

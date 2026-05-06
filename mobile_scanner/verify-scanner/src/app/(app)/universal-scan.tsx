@@ -8,6 +8,7 @@ import { Scanner } from '@/components/scanner';
 import { Text } from '@/components/themed-text';
 import { useTheme } from '@/hooks/use-theme';
 import { Radius, Spacing } from '@/constants/theme';
+import { Ionicons } from '@expo/vector-icons';
 
 export default function ScanScreen() {
   const theme = useTheme();
@@ -17,7 +18,8 @@ export default function ScanScreen() {
   const [phone, setPhone] = useState('');
 
   const handleScanned = ({ data }: { data: string }) => {
-    router.push({ pathname: '/(app)/results', params: { reference: data } });
+    setReference(data);
+    setShowManual(true);
   };
 
   const handleManualSubmit = () => {
@@ -52,7 +54,7 @@ export default function ScanScreen() {
             <View style={[styles.handle, { backgroundColor: theme.border }]} />
             <Text weight="bold" size="xl" style={{ color: theme.text, marginBottom: 6 }}>Manual Verification</Text>
             <Text size="sm" color="secondary" style={{ marginBottom: 20 }}>
-              Enter the transaction reference. Additional fields depend on the provider.
+              Review the transaction reference. Additional fields (like Suffix or Phone) depend on the provider.
             </Text>
             <ScrollView showsVerticalScrollIndicator={false}>
               <Text weight="medium" size="sm" style={{ color: theme.text, marginBottom: 6 }}>Reference *</Text>
@@ -68,6 +70,7 @@ export default function ScanScreen() {
                 </Text>
               </View>
               <TouchableOpacity style={[styles.btn, { backgroundColor: theme.primary }]} onPress={handleManualSubmit} activeOpacity={0.85}>
+                <Ionicons name="checkmark-circle-outline" size={20} color="#FFF" style={{ marginRight: 8 }} />
                 <Text weight="semibold" size="lg" style={{ color: '#FFF' }}>Verify Payment</Text>
               </TouchableOpacity>
               <TouchableOpacity style={[styles.cancelBtn, { borderColor: theme.border }]} onPress={() => setShowManual(false)}>
