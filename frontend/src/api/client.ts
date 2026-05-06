@@ -145,6 +145,7 @@ export interface BankInfo {
   name: string;
   shortName: string;
   color: string;
+  icon?: string;
   endpoint: string;
   fields: FieldConfig[];
   refPlaceholder: string;
@@ -163,7 +164,7 @@ export interface FieldConfig {
 export const BANKS: BankInfo[] = [
   {
     id: 'cbe', name: 'Commercial Bank of Ethiopia', shortName: 'CBE',
-    color: 'var(--bank-cbe)', endpoint: '/verify-cbe',
+    color: 'var(--bank-cbe)', icon: '/banks/CBE.png', endpoint: '/verify-cbe',
     refPlaceholder: 'e.g. FT25188Y8622',
     fields: [
       { name: 'reference', label: 'Reference Number', placeholder: 'FT25188Y8622', required: true, type: 'text' },
@@ -172,7 +173,7 @@ export const BANKS: BankInfo[] = [
   },
   {
     id: 'cbe_birr', name: 'CBE Birr', shortName: 'CBE Birr',
-    color: 'var(--bank-cbebirr)', endpoint: '/verify-cbebirr',
+    color: 'var(--bank-cbebirr)', icon: '/banks/CBEBirr.png', endpoint: '/verify-cbebirr',
     refPlaceholder: 'e.g. DAH113N6ISR',
     fields: [
       { name: 'reference', label: 'Order ID', placeholder: 'DAH113N6ISR', required: true, type: 'text' },
@@ -181,7 +182,7 @@ export const BANKS: BankInfo[] = [
   },
   {
     id: 'telebirr', name: 'Telebirr', shortName: 'Telebirr',
-    color: 'var(--bank-telebirr)', endpoint: '/verify-telebirr',
+    color: 'var(--bank-telebirr)', icon: '/banks/telebirr.jpg', endpoint: '/verify-telebirr',
     refPlaceholder: 'e.g. CIP240YHNO',
     fields: [
       { name: 'reference', label: 'Invoice Number', placeholder: 'CIP240YHNO', required: true, type: 'text' },
@@ -189,7 +190,7 @@ export const BANKS: BankInfo[] = [
   },
   {
     id: 'dashen', name: 'Dashen Bank', shortName: 'Dashen',
-    color: 'var(--bank-dashen)', endpoint: '/verify-dashen',
+    color: 'var(--bank-dashen)', icon: '/banks/Dashen.png', endpoint: '/verify-dashen',
     refPlaceholder: 'e.g. FT1234567890',
     fields: [
       { name: 'reference', label: 'FT Ref', placeholder: 'FT1234567890', required: true, type: 'text' },
@@ -197,7 +198,7 @@ export const BANKS: BankInfo[] = [
   },
   {
     id: 'abyssinia', name: 'Bank of Abyssinia', shortName: 'Abyssinia',
-    color: 'var(--bank-abyssinia)', endpoint: '/verify-abyssinia',
+    color: 'var(--bank-abyssinia)', icon: '/banks/Abyssinia.png', endpoint: '/verify-abyssinia',
     refPlaceholder: 'e.g. FT26112L1FGQ',
     fields: [
       { name: 'reference', label: 'Transaction Reference', placeholder: 'FT26112L1FGQ', required: true, type: 'text' },
@@ -206,7 +207,7 @@ export const BANKS: BankInfo[] = [
   },
   {
     id: 'mpesa', name: 'M-Pesa', shortName: 'M-Pesa',
-    color: 'var(--bank-mpesa)', endpoint: '/verify-mpesa',
+    color: 'var(--bank-mpesa)', icon: '/banks/MPesa.png', endpoint: '/verify-mpesa',
     refPlaceholder: 'e.g. TD94RNM67E',
     fields: [
       { name: 'reference', label: 'Transaction Number', placeholder: 'TD94RNM67E', required: true, type: 'text' },

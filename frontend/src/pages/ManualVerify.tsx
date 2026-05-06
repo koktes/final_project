@@ -65,7 +65,11 @@ export default function ManualVerify() {
                 style={{ '--bcolor': bank.color, '--bdim': `var(--bank-${bank.id.replace('_', '')}-dim)`, '--bbg': `var(--bank-${bank.id.replace('_', '')}-bg)` } as React.CSSProperties}
               >
                 <div className="bsc-icon">
-                  <span className="bsc-dot"></span>
+                  {bank.icon ? (
+                    <img src={bank.icon} alt={bank.shortName} className="bsc-bank-logo" />
+                  ) : (
+                    <span className="bsc-dot"></span>
+                  )}
                 </div>
                 <h3>{bank.shortName}</h3>
                 <p>{bank.name}</p>
@@ -83,7 +87,11 @@ export default function ManualVerify() {
           <div className="flow-header">
             <button className="back-btn" onClick={reset}>← Back</button>
             <div className="flow-bank-info" style={{ '--bcolor': selectedBank.color } as React.CSSProperties}>
-              <span className="flow-bank-dot" style={{ background: selectedBank.color }}></span>
+              {selectedBank.icon ? (
+                <img src={selectedBank.icon} alt="" className="flow-bank-logo" />
+              ) : (
+                <span className="flow-bank-dot" style={{ background: selectedBank.color }}></span>
+              )}
               <span className="flow-bank-name">{selectedBank.name}</span>
             </div>
           </div>

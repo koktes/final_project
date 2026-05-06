@@ -154,9 +154,13 @@ export default function ImageVerify() {
           {(stage === 'detected' || stage === 'params') && detection && detectedBank && (
             <div className="iv-detection animate-fade-in">
               <div className="det-header" style={{ '--bcolor': detectedBank.color } as React.CSSProperties}>
-                <div className="det-icon" style={{ background: `var(--bank-${detectedBank.id.replace('_','')}-dim)` }}>
-                  <span style={{ color: detectedBank.color }}>✓</span>
-                </div>
+                {detectedBank.icon ? (
+                  <img src={detectedBank.icon} alt={detectedBank.shortName} className="det-bank-logo" />
+                ) : (
+                  <div className="det-icon" style={{ background: `var(--bank-${detectedBank.id.replace('_','')}-dim)` }}>
+                    <span style={{ color: detectedBank.color }}>✓</span>
+                  </div>
+                )}
                 <div>
                   <h3>Receipt Identified</h3>
                   <span className="det-bank-name" style={{ color: detectedBank.color }}>{detectedBank.name}</span>

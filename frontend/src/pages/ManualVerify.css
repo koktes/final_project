@@ -60,6 +60,13 @@
   background: var(--bcolor);
 }
 
+.bsc-bank-logo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: calc(var(--radius-md) - 2px);
+}
+
 .bank-select-card h3 {
   font-size: 18px;
   font-weight: 600;
@@ -124,6 +131,13 @@
   width: 10px;
   height: 10px;
   border-radius: 50%;
+}
+
+.flow-bank-logo {
+  width: 20px;
+  height: 20px;
+  object-fit: cover;
+  border-radius: 4px;
 }
 
 /* ─── Form ─────────────────────────────────── */
