@@ -5,10 +5,12 @@
 
 // For Android emulator use 10.0.2.2, for physical device use your machine's LAN IP
 export const API_BASE_URL = __DEV__
-  ? 'http://10.0.2.2:3000'
+  ? 'http://192.168.1.2:3001'
   : 'https://your-production-api.com';
 
 export const API_ENDPOINTS = {
+  authLogin: '/auth/login',
+  authRegister: '/auth/register',
   verify: '/verify',
   verifyCbe: '/verify-cbe',
   verifyTelebirr: '/verify-telebirr',

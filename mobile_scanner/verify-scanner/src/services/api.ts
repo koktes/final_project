@@ -1,5 +1,20 @@
 import { API_BASE_URL, API_ENDPOINTS } from '@/constants/api';
 
+export interface LoginRequest {
+  email: string;
+  password: string;
+}
+
+export interface LoginResponse {
+  success: boolean;
+  token: string;
+  user: {
+    id: string;
+    email: string;
+    name?: string;
+  };
+  error?: string;
+}
 export interface VerifyRequest {
   reference: string;
   suffix?: string;
@@ -47,12 +62,35 @@ export interface VerifyResponse {
 }
 
 /**
+ * Authenticates user via email and password.
+ */
+export async function authLogin(request: LoginRequest): Promise<LoginResponse> {
+  const url = `${API_BASE_URL}${API_ENDPOINTS.authLogin}`;
+
+  const response = await fetch(url, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(request),
+  });
+
+  const data = await response.json();
+
+  if (!response.ok) {
+    throw new Error(data?.error || data?.message || `Login failed (${response.status})`);
+  }
+
+  return data as LoginResponse;
+}
+
+/**
  * Calls the universal /verify endpoint (smart router).
  * The backend auto-detects the provider from the reference format.
  */
 export async function verifyPayment(
   request: VerifyRequest,
-  apiKey: string
+  token: string
 ): Promise<VerifyResponse> {
   const url = `${API_BASE_URL}${API_ENDPOINTS.verify}`;
 
@@ -60,7 +98,7 @@ export async function verifyPayment(
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
-      'x-api-key': apiKey,
+      'Authorization': `Bearer ${token}`,
     },
     body: JSON.stringify(request),
   });

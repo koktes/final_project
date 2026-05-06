@@ -1,18 +1,18 @@
 import React, { createContext, useCallback, useContext, useEffect, useState } from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
-const AUTH_STORAGE_KEY = '@verify_scanner_api_key';
+const AUTH_STORAGE_KEY = '@verify_scanner_token';
 
 interface AuthContextType {
-  apiKey: string | null;
+  token: string | null;
   isAuthenticated: boolean;
   isLoading: boolean;
-  login: (key: string) => Promise<void>;
+  login: (token: string) => Promise<void>;
   logout: () => Promise<void>;
 }
 
 const AuthContext = createContext<AuthContextType>({
-  apiKey: null,
+  token: null,
   isAuthenticated: false,
   isLoading: true,
   login: async () => {},
@@ -20,14 +20,14 @@ const AuthContext = createContext<AuthContextType>({
 });
 
 export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-  const [apiKey, setApiKey] = useState<string | null>(null);
+  const [token, setToken] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     (async () => {
       try {
         const stored = await AsyncStorage.getItem(AUTH_STORAGE_KEY);
-        if (stored) setApiKey(stored);
+        if (stored) setToken(stored);
       } catch {
         // Ignore storage errors
       } finally {
@@ -36,21 +36,21 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     })();
   }, []);
 
-  const login = useCallback(async (key: string) => {
-    await AsyncStorage.setItem(AUTH_STORAGE_KEY, key);
-    setApiKey(key);
+  const login = useCallback(async (newToken: string) => {
+    await AsyncStorage.setItem(AUTH_STORAGE_KEY, newToken);
+    setToken(newToken);
   }, []);
 
   const logout = useCallback(async () => {
     await AsyncStorage.removeItem(AUTH_STORAGE_KEY);
-    setApiKey(null);
+    setToken(null);
   }, []);
 
   return (
     <AuthContext.Provider
       value={{
-        apiKey,
-        isAuthenticated: !!apiKey,
+        token,
+        isAuthenticated: !!token,
         isLoading,
         login,
         logout,

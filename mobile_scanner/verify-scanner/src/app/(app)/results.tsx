@@ -13,7 +13,7 @@ import { verifyPayment, type VerifyResponse } from '@/services/api';
 
 export default function ResultsScreen() {
   const theme = useTheme();
-  const { apiKey } = useAuth();
+  const { token } = useAuth();
   const params = useLocalSearchParams<{ reference: string; suffix?: string; phoneNumber?: string }>();
 
   const [loading, setLoading] = useState(true);
@@ -21,12 +21,12 @@ export default function ResultsScreen() {
   const [error, setError] = useState<string | null>(null);
 
   const verify = useCallback(async () => {
-    if (!params.reference || !apiKey) return;
+    if (!params.reference || !token) return;
     setLoading(true); setError(null);
     try {
       const data = await verifyPayment(
         { reference: params.reference, suffix: params.suffix, phoneNumber: params.phoneNumber },
-        apiKey,
+        token,
       );
       setResult(data);
     } catch (e: any) {
@@ -34,7 +34,7 @@ export default function ResultsScreen() {
     } finally {
       setLoading(false);
     }
-  }, [params.reference, params.suffix, params.phoneNumber, apiKey]);
+  }, [params.reference, params.suffix, params.phoneNumber, token]);
 
   useEffect(() => { verify(); }, [verify]);
 

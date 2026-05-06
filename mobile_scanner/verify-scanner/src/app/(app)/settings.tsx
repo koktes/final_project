@@ -72,7 +72,7 @@ export default function SettingsScreen() {
           onPress={handleLogout}
           activeOpacity={0.85}
         >
-          <Text weight="semibold" style={{ color: theme.error }}>Disconnect API Key</Text>
+          <Text weight="semibold" style={{ color: theme.error }}>Logout</Text>
         </TouchableOpacity>
       </ScrollView>
     </SafeAreaView>

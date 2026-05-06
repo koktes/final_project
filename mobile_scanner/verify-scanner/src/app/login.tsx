@@ -17,12 +17,13 @@ import { Text } from '@/components/themed-text';
 import { useAuth } from '@/context/auth';
 import { useTheme } from '@/hooks/use-theme';
 import { Radius, Spacing } from '@/constants/theme';
-import { checkHealth } from '@/services/api';
+import { authLogin, checkHealth } from '@/services/api';
 
 export default function LoginScreen() {
   const theme = useTheme();
   const { login } = useAuth();
-  const [apiKey, setApiKey] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
@@ -49,9 +50,9 @@ export default function LoginScreen() {
   }, [pulseAnim]);
 
   const handleLogin = async () => {
-    const trimmed = apiKey.trim();
-    if (!trimmed) {
-      setError('Please enter your API key');
+    const trimmedEmail = email.trim();
+    if (!trimmedEmail || !password) {
+      setError('Please enter your email and password');
       return;
     }
 
@@ -59,17 +60,17 @@ export default function LoginScreen() {
     setError(null);
 
     try {
-      // Optionally check API health before saving
+      // Optionally check API health before login
       const healthy = await checkHealth();
       if (!healthy) {
-        // Still allow login — they might be on a different network
         console.warn('API health check failed, proceeding anyway');
       }
 
-      await login(trimmed);
+      const res = await authLogin({ email: trimmedEmail, password });
+      await login(res.token);
       router.replace('/(app)/scan');
-    } catch (e) {
-      setError('Failed to save API key. Please try again.');
+    } catch (e: any) {
+      setError(e.message || 'Login failed. Please check your credentials.');
     } finally {
       setIsLoading(false);
     }
@@ -117,12 +118,37 @@ export default function LoginScreen() {
               ]}
             >
               <Text weight="semibold" size="lg" style={{ color: theme.text, marginBottom: 6 }}>
-                Enter API Key
+                Sign In
               </Text>
               <Text size="sm" color="secondary" style={{ marginBottom: 20, lineHeight: 18 }}>
-                Enter your API key to access the payment verification service.
+                Enter your credentials to access the payment verification service.
               </Text>
 
+              <Text weight="medium" size="sm" style={{ color: theme.text, marginBottom: 6 }}>Email</Text>
+              <TextInput
+                style={[
+                  styles.input,
+                  {
+                    backgroundColor: theme.backgroundElement,
+                    borderColor: error ? theme.error : theme.border,
+                    color: theme.text,
+                    marginBottom: 16,
+                  },
+                ]}
+                placeholder="admin@example.com"
+                placeholderTextColor={theme.textTertiary}
+                value={email}
+                onChangeText={(text) => {
+                  setEmail(text);
+                  if (error) setError(null);
+                }}
+                autoCapitalize="none"
+                keyboardType="email-address"
+                autoCorrect={false}
+                editable={!isLoading}
+              />
+
+              <Text weight="medium" size="sm" style={{ color: theme.text, marginBottom: 6 }}>Password</Text>
               <TextInput
                 style={[
                   styles.input,
@@ -132,11 +158,11 @@ export default function LoginScreen() {
                     color: theme.text,
                   },
                 ]}
-                placeholder="sk-xxxx-xxxx-xxxx-xxxx"
+                placeholder="••••••••"
                 placeholderTextColor={theme.textTertiary}
-                value={apiKey}
+                value={password}
                 onChangeText={(text) => {
-                  setApiKey(text);
+                  setPassword(text);
                   if (error) setError(null);
                 }}
                 autoCapitalize="none"
@@ -169,7 +195,7 @@ export default function LoginScreen() {
                   <ActivityIndicator color="#FFFFFF" size="small" />
                 ) : (
                   <Text weight="semibold" size="lg" style={{ color: '#FFFFFF' }}>
-                    Connect
+                    Sign In
                   </Text>
                 )}
               </TouchableOpacity>
@@ -256,7 +282,6 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     paddingHorizontal: 16,
     fontSize: 15,
-    fontFamily: Platform.OS === 'ios' ? 'Menlo' : 'monospace',
   },
   button: {
     height: 52,
